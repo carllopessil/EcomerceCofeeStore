@@ -1,15 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="br.com.gymcontrol.Model.UsuarioBackOffice" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Minha Página JSP</title>
+    <title>Backoffice - Principal</title>
 </head>
 <body>
-    <ul>
-        <li>listar Produto<a href="ListarProduto.jsp">Link 1</a></li>
+    <h1>Bem-vindo ao Backoffice</h1>
 
-<li><form action="/ListarUsuarioBackOffice" method="get"><button class="btn-primary"
- type="submit">Buscar usuarios dos sistemas</button></form></li>    </ul>
+    <a href="ListaProdutos.jsp">Lista de Produtos</a><br>
+    <% if (((UsuarioBackOffice)session.getAttribute("usuario")).getGrupo().equals("Admin Group")) { %>
+        <a href="ListaUsuarios.jsp">Lista de Usuários</a><br>
+    <% } %>
+
+    <br><br>
+    <a href="Logout">Sair</a>
 </body>
 </html>

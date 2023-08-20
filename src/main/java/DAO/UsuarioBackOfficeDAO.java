@@ -58,5 +58,35 @@ public class UsuarioBackOfficeDAO {
 
 
 }
+    public static br.com.gymcontrol.Model.UsuarioBackOffice buscarUsuarioPorEmail(String email) {
+        String SQL = "SELECT * FROM UsuarioBackOffice WHERE Email = ?";
+
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+            preparedStatement.setString(1, email);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                int userSistemID = resultSet.getInt("id");
+                String userSistemNome = resultSet.getString("nome");
+                String userSistemEmail = resultSet.getString("email");
+                String userSistemSenha = resultSet.getString("senha");
+                String userSistemGrupo = resultSet.getString("grupo");
+                String userStatus = resultSet.getString("status");
+                String userSistemCPF = resultSet.getString("CPF");
+
+                return new br.com.gymcontrol.Model.UsuarioBackOffice(userSistemID, userSistemNome, userSistemEmail, userSistemSenha, userSistemGrupo, userStatus, userSistemCPF);
+            } else {
+                return null;
+            }
+
+        } catch (Exception e) {
+            System.out.println("Erro ao buscar usuário por email: " + e.getMessage());
+            return null;
+        }
+    }
 
 }
