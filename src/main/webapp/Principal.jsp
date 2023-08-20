@@ -8,7 +8,8 @@
 <body>
     <ul>
         <li>listar Produto<a href="ListarProduto.jsp">Link 1</a></li>
-        <li>Listar Usuarios<a href="ListaDeUsuario.jsp">Link 2</a></li>
-    </ul>
+
+<li><form action="/ListarUsuarioBackOffice" method="get"><button class="btn-primary"
+ type="submit">Buscar usuarios dos sistemas</button></form></li>    </ul>
 </body>
 </html>
