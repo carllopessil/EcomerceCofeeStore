@@ -3,8 +3,9 @@
 <html>
 <head>
     <title>Backoffice - Principal</title>
+<link rel="stylesheet" href="css/EstiloPrincipal.css">
 </head>
-<body>
+<bod BACKGROUND="download(3).jpeg">
     <h1>Bem-vindo ao Backoffice</h1>
 
     <a href="ListaProdutos.jsp">Lista de Produtos</a><br>
