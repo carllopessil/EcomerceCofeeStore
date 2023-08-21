@@ -1,4 +1,3 @@
-
 const INPUT_BUSCA = document.getElementById('input-busca');
 const TABELA_USUARIOS = document.getElementById('tabela-usuarios');
 
@@ -24,8 +23,6 @@ INPUT_BUSCA.addEventListener('keyup', () => {
             linhas[posicao].style.display = 'none';
         }
     }
-
-
 });
 
 const EDIT_BUTTONS = document.querySelectorAll('.edit-button');
@@ -34,38 +31,36 @@ const EDITABLE_FIELDS = document.querySelectorAll('.editable');
 
 for (let i = 0; i < EDIT_BUTTONS.length; i++) {
     EDIT_BUTTONS[i].addEventListener('click', () => {
-        const fields = EDIT_BUTTONS[i].parentNode.parentNode.querySelectorAll('.editable');
+        const rowId = EDIT_BUTTONS[i].closest('tr').id;
+        const nomeInput = document.querySelector(`#${rowId} .editable.nome`);
+        const grupoInput = document.querySelector(`#${rowId} .editable.grupo`);
 
-        fields.forEach(field => {
-            field.removeAttribute('disabled');
-        });
+        nomeInput.removeAttribute('disabled');
+        grupoInput.removeAttribute('disabled');
 
         SAVE_BUTTONS.forEach(button => {
             button.disabled = true;
         });
         SAVE_BUTTONS[i].disabled = false;
 
-        const nomeInput = fields[0]; // Índice 0 corresponde ao campo "Nome"
-        const grupoInput = fields[1]; // Índice 1 corresponde ao campo "Grupo"
-
-        // Preencher os campos hidden no formulário de salvar
         const form = EDIT_BUTTONS[i].parentNode.querySelector('.edit-form');
         form.querySelector('.input-nome').value = nomeInput.value;
         form.querySelector('.input-grupo').value = grupoInput.value;
     });
 
     SAVE_BUTTONS[i].addEventListener('click', () => {
+        const rowId = EDIT_BUTTONS[i].closest('tr').id;
+        const nomeInput = document.querySelector(`#${rowId} .editable.nome`);
+        const grupoInput = document.querySelector(`#${rowId} .editable.grupo`);
+
         const form = EDIT_BUTTONS[i].parentNode.querySelector('.edit-form');
-        const nomeInput = form.querySelector('.input-nome');
-        const grupoInput = form.querySelector('.input-grupo');
+        const nomeHiddenInput = form.querySelector('.input-nome');
+        const grupoHiddenInput = form.querySelector('.input-grupo');
 
-
-        // Preencha os campos ocultos com os valores apropriados
-        nomeInput.value = EDITABLE_FIELDS[0].value; // ou o valor correto do campo "Nome"
-        grupoInput.value = EDITABLE_FIELDS[1].value; // ou o valor correto do campo "Grupo"
+        nomeHiddenInput.value = nomeInput.value;
+        grupoHiddenInput.value = grupoInput.value;
 
         form.submit();
-            window.location.href = "/ListarUsuarioBackOffice.jsp";
-
+        window.location.href = "/ListarUsuarioBackOffice.jsp";
     });
 }

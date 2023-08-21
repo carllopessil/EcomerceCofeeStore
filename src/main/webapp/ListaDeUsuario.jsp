@@ -32,13 +32,13 @@
             </tr>
         </thead>
         <tbody id="tabela-usuarios">
-            <c:forEach var="UsuarioBackOffice" items="${UsuarioBackOffice}">
-                <tr class="editable-row">
+            <c:forEach var="UsuarioBackOffice" items="${UsuarioBackOffice}" varStatus="loop">
+                <tr class="editable-row" id="row-${loop.index}">
                     <td><text>${UsuarioBackOffice.ID}</text></td>
-                    <td><input class="editable nome" value="${UsuarioBackOffice.nome}" disabled></td>
+                    <td><input class="editable nome" value="${UsuarioBackOffice.nome}" disabled data-rowid="row-${loop.index}"></td>
                     <td><text>${UsuarioBackOffice.email}</text></td>
                     <td><text>${UsuarioBackOffice.status}</text></td>
-                    <td><input class="editable grupo" value="${UsuarioBackOffice.grupo}" disabled></td>
+                    <td><input class="editable grupo" value="${UsuarioBackOffice.grupo}" disabled data-rowid="row-${loop.index}"></td>
                     <td>
                         <button class="btn btn-primary edit-button">Editar</button>
                         <form class="edit-form" action="/atualizarUsuarioBackOffice" method="post">
@@ -58,4 +58,3 @@
 <script src="eventos.js"></script>
 </body>
 </html>
-
