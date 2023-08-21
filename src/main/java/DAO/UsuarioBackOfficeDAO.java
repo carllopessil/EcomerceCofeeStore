@@ -1,9 +1,6 @@
 package DAO;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -57,9 +54,12 @@ public class UsuarioBackOfficeDAO {
 
 
 
+
+
+
 }
     public static br.com.gymcontrol.Model.UsuarioBackOffice buscarUsuarioPorEmail(String email) {
-        String SQL = "SELECT * FROM UsuarioBackOffice WHERE Email = ?";
+        String SQL = "SELECT * FROM UsuarioBackOffice WHERE email = ?";
 
         try {
             Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
@@ -89,4 +89,43 @@ public class UsuarioBackOfficeDAO {
         }
     }
 
+    public void updateUsuarioBackOffice(br.com.gymcontrol.Model.UsuarioBackOffice UsuarioBackOffice) {
+
+        String SQL = "UPDATE UsuarioBackOffice SET nome = ?, grupo = ? WHERE id = ?";
+
+        try {
+
+            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa","sa");
+
+            System.out.println("success in database connection");
+
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+
+            preparedStatement.setString(1, (UsuarioBackOffice.getNome()));
+            preparedStatement.setString(2, UsuarioBackOffice.getGrupo());
+
+            preparedStatement.setInt(3, UsuarioBackOffice.getID());
+            preparedStatement.execute();
+
+            System.out.println(UsuarioBackOffice.getNome() + "valor que estou pegando");
+            System.out.println(UsuarioBackOffice.getGrupo());
+            System.out.println( UsuarioBackOffice.getID());
+
+
+            connection.close();
+
+        } catch (Exception e) {
+
+            System.out.println("fail in database connection");
+            System.out.println("Error: " + e.getMessage());
+
+        }
+
+    }
+
+
 }
+
+
+
+

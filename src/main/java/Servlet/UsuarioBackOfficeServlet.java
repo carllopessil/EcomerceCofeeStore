@@ -21,6 +21,8 @@ public class UsuarioBackOfficeServlet extends HttpServlet {
         request.setAttribute("UsuarioBackOffice", usuarios);
         request.getRequestDispatcher("ListaDeUsuario.jsp").forward(request, response);
 
-
     }
+
+
+
 }

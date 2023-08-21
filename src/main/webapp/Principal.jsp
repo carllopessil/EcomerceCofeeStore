@@ -9,8 +9,9 @@
 
     <a href="ListaProdutos.jsp">Lista de Produtos</a><br>
     <% if (((UsuarioBackOffice)session.getAttribute("usuario")).getGrupo().equals("Admin Group")) { %>
-        <a href="ListaUsuarios.jsp">Lista de Usuários</a><br>
-    <% } %>
+<li><form action="/ListarUsuarioBackOffice" method="get"><button class="btn-primary"
+ type="submit">Buscar usuarios dos sistemas</button></form></li>    </ul>
+     <% } %>
 
     <br><br>
     <a href="Logout">Sair</a>

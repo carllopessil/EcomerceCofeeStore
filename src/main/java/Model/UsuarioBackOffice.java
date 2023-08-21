@@ -10,16 +10,26 @@ public class UsuarioBackOffice {
 
     private String CPF;
 
+    public UsuarioBackOffice() {
+    }
 
     public UsuarioBackOffice(int ID, String nome, String email, String senha, String grupo, String status, String CPF) {
         this.ID = ID;
         Nome = nome;
         Email = email;
         Senha = senha;
-        Grupo = grupo;
+        this.Grupo = grupo;
         Status = status;
         this.CPF = CPF;
     }
+
+    public UsuarioBackOffice(int ID, String nome, String grupo) {
+        this.ID = ID;
+        this.Nome = nome;
+        this.Grupo = grupo;
+
+    }
+
 
     public int getID() {
         return ID;
