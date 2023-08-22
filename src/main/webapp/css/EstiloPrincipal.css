@@ -1,17 +1,37 @@
 body {
-    margin: 0;
+      background: url("/img/images1.jpeg") top center / cover no-repeat;
 }
-.intro {
-    display: block;
-    width: 100vw;
-    height: 100vh;
-    padding: 0;
-    text-align: center;
-    color: white;
-    background: url(../img/download\ \(3\).jpeg) no-repeat bottom center scroll;
-    background-color: black;
-    -webkit-background-size: contain;
-    -moz-background-size: contain;
-    background-size: contain;
-    -o-background-size: contain;
-}
+       ul.menu {
+              list-style-type: none;
+              margin: -20;
+              padding: 0;
+              background-color: #BE9063;
+              overflow: hidden;
+              display: flex;
+             justify-content: space-between;
+             align-items: center;
+
+          }
+
+          ul.menu img {
+                      width: 300px;
+                      height: auto;
+                      margin-right: 10px;
+                  }
+
+          ul.menu h1 {
+              color: white;
+              margin: 0;
+              font-size: 24px;
+          }
+
+  ul.menu li {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul.menu a {
+
+            text-decoration: none;
+            padding: 208px;
+        }
