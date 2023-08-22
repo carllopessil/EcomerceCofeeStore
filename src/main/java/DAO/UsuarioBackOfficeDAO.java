@@ -53,11 +53,8 @@ public class UsuarioBackOfficeDAO {
         }
 
 
+    }
 
-
-
-
-}
     public static br.com.gymcontrol.Model.UsuarioBackOffice buscarUsuarioPorEmail(String email) {
         String SQL = "SELECT * FROM UsuarioBackOffice WHERE email = ?";
 
@@ -95,7 +92,7 @@ public class UsuarioBackOfficeDAO {
 
         try {
 
-            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa","sa");
+            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
 
             System.out.println("success in database connection");
 
@@ -109,7 +106,7 @@ public class UsuarioBackOfficeDAO {
 
             System.out.println(UsuarioBackOffice.getNome() + "valor que estou pegando");
             System.out.println(UsuarioBackOffice.getGrupo());
-            System.out.println( UsuarioBackOffice.getID());
+            System.out.println(UsuarioBackOffice.getID());
 
 
             connection.close();
@@ -124,8 +121,20 @@ public class UsuarioBackOfficeDAO {
     }
 
 
+    public static void updateUsuarioStatus(int userID, boolean novoStatus) {
+        String SQL = "UPDATE UsuarioBackOffice SET status = ? WHERE id = ?";
+
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+            preparedStatement.setBoolean(1, novoStatus);
+            preparedStatement.setInt(2, userID);
+            preparedStatement.executeUpdate();
+
+            connection.close();
+        } catch (Exception e) {
+            System.out.println("Erro ao atualizar status do usuário: " + e.getMessage());
+        }
+    }
 }
-
-
-
-

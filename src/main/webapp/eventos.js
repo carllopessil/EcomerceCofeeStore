@@ -64,3 +64,5 @@ for (let i = 0; i < EDIT_BUTTONS.length; i++) {
         window.location.href = "/ListarUsuarioBackOffice.jsp";
     });
 }
+
+

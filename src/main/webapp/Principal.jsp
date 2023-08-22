@@ -11,7 +11,8 @@
     <a href="ListaProdutos.jsp">Lista de Produtos</a><br>
     <% if (((UsuarioBackOffice)session.getAttribute("usuario")).getGrupo().equals("Admin Group")) { %>
 <li><form action="/ListarUsuarioBackOffice" method="get"><button class="btn-primary"
- type="submit">Buscar usuarios dos sistemas</button></form></li>    </ul>
+ type="submit">Buscar usuarios dos sistemas</button></form></li> <form action="/ListarUsuarioBackOffice_2" method="get"><button class="btn-primary"
+                                                                  type="submit">Buscar usuarios dos sistemas</button></form>   </ul>
      <% } %>
 
     <br><br>

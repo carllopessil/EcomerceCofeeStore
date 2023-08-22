@@ -16,6 +16,10 @@
 <body class="container" style="background-color: #DEDEDE;">
 <div class="card card-body mt-5">
     <h1>Gerenciamento de Usuários do Sistema</h1>
+
+     <a href="/cadastrarUsuario" class="btn">Cadastrar Usuário</a>
+
+
     <hr>
 
     <input id="input-busca" type="text" class="form-control mt-3 mb-3" placeholder="O que você procura?">
@@ -27,9 +31,9 @@
                 <th>Nome</th>
                 <th>Email</th>
                 <th>Status</th>
-                <th>Grupo</th>
-                <th>Ações</th>
                 <th>Habilitar/Desabilitar</th>
+                <th>Grupo</th>
+                <th>Editar</th>
 
             </tr>
         </thead>
@@ -37,33 +41,31 @@
             <c:forEach var="UsuarioBackOffice" items="${UsuarioBackOffice}" varStatus="loop">
                 <tr class="editable-row" id="row-${loop.index}">
                     <td><text>${UsuarioBackOffice.ID}</text></td>
-                    <td><input class="editable nome" value="${UsuarioBackOffice.nome}" disabled data-rowid="row-${loop.index}"></td>
+                    <td><text>${UsuarioBackOffice.nome}</text></td>
                     <td><text>${UsuarioBackOffice.email}</text></td>
                     <td><text>${UsuarioBackOffice.status}</text></td>
-                    <td><input class="editable grupo" value="${UsuarioBackOffice.grupo}" disabled data-rowid="row-${loop.index}"></td>
-                    <td>
-                        <button class="btn btn-primary edit-button">Editar</button>
-                        <form class="edit-form" action="/atualizarUsuarioBackOffice" method="post">
-                            <input type="hidden" name="id" value="${UsuarioBackOffice.ID}">
-                            <input type="hidden" class="input-nome" name="nome">
-                            <input type="hidden" class="input-grupo" name="grupo">
+                      <td> <button class="btn btn-info status-button" data-id="${UsuarioBackOffice.ID}" data-status="${UsuarioBackOffice.status}"
+                            data-url="/AtualizarStatusUsuarioBackOffice">
+                                   Alterar Status
+                                   </button> </td>
+                    <td><text>${UsuarioBackOffice.grupo}</text></td>
 
-                            <button class="btn btn-success save-button" disabled>Salvar</button>
-                        </form>
-                    </td>
+
+
+
+
 
                     <td>
-              <button class="btn btn-info status-button" data-id="${UsuarioBackOffice.ID}" data-status="${UsuarioBackOffice.status}"
-                         data-url="/AtualizarStatusUsuarioBackOffice">
-                     Alterar Status
-                 </button>
-                    </td>
+                         <form action="/atualizarUsuarioBackOffice">
+                                <button type="submit">Cadastrar Usuário</button>
+                            </form>
+                                 </td>
                 </tr>
             </c:forEach>
         </tbody>
     </table>
 </div>
 
-<script src="eventos.js"></script>
+<script src="eventos_ofc.js"></script>
 </body>
 </html>
