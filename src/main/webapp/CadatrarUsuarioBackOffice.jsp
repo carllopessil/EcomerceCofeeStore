@@ -6,8 +6,23 @@
     <title>Cadastrar Usuário</title>
 </head>
 <body>
-    <h1>Cadastrar Usuário</h1>
-    <form action="CadastroUsuario.jsp" method="post">
+    <h1>Cadastrar Usuário BackOffice</h1>
+
+    <% String mensagemSucesso = (String) request.getAttribute("mensagemSucesso"); %>
+    <% if (mensagemSucesso != null) { %>
+        <div class="alert alert-success">
+            <%= mensagemSucesso %>
+        </div>
+    <% } %>
+
+    <% String mensagemAlerta = (String) request.getAttribute("mensagemAlerta"); %>
+    <% if (mensagemAlerta != null) { %>
+        <div class="alert alert-danger">
+            <%= mensagemAlerta %>
+        </div>
+    <% } %>
+
+    <form action="/CadastrarUsuarioBackOffice" method="post">
         <label for="nome">Nome:</label>
         <input type="text" name="nome" required><br>
 
@@ -23,38 +38,11 @@
         <label for="status">Status:</label>
         <input type="checkbox" name="status" checked><br>
 
-        <label for="cpf">CPF:</label>
-        <input type="text" name="cpf" required><br>
+        <label for="CPF">CPF:</label>
+        <input type="text" name="CPF" required><br>
 
         <input type="submit" value="Cadastrar">
     </form>
 
-    <%-- Processar o formulário --%>
-    <%
-        if (request.getMethod().equals("POST")) {
-            try {
-                String nome = request.getParameter("nome");
-                String email = request.getParameter("email");
-                String senha = request.getParameter("senha");
-                String grupo = request.getParameter("grupo");
-                boolean status = request.getParameter("status") != null;
-                String cpf = request.getParameter("cpf");
-
-                // Conectar ao banco de dados (você deve implementar essa parte)
-
-                // Executar a inserção do usuário
-                String insertQuery = "INSERT INTO UsuarioBackOffice (Nome, Email, Senha, Grupo, Status, CPF) " +
-                                    "VALUES (?, ?, ?, ?, ?, ?)";
-                // Prepare a query e insira os valores
-
-                // Fechar a conexão com o banco de dados
-
-                out.println("<p>Usuário cadastrado com sucesso!</p>");
-            } catch (Exception e) {
-                out.println("<p>Ocorreu um erro ao cadastrar o usuário.</p>");
-                e.printStackTrace();
-            }
-        }
-    %>
 </body>
 </html>

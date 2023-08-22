@@ -1,9 +1,13 @@
 package DAO;
 
+import br.com.gymcontrol.Model.UsuarioBackOffice;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import static java.lang.System.out;
 
 public class UsuarioBackOfficeDAO {
     public static List<br.com.gymcontrol.Model.UsuarioBackOffice> listarUsuarios() {
@@ -13,7 +17,7 @@ public class UsuarioBackOfficeDAO {
 
             Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
 
-            System.out.println("success in database connection");
+            out.println("success in database connection");
 
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
 
@@ -28,7 +32,7 @@ public class UsuarioBackOfficeDAO {
                 String userSistemEmail = resultSet.getString("email");
                 String userSistemSenha = resultSet.getString("senha");
                 String userSistemGrupo = resultSet.getString("grupo");
-                String userStatus = resultSet.getString("status");
+                boolean userStatus = resultSet.getBoolean("status");
                 String userSistemCPF = resultSet.getString("CPF");
 
 
@@ -38,7 +42,7 @@ public class UsuarioBackOfficeDAO {
 
             }
 
-            System.out.println("success in select * UsuarioBackOffice");
+            out.println("success in select * UsuarioBackOffice");
 
             connection.close();
 
@@ -46,7 +50,7 @@ public class UsuarioBackOfficeDAO {
 
         } catch (Exception e) {
 
-            System.out.println("fail in database connection no select");
+            out.println("fail in database connection no select");
 
             return Collections.emptyList();
 
@@ -72,7 +76,7 @@ public class UsuarioBackOfficeDAO {
                 String userSistemEmail = resultSet.getString("email");
                 String userSistemSenha = resultSet.getString("senha");
                 String userSistemGrupo = resultSet.getString("grupo");
-                String userStatus = resultSet.getString("status");
+                boolean userStatus = resultSet.getBoolean("status");
                 String userSistemCPF = resultSet.getString("CPF");
 
                 return new br.com.gymcontrol.Model.UsuarioBackOffice(userSistemID, userSistemNome, userSistemEmail, userSistemSenha, userSistemGrupo, userStatus, userSistemCPF);
@@ -81,7 +85,7 @@ public class UsuarioBackOfficeDAO {
             }
 
         } catch (Exception e) {
-            System.out.println("Erro ao buscar usuário por email: " + e.getMessage());
+            out.println("Erro ao buscar usuário por email: " + e.getMessage());
             return null;
         }
     }
@@ -94,7 +98,7 @@ public class UsuarioBackOfficeDAO {
 
             Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
 
-            System.out.println("success in database connection");
+            out.println("success in database connection");
 
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
 
@@ -104,17 +108,17 @@ public class UsuarioBackOfficeDAO {
             preparedStatement.setInt(3, UsuarioBackOffice.getID());
             preparedStatement.execute();
 
-            System.out.println(UsuarioBackOffice.getNome() + "valor que estou pegando");
-            System.out.println(UsuarioBackOffice.getGrupo());
-            System.out.println(UsuarioBackOffice.getID());
+            out.println(UsuarioBackOffice.getNome() + "valor que estou pegando");
+            out.println(UsuarioBackOffice.getGrupo());
+            out.println(UsuarioBackOffice.getID());
 
 
             connection.close();
 
         } catch (Exception e) {
 
-            System.out.println("fail in database connection");
-            System.out.println("Error: " + e.getMessage());
+            out.println("fail in database connection");
+            out.println("Error: " + e.getMessage());
 
         }
 
@@ -134,7 +138,68 @@ public class UsuarioBackOfficeDAO {
 
             connection.close();
         } catch (Exception e) {
-            System.out.println("Erro ao atualizar status do usuário: " + e.getMessage());
+            out.println("Erro ao atualizar status do usuário: " + e.getMessage());
+
+
+        }
+    }
+
+
+    public static boolean isEmailCadastrado(String email) {
+        String SQL = "SELECT COUNT(*) FROM UsuarioBackOffice WHERE email = ?";
+
+        try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
+
+            preparedStatement.setString(1, email);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            int count = resultSet.getInt(1);
+
+            return count > 0;
+
+        } catch (Exception e) {
+            System.out.println("Erro ao verificar e-mail cadastrado: " + e.getMessage());
+            return false;
+        }
+    }
+
+
+
+    public boolean CadastrarUsuarioBackOffice(UsuarioBackOffice CadastrarUsuario) {
+        String SQL = "INSERT INTO USUARIOBACKOFFICE (Nome, Email, Senha, Grupo, Status, CPF) VALUES (?, ?, ?, ?, ?, ?)";
+
+        try {
+            String email = CadastrarUsuario.getEmail();
+
+            if (isEmailCadastrado(email)) {
+                return false; // Indica que o e-mail já está cadastrado
+            }
+
+            boolean status = true;
+
+            try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+                 PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
+
+                preparedStatement.setString(1, CadastrarUsuario.getNome());
+                preparedStatement.setString(2, email);
+                preparedStatement.setString(3, CadastrarUsuario.getSenha());
+                preparedStatement.setString(4, CadastrarUsuario.getGrupo());
+                preparedStatement.setBoolean(5, status);
+                preparedStatement.setString(6, CadastrarUsuario.getCPF());
+
+                preparedStatement.execute();
+
+                return true; // Indica que o cadastro foi bem-sucedido
+
+            } catch (Exception e) {
+                System.out.println("Erro ao cadastrar o usuário: " + e.getMessage());
+                return false;
+            }
+        } catch (Exception e) {
+            System.out.println("Erro ao verificar e-mail cadastrado: " + e.getMessage());
+            return false;
         }
     }
 }

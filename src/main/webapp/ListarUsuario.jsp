@@ -17,7 +17,7 @@
 <div class="card card-body mt-5">
     <h1>Gerenciamento de Usuários do Sistema</h1>
 
-     <a href="/cadastrarUsuario" class="btn">Cadastrar Usuário</a>
+     <a href="CadatrarUsuarioBackOffice.jsp" class="btn">Cadastrar Usuário</a>
 
 
     <hr>
@@ -37,27 +37,28 @@
 
             </tr>
         </thead>
-        <tbody id="tabela-usuarios">
+        <tbody id="tabela-usuarios">m
             <c:forEach var="UsuarioBackOffice" items="${UsuarioBackOffice}" varStatus="loop">
                 <tr class="editable-row" id="row-${loop.index}">
                     <td><text>${UsuarioBackOffice.ID}</text></td>
                     <td><text>${UsuarioBackOffice.nome}</text></td>
                     <td><text>${UsuarioBackOffice.email}</text></td>
                     <td><text>${UsuarioBackOffice.status}</text></td>
-                      <td> <button class="btn btn-info status-button" data-id="${UsuarioBackOffice.ID}" data-status="${UsuarioBackOffice.status}"
-                            data-url="/AtualizarStatusUsuarioBackOffice">
-                                   Alterar Status
-                                   </button> </td>
+                      <td><button class="btn btn-info status-button"
+                                  data-id="${UsuarioBackOffice.ID}"
+                                  data-status="${UsuarioBackOffice.status}"
+                                  data-url="/AtualizarStatusUsuarioBackOffice">
+                              Alterar Status
+                          </button> </td>
                     <td><text>${UsuarioBackOffice.grupo}</text></td>
 
 
 
 
 
-
                     <td>
-                         <form action="/atualizarUsuarioBackOffice">
-                                <button type="submit">Cadastrar Usuário</button>
+                         <form action="/AtualizarUsuarioBackOffice">
+                                <button type="submit">Editar</button>
                             </form>
                                  </td>
                 </tr>
@@ -65,6 +66,39 @@
         </tbody>
     </table>
 </div>
+
+
+<!-- ... -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const statusButtons = document.querySelectorAll(".status-button");
+
+        statusButtons.forEach(button => {
+            button.addEventListener("click", function() {
+                const userId = this.getAttribute("data-id");
+                const newStatus = this.getAttribute("data-status") === "true" ? "false" : "true";
+
+
+console.log("Id:", userId);
+                console.log("newStatus:", newStatus);
+
+
+                if (confirm("Tem certeza de que deseja alterar o status deste usuário?")) {
+                    // Envia a solicitação para atualizar o status
+                    const xhr = new XMLHttpRequest();
+                    xhr.open("POST", this.getAttribute("data-url"), true);
+                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    xhr.send(`ID=${userId}`);
+
+                    // Atualiza o valor exibido na tabela (opcional)
+                    const statusCell = document.querySelector(`#row-${userId} .status-cell`);
+                    statusCell.textContent = newStatus === "true" ? "Ativo" : "Inativo";
+                }
+            });
+        });
+    });
+</script>
+<!-- ... -->
 
 <script src="eventos_ofc.js"></script>
 </body>

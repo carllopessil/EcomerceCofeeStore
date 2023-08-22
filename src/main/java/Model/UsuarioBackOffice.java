@@ -6,14 +6,14 @@ public class UsuarioBackOffice {
     private String Email;
     private String Senha;
     private String Grupo;
-    private String Status;
+    private boolean Status;
 
     private String CPF;
 
     public UsuarioBackOffice() {
     }
 
-    public UsuarioBackOffice(int ID, String nome, String email, String senha, String grupo, String status, String CPF) {
+    public UsuarioBackOffice(int ID, String nome, String email, String senha, String grupo, boolean status, String CPF) {
         this.ID = ID;
         Nome = nome;
         Email = email;
@@ -71,11 +71,11 @@ public class UsuarioBackOffice {
         Grupo = grupo;
     }
 
-    public String getStatus() {
+    public boolean getStatus() {
         return Status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(boolean status) {
         Status = status;
     }
 
