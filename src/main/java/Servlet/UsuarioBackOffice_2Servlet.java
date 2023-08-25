@@ -19,7 +19,7 @@ public class UsuarioBackOffice_2Servlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<br.com.gymcontrol.Model.UsuarioBackOffice> usuarios = UsuarioBackOfficeDAO.listarUsuarios();
         request.setAttribute("UsuarioBackOffice", usuarios);
-        request.getRequestDispatcher("ListarUsuario.jsp").forward(request, response);
+        request.getRequestDispatcher("ListarUsuarioOFC.jsp").forward(request, response);
 
     }
 
