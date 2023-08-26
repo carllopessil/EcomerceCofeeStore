@@ -20,12 +20,19 @@ body {
     margin: 0;
     padding: 0;
 }
+.menu li h1{
+font-size: 2.8rem;
+    font-weight: bold;
 
+    color: #FF0000
+}
 .card-body {
 
     padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
     color: var(--bs-card-color)
     }
+
+
 h2{
 color:red;
 font-weight: bold;
@@ -159,11 +166,12 @@ font-size: 21px;
     }
 
     .card {
-        width: 80%;
-        padding: 20px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        background-color: white;
-    }
+      width: 80%;
+      margin-left: 13em;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      /* background-color: white; */
+  }
   .logo-button {
         display: inline-block;
         background-color: transparent;
