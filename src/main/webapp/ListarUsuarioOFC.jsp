@@ -5,19 +5,35 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerenciamento de Usuários</title>
+      <link rel="stylesheet" href="css/ListarUsuario.css">
+    <title>Document</title>
 
-    <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
           rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
           crossorigin="anonymous">
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 </head>
-<body class="container" style="background-color: #DEDEDE;">
-<div class="card card-body mt-5">
+<body >
+
+ <div class="slideshow-container">
+        <img class="slideshow-image active" src="img/Fundo2.jpg">
+        <img class="slideshow-image" src="img/Fundo3.jpg">
+        <img class="slideshow-image" src="img/Fundo5.jpg">
+    </div>
+
+            <ul class="menu">
+                <li class="menu-logo">
+                    <img src="img/Logo de cafe.png">
+                    <h1>BEM-VINDO AO  BACKOFFICE</h1>
+                </li>
+
+                <li><a href="Principal.jsp">Voltar </a></li>
+            </ul>
+<div class="card">
     <h1>Gerenciamento de Usuários do Sistema</h1>
 
-    <a href="CadatrarUsuarioBackOffice.jsp" class="btn">Cadastrar Usuário</a>
+
+
 
     <hr>
 
@@ -25,39 +41,51 @@
 
     <table class="table table-hover table-striped">
         <thead class="table-dark">
-        <tr>
-            <th>#ID</th>
-            <th>Nome</th>
-            <th>Email</th>
-            <th>Status</th>
-            <th>Habilitar/Desabilitar</th>
-            <th>Grupo</th>
-            <th>Editar</th>
-        </tr>
+            <tr>
+                <th>#ID</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Habilitar/Desabilitar</th>
+                <th>Grupo</th>
+                <th>Editar</th>
+
+            </tr>
         </thead>
         <tbody id="tabela-usuarios">
-        <c:forEach var="UsuarioBackOffice" items="${UsuarioBackOffice}" varStatus="loop">
-            <tr class="editable-row" id="row-${loop.index}">
-                <td><text>${UsuarioBackOffice.ID}</text></td>
-                <td><text>${UsuarioBackOffice.nome}</text></td>
-                <td><text>${UsuarioBackOffice.email}</text></td>
-                <td><text>${UsuarioBackOffice.status}</text></td>
-                <td>
-                    <button class="btn btn-info status-button"
-                            data-id="${UsuarioBackOffice.ID}"
-                            data-status="${UsuarioBackOffice.status}"
-                            data-url="/AtualizarStatusUsuarioBackOffice">
-                        Alterar Status
-                    </button>
-                </td>
-                <td><text>${UsuarioBackOffice.grupo}</text></td>
-            </tr>
-        </c:forEach>
+            <c:forEach var="UsuarioBackOffice" items="${UsuarioBackOffice}" varStatus="loop">
+                <tr class="editable-row" id="row-${loop.index}">
+                    <td><text>${UsuarioBackOffice.ID}</text></td>
+                    <td><text>${UsuarioBackOffice.nome}</text></td>
+                    <td><text>${UsuarioBackOffice.email}</text></td>
+                    <td><text>${UsuarioBackOffice.status}</text></td>
+                      <td><button class="btn btn-info status-button"
+                                  data-id="${UsuarioBackOffice.ID}"
+                                  data-status="${UsuarioBackOffice.status}"
+                                  data-url="/AtualizarStatusUsuarioBackOffice">
+                              Alterar Status
+                          </button> </td>
+                    <td><text>${UsuarioBackOffice.grupo}</text></td>
+
+
+
+
+
+                    <td>
+                         <form action="/AtualizarUsuarioBackOffice">
+                                <button type="submit">Editar</button>
+                            </form>
+                                 </td>
+
+                </tr>
+            </c:forEach>
         </tbody>
+
     </table>
+            <a href="CadatrarUsuarioBackOffice.jsp" class="btn">Cadastrar Usuário</a>
 </div>
 
-<!-- ... -->
+
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const statusButtons = document.querySelectorAll(".status-button");
@@ -67,26 +95,32 @@
                 const userId = this.getAttribute("data-id");
                 const newStatus = this.getAttribute("data-status") === "true" ? "false" : "true";
 
-                console.log("Id:", userId);
+
+console.log("Id:", userId);
                 console.log("newStatus:", newStatus);
 
+
                 if (confirm("Tem certeza de que deseja alterar o status deste usuário?")) {
+                    // Envia a solicitação para atualizar o status
                     const xhr = new XMLHttpRequest();
                     xhr.open("POST", this.getAttribute("data-url"), true);
                     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                    xhr.onreadystatechange = function() {
-                        if (xhr.readyState === XMLHttpRequest.DONE) {
-                            console.log("Resposta da solicitação AJAX:", xhr.responseText);
-                            const statusCell = document.querySelector(`#row-${userId} td:nth-child(4)`);
-                            statusCell.textContent = newStatus === "true" ? "Ativo" : "Inativo";
-                        }
-                    };
                     xhr.send(`ID=${userId}`);
+
+                    // Atualiza o valor exibido na tabela (opcional)
+                    const statusCell = document.querySelector(`#row-${userId} .status-cell`);
+                    statusCell.textContent = newStatus === "true" ? "Ativo" : "Inativo";
                 }
             });
         });
     });
-
 </script>
+<!-- ... -->
+
+<script src="eventos_ofc.js"></script>
+
+    <footer>
+        © 2023 BREWMASTERS CAFÉ. Todos os direitos reservados.
+    </footer>
 </body>
 </html>
