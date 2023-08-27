@@ -15,15 +15,16 @@ INPUT_BUSCA.addEventListener('keyup', () => {
             continue;
         }
 
-        let conteudoDaLinha = linhas[posicao].innerHTML.toLowerCase();
+        let nome = linhas[posicao].querySelector('.editable.Nome').textContent.toLowerCase();
 
-        if (true === conteudoDaLinha.includes(expressao)) {
+        if (true === nome.includes(expressao)) {
             linhas[posicao].style.display = '';
         } else {
             linhas[posicao].style.display = 'none';
         }
     }
 });
+
 
 const EDIT_BUTTONS = document.querySelectorAll('.edit-button');
 const SAVE_BUTTONS = document.querySelectorAll('.save-button');

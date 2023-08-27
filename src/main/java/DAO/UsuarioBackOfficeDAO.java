@@ -128,19 +128,15 @@ public class UsuarioBackOfficeDAO {
     public static void updateUsuarioStatus(int userID, boolean novoStatus) {
         String SQL = "UPDATE UsuarioBackOffice SET status = ? WHERE id = ?";
 
-        try {
-            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+        try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
 
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
             preparedStatement.setBoolean(1, novoStatus);
             preparedStatement.setInt(2, userID);
             preparedStatement.executeUpdate();
 
-            connection.close();
-        } catch (Exception e) {
-            out.println("Erro ao atualizar status do usuário: " + e.getMessage());
-
-
+        } catch (SQLException e) {
+            System.out.println("Erro ao atualizar status do usuário: " + e.getMessage());
         }
     }
 
@@ -202,4 +198,72 @@ public class UsuarioBackOfficeDAO {
             return false;
         }
     }
+
+    public static boolean validarCPF(String cpf) {
+// Remova caracteres não numéricos do CPF
+        cpf = cpf.replaceAll("[^0-9]", "");
+
+        // Verifique se o CPF tem 11 dígitos
+        if (cpf.length() != 11) {
+            return false;
+        }
+
+        // Verifique se todos os dígitos são iguais (CPF inválido)
+        boolean todosDigitosIguais = true;
+        for (int i = 1; i < 11; i++) {
+            if (cpf.charAt(i) != cpf.charAt(0)) {
+                todosDigitosIguais = false;
+                break;
+            }
+        }
+        if (todosDigitosIguais) {
+            return false;
+        }
+
+        // Cálculo dos dígitos verificadores
+        int soma = 0;
+        for (int i = 0; i < 9; i++) {
+            soma += (10 - i) * (cpf.charAt(i) - '0');
+        }
+        int primeiroDigitoVerificador = 11 - (soma % 11);
+        if (primeiroDigitoVerificador >= 10) {
+            primeiroDigitoVerificador = 0;
+        }
+
+        soma = 0;
+        for (int i = 0; i < 10; i++) {
+            soma += (11 - i) * (cpf.charAt(i) - '0');
+        }
+        int segundoDigitoVerificador = 11 - (soma % 11);
+        if (segundoDigitoVerificador >= 10) {
+            segundoDigitoVerificador = 0;
+        }
+
+        // Verifique se os dígitos verificadores calculados correspondem aos dígitos do CPF
+        return primeiroDigitoVerificador == (cpf.charAt(9) - '0')
+                && segundoDigitoVerificador == (cpf.charAt(10) - '0');
+    }
+
+
+
+    public static boolean cpfExistente(String cpf) {
+        String SQL = "SELECT COUNT(*) FROM UsuarioBackOffice WHERE CPF = ?";
+
+        try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
+
+            preparedStatement.setString(1, cpf);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            int count = resultSet.getInt(1);
+
+            return count > 0;
+
+        } catch (Exception e) {
+            System.out.println("Erro ao verificar e-o cpf cadastrado: " + e.getMessage());
+            return false;
+        }
+    }
 }
+
