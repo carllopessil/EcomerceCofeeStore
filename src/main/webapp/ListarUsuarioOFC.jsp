@@ -64,7 +64,12 @@
                 <td><text>${UsuarioBackOffice.ID}</text></td>
                 <td><text>${UsuarioBackOffice.nome}</text></td>
                 <td><text>${UsuarioBackOffice.email}</text></td>
-                <td><text>${UsuarioBackOffice.status}</text></td>
+                <td>
+                    <text>
+                        ${UsuarioBackOffice.status ? 'Ativo' : 'Inativo'}
+                    </text>
+                </td>
+
                 <td>
                    <label class="switch">
                        <input type="checkbox"
