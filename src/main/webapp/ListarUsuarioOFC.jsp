@@ -16,10 +16,10 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<%--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"--%>
-<%--          rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"--%>
-<%--          crossorigin="anonymous">--%>
-<%--    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>--%>
+    <%--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"--%>
+    <%--          rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"--%>
+    <%--          crossorigin="anonymous">--%>
+    <%--    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>--%>
 </head>
 
 
@@ -42,9 +42,9 @@
             <i class="fas fa-user-plus"></i> Cadastrar Usuário
         </button>
     </li>
-<%--    </li>--%>
-<%--    <li><a href="CadastrarUsuarioBackOffice.jsp" class="btn">Cadastrar Usuário</a>--%>
-<%--    <li>--%>
+    <%--    </li>--%>
+    <%--    <li><a href="CadastrarUsuarioBackOffice.jsp" class="btn">Cadastrar Usuário</a>--%>
+    <%--    <li>--%>
 
     <li><a href="Principal.jsp">Voltar </a></li>
 </ul>
@@ -59,48 +59,7 @@
 
         <hr>
 
-<<<<<<< HEAD
-    <input id="input-busca" type="text" class="form-control mt-3 mb-3" placeholder="O que você procura?">
-
-    <table class="table table-hover table-striped">
-        <thead class="table-dark">
-        <tr>
-            <th>#ID</th>
-            <th>Nome</th>
-            <th>Email</th>
-            <th>Status</th>
-            <th>Habilitar/Desabilitar</th>
-            <th>Grupo</th>
-            <th>Editar</th>
-        </tr>
-        </thead>
-        <tbody id="tabela-usuarios">
-        <c:forEach var="UsuarioBackOffice" items="${UsuarioBackOffice}" varStatus="loop">
-            <tr class="editable-row" id="row-${loop.index}">
-                <td><text>${UsuarioBackOffice.ID}</text></td>
-                <td><text>${UsuarioBackOffice.nome}</text></td>
-                <td><text>${UsuarioBackOffice.email}</text></td>
-                <td>
-                    <text>
-                        ${UsuarioBackOffice.status ? 'Ativo' : 'Inativo'}
-                    </text>
-                </td>
-
-                <td>
-                   <label class="switch">
-                       <input type="checkbox"
-                              ${UsuarioBackOffice.status ? 'checked' : ''}
-                              onchange="confirmarAtualizacaoStatus(${UsuarioBackOffice.ID}, this.checked)">
-                       <span class="slider round"></span>
-                   </label>
-
-
-                </td>
-                <td><text>${UsuarioBackOffice.grupo}</text></td>
-                <td><button class="btn btn-primary">Editar</button></td>
-=======
         <input id="input-busca" type="text" class="form-control mt-3 mb-3" placeholder="O que você procura?">
->>>>>>> ce8070c (Atualização dele leayout lista de usuáriosBackOffice.jsp)
 
         <table class="table table-hover table-striped">
             <thead class="table-dark">
