@@ -71,12 +71,12 @@ h1:after {
     transform: rotate(-47deg);
     width: 0;
 }
-/* Adicione estilos para a caixa de checkbox */
+/* Adicione estilos para a caixa de checkbox*/
 password-container {
     position: relative;
 }
 span {
-    content: "maostra";
+    content: "MOSTRA";
     font-family: cursive;
     font-family: Kanit;
 }

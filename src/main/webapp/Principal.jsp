@@ -20,7 +20,11 @@
                 <h1>BEM-VINDO AO  BACKOFFICE</h1>
             </li>
 
-            <li><a href="Logout">Sair</a></li>
+           <!--Acesso temporario quando sair vai diretopagina index
+            <li><a href="Logout">Sair</a></li>-->
+
+            <!--Apos ajuste final apagar essa tag e acessa a tag Logout com link-->
+            <li><a href="index.jsp">Sair</a></li>
         </ul>
 
 

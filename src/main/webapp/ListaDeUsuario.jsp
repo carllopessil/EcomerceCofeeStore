@@ -7,17 +7,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <!-- CSS only -->
+    <!-- CSS only
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
           rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
-          crossorigin="anonymous">
+          crossorigin="anonymous">-->
+          <link rel="stylesheet" type="text/css" href="css/ListaUsuario2.css">
+          <link rel="stylesheet" type="text/css" href="css/Bootstrap.min.css">
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 </head>
-<body class="container" style="background-color: #DEDEDE;">
+<body>
+
+
+<header class="container" style="background-color: #DEDEDE;">
+
 <div class="card card-body mt-5">
     <h1>Gerenciamento de Usuários do Sistema</h1>
     <hr>
 
+    <label for="Pesquisa">Pesquisar:</label>
     <input id="input-busca" type="text" class="form-control mt-3 mb-3" placeholder="O que você procura?">
 
     <table class="table table-hover table-striped">
@@ -63,7 +70,7 @@
         </tbody>
     </table>
 </div>
-
+</header>
 <script src="eventos.js"></script>
 </body>
 </html>

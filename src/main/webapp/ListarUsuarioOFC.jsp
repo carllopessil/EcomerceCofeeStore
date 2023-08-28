@@ -1,5 +1,4 @@
-
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,42 +7,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Gerenciamento de Usuários do Sistema">
     <title>Gerenciamento de Usuários</title>
+
     <link rel="stylesheet" href="css/ListarUsuario2.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
           rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
           crossorigin="anonymous">
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<%--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"--%>
+<%--          rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"--%>
+<%--          crossorigin="anonymous">--%>
+<%--    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>--%>
 </head>
+
+
+
 <body>
+
 <div class="slideshow-container">
     <img class="slideshow-image active" src="img/Fundo2.jpg" alt="Imagem de fundo">
     <img class="slideshow-image" src="img/Fundo3.jpg" alt="Imagem de fundo">
     <img class="slideshow-image" src="img/Fundo5.jpg" alt="Imagem de fundo">
 </div>
 <ul class="menu">
-                <li class="menu-logo">
-                    <img src="img/Logo de cafe.png" alt="Logo do café">
-                    <h1>BEM-VINDO AO  BACKOFFICE</h1>
-                </li>
-    <li><a href="CadastrarUsuarioBackOffice.jsp" class="btn">Cadastrar Usuário</a><li>
+    <li class="menu-logo">
+        <img src="img/Logo de cafe.png" alt="Logo do café">
+        <h1>BEM-VINDO AO BACKOFFICE</h1>
+        <i class="far fa-users" style="color: #c16315;"></i>
+    <li>
+        <button onclick="window.location.href='CadastrarUsuarioBackOffice.jsp'" class="btn-cadastra">
 
-                <li><a href="Principal.jsp">Voltar </a></li>
-            </ul>
-    <title>Gerenciamento de Usuários</title>
+            <i class="fas fa-user-plus"></i> Cadastrar Usuário
+        </button>
+    </li>
+<%--    </li>--%>
+<%--    <li><a href="CadastrarUsuarioBackOffice.jsp" class="btn">Cadastrar Usuário</a>--%>
+<%--    <li>--%>
 
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
-          rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
-          crossorigin="anonymous">
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-</head>
-<body class="container" style="background-color: #DEDEDE;">
-<div class="card card-body mt-5">
-    <h1>Gerenciamento de Usuários do Sistema</h1>
+    <li><a href="Principal.jsp">Voltar </a></li>
+</ul>
+<title>Gerenciamento de Usuários</title>
 
 
-    <hr>
 
+<div class="container" style="background-color: #DEDEDE;">
+    <div class="card card-body mt-5">
+        <h1>Gerenciamento de Usuários do Sistema</h1>
+
+
+        <hr>
+
+<<<<<<< HEAD
     <input id="input-busca" type="text" class="form-control mt-3 mb-3" placeholder="O que você procura?">
 
     <table class="table table-hover table-striped">
@@ -82,50 +98,99 @@
                 </td>
                 <td><text>${UsuarioBackOffice.grupo}</text></td>
                 <td><button class="btn btn-primary">Editar</button></td>
+=======
+        <input id="input-busca" type="text" class="form-control mt-3 mb-3" placeholder="O que você procura?">
+>>>>>>> ce8070c (Atualização dele leayout lista de usuáriosBackOffice.jsp)
 
+        <table class="table table-hover table-striped">
+            <thead class="table-dark">
+            <tr>
+                <th>#ID</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Habilitar/Desabilitar</th>
+                <th>Grupo</th>
+                <th>Editar</th>
             </tr>
-        </c:forEach>
-        </tbody>
-    </table>
-</div>
-<script src="eventos_ofc.js"></script>
+            </thead>
+            <tbody id="tabela-usuarios">
+            <c:forEach var="UsuarioBackOffice" items="${UsuarioBackOffice}" varStatus="loop">
+                <tr class="editable-row" id="row-${loop.index}">
+                    <td>
+                        <text>${UsuarioBackOffice.ID}</text>
+                    </td>
+                    <td>
+                        <text>${UsuarioBackOffice.nome}</text>
+                    </td>
+                    <td>
+                        <text>${UsuarioBackOffice.email}</text>
+                    </td>
+                    <td>
+                        <text>
+                                ${UsuarioBackOffice.status ? 'Ativo' : 'Inativo'}
+                        </text>
+                    </td>
 
-<script>
-   function confirmarAtualizacaoStatus(usuarioId, novoStatus) {
-        var confirmacao = confirm("Deseja realmente alterar o status do usuário?");
-
-        if (confirmacao) {
-            atualizarStatus(usuarioId, novoStatus);
-
-            var sliderSpan = document.querySelector(`#row-${usuarioId} .slider`);
-            sliderSpan.classList.toggle("green", novoStatus);
-            sliderSpan.classList.toggle("red", !novoStatus);
-        } else {
-            var checkbox = document.querySelector(`#row-${usuarioId} input[type="checkbox"]`);
-            checkbox.checked = !novoStatus;
-        }
-    }
+                    <td>
+                        <label class="switch">
+                            <input type="checkbox"
+                                ${UsuarioBackOffice.status ? 'checked' : ''}
+                                   onchange="confirmarAtualizacaoStatus(${UsuarioBackOffice.ID}, this.checked)">
+                            <span class="slider round"></span>
+                        </label>
 
 
+                    </td>
+                    <td>
+                        <text>${UsuarioBackOffice.grupo}</text>
+                    </td>
+                    <td>
+                        <button class="btn btn-primary">Editar</button>
+                    </td>
 
-    function atualizarStatus(usuarioId, novoStatus) {
-        // Criação do objeto XMLHttpRequest
-        var xhttp = new XMLHttpRequest();
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+    </div>
 
-        // Configuração da função de callback para quando a resposta for recebida
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                // Atualizar a página após a atualização do status
-                window.location.reload();
+    <script src="eventos_ofc.js"></script>
+    <script>
+        function confirmarAtualizacaoStatus(usuarioId, novoStatus) {
+            var confirmacao = confirm("Deseja realmente alterar o status do usuário?");
+
+            if (confirmacao) {
+                atualizarStatus(usuarioId, novoStatus);
+
+                var sliderSpan = document.querySelector(`#row-${usuarioId} .slider`);
+                sliderSpan.classList.toggle("green", novoStatus);
+                sliderSpan.classList.toggle("red", !novoStatus);
+            } else {
+                var checkbox = document.querySelector(`#row-${usuarioId} input[type="checkbox"]`);
+                checkbox.checked = !novoStatus;
             }
-        };
+        }
 
-        // Abertura da requisição POST para o servlet responsável por atualizar o status
-        xhttp.open("POST", "ToggleStatusServlet?userId=" + usuarioId + "&newStatus=" + novoStatus, true);
-        xhttp.send();
-    }
 
-    function alterarCorDoSwitch(usuarioId, novoStatus) {
+        function atualizarStatus(usuarioId, novoStatus) {
+            // Criação do objeto XMLHttpRequest
+            var xhttp = new XMLHttpRequest();
+
+            // Configuração da função de callback para quando a resposta for recebida
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    // Atualizar a página após a atualização do status
+                    window.location.reload();
+                }
+            };
+
+            // Abertura da requisição POST para o servlet responsável por atualizar o status
+            xhttp.open("POST", "ToggleStatusServlet?userId=" + usuarioId + "&newStatus=" + novoStatus, true);
+            xhttp.send();
+        }
+
+        function alterarCorDoSwitch(usuarioId, novoStatus) {
             var switchElement = document.querySelector(`#row-${usuarioId} .slider`);
             if (novoStatus) {
                 switchElement.classList.add('green');
@@ -135,8 +200,14 @@
                 switchElement.classList.remove('green');
             }
         }
-</script>
+    </script>
 
 
+</div>
+<footer>
+    <p1>&copy; 2023 E-Commerce Coffee Store. Todos os direitos reservados.</p1>
+</footer>
 </body>
 </html>
+
+
