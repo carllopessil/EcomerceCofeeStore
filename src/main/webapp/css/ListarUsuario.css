@@ -160,9 +160,9 @@ font-size: 21px;
   .centered-horizontal {
         display: flex;
         justify-content: center;
-        margin: 0; /* Remove margens padrão do corpo */
-        height: 100vh; /* Ocupa a altura total da viewport */
-        background-color: #f4f4f4; /* Apenas para visualização */
+        margin: 0;
+        height: 100vh;
+        background-color: #f4f4f4;
     }
 
     .card {
@@ -170,7 +170,7 @@ font-size: 21px;
       margin-left: 13em;
       padding: 20px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      /* background-color: white; */
+       background-color: #3b1e0a;
   }
   .logo-button {
         display: inline-block;
@@ -181,7 +181,7 @@ font-size: 21px;
     }
 
     .logo-button img {
-        width: 40px; /* Defina o tamanho da imagem do logo */
+        width: 40px;
         height: auto;
-        margin-right: 10px; /* Espaçamento entre a imagem e o texto */
+        margin-right: 10px;
     }

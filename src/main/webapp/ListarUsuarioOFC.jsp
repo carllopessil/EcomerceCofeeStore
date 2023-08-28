@@ -8,6 +8,8 @@
     <meta name="description" content="Gerenciamento de Usuários do Sistema">
     <title>Gerenciamento de Usuários</title>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <link rel="stylesheet" href="css/ListarUsuario2.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
           rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
@@ -35,12 +37,10 @@
     <li class="menu-logo">
         <img src="img/Logo de cafe.png" alt="Logo do café">
         <h1>BEM-VINDO AO BACKOFFICE</h1>
-        <i class="far fa-users" style="color: #c16315;"></i>
-    <li>
-        <button onclick="window.location.href='CadastrarUsuarioBackOffice.jsp'" class="btn-cadastra">
 
-            <i class="fas fa-user-plus"></i> Cadastrar Usuário
-        </button>
+
+
+
     </li>
     <%--    </li>--%>
     <%--    <li><a href="CadastrarUsuarioBackOffice.jsp" class="btn">Cadastrar Usuário</a>--%>
@@ -52,16 +52,16 @@
 
 
 
-<div class="container" style="background-color: #DEDEDE;">
-    <div class="card card-body mt-5">
-        <h1>Gerenciamento de Usuários do Sistema</h1>
+<div class="container" >
+    <div class="card card-body mt-5"style="background-color:rgb(55 49 40 / 79%);">
+        <h1 style="color: #c16315;">Gerenciamento de Usuários do Sistema</h1>
 
 
-        <hr>
+        <hr style="color: black;">
 
         <input id="input-busca" type="text" class="form-control mt-3 mb-3" placeholder="O que você procura?">
 
-        <table class="table table-hover table-striped">
+        <table class="table table-hover table-striped"style="background-color:white;>
             <thead class="table-dark">
             <tr>
                 <th>#ID</th>
@@ -112,6 +112,10 @@
             </c:forEach>
             </tbody>
         </table>
+
+                <button onclick="window.location.href='CadastrarUsuarioBackOffice.jsp'" class="btn-cadastra">
+                       <i class="fas fa-user-plus"></i> Cadastra novo usuario
+                   </button>
     </div>
 
     <script src="eventos_ofc.js"></script>
