@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import org.mindrot.jbcrypt.BCrypt;
+
 
 @WebServlet("/Login")
 public class LoginServlet extends HttpServlet {
@@ -17,11 +19,13 @@ public class LoginServlet extends HttpServlet {
         String email = request.getParameter("email");
         String senha = request.getParameter("senha");
         UsuarioBackOffice usuario = UsuarioBackOfficeDAO.buscarUsuarioPorEmail(email);
-        if (usuario != null && usuario.getSenha().equals(senha)) {
+
+        if (usuario != null && BCrypt.checkpw(senha, usuario.getSenha())) {
             request.getSession().setAttribute("usuario", usuario);
             response.sendRedirect("Principal.jsp");
         } else {
             response.sendRedirect("Login.jsp?error=true");
         }
     }
+
 }

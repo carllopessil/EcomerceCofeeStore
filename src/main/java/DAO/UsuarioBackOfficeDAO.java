@@ -6,6 +6,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import org.mindrot.jbcrypt.BCrypt;
+
 
 import static java.lang.System.out;
 
@@ -177,10 +179,10 @@ public class UsuarioBackOfficeDAO {
 
             try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
                  PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
-
+                String hashedSenha = BCrypt.hashpw(CadastrarUsuario.getSenha(), BCrypt.gensalt());
                 preparedStatement.setString(1, CadastrarUsuario.getNome());
                 preparedStatement.setString(2, email);
-                preparedStatement.setString(3, CadastrarUsuario.getSenha());
+                preparedStatement.setString(3, hashedSenha);
                 preparedStatement.setString(4, CadastrarUsuario.getGrupo());
                 preparedStatement.setBoolean(5, status);
                 preparedStatement.setString(6, CadastrarUsuario.getCPF());

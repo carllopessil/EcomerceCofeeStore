@@ -14,4 +14,4 @@ CREATE TABLE UsuarioBackOffice (
 
 -- Inserir um usuário Admin
 INSERT INTO UsuarioBackOffice (Nome, Email, Senha, Grupo, Status, CPF)
-VALUES ('admin', 'admin@admin', 'admin', 'Admin Group', TRUE, '123.456.789-00');
+VALUES ('admin', 'admin@admin', '$2a$10$JdPVJ.lNR.uwv4HPlJeAMuA8h1ZFve93cddOf8coYrnNGjKX/Ujsi', 'Admin Group', TRUE, '123.456.789-00');
