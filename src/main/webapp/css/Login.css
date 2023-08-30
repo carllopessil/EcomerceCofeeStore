@@ -3,22 +3,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Pacifico&display=swap');
 
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 
 }
-html {
-    background-image: linear-gradient(rgba(0, 0, 255, 0), rgba(17, 17, 3, 0.555)), url("../img/login-img/LoginFundos-2.jpeg");
-    background-size: cover;
-    /*background: url("../teste/img/LoginFundos-2.jpeg") no-repeat top center/cover;*/
-    /* width: 100%; */
+body {
+    background: url("../img/login-img/LoginFundos-2.jpeg") no-repeat top center/cover;
     width: 100vw;
     height: 100%;
-    /* height: 100%; */
-
     font-size: 0.98em;
-    overflow: hidden;
     position: absolute;
     text-align: center;
+    /*overflow: hidden;*/ /*proibe e rolagemda tela */
+
+}
+
+#container {
+    border: 4px solid rgba(255, 255, 0, 0.05);
+    position: relative;
+    min-height: 100%;
+    width: 100vw;
+    height: auto;
 }
 p1 {
     color: white;
@@ -34,7 +40,7 @@ Stark Industries Logo
     width: 500px;
     margin: 0 auto;
     position: relative;
-    z-index: 40;
+    z-index: 4;
 }
 h1 {
     animation: text-glow 2s ease-out infinite alternate;
@@ -84,9 +90,9 @@ span {
     height: 20px;
     position: absolute;
     right: 50px;
-    top: 51%;
+    top: 50%;
     height: 0;
-    z-index: -1;
+    /*z-index: 1;*/
     transform: translateY(-50%);
 }
 .show-password-icon {
@@ -114,6 +120,7 @@ Log in form
     z-index: 4;
 }
 .stark-login form {
+
     animation: form-entry 3s ease-in-out;
     background: #111;
     background: linear-gradient(#87623330, #5c3e44b5);
@@ -121,16 +128,16 @@ Log in form
     box-shadow: 0 0 171px #5c3e26;
     border-radius: 45px;
     display: inline-block;
-    height: 260px;
+    /* height: 260em; */
     margin: 200px auto 0;
     margin-top: 30em;
     position: relative;
-    z-index: 4;
+    /*z-index: -1;*/
     width: 500px;
-    /* height: 250px; */
     transition: 1s all;
     /* border: 13px solid yellow; */
 }
+
 /* caixa de fundo login */
 .stark-login form:hover {
     border: 6px solid #a84f05;
@@ -381,30 +388,57 @@ Animation Keyframes
     }
 
 }
-/* Estilos para fixar o footer no final */
-html,
-body {
-    height: 100%;
+@media (max-width: 768px) {
+    /* Styles for screens up to 768px wide */
+    body {
+        font-size: 14px;
+    }
 }
 
-#container {
-    position: relative;
-    min-height: 100%;
+@media (max-width: 480px) {
+    /* Styles for screens up to 480px wide */
+    #container {
+        display: block;
+        text-align: center;
+    }
+
+    /* Adjust other elements as needed */
+}
+/* Adjust styles for different zoom levels */
+@media (max-width: 768px) and (max-zoom: 1) {
+    /* Styles for screens up to 768px wide and normal zoom */
+    body {
+        font-size: 14px;
+    }
 }
 
-.stark-login {
-    padding-bottom: 60px;
-    /* Altura do footer */
+@media (max-width: 768px) and (max-zoom: 0.8) {
+    /* Styles for screens up to 768px wide and reduced zoom */
+    body {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) and (max-zoom: 1) {
+    /* Styles for screens up to 480px wide and normal zoom */
+    #container {
+        display: block;
+        text-align: center;
+    }
+
+    /* Adjust other elements as needed */
 }
 
 footer {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 60px;
-    /* Altura do footer */
-    background-color: #3b1e0a;
-    /* Cor de fundo do footer */
     text-align: center;
-    line-height: 60px;
+    background-color: #3b1e0a;
+
+
+    /*line-height: 60px;*/
+    /*height: 60px;*/
+    /* Cor de fundo do footer */
+    /* Altura do footer */
 }

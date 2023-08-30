@@ -3,34 +3,45 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Pacifico&display=swap');
 
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 
 }
 
 html{
     background: url("../img/Fundo3.jpg")no-repeat top center /cover;
-    width: 100vw;
-    height: 150vh;
+
 }
 body {
+
     font-family: Arial, sans-serif;
     background-color: rgba(244, 244, 244, 0.03);
-    height: 100vh;
+    height: 100rem;
     margin: 0;
     padding: 0;
     z-index: -1;
 }
 #container{
+
     width: 100vw;
     height: auto;
+    /* display: flex; */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
+
+
 .menu {
     list-style-type: none;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #3b1e0a;
-    padding: 10px;
+    padding: 0px;
+    height: 200px;
+    margin: 10px 5px auto;
 }
 .menu li {
     margin: 0;
@@ -74,13 +85,6 @@ border-radius: 10px;
     font-size: 21px;
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 31vh;
-}
 
 .form-container {
     display: flex;
@@ -154,15 +158,28 @@ h1 {
     color: #721c24;
 }
 
+/*form {*/
+/*    max-width: 780px;*/
+/*    margin: 20px auto;*/
+/*    padding: 20px;*/
+/*    background-color: rgb(55 49 40 / 79%);*/
+/*    border-radius: 5px;*/
+/*    border-radius: 7%;*/
+/*    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}*/
+
 form {
-    max-width: 780px;
-    margin: 20px auto;
-    padding: 20px;
+    max-width: 700px;
+    margin: 25px auto 74px;
+    height: 688px;
+    padding: 4px;
     background-color: rgb(55 49 40 / 79%);
-    border-radius: 5px;
+    /* border-radius: 5px; */
     border-radius: 7%;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
+
+
 
 
 label {
@@ -212,7 +229,7 @@ input[type="email"]{
 }
 /* Estilos para o contêiner das senhas */
 #password-container {
-    width: 50%;
+    width: 53%;
     height: 10em;
     padding: 10px;
     margin-bottom: 37px;
@@ -223,6 +240,7 @@ input[type="email"]{
     justify-content: flex-end;
     flex-wrap: wrap;
 }
+
    /* Estilos para as caixas de senha */
    input[type="password"] {
          width: 40%;
@@ -289,6 +307,48 @@ border: 3px solid red;
     padding: initial;
     border: initial;
 }
+
+@media (max-width: 768px) {
+    /* Styles for screens up to 768px wide */
+    body {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Styles for screens up to 480px wide */
+    #container {
+        display: block;
+        text-align: center;
+    }
+
+    /* Adjust other elements as needed */
+}
+/* Adjust styles for different zoom levels */
+@media (max-width: 768px) and (max-zoom: 1) {
+    /* Styles for screens up to 768px wide and normal zoom */
+    body {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 768px) and (max-zoom: 0.8) {
+    /* Styles for screens up to 768px wide and reduced zoom */
+    body {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) and (max-zoom: 1) {
+    /* Styles for screens up to 480px wide and normal zoom */
+    #container {
+        display: block;
+        text-align: center;
+    }
+
+    /* Adjust other elements as needed */
+}
+
 footer {
     background-color: #3b1e0a;
     color: white;
@@ -300,4 +360,5 @@ footer {
     height: 41px;
     font-size: 14px; /* Adjust the font size as needed */
     line-height: 41px; /* Center the text vertically within the footer */
+
 }

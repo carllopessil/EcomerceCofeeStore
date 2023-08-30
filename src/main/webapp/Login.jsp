@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <%--        <link rel="stylesheet" type="text/css" href="./Styles.css/style.css">--%>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/Login.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<%--    <link rel="stylesheet" type="text/css" href="css/Bootstrap.min.css">--%>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <title>Login</title>
 </head>
@@ -40,7 +41,7 @@
             <li></li>
         </ul>
     </section>
-</div>
+
 
 
 
@@ -52,7 +53,7 @@
 <p style="color: red;">Credenciais inválidas. Tente novamente.</p>
 <% } %>
 
-
+</div>
 <script>
     const pwd = document.getElementById("senha");
     const showPasswordCheckbox = document.getElementById("showPassword");

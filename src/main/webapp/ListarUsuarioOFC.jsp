@@ -8,7 +8,7 @@
     <meta name="description" content="Gerenciamento de Usuários do Sistema">
     <title>Gerenciamento de Usuários</title>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <link rel="stylesheet" href="css/ListarUsuario2.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
@@ -53,7 +53,7 @@
 
 
 <div class="container" >
-    <div class="card card-body mt-5"style="background-color:rgb(55 49 40 / 79%);">
+    <div class="card card-body mt-5" style="background-color:rgb(55 49 40 / 79%);">
         <h1 style="color: #c16315;">Gerenciamento de Usuários do Sistema</h1>
 
 
@@ -61,63 +61,64 @@
 
         <input id="input-busca" type="text" class="form-control mt-3 mb-3" placeholder="O que você procura?">
 
-        <table class="table table-hover table-striped"style="background-color:white;>
-            <thead class="table-dark">
-            <tr>
-                <th>#ID</th>
-                <th>Nome</th>
-                <th>Email</th>
-                <th>Status</th>
-                <th>Habilitar/Desabilitar</th>
-                <th>Grupo</th>
-                <th>Editar</th>
+        <table class="table table-hover table-striped" style="background-color:white;">
+            <thead class=" table-dark">
+        <tr>
+            <th>#ID</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Status</th>
+            <th>Habilitar/Desabilitar</th>
+            <th>Grupo</th>
+            <th>Editar</th>
+        </tr>
+         </thead>
+
+        <tbody id="tabela-usuarios">
+        <c:forEach var="UsuarioBackOffice" items="${UsuarioBackOffice}" varStatus="loop">
+            <tr class="editable-row" id="row-${loop.index}">
+                <td>
+                    <text>${UsuarioBackOffice.ID}</text>
+                </td>
+                <td>
+                    <text>${UsuarioBackOffice.nome}</text>
+                </td>
+                <td>
+                    <text>${UsuarioBackOffice.email}</text>
+                </td>
+                <td>
+                    <text>
+                            ${UsuarioBackOffice.status ? 'Ativo' : 'Inativo'}
+                    </text>
+                </td>
+
+                <td>
+                    <label class="switch">
+                        <input type="checkbox"
+                            ${UsuarioBackOffice.status ? 'checked' : ''}
+                               onchange="confirmarAtualizacaoStatus(${UsuarioBackOffice.ID}, this.checked)">
+                        <span class="slider round"></span>
+                    </label>
+
+
+                </td>
+                <td>
+                    <text>${UsuarioBackOffice.grupo}</text>
+                </td>
+                <td>
+                    <button class="btn btn-primary">Editar</button>
+                </td>
+
             </tr>
-            </thead>
-            <tbody id="tabela-usuarios">
-            <c:forEach var="UsuarioBackOffice" items="${UsuarioBackOffice}" varStatus="loop">
-                <tr class="editable-row" id="row-${loop.index}">
-                    <td>
-                        <text>${UsuarioBackOffice.ID}</text>
-                    </td>
-                    <td>
-                        <text>${UsuarioBackOffice.nome}</text>
-                    </td>
-                    <td>
-                        <text>${UsuarioBackOffice.email}</text>
-                    </td>
-                    <td>
-                        <text>
-                                ${UsuarioBackOffice.status ? 'Ativo' : 'Inativo'}
-                        </text>
-                    </td>
-
-                    <td>
-                        <label class="switch">
-                            <input type="checkbox"
-                                ${UsuarioBackOffice.status ? 'checked' : ''}
-                                   onchange="confirmarAtualizacaoStatus(${UsuarioBackOffice.ID}, this.checked)">
-                            <span class="slider round"></span>
-                        </label>
-
-
-                    </td>
-                    <td>
-                        <text>${UsuarioBackOffice.grupo}</text>
-                    </td>
-                    <td>
-                        <button class="btn btn-primary">Editar</button>
-                    </td>
-
-                </tr>
-            </c:forEach>
-            </tbody>
+        </c:forEach>
+        </tbody>
         </table>
 
-                <button onclick="window.location.href='CadastrarUsuarioBackOffice.jsp'" class="btn-cadastra">
-                       <i class="fas fa-user-plus"></i> Cadastra novo usuario
-                   </button>
+        <button onclick="window.location.href='CadastrarUsuarioBackOffice.jsp'" class="btn-cadastra">
+            <i class="fas fa-user-plus"></i> Cadastra novo usuario
+        </button>
     </div>
-
+</div>
     <script src="eventos_ofc.js"></script>
     <script>
         function confirmarAtualizacaoStatus(usuarioId, novoStatus) {
@@ -165,12 +166,11 @@
         }
     </script>
 
+    <footer>
+        <p1>&copy; 2023 E-Commerce Coffee Store. Todos os direitos reservados.</p1>
+    </footer>
 
-</div>
-<footer>
-    <p1>&copy; 2023 E-Commerce Coffee Store. Todos os direitos reservados.</p1>
-</footer>
+
 </body>
 </html>
-
 
