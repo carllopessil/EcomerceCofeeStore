@@ -1,4 +1,4 @@
-<%@ page import=    "br.com.gymcontrol.Model.UsuarioBackOffice" %>
+<%@ page import="br.com.gymcontrol.Model.UsuarioBackOffice" %>
 <!DOCTYPE html>
 <html>
 <%@ page contentType="text/html; charset=UTF-8"%>
@@ -24,7 +24,7 @@
             <li><a href="Logout">Sair</a></li>-->
 
             <!--Apos ajuste final apagar essa tag e acessa a tag Logout com link-->
-            <li><a href="index.jsp">Sair</a></li>
+            <li><a href="Login.jsp">Sair</a></li>
         </ul>
 
 
