@@ -12,16 +12,16 @@
 
         #container {
             width: 100%;
-            height: 100%;
-            margin: 10px;
+            height: 55em;
+            margin: 0px;
             display: flex;
             justify-content: center;
             align-items: center;
             background-color: rgba(0, 0, 0, 0.38);
-            /*overflow: hidden;*/
+            overflow: hidden;
         }
 
-              a {
+        a {
             display: block;
             height: 56px;
             width: 233px;
@@ -66,11 +66,21 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
+            height: 100vh;
             background-color: rgb(0 0 0 / 73%); /* Cor preta com opacidade de 0.5 */
         }
+h1{
+    display: grid;
+    margin-top: 0;
+    font-size: 3.5em;
+    font-weight: 600;
+    font-family: cursive;
+    font-size: 36px;
+    color: #fff;
+    align-content: center;
+}
 
-        h1 {
+        h2 {
             font-size: 36px;
             color: #fff;
             z-index: 1;
@@ -88,72 +98,51 @@
             font-size: 24px;
             color: #007bff;
         }
+        p {
+            display: block;
+            color: #ffffff;
+            font-family: "Cabin", helvetica, arial, sans-serif;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+        }
+        footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            background-color: #3b1e0a;
+        }
+
 
     </style>
 </head>
 <body>
 <div id="container">
-    <h1>Site em Construção</h1>
+    <h2>Site em Construção</h2>
 </div>
 
 <div class="content">
     <h1>BREWMASTERS CAFÉ</h1>
-    <p>Uma história de paixão e café.</p>
-    <p>&copy; 2023 BREWMASTERS CAFÉ. Todos os direitos reservados.</p>
+
+
     <div id="countdown"></div>
     <a href="Login.jsp">Acesso Develop Contrutor</a>
     <!--<a href="ListaDeUsuario.jsp">Link para a página principal</a>-->
-</div>
+
 
 <video autoplay muted loop id="video-background">
     <source src="img/videoIndex/fundoIdex.mp4" type="video/mp4">
     Seu navegador não suporta vídeos em HTML5.
 </video>
 
-<script>
-    const counterElement = document.getElementById("counter");
-    const incrementButton = document.getElementById("increment");
-    const decrementButton = document.getElementById("decrement");
-
-    let count = 0;
-
-    function updateCounter() {
-        counterElement.textContent = count;
-    }
-
-    incrementButton.addEventListener("click", function () {
-        count++;
-        updateCounter();
-    });
-
-    decrementButton.addEventListener("click", function () {
-        if (count > 0) {
-            count--;
-            updateCounter();
-        }
-    });
-
-    updateCounter();
-
-    function updateCountdown() {
-        const currentDate = new Date();
-        const targetDate = new Date("2023-08-28");
-        const difference = targetDate - currentDate;
-
-        if (difference <= 0) {
-            document.getElementById("countdown").textContent = "Site lançado!";
-            return;
-        }
-
-        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-
-        document.getElementById("countdown").textContent = `Tempo restante: ${days} dias`;
-    }
-
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
-</script>
-<p1>&copy; 2023 BREWMASTERS CAFÉ. Todos os direitos reservados.</p1>
+</div>
+<footer>
+    <p>&copy; 2023 BREWMASTERS CAFÉ. Todos os direitos reservados.</p>
+</footer>
 </body>
 </html>
 
