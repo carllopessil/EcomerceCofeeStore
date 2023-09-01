@@ -38,15 +38,14 @@
 
                     <% if (((UsuarioBackOffice)session.getAttribute("usuario")).getGrupo().equals("Admin Group")) { %>
 
-                    <form action="/ListarUsuarioBackOffice" method="get">
-                        <button class="btn-primary" type="submit">Buscar usuários dos sistemas</button>
-                    </form>
-
-
 
                     <form action="/ListarUsuarioBackOffice_2" method="get">
                         <button class="btn-primary" type="submit">Buscar usuários dos sistemas</button>
                     </form>
+
+                     <form action="/ListarUsuarioBackOffice" method="get">
+                                            <button class="btn-primary" type="submit">Buscar usuários dos sistemas (TESTE, EXEMPLO)</button>
+                                        </form>
                 </div>
                 <% } %>
             </div>

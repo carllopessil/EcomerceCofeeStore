@@ -90,6 +90,7 @@
            <input type="checkbox" name="status" id="statusCheckbox" checked>
            <span id="statusIcon"><i class="far fa-check-circle"></i></span><br>-->
             <hr>
+
             <button type="submit" class="submit-button" onclick="return validarSenhas();">
                 <i class="fas fa-user-plus"></i> Cadastrar
             </button>

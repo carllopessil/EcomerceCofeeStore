@@ -54,7 +54,13 @@
 
 <div class="container" >
     <div class="card card-body mt-5" style="background-color:rgb(55 49 40 / 79%);">
-        <h1 style="color: #c16315;">Gerenciamento de Usuários do Sistema</h1>
+
+<div class="container">
+    <h1 style="color: #c16315; display: inline-block;background-color:rgb(55 49 40 / 79%);">Gerenciamento de Usuários do Sistema</h1>
+    <button onclick="window.location.href='CadastrarUsuarioBackOffice.jsp'" class="btn-cadastra" style="float: right;">
+        <i class="fas fa-user-plus"></i> Cadastrar novo usuário
+    </button>
+    <hr style="color: black;">
 
 
         <hr style="color: black;">
@@ -115,9 +121,7 @@
         </tbody>
         </table>
 
-        <button onclick="window.location.href='CadastrarUsuarioBackOffice.jsp'" class="btn-cadastra">
-            <i class="fas fa-user-plus"></i> Cadastra novo usuario
-        </button>
+
 
     </div>
 </div>
