@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
-<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/Login.css">
-<%--    <link rel="stylesheet" type="text/css" href="css/Bootstrap.min.css">--%>
+    <%--    <link rel="stylesheet" type="text/css" href="css/Bootstrap.min.css">--%>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <title>Login</title>
@@ -32,9 +32,47 @@
         </form>
         <div id="circle1">
             <div id="inner-cirlce1">
-                <h1> </h1>
+                <h1></h1>
             </div>
         </div>
+
+<%--  quando vc errano login vai receber essa mensagem--%>
+<%--        <% if (request.getParameter("error") != null) { %>--%>
+<%--        <p2>Credenciais inválidas. Tente novamente.</p2>--%>
+<%--        <% } %>--%>
+<%--        <% if (request.getParameter("error2") != null) { %>--%>
+<%--        <p3>Usuario inativo, contacte um administrador</p3>--%>
+<%--        <% } %>--%>
+        <div id="error-popup" class="error-popup">
+            <div class="error-popup-content">
+                <span id="error-message"></span>
+                <button id="close-error-popup">Fechar</button>
+            </div>
+        </div>
+        <script>
+            <% if (request.getParameter("error") != null) { %>
+            // Erro de credenciais inválidas
+            var errorMessage = "Credenciais inválidas. Tente novamente.";
+            showErrorPopup(errorMessage);
+            <% } %>
+
+            <% if (request.getParameter("error2") != null) { %>
+            // Erro de usuário inativo
+            var errorMessage = "Usuário inativo, contacte um administrador.";
+            showErrorPopup(errorMessage);
+            <% } %>
+
+            function showErrorPopup(message) {
+                document.getElementById("error-message").textContent = message;
+                document.getElementById("error-popup").style.display = "block";
+            }
+
+            document.getElementById("close-error-popup").addEventListener("click", function () {
+                document.getElementById("error-popup").style.display = "none";
+            });
+        </script>
+
+
         <ul>
             <li></li>
             <li></li>
@@ -43,15 +81,12 @@
             <li></li>
         </ul>
     </section>
+
+
+
 <footer>
     <p1>&copy; 2023 BREWMASTERS CAFÉ. Todos os direitos reservados.</p1>
 </footer>
-<% if (request.getParameter("error") != null) { %>
-<p style="color: red;">Credenciais inválidas. Tente novamente.</p>
-<% } %>
-<% if (request.getParameter("error2") != null) { %>
-<p style="color: red;">Usuario inativo, contacte um administrador</p>
-<% } %>
 </div>
 <script>
     const pwd = document.getElementById("senha");
@@ -60,5 +95,6 @@
         pwd.type = showPasswordCheckbox.checked ? "text" : "password";
     });
 </script>
+
 </body>
 </html>

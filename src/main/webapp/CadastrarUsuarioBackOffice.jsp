@@ -104,7 +104,7 @@
 <%--                <i class="fas fa-arrow-left"></i> Voltar1--%>
 <%--            </button>--%>
 <%--            Ajuste do button voltar mais nao definitivo--%>
-            <button onclick="window.location.href = 'ListarUsuarioOFC.jsp';" class="back-button">
+            <button onclick="window.location.href = '/ListarUsuarioBackOffice_2';" class="back-button">
                 <i class="fas fa-arrow-left"></i> Voltar
             </button>
 
