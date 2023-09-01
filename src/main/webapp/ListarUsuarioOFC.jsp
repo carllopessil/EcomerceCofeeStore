@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Gerenciamento de Usuários do Sistema">
-    <title>Gerenciamento de Usuários</title>
+    <title>Gerenciamento de Usuários Lista UsuariosOFC</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
@@ -36,7 +36,7 @@
 <ul class="menu">
     <li class="menu-logo">
         <img src="img/Logo de cafe.png" alt="Logo do café">
-        <h1>BEM-VINDO AO BACKOFFICE</h1>
+        <h1>BEM-VINDO AO BREWMASTERS CAFÉ.BACKOFFICE</h1>
 
 
 
@@ -106,7 +106,10 @@
                     <text>${UsuarioBackOffice.grupo}</text>
                 </td>
                 <td>
-                    <button class="btn btn-primary">Editar</button>
+                    <button class="btn btn-primary">Editar
+                     <a href="ListaDeUsuario.jsp" class="btn-primary"></a>
+                     </button>
+
                 </td>
 
             </tr>
@@ -117,6 +120,7 @@
         <button onclick="window.location.href='CadastrarUsuarioBackOffice.jsp'" class="btn-cadastra">
             <i class="fas fa-user-plus"></i> Cadastra novo usuario
         </button>
+
     </div>
 </div>
     <script src="eventos_ofc.js"></script>
@@ -167,7 +171,7 @@
     </script>
 
     <footer>
-        <p1>&copy; 2023 E-Commerce Coffee Store. Todos os direitos reservados.</p1>
+        <p1>&copy; 2023 BREWMASTERS CAFÉ. Todos os direitos reservados.</p1>
     </footer>
 
 

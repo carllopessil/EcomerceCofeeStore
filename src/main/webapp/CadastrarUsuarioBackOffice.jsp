@@ -18,7 +18,7 @@
         <ul class="menu">
             <li class="menu-logo">
                 <img src="img/Logo de cafe.png">
-                <h1>Bem Vindo E-Commerce Coffee Store</h1>
+                <h1>Bem Vindo BREWMASTERS CAFÉ.</h1>
             </li>
 
             <li><a href="Logout">Sair</a></li>
@@ -106,7 +106,7 @@
 
 
 <footer>
-    <p1>&copy; 2023 E-Commerce Coffee Store. Todos os direitos reservados.</p1>
+    <p1>&copy; 2023 BREWMASTERS CAFÉ. Todos os direitos reservados.</p1>
 </footer>
 </div>
 <script>

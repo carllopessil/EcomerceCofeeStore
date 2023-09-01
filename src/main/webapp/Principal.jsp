@@ -17,7 +17,7 @@
         <ul class="menu">
             <li class="menu-logo">
                 <img src="img/Logo de cafe.png">
-                <h1>BEM-VINDO AO  BACKOFFICE</h1>
+                <h1>BEM-VINDO AO  BREWMASTERS CAFÉ.BACKOFFICE</h1>
             </li>
 
            <!--Acesso temporario quando sair vai diretopagina index

@@ -21,23 +21,17 @@
             /*overflow: hidden;*/
         }
 
-        h2 {
-            text-align: center;
-            color: #fff;
-            padding: 1.9em;
-        }
-
-        a {
+              a {
             display: block;
-            width: 200px;
-            margin: 0 auto;
+            height: 56px;
+            width: 233px;
+            margin: -15em auto;
             text-align: center;
             padding: 10px;
-            background-color: #ff0032;
+            background-color: #07ff00;
             color: #270606;
             text-decoration: none;
-            border-radius: 41px;
-            margin-bottom: -54px;
+            border-radius: 49px;
             z-index: 1;
             font-size: 1.8em;
             font-family: monospace;
@@ -57,16 +51,6 @@
             margin-top: 20px;
         }
 
-        button {
-            font-size: 16px;
-            padding: 10px 20px;
-            margin: 0 10px;
-            cursor: pointer;
-            border: none;
-            background-color: #007bff;
-            color: #fff;
-            border-radius: 5px;
-        }
 
         #video-background {
             position: absolute;
@@ -100,35 +84,32 @@
             font-family: cursive;
         }
 
-        }
-
-
-
-
         #countdown {
             font-size: 24px;
             color: #007bff;
         }
+
     </style>
 </head>
 <body>
 <div id="container">
     <h1>Site em Construção</h1>
-    <div id="countdown"></div>
-
-    <br>
-    <hr>
-    <a href="Login.jsp">Acesso Develop Contrutor</a>
-    <%--<a href="ListaDeUsuario.jsp">Link para a página principal</a>--%>
-
-
-    <video autoplay muted loop id="video-background">
-        <source src="img/videoIndex/fundoIdex.mp4" type="video/mp4">
-        Seu navegador não suporta vídeos em HTML5.
-    </video>
-    <div id="overlay"></div>
-    <h1>Site em Construção</h1>
 </div>
+
+<div class="content">
+    <h1>BREWMASTERS CAFÉ</h1>
+    <p>Uma história de paixão e café.</p>
+    <p>&copy; 2023 BREWMASTERS CAFÉ. Todos os direitos reservados.</p>
+    <div id="countdown"></div>
+    <a href="Login.jsp">Acesso Develop Contrutor</a>
+    <!--<a href="ListaDeUsuario.jsp">Link para a página principal</a>-->
+</div>
+
+<video autoplay muted loop id="video-background">
+    <source src="img/videoIndex/fundoIdex.mp4" type="video/mp4">
+    Seu navegador não suporta vídeos em HTML5.
+</video>
+
 <script>
     const counterElement = document.getElementById("counter");
     const incrementButton = document.getElementById("increment");
@@ -172,6 +153,7 @@
     setInterval(updateCountdown, 1000);
     updateCountdown();
 </script>
+<p1>&copy; 2023 BREWMASTERS CAFÉ. Todos os direitos reservados.</p1>
 </body>
 </html>
 

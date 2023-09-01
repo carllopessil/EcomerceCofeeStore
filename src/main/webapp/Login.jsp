@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
+<%@ page contentType="text/html; charset=UTF-8"%>
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/Login.css">
 <%--    <link rel="stylesheet" type="text/css" href="css/Bootstrap.min.css">--%>
@@ -12,7 +14,7 @@
 <body>
 <div id="container">
     <div id="logo">
-        <h1><i> E-Commerce Coffee Store</i></h1>
+        <h1><i> BREWMASTERS CAFÉ.</i></h1>
     </div>
     <section class="stark-login">
         <form action="Login" method="post">
@@ -46,7 +48,7 @@
 
 
 <footer>
-    <p1>&copy; 2023 E-Commerce Coffee Store. Todos os direitos reservados.</p1>
+    <p1>&copy; 2023 BREWMASTERS CAFÉ. Todos os direitos reservados.</p1>
 </footer>
 
 <% if (request.getParameter("error") != null) { %>
