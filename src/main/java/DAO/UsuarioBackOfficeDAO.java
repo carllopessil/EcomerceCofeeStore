@@ -325,6 +325,8 @@ public class UsuarioBackOfficeDAO {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
+
+
         try {
             connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
 
@@ -365,6 +367,8 @@ public class UsuarioBackOfficeDAO {
     public static void atualizarUsuario2(int userID, String nome, String cpf, String grupo) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
+
+
 
         try {
             connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");

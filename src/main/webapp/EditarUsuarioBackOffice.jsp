@@ -3,10 +3,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Meta tags, title, and stylesheets here -->
 </head>
 <body>
-    <!-- Header and navigation if needed -->
+
+     <% String mensagemAlertaCPF = (String) request.getAttribute("mensagemAlertaCPF"); %>
+         <% if (mensagemAlertaCPF != null) { %>
+            <div class="alert alert-danger">
+                <%= mensagemAlertaCPF %>
+            </div>
+                <% } %>
+
+                 <% String mensagemAlerta = (String) request.getAttribute("mensagemAlerta"); %>
+                            <% if (mensagemAlerta != null) { %>
+                        <div class="alert alert-danger">
+                            <%= mensagemAlerta %>
+                        </div>
+                            <% } %>
     <div class="error-message">${error}</div>
 
     <div class="container">
@@ -18,7 +30,9 @@
             <input type="text" id="nome" name="nome" value="${param.nome}" required><br>
 
             <label for="cpf">CPF:</label>
-            <input type="text" id="cpf" name="cpf" value="${param.cpf}" required><br>
+            <input type="text" id="cpf" name="cpf" value="${param.cpf}" placeholder="000.000.000-00" required
+                   oninput="aplicarMascaraCPF(this)"><br>
+
 
         <%
             UsuarioBackOffice usuarioSessao = (UsuarioBackOffice) session.getAttribute("usuario");
@@ -29,9 +43,6 @@
             <label for="grupo">Grupo:</label>
             <input type="text" id="grupo" name="grupo" value="${param.grupo}"><br>
         <% } %>
-
-
-
 
             <label for="senha">Senha:</label>
             <input type="password" id="senha" name="senha"><br>
@@ -46,7 +57,23 @@
             </button>
         </form>
     </div>
+<script>
 
-    <!-- Footer and scripts if needed -->
+
+     function aplicarMascaraCPF(input) {
+        var cpfAtualizado = formatarCPF(input.value);
+        input.value = cpfAtualizado;
+    }
+
+        function formatarCPF(cpf) {
+            cpf = cpf.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
+            cpf = cpf.replace(/(\d{3})(\d)/, '$1.$2');
+            cpf = cpf.replace(/(\d{3})(\d)/, '$1.$2');
+            cpf = cpf.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+            return cpf;
+        }
+
+
+    </script>
 </body>
 </html>

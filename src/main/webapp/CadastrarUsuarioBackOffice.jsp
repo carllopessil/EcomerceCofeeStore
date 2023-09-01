@@ -119,6 +119,8 @@
     <p1>&copy; 2023 BREWMASTERS CAFÉ. Todos os direitos reservados.</p1>
 </footer>
 </div>
+
+
 <script>
     // // função do button Voltar para pagian Lista de usuariosOFC
     // function goToListarUsuarioOFC() {
@@ -149,6 +151,7 @@
         var cpfAtualizado = formatarCPF(input.value);
         input.value = cpfAtualizado;
     }
+
 
     function validarSenhas() {
         var senha = document.getElementById("senha").value;
