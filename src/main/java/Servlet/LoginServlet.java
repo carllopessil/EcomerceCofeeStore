@@ -21,8 +21,12 @@ public class LoginServlet extends HttpServlet {
         UsuarioBackOffice usuario = UsuarioBackOfficeDAO.buscarUsuarioPorEmail(email);
 
         if (usuario != null && BCrypt.checkpw(senha, usuario.getSenha())) {
-            request.getSession().setAttribute("usuario", usuario);
-            response.sendRedirect("Principal.jsp");
+            if(usuario.getStatus()==true) {
+                request.getSession().setAttribute("usuario", usuario);
+                response.sendRedirect("Principal.jsp");
+            } else {
+                response.sendRedirect("Login.jsp?error2=true");
+            }
         } else {
             response.sendRedirect("Login.jsp?error=true");
         }

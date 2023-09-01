@@ -43,18 +43,15 @@
             <li></li>
         </ul>
     </section>
-
-
-
-
 <footer>
     <p1>&copy; 2023 BREWMASTERS CAFÉ. Todos os direitos reservados.</p1>
 </footer>
-
 <% if (request.getParameter("error") != null) { %>
 <p style="color: red;">Credenciais inválidas. Tente novamente.</p>
 <% } %>
-
+<% if (request.getParameter("error2") != null) { %>
+<p style="color: red;">Usuario inativo, contacte um administrador</p>
+<% } %>
 </div>
 <script>
     const pwd = document.getElementById("senha");
