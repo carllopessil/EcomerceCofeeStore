@@ -36,7 +36,6 @@
                 <th>Status</th>
                 <th>Grupo</th>
                 <th>Ações</th>
-                <th>Habilitar/Desabilitar</th>
 
             </tr>
         </thead>
@@ -59,11 +58,6 @@
                         </form>
                     </td>
 
-                    <td>
-              <button class="btn btn-info status-button" data-id="${UsuarioBackOffice.ID}" data-status="${UsuarioBackOffice.status}"
-                         data-url="/AtualizarStatusUsuarioBackOffice">
-                     Alterar Status
-                 </button>
                     </td>
                 </tr>
             </c:forEach>

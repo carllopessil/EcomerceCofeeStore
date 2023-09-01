@@ -3,6 +3,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" type="text/css" href="css/CadastrarUsuarioBackOffice.css">
+
 </head>
 <body>
 
