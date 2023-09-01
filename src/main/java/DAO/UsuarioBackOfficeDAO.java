@@ -142,6 +142,59 @@ public class UsuarioBackOfficeDAO {
         }
     }
 
+    public static UsuarioBackOffice obterUsuarioPorID(int userID) {
+        Connection conexao = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        UsuarioBackOffice usuario = new UsuarioBackOffice();
+        try {
+            conexao = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+
+                    String query = "SELECT * FROM usuarios WHERE id = ?";
+            stmt = conexao.prepareStatement(query);
+            stmt.setInt(1, userID);
+
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+
+                usuario.setID(rs.getInt("id"));
+                usuario.setNome(rs.getString("nome"));
+                usuario.setCPF(rs.getString("cpf"));
+                usuario.setGrupo(rs.getString("grupo"));
+                usuario.setSenha(rs.getString("senha"));
+
+                return usuario;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Fechar recursos
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (conexao != null) {
+                try {
+                    conexao.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return usuario;
+    }
 
     public static boolean isEmailCadastrado(String email) {
         String SQL = "SELECT COUNT(*) FROM UsuarioBackOffice WHERE email = ?";
@@ -265,6 +318,87 @@ public class UsuarioBackOfficeDAO {
         } catch (Exception e) {
             System.out.println("Erro ao verificar e-o cpf cadastrado: " + e.getMessage());
             return false;
+        }
+    }
+
+    public static void atualizarUsuario(int userID, String nome, String cpf, String grupo, String senha) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+
+            String hashedSenha = BCrypt.hashpw(senha, BCrypt.gensalt());
+                    String query = "UPDATE UsuarioBackOffice SET Nome=?, CPF=?, Grupo=?, Senha=? WHERE ID=?";
+
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, nome);
+            preparedStatement.setString(2, cpf);
+            preparedStatement.setString(3, grupo);
+            preparedStatement.setString(4, hashedSenha);
+            preparedStatement.setInt(5, userID);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } finally {
+
+            if (preparedStatement != null) {
+                try {
+                    preparedStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public static void atualizarUsuario2(int userID, String nome, String cpf, String grupo) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+
+
+            String query = "UPDATE UsuarioBackOffice SET Nome=?, CPF=?, Grupo=? WHERE ID=?";
+
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, nome);
+            preparedStatement.setString(2, cpf);
+            preparedStatement.setString(3, grupo);
+            preparedStatement.setInt(4, userID);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } finally {
+
+            if (preparedStatement != null) {
+                try {
+                    preparedStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 }

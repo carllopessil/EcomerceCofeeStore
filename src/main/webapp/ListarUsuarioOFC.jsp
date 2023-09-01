@@ -105,12 +105,10 @@
                 <td>
                     <text>${UsuarioBackOffice.grupo}</text>
                 </td>
-                <td>
-                    <button class="btn btn-primary">Editar
-                     <a href="ListaDeUsuario.jsp" class="btn-primary"></a>
-                     </button>
+               <td>
+                   <a href="EditarUsuarioBackOffice.jsp?userID=${UsuarioBackOffice.ID}&nome=${UsuarioBackOffice.nome}&cpf=${UsuarioBackOffice.CPF}&grupo=${UsuarioBackOffice.grupo}" class="btn btn-primary">Editar</a>
+               </td>
 
-                </td>
 
             </tr>
         </c:forEach>
