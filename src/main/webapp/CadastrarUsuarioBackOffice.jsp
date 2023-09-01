@@ -95,9 +95,19 @@
             </button>
 
             <button style="background-color: rgba(31,8,8,0.04)"></button> <!-- Back button -->
-            <button onclick="window.history.back();" class="back-button">
+
+<%--            <button onclick="goToListarUsuarioOFC();" class="back-button">--%>
+<%--                <i class="fas fa-arrow-left"></i> Voltar2--%>
+<%--            </button>--%>
+
+<%--            <button onclick="window.history.back();" class="back-button">--%>
+<%--                <i class="fas fa-arrow-left"></i> Voltar1--%>
+<%--            </button>--%>
+<%--            Ajuste do button voltar mais nao definitivo--%>
+            <button onclick="window.location.href = 'ListarUsuarioOFC.jsp';" class="back-button">
                 <i class="fas fa-arrow-left"></i> Voltar
             </button>
+
             <hr>
         </form>
 
@@ -110,6 +120,10 @@
 </footer>
 </div>
 <script>
+    // // função do button Voltar para pagian Lista de usuariosOFC
+    // function goToListarUsuarioOFC() {
+    //     window.location.href = 'ListarUsuarioOFC.jsp';
+    // }
 
     // Dentro da função de callback do XMLHttpRequest
     if (this.readyState == 4) {
@@ -176,6 +190,8 @@
             statusIcon.innerHTML = '<i class="far fa-times-circle"></i>';
         }
     });
+
+
 
 </script>
 
