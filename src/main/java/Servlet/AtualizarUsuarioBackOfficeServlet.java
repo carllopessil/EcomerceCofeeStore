@@ -25,7 +25,7 @@ import java.io.IOException;
             } catch (Exception e) {
                 System.out.println("Não consegui atualizar");            }
 
-            response.sendRedirect(request.getContextPath() + "/ListaDeUsuario.jsp");
+            response.sendRedirect(request.getContextPath() + "/ListarUsuarioBackOffice");
         }
     }
 
