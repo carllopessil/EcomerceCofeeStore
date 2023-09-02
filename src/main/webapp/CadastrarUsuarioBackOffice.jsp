@@ -76,8 +76,6 @@
                     <span class="show-password-icon"><i class="fas fa-eye"></i></span>
                 </label>
             </div>
-
-
             <hr>
             <div id="grupo">
                 <label for="grupo">Grupo:</label>
