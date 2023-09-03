@@ -34,7 +34,7 @@
                     <form action="/ListaProdutos.jsp" method="get">
                         <button class="btn-primary" type="submit">Lista de Produtos</button>
                     </form>
-
+                    <hr>
 
                     <% if (((UsuarioBackOffice)session.getAttribute("usuario")).getGrupo().equals("Admin Group")) { %>
 
@@ -42,13 +42,14 @@
                         <button class="btn-primary" type="submit">Buscar usuários dos sistemas (TESTE, EXEMPLO)</button>
                     </form>
 
-
+                    <hr>
 
                     <form action="/ListarUsuarioBackOffice_2" method="get">
                         <button class="btn-primary" type="submit">Buscar usuários dos sistemas</button>
                     </form>
                 </div>
                 <% } %>
+
             </div>
         </div>
 
