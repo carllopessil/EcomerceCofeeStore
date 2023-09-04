@@ -95,37 +95,22 @@
 
             <button style="background-color: rgba(31,8,8,0.04)"></button> <!-- Back button -->
 
-<%--            <button onclick="goToListarUsuarioOFC();" class="back-button">--%>
-<%--                <i class="fas fa-arrow-left"></i> Voltar2--%>
-<%--            </button>--%>
-
-<%--            <button onclick="window.history.back();" class="back-button">--%>
-<%--                <i class="fas fa-arrow-left"></i> Voltar1--%>
-<%--            </button>--%>
-<%--            Ajuste do button voltar mais nao definitivo--%>
             <button onclick="window.location.href = '/ListarUsuarioBackOffice_2';" class="back-button">
                 <i class="fas fa-arrow-left"></i> Voltar
             </button>
 
-            <hr>
+
         </form>
 
         <div id="mensagem-erro" style="color: red;"></div>
 
-
-
-<footer>
-    <p1>&copy; 2023 BREWMASTERS CAFÉ. Todos os direitos reservados.</p1>
-</footer>
+        <footer>
+            <p1>&copy; 2023 BREWMASTERS CAFÉ. Todos os direitos reservados.</p1>
+        </footer>
 </div>
 
 
 <script>
-    // // função do button Voltar para pagian Lista de usuariosOFC
-    // function goToListarUsuarioOFC() {
-    //     window.location.href = 'ListarUsuarioOFC.jsp';
-    // }
-
     // Dentro da função de callback do XMLHttpRequest
     if (this.readyState == 4) {
         if (this.status == 200) {
@@ -192,7 +177,6 @@
             statusIcon.innerHTML = '<i class="far fa-times-circle"></i>';
         }
     });
-
 
 
 </script>

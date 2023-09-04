@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<div class="conteiner-editar">
+<div id="conteiner-editar">
     <ul class="menu">
         <li class="menu-logo">
             <img src="img/Logo de cafe.png" alt="Logo do café">

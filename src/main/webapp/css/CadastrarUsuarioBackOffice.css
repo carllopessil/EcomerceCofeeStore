@@ -31,14 +31,24 @@ body {
     align-items: center;
     justify-content: center;
 }
-
+hr {
+    display: block;
+    unicode-bidi: isolate;
+    margin-block-start: 0.5em;
+    margin-block-end: 1.3em;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+    overflow: hidden;
+    border-style: inset;
+    border-width: 1px;
+}
 
 .menu {
     list-style-type: none;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #3b1e0ad9;
+    background-color: #3b1e0ad6;
     padding: 0px;
     height: 200px;
     margin: 10px 5px auto;
@@ -62,17 +72,6 @@ body {
     font-weight: bold;
     font-size: 25px;
     font-family: Kanit;
-}
-hr {
-    display: block;
-    unicode-bidi: isolate;
-    margin-block-start: 0.5em;
-    margin-block-end: -1.5em;
-    margin-inline-start: auto;
-    margin-inline-end: auto;
-    overflow: hidden;
-    border-style: inset;
-    border-width: 1px;
 }
 .btn-container {
     background-color:  #3b1e0a;
@@ -183,7 +182,7 @@ h1 {
 form {
     max-width: 790px;
     margin: 25px auto 74px;
-    height: 690px;
+    height: 775px;
     padding: 33px;
     background-color: rgb(55 49 40 / 79%);
     /* border-radius: 5px; */

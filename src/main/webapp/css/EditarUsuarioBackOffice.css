@@ -50,6 +50,7 @@ body {
 }
 
 .menu li h1 {
+    background-color: #0000;
     color: red;
     font-weight: bold;
     font-size: 44px;
