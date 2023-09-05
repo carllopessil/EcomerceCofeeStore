@@ -1,6 +1,5 @@
 package Servlet;
 
-import DAO.CadastrarUsuarioDAO;
 import DAO.UsuarioBackOfficeDAO;
 import br.com.gymcontrol.Model.UsuarioBackOffice;
 

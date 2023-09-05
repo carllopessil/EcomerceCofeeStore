@@ -275,3 +275,40 @@ footer {
     bottom: -18em;
     width: 100%;
 }
+
+
+
+/* Estilos da tabela */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+/* Estilos da paginação */
+#paginação {
+  text-align: center;
+  margin-top: 10px;
+}
+
+button {
+  background-color: #0074d9;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+#pagina-atual {
+  margin: 0 10px;
+}
+

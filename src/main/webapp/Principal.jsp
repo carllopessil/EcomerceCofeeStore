@@ -31,7 +31,7 @@
         <div class="container">
             <div class="form-container">
                 <div class="btn-container">
-                    <form action="/ListaProdutos.jsp" method="get">
+                    <form action="/ListarProdutos" method="get">
                         <button class="btn-primary" type="submit">Lista de Produtos</button>
                     </form>
                     <hr>
