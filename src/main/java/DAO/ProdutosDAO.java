@@ -10,6 +10,39 @@ import java.util.List;
 import static java.lang.System.out;
 
 public class ProdutosDAO {
+    public Produtos obterProdutoPorID(int produtoID) {
+        String SQL = "SELECT * FROM Produtos WHERE produtoID = ?";
+
+        try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
+
+            preparedStatement.setInt(1, produtoID);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                String nomeProduto = resultSet.getString("nomeProduto");
+                boolean statusProduto = resultSet.getBoolean("statusProduto");
+                double avaliacao = resultSet.getDouble("avaliacao");
+                String descricaoDetalhada = resultSet.getString("descricaoDetalhada");
+                double precoProduto = resultSet.getDouble("precoProduto");
+                int quantidadeEstoque = resultSet.getInt("qtdEstoque");
+                String imagePATH = resultSet.getString("ImagePATH");
+
+                Produtos produto = new Produtos(produtoID, nomeProduto, statusProduto, avaliacao, descricaoDetalhada, precoProduto, quantidadeEstoque);
+                produto.setImagePATH(imagePATH);
+
+                return produto;
+            } else {
+                return null; // Retorna null se o produto não for encontrado
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Erro ao obter produto por ID: " + e.getMessage());
+            return null;
+        }
+    }
+
 
     public static List<Produtos> listarProdutosPaginados(int offset, int produtosPorPagina) {
         String SQL = "SELECT * FROM Produtos ORDER BY produtoID DESC LIMIT ? OFFSET ?";
@@ -55,7 +88,7 @@ public class ProdutosDAO {
     }
 
     public static void inserirProduto(Produtos novoProduto) {
-        String SQL = "INSERT INTO Produtos (NomeProduto, Status, Avaliacao, DescricaoDetalhada, PrecoProduto, QtdEstoque, ImagePATH) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String SQL = "INSERT INTO Produtos (NomeProduto, StatusProduto, Avaliacao, DescricaoDetalhada, PrecoProduto, QtdEstoque, ImagePATH) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
              PreparedStatement preparedStatement = connection.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS)) {

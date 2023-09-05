@@ -34,6 +34,12 @@ public class ListarProdutos extends HttpServlet {
         request.setAttribute("pageCount", pageCount);
         request.setAttribute("paginaAtual", paginaAtual);
 
+        // Linhas de depuração
+        System.out.println("Produtos: " + produtos);
+        System.out.println("pageCount: " + pageCount);
+        System.out.println("paginaAtual: " + paginaAtual);
+
         request.getRequestDispatcher("ListarProdutos.jsp").forward(request, response);
     }
+
 }

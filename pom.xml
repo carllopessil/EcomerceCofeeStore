@@ -52,6 +52,13 @@
       <artifactId>jbcrypt</artifactId>
       <version>0.4</version>
     </dependency>
+    <dependency>
+      <groupId>com.azure</groupId>
+      <artifactId>azure-storage-blob</artifactId>
+      <version>12.23.1</version> <!-- Verifique a versão mais recente -->
+    </dependency>
+
+
   </dependencies>
   <build>
     <finalName>EcomerceCofeeStore</finalName>
