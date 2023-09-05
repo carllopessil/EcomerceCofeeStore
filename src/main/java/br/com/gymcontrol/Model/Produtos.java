@@ -10,7 +10,28 @@ public class Produtos {
     private double precoProduto;
     private int qtdEstoque;
 
+    public String getImagePATH() {
+        return imagePATH;
+    }
+
+    public void setImagePATH(String imagePATH) {
+        this.imagePATH = imagePATH;
+    }
+
+    private String imagePATH;
+
     public Produtos() {
+    }
+
+    public Produtos(int produtoID, String nomeProduto, boolean statusProduto, double avaliacao, String descricaoDetalhada, double precoProduto, int qtdEstoque, String imagePATH) {
+        this.produtoID = produtoID;
+        this.nomeProduto = nomeProduto;
+        this.statusProduto = statusProduto;
+        this.avaliacao = avaliacao;
+        this.descricaoDetalhada = descricaoDetalhada;
+        this.precoProduto = precoProduto;
+        this.qtdEstoque = qtdEstoque;
+        this.imagePATH = imagePATH;
     }
 
     public Produtos(int produtoID, String nomeProduto, boolean statusProduto, double avaliacao, String descricaoDetalhada, double precoProduto, int qtdEstoque) {
@@ -78,4 +99,10 @@ public class Produtos {
     public void setQtdEstoque(int qtdEstoque) {
         this.qtdEstoque = qtdEstoque;
     }
+
+    public int getQtdEstoque() {
+        return qtdEstoque;
+    }
+
+
 }

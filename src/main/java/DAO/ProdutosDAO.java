@@ -54,6 +54,38 @@ public class ProdutosDAO {
         }
     }
 
+    public static void inserirProduto(Produtos novoProduto) {
+        String SQL = "INSERT INTO Produtos (NomeProduto, Status, Avaliacao, DescricaoDetalhada, PrecoProduto, QtdEstoque, ImagePATH) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+        try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS)) {
+
+            preparedStatement.setString(1, novoProduto.getNomeProduto());
+            preparedStatement.setBoolean(2, novoProduto.isStatusProduto());
+            preparedStatement.setDouble(3, novoProduto.getAvaliacao());
+            preparedStatement.setString(4, novoProduto.getDescricaoDetalhada());
+            preparedStatement.setDouble(5, novoProduto.getPrecoProduto());
+            preparedStatement.setInt(6, novoProduto.getQtdEstoque());
+            preparedStatement.setString(7, novoProduto.getImagePATH());
+
+            int affectedRows = preparedStatement.executeUpdate();
+            if (affectedRows == 0) {
+                System.out.println("Inserção de produto falhou, nenhum registro foi adicionado.");
+            } else {
+                ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    int novoProdutoID = generatedKeys.getInt(1);
+                    novoProduto.setProdutoID(novoProdutoID);
+                    System.out.println("Produto inserido com sucesso. Novo ID do produto: " + novoProdutoID);
+                } else {
+                    System.out.println("Inserção de produto falhou, nenhum ID foi retornado.");
+                }
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Erro ao inserir produto: " + e.getMessage());
+        }
+    }
 
     public static void updateStatusProduto(int produtoID, boolean novoStatus) {
         String SQL = "UPDATE Produtos SET statusProduto = ? WHERE ProdutoID = ?";
