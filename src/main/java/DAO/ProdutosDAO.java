@@ -121,19 +121,26 @@ public class ProdutosDAO {
     }
 
     public static void updateStatusProduto(int produtoID, boolean novoStatus) {
-        String SQL = "UPDATE Produtos SET statusProduto = ? WHERE ProdutoID = ?";
+        String SQL = "UPDATE Produtos SET statusProduto = ? WHERE produtoID = ?";
 
         try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
              PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
 
             preparedStatement.setBoolean(1, novoStatus);
             preparedStatement.setInt(2, produtoID);
-            preparedStatement.executeUpdate();
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            if (rowsAffected == 1) {
+                System.out.println("Status do produto atualizado com sucesso.");
+            } else {
+                System.out.println("Nenhum produto foi atualizado.");
+            }
 
         } catch (SQLException e) {
             System.out.println("Erro ao atualizar status do produto: " + e.getMessage());
         }
     }
+
 
     public static int calcularPageCount(int produtosPorPagina) {
         String SQL = "SELECT COUNT(*) FROM Produtos";

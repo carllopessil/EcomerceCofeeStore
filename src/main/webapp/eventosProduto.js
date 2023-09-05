@@ -24,20 +24,21 @@ INPUT_BUSCA.addEventListener('keyup', () => {
         }
     }
 });
- function confirmarAtualizacaoStatusProduto(produtoId, novoStatus) {
-        var confirmacao = confirm("Deseja realmente alterar o status do produto?");
+ function confirmarAtualizacaoStatus(produtoId, novoStatus) {
+     var confirmacao = confirm("Deseja realmente alterar o status do produto?");
 
-        if (confirmacao) {
-            atualizarStatusProduto(produtoId, novoStatus);
+     if (confirmacao) {
+         atualizarStatusProduto(produtoId, novoStatus);
 
-            var switchElement = document.querySelector(`#row-${produtoId} .slider`);
-            switchElement.classList.toggle("green", novoStatus);
-            switchElement.classList.toggle("red", !novoStatus);
-        } else {
-            var checkbox = document.querySelector(`#row-${produtoId} input[type="checkbox"]`);
-            checkbox.checked = !novoStatus;
-        }
-    }
+         var switchElement = document.querySelector(`#row-${produtoId} .slider`);
+         switchElement.classList.toggle("green", novoStatus);
+         switchElement.classList.toggle("red", !novoStatus);
+     } else {
+         var checkbox = document.querySelector(`#row-${produtoId} input[type="checkbox"]`);
+         checkbox.checked = !novoStatus;
+     }
+ }
+
 
     function atualizarStatusProduto(produtoId, novoStatus) {
         // Criação do objeto XMLHttpRequest
