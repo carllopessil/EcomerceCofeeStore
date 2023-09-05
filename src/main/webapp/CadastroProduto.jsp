@@ -1,3 +1,4 @@
+<%@ page import="br.com.gymcontrol.Model.UsuarioBackOffice" %>
 <!DOCTYPE html>
 <html>
 <head>

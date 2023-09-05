@@ -47,6 +47,21 @@
                     <form action="/ListarUsuarioBackOffice_2" method="get">
                         <button class="btn-primary" type="submit">Buscar usuários dos sistemas</button>
                     </form>
+                    <%
+                        UsuarioBackOffice usuario = (UsuarioBackOffice) session.getAttribute("usuario");
+                        if (usuario != null && usuario.getGrupo().equals("Admin Group")) {
+                    %>
+                        <form action="CadastroProduto.jsp" method="get">
+                            <button class="btn-primary" type="submit">Cadastro de Produto</button>
+                        </form>
+                    <%
+                        } else {
+                    %>
+                        <p>Você não tem permissão para acessar esta página.</p>
+                    <%
+                        }
+                    %>
+
                 </div>
                 <% } %>
 
