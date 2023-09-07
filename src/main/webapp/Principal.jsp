@@ -1,7 +1,7 @@
 <%@ page import="br.com.gymcontrol.Model.UsuarioBackOffice" %>
 <!DOCTYPE html>
 <html>
-<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <head>
     <meta charset="UTF-8">
     <title>Backoffice - Principal</title>
@@ -17,11 +17,11 @@
         <ul class="menu">
             <li class="menu-logo">
                 <img src="img/Logo de cafe.png">
-                <h1>BEM-VINDO AO  BREWMASTERS CAFÉ.BACKOFFICE</h1>
+                <h1>BEM-VINDO AO BREWMASTERS CAFÉ.BACKOFFICE</h1>
             </li>
 
-           <!--Acesso temporario quando sair vai diretopagina index
-            <li><a href="Logout">Sair</a></li>-->
+            <!--Acesso temporario quando sair vai diretopagina index
+             <li><a href="Logout">Sair</a></li>-->
 
             <!--Apos ajuste final apagar essa tag e acessa a tag Logout com link-->
             <li><a href="Login.jsp">Sair</a></li>
@@ -36,7 +36,7 @@
                     </form>
                     <hr>
 
-                    <% if (((UsuarioBackOffice)session.getAttribute("usuario")).getGrupo().equals("Admin Group")) { %>
+                    <% if (((UsuarioBackOffice) session.getAttribute("usuario")).getGrupo().equals("Admin Group")) { %>
 
                     <form action="/ListarUsuarioBackOffice" method="get">
                         <button class="btn-primary" type="submit">Buscar usuários dos sistemas (TESTE, EXEMPLO)</button>
@@ -51,23 +51,20 @@
                         UsuarioBackOffice usuario = (UsuarioBackOffice) session.getAttribute("usuario");
                         if (usuario != null && usuario.getGrupo().equals("Admin Group")) {
                     %>
-                        <form action="CadastroProduto.jsp" method="get">
-                            <button class="btn-primary" type="submit">Cadastro de Produto</button>
-                        </form>
+                    <form action="CadastroProduto.jsp" method="get">
+                        <button class="btn-primary" type="submit">Cadastro de Produto</button>
+                    </form>
                     <%
-                        } else {
+                    } else {
                     %>
-                        <p>Você não tem permissão para acessar esta página.</p>
+                    <p>Você não tem permissão para acessar esta página.</p>
                     <%
                         }
                     %>
-
                 </div>
                 <% } %>
-
             </div>
         </div>
-
     </nav>
 
     <footer>
@@ -75,6 +72,5 @@
     </footer>
 
 
-
-    </bod>
+</bod>
 </html>
