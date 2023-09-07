@@ -1,36 +1,61 @@
 @import "https://fonts.googleapis.com/css?family=Ubuntu:400,700italic";
 @import "https://fonts.googleapis.com/css?family=Cabin:400";
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Pacifico&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Trirong:ital,wght@1,100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Trirong:ital,wght@1,100&display=swap');@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
-*{
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
-html{
-    background: url(/img/img-CadastroProd.png)no-repeat top center/cover;
+
+html {
+    background: url(/img/img-CadastroProd.png) no-repeat top center/cover;
     background-size: 55%;
-    background-color: rgb(18 17 18 / 44%);
+    background-color: rgb(18 17 18 / 57%);
+    width: 90vw;
 }
 
-body{
-    margin: 10px auto;
+body {
+    background: url(/img/Fundo3.jpg) no-repeat top center;
+    background-size: 97% 178%;
+    margin: 13px auto;
     display: flex;
     padding: 0;
     font-family: Kanit;
-    width: 97vw;
+    width: 100vw;
     height: auto;
+
 }
 
 #container {
-    /*margin-top: 6em;*/
+    display: flex;
+    margin: auto 2em;
     width: 100vw;
-    max-width:100% ;
+    max-width: 100%;
     height: auto;
+    /* align-content: space-between; */
+    justify-content: space-between;
+    align-items: stretch;
+    flex-direction: column;
+    z-index: 22;
+    opacity: 91%;
 }
+
+/*#container {*/
+/*    display: flex;*/
+/*    margin: auto 2em;*/
+/*    width: 100vw;*/
+/*    max-width: 100%;*/
+/*    height: auto;*/
+/*    !* align-content: space-between; *!*/
+/*    justify-content: space-between;*/
+/*    align-items: stretch;*/
+/*    flex-direction: column;*/
+/* }*/
+
 #usuarios-grupos {
-    width: 10em;
+    width: 13em;
     margin: 10px 0px 10px 41px;
     color: #fff;
     display: flex;
@@ -38,8 +63,9 @@ body{
     text-align: center;
     position: sticky;
     font-size: 16px;
-    border: 2px solid #000;
+    border: 5px solid #f8f9fa;
     border-radius: 29% 4%;
+    background-color: #301c0ab0;
     padding: 13px;
     align-content: center;
     align-items: center;
@@ -123,6 +149,7 @@ h1 {
     margin-inline-end: 0px;
     font-weight: bold;
 }
+
 .search-bar {
     display: flex;
     border: 1px solid #ccc;
@@ -154,6 +181,7 @@ h1 {
     height: 38px;
     cursor: pointer;
 }
+
 button {
     background-color: #0074d9;
     color: white;
@@ -161,6 +189,7 @@ button {
     padding: 8px 16px;
     cursor: pointer;
 }
+
 @keyframes fade {
     0%, 100% {
         opacity: 0;
@@ -184,13 +213,14 @@ button {
 }
 
 .table {
-    /*font-family: "Cabin", helvetica, arial, sans-serif;*/
-    font-family: 'Trirong', serif;
-    font-weight: 300;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bolder;
     font-size: 16px;
     overflow-x: auto;
+    color: rgb(66 30 7);
     overflow-y: hidden;
-    border: 4px solid #343a40;
+    border: 10px solid #343a40;
+    background-color: #e9ecefba;
 }
 
 .table th, .table td {
@@ -199,7 +229,8 @@ button {
 
 .table th {
     background-color: #343a40;
-    color: #e71e1e;
+    color: #fff;
+    font-family: 'Kanit';
 
 }
 
@@ -303,9 +334,9 @@ table {
 }
 
 th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
+    border: 0.1px solid #420808bf;
+    padding: 2px;
+    text-align: center;
 }
 
 /* Estilos da paginação */
@@ -313,7 +344,6 @@ th, td {
     text-align: center;
     margin-top: 10px;
 }
-
 
 
 button:hover {
