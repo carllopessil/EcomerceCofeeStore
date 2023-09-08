@@ -77,25 +77,19 @@
 
 <c:forEach var="produto" items="${Produtos}">
     <tr class="editable-row" id="row-${loop.index}">
+        <label>Nome do produto: </label>
+        <td><c:out value="${produto.nomeProduto}"/></td>
+        <td><img src="${produto.imagePATH}" alt="Imagem do Produto"></td>
+        <label>Preço do produto: </label>
+        <td><c:out value="${produto.precoProduto}"/></td>
         <td>
-            <label>Nome do produto:</label>
-            <c:out value="${produto.nomeProduto}"/>
-        </td>
-        <td>
-            <img src="${produto.imagePATH}" alt="Imagem do Produto">
-        </td>
-        <td>
-            <label>Preço do produto:</label>
-            <c:out value="${produto.precoProduto}"/>
-        </td>
-        <td>
-            <form action="CarrinhoServlet" method="post">
-                <input type="hidden" name="produtoID" value="${produto.produtoID}">
-                <button type="submit" class="btn btn-primary">Comprar</button>
-            </form>
+            <a href="VisualizarImagemServlet?produtoID=${produto.produtoID}" class="btn btn-primary">
+                Comprar
+            </a>
         </td>
     </tr>
 </c:forEach>
+
 
 
     <footer>
