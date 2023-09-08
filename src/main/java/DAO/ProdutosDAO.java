@@ -10,6 +10,8 @@ import java.util.List;
 import static java.lang.System.out;
 
 public class ProdutosDAO {
+
+
     public Produtos obterProdutoPorID(int produtoID) {
         String SQL = "SELECT * FROM Produtos WHERE produtoID = ?";
 
@@ -87,6 +89,45 @@ public class ProdutosDAO {
         }
     }
 
+
+    public static List<Produtos> buscarProdutosPorNome(String termoDeBusca) {
+        String SQL = "SELECT * FROM Produtos WHERE nomeProduto LIKE ?";
+
+        try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
+
+            preparedStatement.setString(1, "%" + termoDeBusca + "%");
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            List<Produtos> produtos = new ArrayList<>();
+
+            while (resultSet.next()) {
+                int produtoID = resultSet.getInt("produtoID");
+                String nomeProduto = resultSet.getString("nomeProduto");
+                boolean statusProduto = resultSet.getBoolean("statusProduto");
+                double avaliacao = resultSet.getDouble("avaliacao");
+                String descricaoDetalhada = resultSet.getString("descricaoDetalhada");
+                double precoProduto = resultSet.getDouble("precoProduto");
+                int quantidadeEstoque = resultSet.getInt("qtdEstoque");
+                String imagePATH = resultSet.getString("ImagePATH");
+
+                Produtos produto = new Produtos(produtoID, nomeProduto, statusProduto, avaliacao, descricaoDetalhada, precoProduto, quantidadeEstoque);
+                produto.setImagePATH(imagePATH);
+
+                produtos.add(produto);
+            }
+
+            return produtos;
+
+        } catch (SQLException e) {
+            System.out.println("Erro ao buscar produtos por nome: " + e.getMessage());
+            return Collections.emptyList();
+        }
+    }
+
+
+
     public static void inserirProduto(Produtos novoProduto) {
         String SQL = "INSERT INTO Produtos (NomeProduto, StatusProduto, Avaliacao, DescricaoDetalhada, PrecoProduto, QtdEstoque, ImagePATH) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
@@ -158,4 +199,73 @@ public class ProdutosDAO {
             return 0; // Ou outro valor padrão, se ocorrer um erro
         }
     }
+
+    public static List<Produtos> listarTop8ProdutosAtivos() {
+        String SQL = "SELECT * FROM Produtos WHERE statusProduto = TRUE ORDER BY ProdutoID DESC LIMIT 8";
+        //aqui voce escolhe a quantidade de itens que retornar na pagina principal
+        List<Produtos> produtos = new ArrayList<>();
+
+        try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                int produtoID = resultSet.getInt("produtoID");
+                String nomeProduto = resultSet.getString("nomeProduto");
+                boolean statusProduto = resultSet.getBoolean("statusProduto");
+                double avaliacao = resultSet.getDouble("avaliacao");
+                String descricaoDetalhada = resultSet.getString("descricaoDetalhada");
+                double precoProduto = resultSet.getDouble("precoProduto");
+                int quantidadeEstoque = resultSet.getInt("qtdEstoque");
+
+                String imagePATH = resultSet.getString("ImagePATH");
+
+                Produtos produto = new Produtos(produtoID, nomeProduto, statusProduto, avaliacao, descricaoDetalhada, precoProduto, quantidadeEstoque);
+                produto.setImagePATH(imagePATH);
+                produtos.add(produto);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Erro ao obter produtos: " + e.getMessage());
+        }
+
+        return produtos;
+    }
+
+    public static List<Produtos> buscarProdutosPorTermo(String searchTerm) {
+        String SQL = "SELECT * FROM Produtos WHERE nomeProduto LIKE ?";
+        List<Produtos> produtos = new ArrayList<>();
+
+        try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
+
+            preparedStatement.setString(1, "%" + searchTerm + "%");
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                int produtoID = resultSet.getInt("produtoID");
+                String nomeProduto = resultSet.getString("nomeProduto");
+                boolean statusProduto = resultSet.getBoolean("statusProduto");
+                double avaliacao = resultSet.getDouble("avaliacao");
+                String descricaoDetalhada = resultSet.getString("descricaoDetalhada");
+                double precoProduto = resultSet.getDouble("precoProduto");
+                int quantidadeEstoque = resultSet.getInt("qtdEstoque");
+                String imagePATH = resultSet.getString("ImagePATH");
+
+                Produtos produto = new Produtos(produtoID, nomeProduto, statusProduto, avaliacao, descricaoDetalhada, precoProduto, quantidadeEstoque);
+                produto.setImagePATH(imagePATH);
+
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Erro ao buscar produtos por termo: " + e.getMessage());
+        }
+
+        return produtos;
+    }
+
+
 }
+

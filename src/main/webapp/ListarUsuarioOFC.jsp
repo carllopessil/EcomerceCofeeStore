@@ -56,10 +56,8 @@
                     style="float: right;">
                 <i class="fas fa-user-plus"></i> Cadastrar novo usuário
             </button>
-            <hr style="color: black;">
 
 
-            <hr style="color: black;">
 
             <input id="input-busca" type="text" class="form-control mt-3 mb-3" placeholder="O que você procura?">
 

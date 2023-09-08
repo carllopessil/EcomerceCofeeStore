@@ -10,6 +10,9 @@ public class Produtos {
     private double precoProduto;
     private int qtdEstoque;
 
+    private String imagePATH;
+
+
     public String getImagePATH() {
         return imagePATH;
     }
@@ -18,7 +21,6 @@ public class Produtos {
         this.imagePATH = imagePATH;
     }
 
-    private String imagePATH;
 
     public Produtos() {
     }

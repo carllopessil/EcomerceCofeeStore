@@ -22,11 +22,9 @@
             <img src="img/Logo de cafe.png" alt="Logo do café">
             <h1>BEM-VINDO AO BREWMASTERS CAFÉ.BACKOFFICE</h1>
         </li>
-        <%--    </li>--%>
-        <%--    <li><a href="CadastrarUsuarioBackOffice.jsp" class="btn">Cadastrar Usuário</a>--%>
-        <%--    <li>--%>
 
-        <li><a href="Principal.jsp">Voltar </a></li>
+
+        <li><a href="/ListarTop8Produtos">Voltar </a></li>
     </ul>
 
     <div id="usuarios-grupos">
@@ -37,18 +35,28 @@
             }
         %>
     </div>
-        <div class="search-bar">
-            <input id="input-busca" class="search-input" type="text" placeholder="Digite sua pesquisa">
-            <button class="search-button">Pesquisar</button>
-        </div>
+   <div class="search-bar">
+       <input id="input-busca" class="search-input" type="text" placeholder="Digite sua pesquisa">
+   </div>
 
-        <%--    <div class="pesquisa">--%>
-        <%--    <input type="hidden" id="todosProdutos" value='<c:out value="${todosProdutosJSON}" />'>--%>
-        <%--    <input id="input-busca" type="text" class="form-control mt-3 mb-3" placeholder="Digite o que você procura">--%>
-        <%--</div>--%>
 
-        <table class="table table-hover table-striped">
+<button type="button" class="btn btn-primary" onclick="window.location.href='CadastroProduto.jsp'">
+    <i class="fas fa-user-plus"></i> Cadastrar novo produto
+</button>
+
+
+
+      <table class="table table-hover table-striped">
             <thead class="table-dark">
+            <div class="pagination">
+                <c:if test="${pageCount > 1}">
+                    <ul>
+                        <c:forEach var="i" begin="1" end="${pageCount}">
+                            <li><a href="?page=${i}">${i}</a></li>
+                        </c:forEach>
+                    </ul>
+                </c:if>
+            </div>
             <tr>
                 <th>Código do Produto</th>
                 <th>Produto</th>
@@ -66,7 +74,7 @@
             </tr>
             </thead>
             <tbody id="tabela-produtos">
-            <c:forEach var="produto" items="${Produtos}" varStatus="loop">
+                <c:forEach var="produto" items="${Produtos}" varStatus="loop">
                 <tr class="editable-row" id="row-${loop.index}">
                     <td><c:out value="${produto.produtoID}"/></td>
                     <td><c:out value="${produto.nomeProduto}"/></td>
@@ -106,15 +114,7 @@
         </table>
 
 </div> <!--FIMDO CONTAINER -->
-<div class="pagination">
-    <c:if test="${pageCount > 1}">
-        <ul>
-            <c:forEach var="i" begin="1" end="${pageCount}">
-                <li><a href="?page=${i}">${i}</a></li>
-            </c:forEach>
-        </ul>
-    </c:if>
-</div>
+
 <!--Paginação do Rodape-->
 <footer>
     <p1>

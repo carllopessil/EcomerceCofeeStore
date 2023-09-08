@@ -1,13 +1,16 @@
 <%@ page import="br.com.gymcontrol.Model.UsuarioBackOffice" %>
+<%@ page import="br.com.gymcontrol.Model.Produtos" %>
+
 <!DOCTYPE html>
 <html>
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <head>
     <meta charset="UTF-8">
     <title>Backoffice - Principal</title>
     <link rel="stylesheet" href="css/Principal.css">
 </head>
-<bod>
+<body>
     <div class="slideshow-container">
         <img class="slideshow-image active" src="img/Fundo2.jpg">
         <img class="slideshow-image" src="img/Fundo3.jpg">
@@ -26,6 +29,11 @@
             <!--Apos ajuste final apagar essa tag e acessa a tag Logout com link-->
             <li><a href="Login.jsp">Sair</a></li>
         </ul>
+
+
+
+
+
 
 
         <div class="container">
@@ -67,10 +75,31 @@
         </div>
     </nav>
 
+<c:forEach var="produto" items="${Produtos}">
+    <tr class="editable-row" id="row-${loop.index}">
+        <td>
+            <label>Nome do produto:</label>
+            <c:out value="${produto.nomeProduto}"/>
+        </td>
+        <td>
+            <img src="${produto.imagePATH}" alt="Imagem do Produto">
+        </td>
+        <td>
+            <label>Preço do produto:</label>
+            <c:out value="${produto.precoProduto}"/>
+        </td>
+        <td>
+            <form action="CarrinhoServlet" method="post">
+                <input type="hidden" name="produtoID" value="${produto.produtoID}">
+                <button type="submit" class="btn btn-primary">Comprar</button>
+            </form>
+        </td>
+    </tr>
+</c:forEach>
+
+
     <footer>
         © 2023 BREWMASTERS CAFÉ. Todos os direitos reservados.
     </footer>
-
-
-</bod>
+</body>
 </html>

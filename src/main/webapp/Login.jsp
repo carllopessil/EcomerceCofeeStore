@@ -27,8 +27,10 @@
                         <span class="show-password-icon"><i class="far fa-eye"></i></span>
                     </label>
                 </div>
-                <button type="submit">Login</button>
-            </div>
+    <form action="/ListarTop8Produtos" method="GET">
+    <button type="submit">Login</button>
+    </form>
+    </div>
         </form>
         <div id="circle1">
             <div id="inner-cirlce1">
