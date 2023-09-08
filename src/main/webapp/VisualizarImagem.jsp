@@ -11,8 +11,12 @@
     // Supondo que você tenha o objeto Produto com o URL da imagem
     Produtos produto = (Produtos) request.getAttribute("produto");
     if (produto != null) {
+    String nomeProduto = produto.getNomeProduto();
+        String descricaoDetalhada = produto.getDescricaoDetalhada();
     %>
         <img src="<%= produto.getImagePATH() %>" alt="Imagem do Produto">
+<%= nomeProduto %></h2>
+    <%= descricaoDetalhada %>
     <%
     } else {
     %>
