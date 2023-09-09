@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
+
 @WebServlet("/VisualizarImagemServlet")
 public class VisualizarImagemServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -18,11 +20,17 @@ public class VisualizarImagemServlet extends HttpServlet {
         // Obtém o ID do produto da solicitação
         int produtoID = Integer.parseInt(request.getParameter("produtoID"));
 
-        // Carrega o objeto Produto com o URL da imagem
+        // Carrega o objeto Produto com a lista de URLs das imagens
         ProdutosDAO produtoDAO = new ProdutosDAO();
         Produtos produto = produtoDAO.obterProdutoPorID(produtoID);
 
         if (produto != null) {
+            // Obtém a lista de URLs das imagens com base no ID do produto
+            List<String> imageUrls = produtoDAO.obterUrlsImagensPorProdutoID(produtoID);
+
+            // Define a lista de URLs das imagens no objeto Produto
+            produto.setImagens(imageUrls);
+
             // Define o objeto Produto como atributo da solicitação
             request.setAttribute("produto", produto);
 

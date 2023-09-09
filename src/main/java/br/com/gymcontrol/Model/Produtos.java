@@ -1,5 +1,7 @@
 package br.com.gymcontrol.Model;
 
+import java.util.List;
+
 public class Produtos {
     private int produtoID;
     private String nomeProduto;
@@ -11,7 +13,15 @@ public class Produtos {
     private int qtdEstoque;
 
     private String imagePATH;
+    private List<String> imagens;
 
+    public List<String> getImagens() {
+        return imagens;
+    }
+
+    public void setImagens(List<String> imagens) {
+        this.imagens = imagens;
+    }
 
     public String getImagePATH() {
         return imagePATH;

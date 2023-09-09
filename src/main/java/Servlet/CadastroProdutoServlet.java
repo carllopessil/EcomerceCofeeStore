@@ -20,6 +20,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @WebServlet("/CadastroProdutoServlet")
@@ -27,7 +29,6 @@ import java.util.UUID;
 public class CadastroProdutoServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    // Configurações do Azure Blob Storage
     private static final String storageConnectionString = "DefaultEndpointsProtocol=https;"
             + "AccountName=pi4senac;"
             + "AccountKey=uQk8tRzdibr2QdYRM8O8T9Xw88YzcWNhEoXg6BeWGN9+6UaEUtFktOBCtAWxNBuKtjEuVuHK96P4+AStNVP/vA==;"
@@ -38,54 +39,112 @@ public class CadastroProdutoServlet extends HttpServlet {
         // Obtenha os dados do formulário
         Produtos produto = new Produtos();
         produto.setNomeProduto(request.getParameter("nomeProduto"));
-        String statusParameter = request.getParameter("status");
-        boolean statusProduto = statusParameter != null && statusParameter.equalsIgnoreCase("on");
+        String statusStr = request.getParameter("status");
+        boolean statusProduto = statusStr != null && statusStr.equals("1");
         produto.setStatusProduto(statusProduto);
         produto.setAvaliacao(Double.parseDouble(request.getParameter("avaliacao")));
         produto.setDescricaoDetalhada(request.getParameter("descricaoDetalhada"));
         produto.setPrecoProduto(Double.parseDouble(request.getParameter("precoProduto")));
         produto.setQtdEstoque(Integer.parseInt(request.getParameter("qtdEstoque")));
 
-        // Processar o upload da imagem
-        Part filePart = request.getPart("imagemProduto");
-        String uploadedFileName = filePart.getName();
-        String imageBlobName = UUID.randomUUID().toString() + "_" + uploadedFileName;
+        // Processar o upload da imagem principal
+        Part principalPart = request.getPart("imagemPrincipal");
+        String principalFileName = principalPart.getName();
 
-        try {
-            // Salve a imagem temporariamente no servidor
-            File uploadDir = new File("/caminho/para/salvar/arquivos/temporarios");
-            uploadDir.mkdirs();
-            File file = new File(uploadDir, uploadedFileName);
-            try (InputStream fileContent = filePart.getInputStream()) {
-                Files.copy(fileContent, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
+        if (principalFileName != null && !principalFileName.isEmpty()) {
+            String principalBlobName = UUID.randomUUID().toString() + "_" + principalFileName;
+
+            try {
+                // Crie um diretório temporário no contexto da sua aplicação web
+                String uploadDirPath = getServletContext().getRealPath("/tempUploads");
+                File uploadDir = new File(uploadDirPath);
+                uploadDir.mkdirs();
+
+                // Salve a imagem temporariamente no servidor
+                File file = new File(uploadDir, principalFileName);
+                try (InputStream fileContent = principalPart.getInputStream()) {
+                    Files.copy(fileContent, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                }
+
+                // Realize o upload da imagem para o Azure Blob Storage
+                BlobServiceClient blobServiceClient = new BlobServiceClientBuilder().connectionString(storageConnectionString).buildClient();
+                String containerName = "pi4imagens";
+                BlobContainerClient containerClient = blobServiceClient.getBlobContainerClient(containerName);
+                containerClient.createIfNotExists();
+                BlobClient blobClient = containerClient.getBlobClient(principalBlobName);
+                blobClient.upload(BinaryData.fromFile(file.toPath()));
+
+                // Adicione o URL do Blob à lista de caminhos
+                String principalImagePath = blobClient.getBlobUrl();
+                produto.setImagePATH(principalImagePath);
+
+                // Apague o arquivo temporário no servidor
+                file.delete();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-
-            // Realize o upload da imagem para o Azure Blob Storage
-            BlobServiceClient blobServiceClient = new BlobServiceClientBuilder().connectionString(storageConnectionString).buildClient();
-            String containerName = "pi4imagens";
-            BlobContainerClient containerClient = blobServiceClient.getBlobContainerClient(containerName);
-            containerClient.createIfNotExists();
-            BlobClient blobClient = containerClient.getBlobClient(imageBlobName);
-            blobClient.upload(BinaryData.fromFile(file.toPath()));
-
-            // Salve o URL do Blob no banco de dados
-            produto.setImagePATH(blobClient.getBlobUrl());
-
-            // Apague o arquivo temporário no servidor
-            file.delete();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
+
+        // Processar o upload das imagens adicionais
+        List<String> imagePaths = new ArrayList<>();
+
+        for (Part filePart : request.getParts()) {
+            String fieldName = filePart.getName();
+            if (fieldName.startsWith("imagemProduto")) {
+                String uploadedFileName = filePart.getName();
+                if (uploadedFileName != null && !uploadedFileName.isEmpty()) {
+                    String imageBlobName = UUID.randomUUID().toString() + "_" + uploadedFileName;
+
+                    try {
+                        // Crie um diretório temporário no contexto da sua aplicação web
+                        String uploadDirPath = getServletContext().getRealPath("/tempUploads");
+                        File uploadDir = new File(uploadDirPath);
+                        uploadDir.mkdirs();
+
+                        // Salve a imagem temporariamente no servidor
+                        File file = new File(uploadDir, uploadedFileName);
+                        try (InputStream fileContent = filePart.getInputStream()) {
+                            Files.copy(fileContent, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                        }
+
+                        // Realize o upload da imagem para o Azure Blob Storage
+                        BlobServiceClient blobServiceClient = new BlobServiceClientBuilder().connectionString(storageConnectionString).buildClient();
+                        String containerName = "pi4imagens";
+                        BlobContainerClient containerClient = blobServiceClient.getBlobContainerClient(containerName);
+                        containerClient.createIfNotExists();
+                        BlobClient blobClient = containerClient.getBlobClient(imageBlobName);
+                        blobClient.upload(BinaryData.fromFile(file.toPath()));
+
+                        // Adicione o URL do Blob à lista de caminhos
+                        imagePaths.add(blobClient.getBlobUrl());
+
+                        // Apague o arquivo temporário no servidor
+                        file.delete();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+
+        // Defina os caminhos das imagens no objeto do produto
+        produto.setImagens(imagePaths);
 
         // Insira o produto no banco de dados
         try {
+            // Insira o produto no banco de dados
             ProdutosDAO produtoDAO = new ProdutosDAO();
             produtoDAO.inserirProduto(produto);
+
+            // Obtenha o ID do produto após a inserção
+            int idProdutoInserido = produto.getProdutoID();
+
+            // Salve os caminhos das imagens na tabela ImagensProduto
+            for (String imagePath : imagePaths) {
+                produtoDAO.inserirCaminhoImagem(idProdutoInserido, imagePath);
+            }
         } catch (Exception e) {
             System.out.println(e);
         }
-
-        // Redirecione de volta para a página de cadastro de produtos
-        response.sendRedirect("CadastroProduto.jsp");
     }
 }

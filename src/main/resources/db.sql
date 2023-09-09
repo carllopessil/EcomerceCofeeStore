@@ -30,3 +30,12 @@ CREATE TABLE Produtos (
     QtdEstoque INT,
 	ImagePATH VARCHAR(200)
 );
+
+DROP TABLE IF EXISTS ImagensProduto;
+
+CREATE TABLE ImagensProduto (
+    idImagem INT AUTO_INCREMENT PRIMARY KEY,
+    idProduto INT,
+    caminhoImagem VARCHAR(255),
+    FOREIGN KEY (idProduto) REFERENCES Produtos(produtoID)
+);

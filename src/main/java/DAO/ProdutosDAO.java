@@ -125,10 +125,47 @@ public class ProdutosDAO {
             return Collections.emptyList();
         }
     }
+    public List<String> obterUrlsImagensPorProdutoID(int produtoID) {
+        List<String> imageUrls = new ArrayList<>();
+        String SQL = "SELECT caminhoImagem FROM ImagensProduto WHERE idProduto = ?";
+
+        try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
+
+            preparedStatement.setInt(1, produtoID);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                String imageUrl = resultSet.getString("caminhoImagem");
+                imageUrls.add(imageUrl);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Erro ao obter URLs das imagens: " + e.getMessage());
+        }
+
+        return imageUrls;
+    }
+
+    public void inserirCaminhoImagem(int idProduto, String caminhoImagem) {
+        String SQL = "INSERT INTO ImagensProduto (idProduto, caminhoImagem) VALUES (?, ?)";
+
+        try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
+
+            preparedStatement.setInt(1, idProduto);
+            preparedStatement.setString(2, caminhoImagem);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println("Erro ao inserir caminho da imagem: " + e.getMessage());
+        }
+    }
 
 
 
-    public static void inserirProduto(Produtos novoProduto) {
+    public void inserirProduto(Produtos novoProduto) {
         String SQL = "INSERT INTO Produtos (NomeProduto, StatusProduto, Avaliacao, DescricaoDetalhada, PrecoProduto, QtdEstoque, ImagePATH) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
@@ -140,7 +177,7 @@ public class ProdutosDAO {
             preparedStatement.setString(4, novoProduto.getDescricaoDetalhada());
             preparedStatement.setDouble(5, novoProduto.getPrecoProduto());
             preparedStatement.setInt(6, novoProduto.getQtdEstoque());
-            preparedStatement.setString(7, novoProduto.getImagePATH());
+            preparedStatement.setString(7, novoProduto.getImagePATH()); // Adicione o campo ImagemPrincipal aqui
 
             int affectedRows = preparedStatement.executeUpdate();
             if (affectedRows == 0) {
