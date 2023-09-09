@@ -27,13 +27,6 @@
              <li><a href="Logout">Sair</a></li>-->
 
             <!--Apos ajuste final apagar essa tag e acessa a tag Logout com link-->
-            <li><a href="Login.jsp">Sair</a></li>
-        </ul>
-
-
-
-
-
 
 
         <div class="container">
@@ -73,7 +66,67 @@
                 <% } %>
             </div>
         </div>
+        <li><a href="Login.jsp">Sair</a></li>
     </nav>
+     </ul>
+<h2 class="titulo-centro">Produtos mais vendidos</h2>
+ <hr>
+ <div class="product-container">
+
+        <div class="product-box">
+            <img src="img/Encatodocafe.png" alt="Nome do Produto 1" class="product-image">
+            <h2 class="product-title">Café</h2>
+            <p>O pó de café é um produto essencial na cultura do café, e é o estado em que a maioria das pessoas encontra o café antes de ser preparado.</p>
+           <span class="product-rating" id="product-rating-1"></span>
+                       <br>
+            <span class="product-price">R$ 29,99</span>
+             <button class="buy-button">Comprar</button>
+        </div>
+
+
+        <div class="product-box">
+            <img src="img/Kit cafe.png" alt="Nome do Produto 2" class="product-image">
+            <h2 class="product-title">Kit café</h2>
+            <p>Um kit de café é um conjunto cuidadosamente selecionado de itens que proporcionam uma experiência completa de preparo e degustação de café.</p>
+           <span class="product-rating" id="product-rating-2"></span>
+                       <br>
+            <span class="product-price">R$ 49,99</span>
+             <button class="buy-button">Comprar</button>
+        </div>
+
+
+        <div class="product-box">
+            <img src="img/Capsulas1.png" alt="Nome do Produto 3" class="product-image">
+            <h2 class="product-title">Kit cápsulas</h2>
+            <p>Um kit de cápsulas de café é um conjunto conveniente e completo projetado para permitir que os amantes de café desfrutem de uma variedade de sabores e blends sem o incômodo de moer.</p>
+            <span class="product-rating" id="product-rating-3"></span>
+                        <br>
+            <span class="product-price">R$ 89,99</span>
+            <button class="buy-button">Comprar</button>
+        </div>
+
+
+        <div class="product-box">
+            <img src="img/maquinadecafe.png" alt="Nome do Produto 4" class="product-image">
+            <h2 class="product-title">Maquna de café</h2>
+            <p>A máquina de café é um dispositivo engenhoso que simplifica a preparação de uma das bebidas mais apreciadas em todo o mundo: o café. Com um design que varia desde o simples ao sofisticado.</p>
+            <span class="product-rating" id="product-rating-4"></span>
+                        <br>
+            <span class="product-price">R$ 199,99</span>
+             <button class="buy-button">Comprar</button>
+        </div>
+
+
+        <div class="product-box">
+            <img src="img/xicara-preta.png" alt="Nome do Produto 5" class="product-image">
+            <h2 class="product-title">Kit xicara preta</h2>
+            <p>A xícara preta é um elegante e sofisticado utensílio de cerâmica que se destaca por sua cor escura e atemporal.</p>
+           <span class="product-rating" id="product-rating-5"></span>
+                       <br>
+            <span class="product-price">R$ 39,99</span>
+             <button class="buy-button">Comprar</button>
+        </div>
+    </div>
 
 <c:forEach var="produto" items="${Produtos}">
     <tr class="editable-row" id="row-${loop.index}">

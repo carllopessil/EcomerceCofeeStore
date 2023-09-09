@@ -38,7 +38,7 @@ font-family: Kanit;
     font-family: Kanit;
 }
 .btn-container {
-    background-color: #3b1e0ab0;
+    background-color:  #3b1e0ac9;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
@@ -118,7 +118,7 @@ font-size: 21px;
               text-align: center;
 
                position: absolute;
-                          bottom: 0;
+                          bottom: -53;
                           width: 100%;
           }
 
@@ -144,4 +144,69 @@ font-size: 21px;
               height: 24px;
               margin-right: 10px;
           }
+
+.product-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .product-box {
+            border: 1px solid#3b1e0a;
+            padding: 10px;
+            text-align: center;
+            width: calc(26% - 21px);
+            margin: 10px;
+              background:#3b1e0a;
+        }
+
+        .product-image {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            margin: 10px 0;
+            color:white;
+        }
+
+        .product-price {
+            font-size: 1.1rem;
+            color: #ff5722;
+        }
+        p{
+        color: white;
+        }
+        .titulo-centro {
+            text-align: center;
+            Color:red;
+        }
+
+        .product-rating {
+                    font-size: 1.2rem;
+                    color: #ff5722; /* Cor das estrelas */
+                }
+
+.buy-button {
+    display: block; /* Faz o botão ficar em uma linha separada */
+    background-color: #FF0000; /* Cor de fundo vermelha para o botão */
+    color: #fff; /* Cor do texto branco */
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    margin: 10px auto; /* Centraliza o botão horizontalmente */
+    cursor: pointer;
+}
+
+.buy-button:hover {
+    background-color: #FF3333; /* Cor de fundo vermelha mais escura quando o mouse passa por cima */
+}
+
+
+
+
+
 
