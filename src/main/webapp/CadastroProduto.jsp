@@ -11,7 +11,6 @@
             <img src="img/Logo de cafe.png" alt="Logo do café">
             <h1>BEM-VINDO AO BREWMASTERS CAFÉ.BACKOFFICE</h1>
         </li>
-
         <li><a href="Principal.jsp">Voltar </a></li>
     </ul>
 </div>
@@ -27,16 +26,17 @@
     Preço do Produto: <input type="number" name="precoProduto" step="0.01" required><br>
     Quantidade em Estoque: <input type="number" name="qtdEstoque" required><br>
 
-    <!-- Campo para imagem principal -->
-    Imagem Principal: <input type="file" name="imagemPrincipal" accept="image/*" onchange="previewImage(this, 'previewPrincipal')"><br>
-    <img id="previewPrincipal" src="#" alt="Preview da Imagem Principal" style="display: none; max-width: 100px; max-height: 100px;">
-    <button type="button" onclick="removeImage('previewPrincipal', 'imagemPrincipal')">Remover</button>
-
+    <!-- Adicione os botões de rádio para selecionar a imagem principal -->
+    <h3>Selecione a Imagem Principal:</h3>
+    <div id="radioButtons">
+        <!-- Botão de rádio para a imagem principal -->
+        <input type="radio" name="imagemPrincipalRadio" value="1" checked data-preview-id="preview1"><br>
+    </div>
 
     <!-- Campo inicial de imagem do produto -->
     <div class="image-preview" id="image-preview1">
         <label for="imagemProduto1">Imagem do Produto 1:</label>
-        <input type="file" name="imagemProduto1" id="imagemProduto1" accept="image/*" onchange="previewImage(this)">
+        <input type="file" name="imagemProduto1" id="imagemProduto1" accept="image/*" onchange="previewImage(this, 'preview1')">
         <img id="preview1" src="#" alt="Preview da Imagem" style="display: none; max-width: 100px; max-height: 100px;">
         <button type="button" onclick="removeImage(1)">Remover</button>
     </div>
@@ -61,7 +61,7 @@
         fileInput.name = "imagemProduto" + imageCount;
         fileInput.id = "imagemProduto" + imageCount;
         fileInput.accept = "image/*";
-        fileInput.setAttribute("onchange", "previewImage(this)");
+        fileInput.setAttribute("onchange", `previewImage(this, 'preview${imageCount}')`);
 
         const label = document.createElement("label");
         label.htmlFor = "imagemProduto" + imageCount;
@@ -79,15 +79,23 @@
         button.type = "button";
         button.textContent = "Remover";
         button.onclick = function () {
-            removeImage("preview" + imageCount, "imagemProduto" + imageCount);
+            removeImage(imageCount);
         };
 
         const form = document.querySelector("form");
-        const imagePreview = document.getElementById("image-preview" + (imageCount - 1));
+        const imagePreview = document.getElementById(`image-preview${imageCount - 1}`);
         form.insertBefore(label, imagePreview);
         form.insertBefore(fileInput, imagePreview);
         form.insertBefore(preview, imagePreview);
         form.insertBefore(button, imagePreview);
+
+        // Adicione um botão de rádio associado à imagem atual
+        const radioButtons = document.getElementById("radioButtons");
+        const radioButton = document.createElement("input");
+        radioButton.type = "radio";
+        radioButton.name = "imagemPrincipalRadio";
+        radioButton.value = imageCount;
+        radioButtons.appendChild(radioButton);
     }
 
     function previewImage(input, previewId) {
@@ -108,14 +116,20 @@
         }
     }
 
-    function removeImage(previewId, inputId) {
-        const preview = document.getElementById(previewId);
-        const input = document.getElementById(inputId);
+    function removeImage(imageNumber) {
+        const preview = document.getElementById(`preview${imageNumber}`);
+        const input = document.getElementById(`imagemProduto${imageNumber}`);
         const form = document.querySelector("form");
 
         preview.style.display = "none";
         preview.src = "#";
         form.removeChild(input);
+
+        // Também remova o botão de rádio associado quando uma imagem é removida
+        const radioButtonToRemove = document.querySelector(`input[name="imagemPrincipalRadio"][value="${imageNumber}"]`);
+        if (radioButtonToRemove) {
+            radioButtonToRemove.remove();
+        }
     }
 </script>
 

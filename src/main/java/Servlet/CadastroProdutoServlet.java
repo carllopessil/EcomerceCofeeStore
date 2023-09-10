@@ -47,44 +47,6 @@ public class CadastroProdutoServlet extends HttpServlet {
         produto.setPrecoProduto(Double.parseDouble(request.getParameter("precoProduto")));
         produto.setQtdEstoque(Integer.parseInt(request.getParameter("qtdEstoque")));
 
-        // Processar o upload da imagem principal
-        Part principalPart = request.getPart("imagemPrincipal");
-        String principalFileName = principalPart.getName();
-
-        if (principalFileName != null && !principalFileName.isEmpty()) {
-            String principalBlobName = UUID.randomUUID().toString() + "_" + principalFileName;
-
-            try {
-                // Crie um diretório temporário no contexto da sua aplicação web
-                String uploadDirPath = getServletContext().getRealPath("/tempUploads");
-                File uploadDir = new File(uploadDirPath);
-                uploadDir.mkdirs();
-
-                // Salve a imagem temporariamente no servidor
-                File file = new File(uploadDir, principalFileName);
-                try (InputStream fileContent = principalPart.getInputStream()) {
-                    Files.copy(fileContent, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
-                }
-
-                // Realize o upload da imagem para o Azure Blob Storage
-                BlobServiceClient blobServiceClient = new BlobServiceClientBuilder().connectionString(storageConnectionString).buildClient();
-                String containerName = "pi4imagens";
-                BlobContainerClient containerClient = blobServiceClient.getBlobContainerClient(containerName);
-                containerClient.createIfNotExists();
-                BlobClient blobClient = containerClient.getBlobClient(principalBlobName);
-                blobClient.upload(BinaryData.fromFile(file.toPath()));
-
-                // Adicione o URL do Blob à lista de caminhos
-                String principalImagePath = blobClient.getBlobUrl();
-                produto.setImagePATH(principalImagePath);
-
-                // Apague o arquivo temporário no servidor
-                file.delete();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
         // Processar o upload das imagens adicionais
         List<String> imagePaths = new ArrayList<>();
 
@@ -130,6 +92,35 @@ public class CadastroProdutoServlet extends HttpServlet {
         // Defina os caminhos das imagens no objeto do produto
         produto.setImagens(imagePaths);
 
+        // Processar a seleção da imagem principal
+        String imagemPrincipalSelecionada = request.getParameter("imagemPrincipalRadio");
+        if (imagemPrincipalSelecionada != null && !imagemPrincipalSelecionada.isEmpty()) {
+            try {
+                int index = Integer.parseInt(imagemPrincipalSelecionada) - 1;
+                if (index >= 0 && index < imagePaths.size()) {
+                    produto.setImagePATH(imagePaths.get(index));
+                } else {
+                    // Lógica para lidar com um índice fora dos limites da lista de imagens
+                    // Neste exemplo, definimos a primeira imagem como a imagem principal por padrão
+                    if (!imagePaths.isEmpty()) {
+                        produto.setImagePATH(imagePaths.get(0));
+                    }
+                }
+            } catch (NumberFormatException e) {
+                // Lógica para lidar com o caso em que o valor não é um número
+                // Neste exemplo, definimos a primeira imagem como a imagem principal por padrão
+                if (!imagePaths.isEmpty()) {
+                    produto.setImagePATH(imagePaths.get(0));
+                }
+            }
+        } else {
+            // Lógica para lidar com o caso em que nenhuma imagem principal é selecionada
+            // Neste exemplo, definimos a primeira imagem como a imagem principal por padrão
+            if (!imagePaths.isEmpty()) {
+                produto.setImagePATH(imagePaths.get(0));
+            }
+        }
+
         // Insira o produto no banco de dados
         try {
             // Insira o produto no banco de dados
@@ -146,5 +137,7 @@ public class CadastroProdutoServlet extends HttpServlet {
         } catch (Exception e) {
             System.out.println(e);
         }
+        response.sendRedirect("/ListarProdutos?");
     }
+
 }

@@ -34,6 +34,7 @@ public class ProdutosDAO {
                 Produtos produto = new Produtos(produtoID, nomeProduto, statusProduto, avaliacao, descricaoDetalhada, precoProduto, quantidadeEstoque);
                 produto.setImagePATH(imagePATH);
 
+                System.out.println("Deu bom pegar os dados do produto pelo id");
                 return produto;
             } else {
                 return null; // Retorna null se o produto não for encontrado
@@ -89,7 +90,6 @@ public class ProdutosDAO {
         }
     }
 
-
     public static List<Produtos> buscarProdutosPorNome(String termoDeBusca) {
         String SQL = "SELECT * FROM Produtos WHERE nomeProduto LIKE ?";
 
@@ -112,6 +112,7 @@ public class ProdutosDAO {
                 int quantidadeEstoque = resultSet.getInt("qtdEstoque");
                 String imagePATH = resultSet.getString("ImagePATH");
 
+
                 Produtos produto = new Produtos(produtoID, nomeProduto, statusProduto, avaliacao, descricaoDetalhada, precoProduto, quantidadeEstoque);
                 produto.setImagePATH(imagePATH);
 
@@ -125,6 +126,7 @@ public class ProdutosDAO {
             return Collections.emptyList();
         }
     }
+
     public List<String> obterUrlsImagensPorProdutoID(int produtoID) {
         List<String> imageUrls = new ArrayList<>();
         String SQL = "SELECT caminhoImagem FROM ImagensProduto WHERE idProduto = ?";
@@ -146,7 +148,65 @@ public class ProdutosDAO {
 
         return imageUrls;
     }
+    public void inserirCaminhoImagem2(int idProduto, String caminhoImagem) {
+        String SQL = "INSERT INTO ImagensProduto (idProduto, caminhoImagem) VALUES (?, ?)";
 
+        try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
+
+            preparedStatement.setInt(1, idProduto);
+            preparedStatement.setString(2, caminhoImagem);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println("Erro ao inserir caminho da imagem: " + e.getMessage());
+        }
+    }
+    public void setImagePath(int produtoID, String imageUrl) {
+        String SQL = "UPDATE Produtos SET ImagePath = ? WHERE produtoID = ?";
+
+        try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
+
+            preparedStatement.setString(1, imageUrl);
+            preparedStatement.setInt(2, produtoID);
+
+            int rowsUpdated = preparedStatement.executeUpdate();
+
+            if (rowsUpdated > 0) {
+                System.out.println("Imagem principal atualizada com sucesso.");
+            } else {
+                System.out.println("Nenhuma imagem principal foi atualizada.");
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Erro ao atualizar imagem principal: " + e.getMessage());
+        }
+    }
+
+    public void deletarImagem(int produtoID, String imageUrl) {
+        String SQL = "DELETE FROM ImagensProduto WHERE idProduto = ? AND caminhoImagem = ?";
+
+        try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
+
+            preparedStatement.setInt(1, produtoID);
+            preparedStatement.setString(2, imageUrl);
+
+            int rowsDeleted = preparedStatement.executeUpdate();
+
+            if (rowsDeleted > 0) {
+                System.out.println("Imagem excluída com sucesso.");
+            } else {
+                System.out.println("Nenhuma imagem foi excluída.");
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Erro ao excluir imagem: " + e.getMessage());
+        }
+
+    }
     public void inserirCaminhoImagem(int idProduto, String caminhoImagem) {
         String SQL = "INSERT INTO ImagensProduto (idProduto, caminhoImagem) VALUES (?, ?)";
 
@@ -195,6 +255,30 @@ public class ProdutosDAO {
 
         } catch (SQLException e) {
             System.out.println("Erro ao inserir produto: " + e.getMessage());
+        }
+    }
+    public void atualizarProduto(Produtos produto) {
+        String SQL = "UPDATE Produtos SET NomeProduto=?, StatusProduto=?, Avaliacao=?, DescricaoDetalhada=?, PrecoProduto=?, QtdEstoque=? WHERE ProdutoID=?";
+
+        try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
+
+            preparedStatement.setString(1, produto.getNomeProduto());
+            preparedStatement.setBoolean(2, produto.isStatusProduto());
+            preparedStatement.setDouble(3, produto.getAvaliacao());
+            preparedStatement.setString(4, produto.getDescricaoDetalhada());
+            preparedStatement.setDouble(5, produto.getPrecoProduto());
+            preparedStatement.setInt(6, produto.getQtdEstoque());
+            preparedStatement.setInt(7, produto.getProdutoID());
+
+            int rowsUpdated = preparedStatement.executeUpdate();
+            if (rowsUpdated > 0) {
+                System.out.println("Produto atualizado com sucesso.");
+            } else {
+                System.out.println("Nenhum produto foi atualizado.");
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao atualizar o produto: " + e.getMessage());
         }
     }
 

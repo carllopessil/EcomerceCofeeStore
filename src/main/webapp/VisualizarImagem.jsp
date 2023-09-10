@@ -2,27 +2,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Visualizar Imagem</title>
+    <title>Visualizar Produto</title>
 </head>
 <body>
-    <h1>Imagens do Produto</h1>
+    <h1>Detalhes do Produto</h1>
 
     <%
-    // Supondo que você tenha o objeto Produto com a lista de URLs das imagens
     Produtos produto = (Produtos) request.getAttribute("produto");
     if (produto != null) {
         String nomeProduto = produto.getNomeProduto();
         String descricaoDetalhada = produto.getDescricaoDetalhada();
+        double avaliacao = produto.getAvaliacao();
+        double precoProduto = produto.getPrecoProduto();
+        int qtdEstoque = produto.getQtdEstoque();
 
-        // Itera sobre a lista de URLs das imagens
+        // Exibe todas as imagens do produto
         for (String imagePath : produto.getImagens()) {
     %>
         <img src="<%= imagePath %>" alt="Imagem do Produto">
     <%
         }
     %>
+
         <h2><%= nomeProduto %></h2>
-        <%= descricaoDetalhada %>
+        <p><%= descricaoDetalhada %></p>
+        <p>Avaliação: <%= avaliacao %></p>
+        <p>Preço: <%= precoProduto %></p>
+        <p>Quantidade em Estoque: <%= qtdEstoque %></p>
     <%
     } else {
     %>

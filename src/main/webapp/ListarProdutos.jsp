@@ -96,11 +96,13 @@
                             <img src="img/visualizar.png" alt="Imagem visualizar">
                         </a>
                     </td>
-                    <td>
-                        <a href="/Editar">
-                            <img src="img/Editar.png" alt="Imagem Editar">
-                        </a>
-                    </td>
+                  <td>
+                      <a href="EditarProdutoServlet?produtoID=<c:out value='${produto.produtoID}' />">
+                          <img src="img/Editar.png" alt="Imagem Editar">
+                      </a>
+                  </td>
+
+
                     <td>
                         <a href="VisualizarImagemServlet?produtoID=<c:out value='${produto.produtoID}' />">
                             <img src="img/visualizar.png" alt="Imagem visualizar">
