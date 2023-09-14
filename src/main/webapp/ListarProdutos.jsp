@@ -54,11 +54,36 @@
 
             <table border="1" class="table table-hover table-striped">
                 <thead class="table-dark">
+
                 <div class="pagination">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="3em" viewBox="0 0 448 512" id="prevPage">
+                        <!-- ... ícone de seta para a esquerda ... -->
+                    </svg>
+
                     <c:forEach var="i" begin="1" end="${pageCount}">
                         <a href="#" onclick="irParaPagina(${i})">${i}</a>
                     </c:forEach>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" height="3em" viewBox="0 0 448 512" id="nextPage">
+                        <!-- ... ícone de seta para a direita ... -->
+                    </svg>
                 </div>
+                <%--                <div class="pagination">--%>
+                <%--                    <svg xmlns="http://www.w3.org/2000/svg" height="3em" viewBox="0 0 448 512">--%>
+                <%--                        <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->--%>
+                <%--                        <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/>--%>
+                <%--                    </svg>--%>
+
+                <%--                    <c:forEach var="i" begin="1" end="${pageCount}">--%>
+
+                <%--                        <a href="#" onclick="irParaPagina(${i})">${i}</a>--%>
+
+                <%--                    </c:forEach>--%>
+                <%--                    <svg xmlns="http://www.w3.org/2000/svg" height="3em" viewBox="0 0 448 512">--%>
+                <%--                        <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->--%>
+                <%--                        <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/>--%>
+                <%--                    </svg>--%>
+                <%--                </div>--%>
                 <tr>
                     <th>Código do Produto</th>
                     <th>Nome do Produto</th>
@@ -117,15 +142,74 @@
                 </p1>
             </footer>
             <script src="eventosProduto.js"></script>
+            <div id="seu-elemento"></div>
 
+            <%--            <script>--%>
+            <%--                function irParaPagina(pagina) {--%>
+            <%--                    var novaURL = window.location.href.split('?')[0] + '?page=' + pagina;--%>
+            <%--                    window.location.href = novaURL;--%>
+            <%--                }--%>
+            <%--            </script>--%>
             <script>
-                function irParaPagina(pagina) {
-                    var novaURL = window.location.href.split('?')[0] + '?page=' + pagina;
+                const prevPage = document.getElementById('prevPage');
+                const nextPage = document.getElementById('nextPage');
+                const pageLinks = document.querySelectorAll('.pagination a');
+                let currentPage = 1;
+
+                function irParaPagina(page) {
+                    // Implemente a lógica para ir para a página selecionada aqui
+                    // Por exemplo, você pode redirecionar para a URL da página selecionada ou executar alguma ação.
+                    var novaURL = window.location.href.split('?')[0] + '?page=' + page;
                     window.location.href = novaURL;
                 }
+
+                prevPage.addEventListener('click', () => {
+                    if (currentPage > 1) {
+                        currentPage--;
+                        irParaPagina(currentPage);
+                    }
+                });
+
+                nextPage.addEventListener('click', () => {
+                    if (currentPage < pageLinks.length) {
+                        currentPage++;
+                        irParaPagina(currentPage);
+                    }
+                });
+
+                pageLinks.forEach((link, index) => {
+                    link.addEventListener('click', () => {
+                        currentPage = index + 1;
+                        irParaPagina(currentPage);
+                    });
+                });
+
+
+                // Crie um elemento <svg> para o ícone
+                const svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                svgElement.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+                svgElement.setAttribute('width', '16');
+                svgElement.setAttribute('height', '16');
+                svgElement.setAttribute('viewBox', '0 0 16 16');
+
+                // Crie o caminho do ícone
+                const pathElement = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                pathElement.setAttribute('d', 'M10.293 5.293a1 1 0 0 1 1.414 1.414L7.414 11H11a1 1 0 0 1 0 2H5a1 1 0 0 1-1-1v-6a1 1 0 1 1 2 0v3.586l4.293-4.293z');
+                pathElement.setAttribute('fill-rule', 'evenodd');
+
+                // Adicione o caminho ao elemento <svg>
+                svgElement.appendChild(pathElement);
+
+                // Encontre o elemento <div> pelo ID
+                const divElement = document.getElementById('seu-elemento');
+
+                // Substitua o conteúdo do elemento <div> pelo elemento <svg>
+                divElement.innerHTML = '';
+                divElement.appendChild(svgElement);
             </script>
         </div>
     </div>
 </div>
+
 </body>
 </html>

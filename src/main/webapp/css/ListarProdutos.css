@@ -1,7 +1,8 @@
 @import "https://fonts.googleapis.com/css?family=Ubuntu:400,700italic";
 @import "https://fonts.googleapis.com/css?family=Cabin:400";
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Pacifico&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Trirong:ital,wght@1,100&display=swap');@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Trirong:ital,wght@1,100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 * {
     box-sizing: border-box;
@@ -63,6 +64,7 @@ body {
     align-items: center;
     flex-direction: column;
 }
+
 .menu-logo {
     display: flex;
     align-items: center;
@@ -145,10 +147,10 @@ h1 {
     display: flex;
     border: 3px solid #ccc;
     padding: 0px;
-    margin-top: 8px;
+    margin: 40px;
     border-radius: 21px;
-    width: 100%;
-    height: 5em;
+    width: 95%;
+    height: 4em;
     background-color: #000000b3;
     align-content: space-around;
     align-items: stretch;
@@ -167,13 +169,39 @@ h1 {
     height: 0px;
     border-radius: 20px;
     font-size: 14px;
-    color: brown;
+    color: #031103;
     font-family: cursive;
     font-weight: 700;
 }
+.search-input:hover {
+    background-color: rgba(120, 81, 58, 0.6);
+    color: #ffffff;
+}
+
+/* Estilo para o botão "Buscar" */
+input[type="submit"] {
+    background-color: #073e7900;
+    color: #000000;
+    padding: 10px 1px;
+    font-size: 16px;
+    /* border: none; */
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    font-family: inherit;
+    /* border-radius: 23px; */
+    border: 3px solid #00000026;
+    margin: 0px 0px 0px -70px;
+}
+
+/* Estilo para o botão "Buscar" ao passar o mouse */
+input[type="submit"]:hover {
+    background-color: #3f1c07; /* Cor de fundo ao passar o mouse */
+    color: #fff; /* Cor do texto ao passar o mouse */
+}
 
 
-.search-button {
+search-button {
     background-color: #615044cc;
     color: #fff;
     border: none;
@@ -182,10 +210,13 @@ h1 {
     height: 38px;
     cursor: pointer;
 }
+
 /*css do icon no button cadastra*/
 svg {
-    fill: #b40853
+    fill: #b40853;
+
 }
+
 /*button cadastrar */
 button {
     background-color: #00000000;
@@ -201,6 +232,7 @@ button {
     height: 73px;
     position: sticky;
 }
+
 button:hover {
     background-color: rgba(3, 17, 3, 0.2);
     border: 1px solid rgba(255, 255, 255, 0.41);
@@ -227,6 +259,7 @@ button:hover {
     padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
     color: var(--bs-card-color)
 }
+
 .table {
     margin: 60px auto 0;
     font-family: 'Roboto', sans-serif;
@@ -311,10 +344,9 @@ button:hover {
     /* Adjust other elements as needed */
 }
 
-/* css da numeração da pagina*/
 /* Estilo para a classe .pagination */
 .pagination {
-    text-align: center; /* Alinha o conteúdo ao centro */
+    text-align: center; /* Centraliza horizontalmente o conteúdo */
     margin-top: 20px; /* Define uma margem superior para espaçamento */
 }
 
@@ -324,24 +356,34 @@ button:hover {
     padding: 0; /* Remove o preenchimento padrão da lista */
 }
 
+/*================================================================*/
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination svg {
+    width: 3em;
+    cursor: pointer; /* Adiciona um cursor de ponteiro para os ícones de seta */
+}
 /* Estilo para os itens de lista <li> dentro de .pagination */
-.pagination li {
-    display: inline; /* Coloca os itens de lista em linha horizontalmente */
-    margin-right: 5px; /* Adiciona um espaço entre os itens de lista */
-}
-
-/* Estilo para os links <a> dentro de .pagination */
 .pagination a {
-    text-decoration: none; /* Remove sublinhado padrão dos links */
-    padding: 5px 10px; /* Adiciona preenchimento aos links */
-    background-color: #007bff; /* Cor de fundo para os links */
-    color: #fff; /* Cor do texto dos links */
-    border-radius: 4px; /* Borda arredondada nos links */
+    margin: 0 5px; /* Adiciona espaço entre os números da página */
+    text-decoration: none; /* Remove a sublinhado padrão dos links */
+    cursor: pointer; /* Adiciona um cursor de ponteiro para os números da página */
+    padding: 5px 10px;
+    background-color: #000000b0;
+    color: #fff;
+    border-radius: 10px;
+    position: relative;
+    border: 2px solid white;
+    display: inline-flex;
+    align-items: center;
 }
-
-/* Estilo para os links <a> quando hover */
 .pagination a:hover {
-    background-color: #0056b3; /* Cor de fundo quando hover */
+    background-color: #037502;
+    color: #ffffff;
 }
 
 /* Estilos da tabela */
@@ -361,6 +403,7 @@ th, td {
     text-align: center;
     margin-top: 10px;
 }
+
 #pagina-atual {
     margin: 0 10px;
 }
@@ -374,7 +417,8 @@ footer {
     height: 35%;
     width: 100%;
 }
-body{
+
+body {
     height: 100%;
 }
 
@@ -403,6 +447,7 @@ body{
     -webkit-transition: .4s;
     transition: .4s;
 }
+
 .slider:before {
     position: absolute;
     content: "";
@@ -415,6 +460,7 @@ body{
     transition: .4s;
     border-radius: 50px;
 }
+
 input:checked + .slider {
     background-color: green;
 }
