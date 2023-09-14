@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/Login.css">
-    <%--    <link rel="stylesheet" type="text/css" href="css/Bootstrap.min.css">--%>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <title>Login</title>
@@ -38,13 +38,6 @@
             </div>
         </div>
 
-<%--  quando vc errano login vai receber essa mensagem--%>
-<%--        <% if (request.getParameter("error") != null) { %>--%>
-<%--        <p2>Credenciais inválidas. Tente novamente.</p2>--%>
-<%--        <% } %>--%>
-<%--        <% if (request.getParameter("error2") != null) { %>--%>
-<%--        <p3>Usuario inativo, contacte um administrador</p3>--%>
-<%--        <% } %>--%>
         <div id="error-popup" class="error-popup">
             <div class="error-popup-content">
                 <span id="error-message"></span>

@@ -24,16 +24,17 @@ body {
     padding: 0;
     font-family: Kanit;
     width: 100vw;
-    /* height: auto; */
+    height: auto;
     flex-wrap: wrap;
     align-content: center;
     justify-content: space-between;
     align-items: stretch;
 }
 
+
 #container {
     display: flex;
-    margin: auto 2em;
+    margin: 0px auto 2em;
     width: 100vw;
     max-width: 100%;
     height: auto;
@@ -45,20 +46,8 @@ body {
     opacity: 91%;
 }
 
-/*#container {*/
-/*    display: flex;*/
-/*    margin: auto 2em;*/
-/*    width: 100vw;*/
-/*    max-width: 100%;*/
-/*    height: auto;*/
-/*    !* align-content: space-between; *!*/
-/*    justify-content: space-between;*/
-/*    align-items: stretch;*/
-/*    flex-direction: column;*/
-/* }*/
-
 #usuarios-grupos {
-    width: 13em;
+    width: 15em;
     margin: 10px 0px 10px 41px;
     color: #fff;
     display: flex;
@@ -74,7 +63,6 @@ body {
     align-items: center;
     flex-direction: column;
 }
-
 .menu-logo {
     display: flex;
     align-items: center;
@@ -155,25 +143,35 @@ h1 {
 
 .search-bar {
     display: flex;
-    border: 1px solid #ccc;
+    border: 3px solid #ccc;
     padding: 0px;
-    margin-top: -84px;
-    border-radius: 5px;
-    width: 53em;
+    margin-top: 8px;
+    border-radius: 21px;
+    width: 100%;
     height: 5em;
-    margin-left: 63em;
-    /* align-content: flex-start; */
-    flex-wrap: nowrap;
-    align-items: center;
+    background-color: #000000b3;
+    align-content: space-around;
+    align-items: stretch;
+    flex-direction: row-reverse;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .search-input {
     flex-grow: 1;
     border: none;
     outline: none;
-    padding: 10px;
-
+    padding: 20px;
+    width: 35em;
+    margin: 1em 1em 1em 91em;
+    height: 0px;
+    border-radius: 20px;
+    font-size: 14px;
+    color: brown;
+    font-family: cursive;
+    font-weight: 700;
 }
+
 
 .search-button {
     background-color: #615044cc;
@@ -184,20 +182,28 @@ h1 {
     height: 38px;
     cursor: pointer;
 }
-
+/*css do icon no button cadastra*/
+svg {
+    fill: #b40853
+}
+/*button cadastrar */
 button {
-    background-color: #077bee;
+    background-color: #00000000;
     color: white;
     border: black;
-    padding: 8px 16px;
+    padding: 0px 0px;
     cursor: pointer;
-    font-size: 1.5em;
+    font-size: 30px;
     font-weight: 700;
-    border-radius: 0%;
-    width: 12em;
-    margin-top: 10px;
-    left: 34em;
+    border-radius: 15px;
+    width: 15em;
+    margin-top: -66px;
+    height: 73px;
     position: sticky;
+}
+button:hover {
+    background-color: rgba(3, 17, 3, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.41);
 }
 
 @keyframes fade {
@@ -221,8 +227,8 @@ button {
     padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
     color: var(--bs-card-color)
 }
-
 .table {
+    margin: 60px auto 0;
     font-family: 'Roboto', sans-serif;
     font-weight: bolder;
     font-size: 16px;
@@ -231,6 +237,7 @@ button {
     overflow-y: hidden;
     border: 10px solid #343a40;
     background-color: #e9ecefba;
+    width: 100em;
 }
 
 .table th, .table td {
@@ -269,7 +276,7 @@ button {
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 560px) {
     /* Styles for screens up to 480px wide */
     #container {
         display: block;
@@ -294,7 +301,7 @@ button {
     }
 }
 
-@media (max-width: 480px) and (max-zoom: 1) {
+@media (max-width: 560px) and (max-zoom: 1) {
     /* Styles for screens up to 480px wide and normal zoom */
     #container {
         display: block;
@@ -354,12 +361,6 @@ th, td {
     text-align: center;
     margin-top: 10px;
 }
-
-
-button:hover {
-    background-color: #0056b3;
-}
-
 #pagina-atual {
     margin: 0 10px;
 }
@@ -370,7 +371,7 @@ footer {
     text-align: center;
     position: fixed;
     bottom: -18em;
-    height: 34%;
+    height: 35%;
     width: 100%;
 }
 body{

@@ -23,12 +23,6 @@
                 <h1>BEM-VINDO AO BREWMASTERS CAFÉ.BACKOFFICE</h1>
             </li>
 
-            <!--Acesso temporario quando sair vai diretopagina index
-             <li><a href="Logout">Sair</a></li>-->
-
-            <!--Apos ajuste final apagar essa tag e acessa a tag Logout com link-->
-
-
         <div class="container">
             <div class="form-container">
                 <div class="btn-container">

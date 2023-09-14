@@ -47,6 +47,7 @@
     <p1>&copy; 2023 BREWMASTERS CAFÉ. Todos os direitos reservados.</p1>
 </footer>
 
+
 <script>
     function setMainImage(produtoID, imageUrl) {
         // Enviar uma solicitação para o servidor para definir a imagem como principal

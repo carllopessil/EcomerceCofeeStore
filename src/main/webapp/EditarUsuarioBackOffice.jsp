@@ -67,7 +67,7 @@
             <label for="confirmaSenha">Confirmar Senha:</label>
             <input type="password" id="confirmaSenha" name="confirmaSenha" placeholder="Confirmar Senha:" required><br>
         </div>
-<hr>
+        <hr>
         <button type="submit">Salvar</button>
         <i class="fas fa-arrow-left"></i>
 
@@ -77,12 +77,13 @@
 
     </form>
     <hr2>
-    <div id="mensagem-erro" style="color: red;"></div>
-    <footer>
+        <div id="mensagem-erro" style="color: red;"></div>
+        <footer>
 
-        <p1>&copy; 2023 BREWMASTERS CAFÉ. Todos os direitos reservados.</p1>
-    </footer>
+            <p1>&copy; 2023 BREWMASTERS CAFÉ. Todos os direitos reservados.</p1>
+        </footer>
 
+    </hr2>
 
 </div>
 

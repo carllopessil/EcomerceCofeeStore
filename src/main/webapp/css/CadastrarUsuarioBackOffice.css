@@ -9,10 +9,11 @@
 
 }
 
-html{
-    background: url("../img/Fundo3.jpg")no-repeat top center /cover;
+html {
+    background: url("../img/Fundo3.jpg") no-repeat top center /cover;
 
 }
+
 body {
 
     font-family: Arial, sans-serif;
@@ -22,7 +23,8 @@ body {
     padding: 0;
     z-index: -1;
 }
-#container{
+
+#container {
 
     width: 100vw;
     height: auto;
@@ -31,6 +33,7 @@ body {
     align-items: center;
     justify-content: center;
 }
+
 hr {
     display: block;
     unicode-bidi: isolate;
@@ -53,12 +56,14 @@ hr {
     height: 200px;
     margin: 10px 5px auto;
 }
+
 .menu li {
     margin: 0;
     padding: 0;
 }
+
 .menu li h1 {
-    color:red;
+    color: red;
     font-weight: bold;
     font-size: 44px;
     font-family: Kanit;
@@ -73,10 +78,11 @@ hr {
     font-size: 25px;
     font-family: Kanit;
 }
+
 .btn-container {
-    background-color:  #3b1e0a;
-    padding: 20px; /
-border-radius: 10px;
+    background-color: #3b1e0a;
+    padding: 20px;
+/ border-radius: 10 px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     display: inline-block;
 
@@ -137,6 +143,7 @@ border-radius: 10px;
     opacity: 1;
     animation: none;
 }
+
 h1 {
     background-color: #3b1e0a9e;
     text-align: center;
@@ -144,10 +151,8 @@ h1 {
     color: #fff;
     font-family: "Cabin", helvetica, arial, sans-serif;
     font-weight: 800;
-    /* border: 3px solid red; */
-    /* height: 20em; */
-
 }
+
 
 .alert {
     padding: 10px;
@@ -169,16 +174,6 @@ h1 {
     color: #721c24;
 }
 
-/*form {*/
-/*    max-width: 780px;*/
-/*    margin: 20px auto;*/
-/*    padding: 20px;*/
-/*    background-color: rgb(55 49 40 / 79%);*/
-/*    border-radius: 5px;*/
-/*    border-radius: 7%;*/
-/*    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-}*/
-
 form {
     max-width: 790px;
     margin: 25px auto 74px;
@@ -189,9 +184,6 @@ form {
     border-radius: 7%;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
-
-
-
 
 label {
     display: block;
@@ -205,6 +197,7 @@ label {
     font-weight: 600;
     color: white;
 }
+
 button {
     background-color: #052387;
     color: #fff;
@@ -216,28 +209,30 @@ button {
     margin-top: 34px;
 }
 
+input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+}
 
-input[type="text"]{
- width: 100%;
+#grupo input[type="text"] {
+    width: 40%;
     padding: 8px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 15px;
 }
-  #grupo input[type="text"] {
-            width: 40%;
-            padding: 8px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 15px;
-        }
-input[type="email"]{
-   width: 100%;
+
+input[type="email"] {
+    width: 100%;
     padding: 8px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 15px;
 }
+
 /* Estilos para o contêiner das senhas */
 #password-container {
     width: 53%;
@@ -252,64 +247,69 @@ input[type="email"]{
     flex-wrap: wrap;
 }
 
-   /* Estilos para as caixas de senha */
-   input[type="password"] {
-         width: 40%;
-         padding: 8px;
-         margin-bottom: 10px;
-         border: 1px solid #ccc;
-         border-radius: 15px;
-   }
-  #password-container input[type="text"] {
-            width: 40%;
-            padding: 8px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 15px;
-        }
+/* Estilos para as caixas de senha */
+input[type="password"] {
+    width: 40%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+}
 
-   /* Estilos para o rótulo da opção "Mostrar senha" */
- #showPasswordLabel {
-        width: 28em;
-        display: flex;
-        align-items: center;
-        margin-top: 0px;
-        justify-content: center;
-        align-content: space-around;
-        font-family: 'Kanit';
-        flex-wrap: nowrap;
-        flex-direction: row;
-    }
+#password-container input[type="text"] {
+    width: 40%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+}
 
-   /* Estilos para o ícone de "Mostrar senha" */
-  .show-password-icon {
-      font-size: 28px;
-      margin-left: 5px;
-      cursor: pointer;
-      color: #dc3545;
-   }
+/* Estilos para o rótulo da opção "Mostrar senha" */
+#showPasswordLabel {
+    width: 28em;
+    display: flex;
+    align-items: center;
+    margin-top: 0px;
+    justify-content: center;
+    align-content: space-around;
+    font-family: 'Kanit';
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
 
-   /* Estilos para a caixa de seleção */
-  #showPassword {
-      margin-right: 5px;
-      z-index: -1;
-      height: 0;
-  }
+/* Estilos para o ícone de "Mostrar senha" */
+.show-password-icon {
+    font-size: 28px;
+    margin-left: 5px;
+    cursor: pointer;
+    color: #dc3545;
+}
+
+/* Estilos para a caixa de seleção */
+#showPassword {
+    margin-right: 5px;
+    z-index: -1;
+    height: 0;
+}
 
 input[type="submit"]:hover {
     background-color: #0056b3;
 }
+
 input:required {
     border-color: #dc3545;
 }
+
 input:valid {
     border-color: #773a15;
 }
+
 input:invalid {
     border-color: #dc3545;
 }
+
 input[type="checkbox" i] {
-border: 3px solid red;
+    border: 3px solid red;
     background-color: initial;
     cursor: default;
     appearance: auto;
@@ -335,6 +335,7 @@ border: 3px solid red;
 
     /* Adjust other elements as needed */
 }
+
 /* Adjust styles for different zoom levels */
 @media (max-width: 768px) and (max-zoom: 1) {
     /* Styles for screens up to 768px wide and normal zoom */
