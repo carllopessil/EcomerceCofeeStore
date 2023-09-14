@@ -32,7 +32,7 @@
         <div class="container">
             <div class="form-container">
                 <div class="btn-container">
-                    <form action="/ListarProdutos" method="get">
+                    <form action="/ListarProdutos_2" method="get">
                         <button class="btn-primary" type="submit">Lista de Produtos</button>
                     </form>
                     <hr>
@@ -85,13 +85,26 @@
             <br>
             <p class="product-price">R$: <span>${produto.precoProduto}</span></p>
 
+            <h2>${produto.avaliacao}</h2>
+
+            <c:set var="avaliacao" value="${produto.avaliacao}" />
+            <c:forEach begin="1" end="5" var="i">
+                <c:choose>
+                    <c:when test="${i <= avaliacao}">
+                        <img src="img/estrela_cheia.png" alt="Estrela Cheia">
+                    </c:when>
+                    <c:otherwise>
+                        <img src="img/estrela_vazia.png" alt="Estrela Vazia">
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
+
             <a href="VisualizarImagemServlet?produtoID=${produto.produtoID}" class="buy-button">
                 COMPRAR
             </a>
         </div>
     </div>
 </c:forEach>
-
 
 
 

@@ -1,21 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="br.com.gymcontrol.Model.UsuarioBackOffice" %>
-
-<%@ page import="java.io.PrintWriter" %>
-
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/ListarProdutos.css">
-
-
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/ListarProdutos.css">
+    <title>Listar Produtos</title>
 </head>
-<body>
 
+<body>
 <div id="container">
     <ul class="menu">
         <li class="menu-logo">
@@ -35,54 +31,50 @@
             }
         %>
     </div>
-   <div class="search-bar">
-       <input id="input-busca" class="search-input" type="text" placeholder="Digite sua pesquisa">
-   </div>
-
 
 <button type="button" class="btn btn-primary" onclick="window.location.href='CadastroProduto.jsp'">
     <i class="fas fa-user-plus"></i> Cadastrar novo produto
 </button>
 
 
+   <div class="search-bar">
+    <form action="ListarProdutos_2" method="get">
+        <input class="search-input" type="text" name="searchTerm" placeholder="Digite sua pesquisa">
+        <input type="submit" value="Buscar">
+    </form>
+       </div>
 
-      <table class="table table-hover table-striped">
-            <thead class="table-dark">
+
+    <table border="1"  class="table table-hover table-striped">
+        <thead  class="table-dark">
             <div class="pagination">
-                <c:if test="${pageCount > 1}">
-                    <ul>
-                        <c:forEach var="i" begin="1" end="${pageCount}">
-                            <li><a href="?page=${i}">${i}</a></li>
-                        </c:forEach>
-                    </ul>
-                </c:if>
-            </div>
+                    <c:forEach var="i" begin="1" end="${pageCount}">
+                        <a href="#" onclick="irParaPagina(${i})">${i}</a>
+                    </c:forEach>
+                </div>
             <tr>
                 <th>Código do Produto</th>
-                <th>Produto</th>
-                <th>Quantidade em estoque</th>
-                <th>Preço</th>
-
-                <th>Status</th>
-                <c:if test="${usuario != null && usuario.getGrupo().equals('Admin Group')}">
-                    <th>Habilita/Desabilita</th>
-                </c:if>
-
-                <th>Visualizar</th>
-                <th>Editar</th>
-                <th>Visualizar-Img</th>
+                <th>Nome do Produto</th>
+                 <th>Quantidade em estoque</th>
+                 <th>Preço</th>
+                 <th>Status</th>
+                 <c:if test="${usuario != null && usuario.getGrupo().equals('Admin Group')}">
+                   <th>Habilita/Desabilita</th>
+                   </c:if>
+                   <th>Visualizar</th>
+                   <th>Editar</th>
+                   <th>Visualizar-Img</th>
             </tr>
-            </thead>
-            <tbody id="tabela-produtos">
-                <c:forEach var="produto" items="${Produtos}" varStatus="loop">
-                <tr class="editable-row" id="row-${loop.index}">
-                    <td><c:out value="${produto.produtoID}"/></td>
-                    <td><c:out value="${produto.nomeProduto}"/></td>
+        </thead>
+         <tbody id="tabela-produtos">
+            <c:forEach var="produto" items="${produtos}">
+                <tr>
+                    <td>${produto.produtoID}</td>
+                    <td>${produto.nomeProduto}</td>
                     <td><c:out value="${produto.qtdEstoque}"/></td>
                     <td><c:out value="${produto.precoProduto}"/></td>
-
                     <td>${produto.statusProduto ? 'Ativo' : 'Inativo'}</td>
-                    <c:if test="${usuario != null && usuario.getGrupo().equals('Admin Group')}">
+            <c:if test="${usuario != null && usuario.getGrupo().equals('Admin Group')}">
                         <td>
                             <label class="switch">
                                 <input type="checkbox" ${produto.statusProduto ? 'checked' : ''}
@@ -91,7 +83,7 @@
                             </label>
                         </td>
                     </c:if>
-                    <td>
+                        <td>
                         <a href="/Visualizar">
                             <img src="img/visualizar.png" alt="Imagem visualizar">
                         </a>
@@ -101,29 +93,30 @@
                           <img src="img/Editar.png" alt="Imagem Editar">
                       </a>
                   </td>
-
-
                     <td>
                         <a href="VisualizarImagemServlet?produtoID=<c:out value='${produto.produtoID}' />">
                             <img src="img/visualizar.png" alt="Imagem visualizar">
                         </a>
                     </td>
-                </tr>
+                    </tr>
             </c:forEach>
+        </tbody>
+    </table>
 
 
-            </tbody>
-        </table>
 
-</div> <!--FIMDO CONTAINER -->
-
-<!--Paginação do Rodape-->
 <footer>
     <p1>
         © 2023 BREWMASTERS CAFÉ. Todos os direitos reservados.
     </p1>
 </footer>
 <script src="eventosProduto.js"></script>
-</body>
 
+        <script>
+            function irParaPagina(pagina) {
+                var novaURL = window.location.href.split('?')[0] + '?page=' + pagina;
+                window.location.href = novaURL;
+            }
+        </script>
+</body>
 </html>

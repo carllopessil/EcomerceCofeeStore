@@ -137,7 +137,7 @@ public class CadastroProdutoServlet extends HttpServlet {
         } catch (Exception e) {
             System.out.println(e);
         }
-        response.sendRedirect("/ListarProdutos?");
+        response.sendRedirect("/ListarProdutos_2");
     }
 
 }

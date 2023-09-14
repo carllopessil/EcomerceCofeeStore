@@ -304,7 +304,7 @@ public class ProdutosDAO {
     }
 
 
-    public static int calcularPageCount(int produtosPorPagina) {
+    public static int calcularPageCount(int produtosPorPagina, String searchTerm) {
         String SQL = "SELECT COUNT(*) FROM Produtos";
 
         try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
@@ -387,6 +387,45 @@ public class ProdutosDAO {
         return produtos;
     }
 
+
+
+    public static List<Produtos> buscarProdutosPorTermoPaginado(String termoDeBusca, int offset, int produtosPorPagina) {
+        String SQL = "SELECT * FROM Produtos WHERE nomeProduto LIKE ? LIMIT ? OFFSET ?";
+
+        try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
+
+            preparedStatement.setString(1, "%" + termoDeBusca + "%");
+            preparedStatement.setInt(2, produtosPorPagina);
+            preparedStatement.setInt(3, offset);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            List<Produtos> produtos = new ArrayList<>();
+
+            while (resultSet.next()) {
+                int produtoID = resultSet.getInt("produtoID");
+                String nomeProduto = resultSet.getString("nomeProduto");
+                boolean statusProduto = resultSet.getBoolean("statusProduto");
+                double avaliacao = resultSet.getDouble("avaliacao");
+                String descricaoDetalhada = resultSet.getString("descricaoDetalhada");
+                double precoProduto = resultSet.getDouble("precoProduto");
+                int quantidadeEstoque = resultSet.getInt("qtdEstoque");
+                String imagePATH = resultSet.getString("ImagePATH");
+
+                Produtos produto = new Produtos(produtoID, nomeProduto, statusProduto, avaliacao, descricaoDetalhada, precoProduto, quantidadeEstoque);
+                produto.setImagePATH(imagePATH);
+
+                produtos.add(produto);
+            }
+
+            return produtos;
+
+        } catch (SQLException e) {
+            System.out.println("Erro ao buscar produtos por termo paginado: " + e.getMessage());
+            return Collections.emptyList();
+        }
+    }
 
 }
 
