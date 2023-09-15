@@ -33,29 +33,13 @@
 
                     <% if (((UsuarioBackOffice) session.getAttribute("usuario")).getGrupo().equals("Admin Group")) { %>
 
-                    <form action="/ListarUsuarioBackOffice" method="get">
-                        <button class="btn-primary" type="submit">Buscar usuários dos sistemas (TESTE, EXEMPLO)</button>
-                    </form>
 
-                    <hr>
 
                     <form action="/ListarUsuarioBackOffice_2" method="get">
                         <button class="btn-primary" type="submit">Buscar usuários dos sistemas</button>
                     </form>
-                    <%
-                        UsuarioBackOffice usuario = (UsuarioBackOffice) session.getAttribute("usuario");
-                        if (usuario != null && usuario.getGrupo().equals("Admin Group")) {
-                    %>
-                    <form action="CadastroProduto.jsp" method="get">
-                        <button class="btn-primary" type="submit">Cadastro de Produto</button>
-                    </form>
-                    <%
-                    } else {
-                    %>
-                    <p>Você não tem permissão para acessar esta página.</p>
-                    <%
-                        }
-                    %>
+
+
                 </div>
                 <% } %>
             </div>
@@ -63,7 +47,7 @@
         <li><a href="Login.jsp">Sair</a></li>
     </nav>
      </ul>
-<h2 class="titulo-centro">Produtos mais vendidos</h2>
+<h2 class="titulo-centro">Ultimos produtos adicionados</h2>
  <hr>
 
 
