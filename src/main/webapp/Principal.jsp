@@ -1,5 +1,6 @@
 <%@ page import="br.com.gymcontrol.Model.UsuarioBackOffice" %>
 <%@ page import="br.com.gymcontrol.Model.Produtos" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <!DOCTYPE html>
 <html>

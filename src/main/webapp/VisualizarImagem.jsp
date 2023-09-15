@@ -1,9 +1,9 @@
 <%@ page import="br.com.gymcontrol.Model.Produtos" %>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <title>Visualizar Produto</title>
     <link rel="stylesheet" href="css/VisualizarImg.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -24,9 +24,8 @@
                     <h1>BEM-VINDO AO BREWMASTERS CAFÉ.BACKOFFICE</h1>
                 </li>
 
-          <a href="/ListarProdutos_2" class="button">Voltar para a lista de produtos</a>
 
-            <li><a href="Login.jsp">Sair</a></li>
+              <li><a href="/ListarProdutos_2">Voltar</a></li>
         </nav>
          </ul>
 
@@ -100,7 +99,7 @@
               <p>Quantidade em Estoque: <%= qtdEstoque %></p>
           </div>
 
-<a class="buy-button" disabled>Comprar</a>
+          <a href="ListarProdutos.jsp" class="buy-button">Voltar para a lista de produtos</a>
 
           <%
           } else {
