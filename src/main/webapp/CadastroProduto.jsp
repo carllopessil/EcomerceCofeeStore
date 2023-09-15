@@ -52,7 +52,6 @@
                    onchange="previewImage(this)">
             <img class="preview" src="#" alt="Preview da Imagem"
                  style="display: none; max-width: 100px; max-height: 100px;">
-            <button type="button" onclick="removeImage(this)">Remover</button>
             <br>
         </div>
 
@@ -102,18 +101,10 @@
             preview.style.maxWidth = "100px";
             preview.style.maxHeight = "100px";
 
-            const button = document.createElement("button");
-            button.type = "button";
-            button.textContent = "Remover";
-            button.onclick = function () {
-                removeImage(button);
-            };
-
             const imagePreview = document.querySelector(".image-previews");
             imagePreview.appendChild(label);
             imagePreview.appendChild(fileInput);
             imagePreview.appendChild(preview);
-            imagePreview.appendChild(button);
 
             // Adicione um botão de rádio associado à imagem atual
             const radioButtons = document.getElementById("radioButtons");
@@ -129,37 +120,12 @@
                 const reader = new FileReader();
 
                 reader.onload = function (e) {
-                    const preview = input.nextElementSibling.nextElementSibling;
+                    const preview = input.nextElementSibling;
                     preview.style.display = "block";
                     preview.src = e.target.result;
-
-                    const imagePreviews = document.querySelector('.image-previews');
-                    const previewImage = document.createElement("img");
-                    previewImage.src = e.target.result;
-                    previewImage.style.maxWidth = "100px";
-                    previewImage.style.maxHeight = "100px";
-                    imagePreviews.appendChild(previewImage);
                 };
 
                 reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-        function removeImage(button) {
-            const div = button.parentElement;
-
-            // Remova apenas o campo de imagem específico
-            div.remove();
-
-            // Atualiza os valores dos botões de rádio
-            updateRadioButtons();
-        }
-
-        // Função para atualizar os valores dos botões de rádio após a remoção de uma imagem
-        function updateRadioButtons() {
-            const radioButtons = document.getElementsByName("imagemPrincipalRadio");
-            for (let i = 0; i < radioButtons.length; i++) {
-                radioButtons[i].value = i + 1;
             }
         }
     </script>
