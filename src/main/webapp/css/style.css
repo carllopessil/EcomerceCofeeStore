@@ -153,6 +153,26 @@ p {
     object-fit: cover;
     border-radius: 5px;
 }
+/* Estilize o botão como desejar */
+/*#cancelButton {*/
+/*    background-color: red;*/
+/*    color: white;*/
+/*    padding: 10px 20px;*/
+/*    border: none;*/
+/*    cursor: pointer;*/
+/*}*/
+#cancelButton {
+    background-color: red;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 10px;
+}
+
+
 /* Estilos para o botão de envio */
 input[type="submit" i] {
     padding: 10px 54px;
@@ -163,8 +183,8 @@ input[type="submit" i] {
     color: white;
     border: 3px solid #032580;
     border-radius: 20px;
-    position: absolute;
-    margin: 52px 0px 16px 16em;
+    position: inherit;
+    margin: 1em 0em 0em 9em;
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
 }
@@ -285,9 +305,10 @@ form button {
     font-size: 16px;
     border-radius: 35px;
     cursor: pointer;
-    margin-top: 22px;
+    margin-left: -6em;
+    margin-top: 13px;
     font-weight: 600;
-    width: 40em;
+    /* width: 40em; */
     transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
 }
 form button:hover {

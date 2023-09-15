@@ -58,7 +58,6 @@
                    onchange="previewImage(this)">
             <img class="preview" src="#" alt="Preview da Imagem"
                  style="display: none; max-width: 100px; max-height: 100px;">
-
         </div>
 
         <div class="image-previews"></div>
@@ -69,18 +68,17 @@
                     <div class="btn-add">
                         <!-- Botão para adicionar mais campos de imagem -->
                         <button type="button" onclick="addImageField()">Adicionar</button>
-                        <br>
+                    
+                        <button id="cancelButton">Cancelar</button>
+                        <!-- Conteúdo da sua página aqui -->
 
                         <input type="submit" value="Cadastrar" class="meu-botao">
                     </div>
                 </div>
             </div>
-
         </div>
+    </form>
 </div>
-</div>
-</div>
-</form>
 
 <div id="roda-pe">
     <footer>
@@ -88,6 +86,7 @@
     </footer>
 </div>
 
+<br>
 <script>
     // Contador para rastrear o número de campos de imagem adicionados
     let imageCount = 1;
@@ -140,7 +139,18 @@
             reader.readAsDataURL(input.files[0]);
         }
     }
+
+    /*button cancelar */
+    // Adicione um evento de clique ao botão
+    const cancelButton = document.getElementById('cancelButton');
+
+    cancelButton.addEventListener('click', () => {
+        // Redirecionar para a tela anterior ou executar a ação desejada de cancelamento
+        // Este exemplo apenas volta uma página no histórico do navegador
+        window.history.back();
+    });
+
 </script>
-</div>
+
 </body>
 </html>
