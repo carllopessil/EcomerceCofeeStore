@@ -36,7 +36,10 @@
 
             <!-- Campo para fazer upload de novas imagens -->
             <label for="novaImagem">Nova Imagem:</label>
-            <input type="file" name="novaImagem" id="novaImagem">
+            <input type="file" name="novaImagem" id="novaImagem" accept="image/*" onchange="previewUserImages(this)" multiple>
+
+            <!-- Container para exibir previews das imagens do usuário -->
+            <div id="userImagePreviews"></div>
 
             <input type="submit" value="Salvar Alterações">
         </c:if>
@@ -46,7 +49,6 @@
 <footer>
     <p1>&copy; 2023 BREWMASTERS CAFÉ. Todos os direitos reservados.</p1>
 </footer>
-
 
 <script>
     function setMainImage(produtoID, imageUrl) {
@@ -78,6 +80,25 @@
             }
         };
         xhr.send('imageUrl=' + encodeURIComponent(imageUrl) + '&produtoID=' + produtoID);
+    }
+
+    function previewUserImages(input) {
+        const previewContainer = document.getElementById("userImagePreviews");
+        previewContainer.innerHTML = ""; // Limpe as pré-visualizações existentes
+
+        if (input.files && input.files.length > 0) {
+            for (let i = 0; i < input.files.length; i++) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const previewImage = document.createElement("img");
+                    previewImage.src = e.target.result;
+                    previewImage.style.maxWidth = "100px";
+                    previewImage.style.maxHeight = "100px";
+                    previewContainer.appendChild(previewImage);
+                };
+                reader.readAsDataURL(input.files[i]);
+            }
+        }
     }
 </script>
 
