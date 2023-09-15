@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <title>Visualizar Produto</title>
     <link rel="stylesheet" href="css/VisualizarImg.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -23,6 +23,7 @@
                     <h1>BEM-VINDO AO BREWMASTERS CAFÉ.BACKOFFICE</h1>
                 </li>
 
+          <a href="/ListarProdutos_2" class="buy-button">Voltar para a lista de produtos</a>
 
             <li><a href="Login.jsp">Sair</a></li>
         </nav>
@@ -98,7 +99,7 @@
               <p>Quantidade em Estoque: <%= qtdEstoque %></p>
           </div>
 
-          <a href="ListarProdutos.jsp" class="buy-button">Voltar para a lista de produtos</a>
+<a class="buy-button" disabled>Comprar</a>
 
           <%
           } else {

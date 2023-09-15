@@ -93,9 +93,11 @@
                     <c:if test="${usuario != null && usuario.getGrupo().equals('Admin Group')}">
                         <th>Habilita/Desabilita</th>
                     </c:if>
-                    <th>Visualizar</th>
                     <th>Editar</th>
-                    <th>Visualizar-Img</th>
+                   <c:if test="${usuario != null && usuario.getGrupo().equals('Admin Group')}">
+                    <th>Visualizar-Produto</th>
+                    </c:if>
+
                 </tr>
                 </thead>
                 <tbody id="tabela-produtos">
@@ -115,21 +117,21 @@
                                 </label>
                             </td>
                         </c:if>
-                        <td>
-                            <a href="/Visualizar">
-                                <img src="img/visualizar.png" alt="Imagem visualizar">
-                            </a>
-                        </td>
+
                         <td>
                             <a href="EditarProdutoServlet?produtoID=<c:out value='${produto.produtoID}' />">
                                 <img src="img/Editar.png" alt="Imagem Editar">
                             </a>
                         </td>
+
+                        <c:if test="${usuario != null && usuario.getGrupo().equals('Admin Group')}">
                         <td>
                             <a href="VisualizarImagemServlet?produtoID=<c:out value='${produto.produtoID}' />">
                                 <img src="img/visualizar.png" alt="Imagem visualizar">
                             </a>
                         </td>
+                      </c:if>
+
                     </tr>
                 </c:forEach>
                 </tbody>

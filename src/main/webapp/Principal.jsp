@@ -81,19 +81,7 @@
 
             <h2>${produto.avaliacao}</h2>
 
-            <c:set var="avaliacao" value="${produto.avaliacao}" />
-            <c:forEach begin="1" end="5" var="i">
-                <c:choose>
-                    <c:when test="${i <= avaliacao}">
-                        <img src="img/estrela_cheia.png" alt="Estrela Cheia">
-                    </c:when>
-                    <c:otherwise>
-                        <img src="img/estrela_vazia.png" alt="Estrela Vazia">
-                    </c:otherwise>
-                </c:choose>
-            </c:forEach>
-
-            <a href="VisualizarImagemServlet?produtoID=${produto.produtoID}" class="buy-button">
+            <a class="buy-button">
                 COMPRAR
             </a>
         </div>

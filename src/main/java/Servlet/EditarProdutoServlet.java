@@ -128,7 +128,7 @@ public class EditarProdutoServlet extends HttpServlet {
             }
 
             // Redirecione de volta para a página de detalhes do produto ou outra página de sua escolha
-            response.sendRedirect("/ListarProdutos?produtoID=" + produtoID);
+            response.sendRedirect("/ListarProdutos_2");
         } else {
             // Usuário não é um administrador, permita apenas a atualização da quantidade em estoque
             int produtoID = Integer.parseInt(request.getParameter("produtoID"));
