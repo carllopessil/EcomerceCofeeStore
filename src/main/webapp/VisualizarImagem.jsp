@@ -1,4 +1,5 @@
 <%@ page import="br.com.gymcontrol.Model.Produtos" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +24,7 @@
                     <h1>BEM-VINDO AO BREWMASTERS CAFÉ.BACKOFFICE</h1>
                 </li>
 
-          <a href="/ListarProdutos_2" class="buy-button">Voltar para a lista de produtos</a>
+          <a href="/ListarProdutos_2" class="button">Voltar para a lista de produtos</a>
 
             <li><a href="Login.jsp">Sair</a></li>
         </nav>
