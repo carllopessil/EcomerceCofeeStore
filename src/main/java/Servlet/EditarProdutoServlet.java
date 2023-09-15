@@ -139,7 +139,7 @@ public class EditarProdutoServlet extends HttpServlet {
             produtoDAO.atualizarQuantidadeEstoque(produtoID, qtdEstoque);
 
             // Redirecione de volta para a página de detalhes do produto ou outra página de sua escolha
-            response.sendRedirect("/ListarProdutos?produtoID=" + produtoID);
+            response.sendRedirect("/ListarProdutos_2");
         }
     }
 }
