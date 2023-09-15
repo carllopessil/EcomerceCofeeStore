@@ -54,6 +54,7 @@
 
 <c:forEach var="produto" items="${Produtos}">
     <div class="product-box">
+
         <div class="product-image">
             <img src="${produto.imagePATH}" alt="Imagem do Produto">
         </div>

@@ -56,6 +56,7 @@
                 </c:otherwise>
             </c:choose>
 
+
             Quantidade em Estoque: <input type="number" name="qtdEstoque" value="<c:out value='${produto.qtdEstoque}' />" required><br>
 <hr>
             <!-- Adicione isso dentro do formulário existente no seu arquivo EditarProduto.jsp -->

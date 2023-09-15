@@ -173,14 +173,14 @@ font-family: Kanit;
     cursor: pointer;
 }
  input[type="file"] {
-        background-color: #3498db; /* Cor de fundo padrão */
-        color: #fff; /* Cor do texto */
-        padding: 5px 10px; /* Espaçamento interno */
+        background-color: #3498db;
+        color: #fff;
+        padding: 5px 10px;
         border: none; /* Remove a borda */
         cursor: pointer; /* Cursor de apontador */
     }
 
-    /* Estilo para o botão de seleção de arquivo quando o mouse passa por cima */
+
     input[type="file"]:hover {
         background-color: #2980b9; /* Nova cor de fundo no hover */
     }
