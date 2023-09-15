@@ -10,6 +10,28 @@ import java.util.List;
 import static java.lang.System.out;
 
 public class ProdutosDAO {
+    public void atualizarQuantidadeEstoque(int produtoID, int novaQuantidadeEstoque) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+
+            // SQL para atualizar a quantidade em estoque do produto
+            String sql = "UPDATE produtos SET qtdEstoque = ? WHERE produtoID = ?";
+
+            stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, novaQuantidadeEstoque);
+            stmt.setInt(2, produtoID);
+
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Trate qualquer exceção de banco de dados apropriada aqui
+        } finally {
+
+        }
+    }
 
 
     public Produtos obterProdutoPorID(int produtoID) {

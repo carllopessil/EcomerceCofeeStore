@@ -7,6 +7,7 @@ import com.azure.storage.blob.BlobServiceClient;
 import com.azure.storage.blob.BlobServiceClientBuilder;
 import DAO.ProdutosDAO;
 import br.com.gymcontrol.Model.Produtos;
+import br.com.gymcontrol.Model.UsuarioBackOffice;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
@@ -35,8 +37,6 @@ public class EditarProdutoServlet extends HttpServlet {
             + "AccountKey=uQk8tRzdibr2QdYRM8O8T9Xw88YzcWNhEoXg6BeWGN9+6UaEUtFktOBCtAWxNBuKtjEuVuHK96P4+AStNVP/vA==;"
             + "EndpointSuffix=core.windows.net";
 
-    // ...
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int produtoID = Integer.parseInt(request.getParameter("produtoID"));
 
@@ -56,74 +56,90 @@ public class EditarProdutoServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-// ...
-
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int produtoID = Integer.parseInt(request.getParameter("produtoID"));
-        String nomeProduto = request.getParameter("nomeProduto");
-        boolean statusProduto = request.getParameter("status") != null;
-        double avaliacao = Double.parseDouble(request.getParameter("avaliacao"));
-        String descricaoDetalhada = request.getParameter("descricaoDetalhada");
-        double precoProduto = Double.parseDouble(request.getParameter("precoProduto"));
-        int qtdEstoque = Integer.parseInt(request.getParameter("qtdEstoque"));
+        HttpSession session = request.getSession();
+        UsuarioBackOffice usuarioSessao = (UsuarioBackOffice) session.getAttribute("usuario");
 
-        // Crie um objeto Produtos com os valores atualizados
-        Produtos produto = new Produtos(produtoID, nomeProduto, statusProduto, avaliacao, descricaoDetalhada, precoProduto, qtdEstoque);
+        System.out.println(usuarioSessao.getGrupo());
+        // Verifique se o usuário da sessão tem permissão de administrador
+        if (usuarioSessao != null && "Admin Group".equals(usuarioSessao.getGrupo())) {
+            // Usuário é um administrador, permita a atualização completa do produto
+            int produtoID = Integer.parseInt(request.getParameter("produtoID"));
+            String nomeProduto = request.getParameter("nomeProduto");
+            boolean statusProduto = request.getParameter("status") != null;
+            double avaliacao = Double.parseDouble(request.getParameter("avaliacao"));
+            String descricaoDetalhada = request.getParameter("descricaoDetalhada");
+            double precoProduto = Double.parseDouble(request.getParameter("precoProduto"));
+            int qtdEstoque = Integer.parseInt(request.getParameter("qtdEstoque"));
 
-        // Atualize o produto no banco de dados
-        ProdutosDAO produtoDAO = new ProdutosDAO();
-        produtoDAO.atualizarProduto(produto);
+            // Crie um objeto Produtos com os valores atualizados
+            Produtos produto = new Produtos(produtoID, nomeProduto, statusProduto, avaliacao, descricaoDetalhada, precoProduto, qtdEstoque);
 
-        // Processar o upload das novas imagens adicionais
-        List<String> novasImagens = new ArrayList<>();
+            // Atualize o produto no banco de dados
+            ProdutosDAO produtoDAO = new ProdutosDAO();
+            produtoDAO.atualizarProduto(produto);
 
-        for (Part filePart : request.getParts()) {
-            String fieldName = filePart.getName();
-            if (fieldName.startsWith("novaImagem")) {
-                String novaImagemFileName = filePart.getName();
-                if (novaImagemFileName != null && !novaImagemFileName.isEmpty()) {
-                    String novaImagemBlobName = UUID.randomUUID().toString() + "_" + novaImagemFileName;
+            // Processar o upload das novas imagens adicionais
+            List<String> novasImagens = new ArrayList<>();
 
-                    try {
-                        // Crie um diretório temporário no contexto da sua aplicação web
-                        String uploadDirPath = getServletContext().getRealPath("/tempUploads");
-                        File uploadDir = new File(uploadDirPath);
-                        uploadDir.mkdirs();
+            for (Part filePart : request.getParts()) {
+                String fieldName = filePart.getName();
+                if (fieldName.startsWith("novaImagem")) {
+                    String novaImagemFileName = filePart.getName();
+                    if (novaImagemFileName != null && !novaImagemFileName.isEmpty()) {
+                        String novaImagemBlobName = UUID.randomUUID().toString() + "_" + novaImagemFileName;
 
-                        // Salve a nova imagem temporariamente no servidor
-                        File file = new File(uploadDir, novaImagemFileName);
-                        try (InputStream fileContent = filePart.getInputStream()) {
-                            Files.copy(fileContent, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                        try {
+                            // Crie um diretório temporário no contexto da sua aplicação web
+                            String uploadDirPath = getServletContext().getRealPath("/tempUploads");
+                            File uploadDir = new File(uploadDirPath);
+                            uploadDir.mkdirs();
+
+                            // Salve a nova imagem temporariamente no servidor
+                            File file = new File(uploadDir, novaImagemFileName);
+                            try (InputStream fileContent = filePart.getInputStream()) {
+                                Files.copy(fileContent, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                            }
+
+                            // Realize o upload da nova imagem para o Azure Blob Storage
+                            BlobServiceClient blobServiceClient = new BlobServiceClientBuilder().connectionString(storageConnectionString).buildClient();
+                            String containerName = "pi4imagens";
+                            BlobContainerClient containerClient = blobServiceClient.getBlobContainerClient(containerName);
+                            containerClient.createIfNotExists();
+                            BlobClient blobClient = containerClient.getBlobClient(novaImagemBlobName);
+                            blobClient.upload(BinaryData.fromFile(file.toPath()));
+
+                            // Adicione o URL do Blob à lista de caminhos
+                            novasImagens.add(blobClient.getBlobUrl());
+
+                            // Apague o arquivo temporário no servidor
+                            file.delete();
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
-
-                        // Realize o upload da nova imagem para o Azure Blob Storage
-                        BlobServiceClient blobServiceClient = new BlobServiceClientBuilder().connectionString(storageConnectionString).buildClient();
-                        String containerName = "pi4imagens";
-                        BlobContainerClient containerClient = blobServiceClient.getBlobContainerClient(containerName);
-                        containerClient.createIfNotExists();
-                        BlobClient blobClient = containerClient.getBlobClient(novaImagemBlobName);
-                        blobClient.upload(BinaryData.fromFile(file.toPath()));
-
-                        // Adicione o URL do Blob à lista de caminhos
-                        novasImagens.add(blobClient.getBlobUrl());
-
-                        // Apague o arquivo temporário no servidor
-                        file.delete();
-                    } catch (Exception e) {
-                        e.printStackTrace();
                     }
                 }
             }
-        }
 
-        // Adicione as novas imagens ao banco de dados
-        for (String novaImagemPath : novasImagens) {
-            produtoDAO.inserirCaminhoImagem(produtoID, novaImagemPath);
-        }
+            // Adicione as novas imagens ao banco de dados
+            for (String novaImagemPath : novasImagens) {
+                produtoDAO.inserirCaminhoImagem(produtoID, novaImagemPath);
+            }
 
-        // Redirecione de volta para a página de detalhes do produto ou outra página de sua escolha
-        response.sendRedirect("/ListarProdutos?" + produtoID);
+            // Redirecione de volta para a página de detalhes do produto ou outra página de sua escolha
+            response.sendRedirect("/ListarProdutos?produtoID=" + produtoID);
+        } else {
+            // Usuário não é um administrador, permita apenas a atualização da quantidade em estoque
+            int produtoID = Integer.parseInt(request.getParameter("produtoID"));
+            int qtdEstoque = Integer.parseInt(request.getParameter("qtdEstoque"));
+
+            // Atualize apenas a quantidade em estoque do produto no banco de dados
+            ProdutosDAO produtoDAO = new ProdutosDAO();
+            produtoDAO.atualizarQuantidadeEstoque(produtoID, qtdEstoque);
+
+            // Redirecione de volta para a página de detalhes do produto ou outra página de sua escolha
+            response.sendRedirect("/ListarProdutos?produtoID=" + produtoID);
+        }
     }
 }

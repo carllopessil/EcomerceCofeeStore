@@ -17,11 +17,27 @@
     <form action="EditarProdutoServlet" method="post" enctype="multipart/form-data">
         <c:if test="${not empty produto}">
             <input type="hidden" name="produtoID" value="<c:out value='${produto.produtoID}' />">
-            Nome do Produto: <input type="text" name="nomeProduto" value="<c:out value='${produto.nomeProduto}' />" required><br>
-            Status do Produto: <input type="checkbox" name="status" value="1" <c:if test="${produto.statusProduto}">checked</c:if>><br>
-            Avaliação: <input type="number" name="avaliacao" min="1" max="5" step="0.1" value="<c:out value='${produto.avaliacao}' />" required><br>
-            Descrição Detalhada: <textarea name="descricaoDetalhada" required><c:out value='${produto.descricaoDetalhada}' /></textarea><br>
-            Preço do Produto: <input type="number" name="precoProduto" step="0.01" value="<c:out value='${produto.precoProduto}' />" required><br>
+
+            <!-- Verificar se o usuário é um administrador ('Admin Group') -->
+            <c:choose>
+                <c:when test="${usuario != null && 'Admin Group' eq usuario.grupo}">
+                    <!-- Campos de edição para administradores -->
+                    Nome do Produto: <input type="text" name="nomeProduto" value="<c:out value='${produto.nomeProduto}' />" required><br>
+                    Status do Produto: <input type="checkbox" name="status" value="1" <c:if test="${produto.statusProduto}">checked</c:if>><br>
+                    Avaliação: <input type="number" name="avaliacao" min="1" max="5" step="0.1" value="<c:out value='${produto.avaliacao}' />" required><br>
+                    Descrição Detalhada: <textarea name="descricaoDetalhada" required><c:out value='${produto.descricaoDetalhada}' /></textarea><br>
+                    Preço do Produto: <input type="number" name="precoProduto" step="0.01" value="<c:out value='${produto.precoProduto}' />" required><br>
+                </c:when>
+                <c:otherwise>
+                    <!-- Campos de visualização para não administradores -->
+                    Nome do Produto: <c:out value='${produto.nomeProduto}' /><br>
+                    Status do Produto: <c:if test="${produto.statusProduto}">Ativo</c:if><c:if test="${not produto.statusProduto}">Inativo</c:if><br>
+                    Avaliação: <c:out value='${produto.avaliacao}' /><br>
+                    Descrição Detalhada: <c:out value='${produto.descricaoDetalhada}' /><br>
+                    Preço do Produto: R$ <c:out value='${produto.precoProduto}' /><br>
+                </c:otherwise>
+            </c:choose>
+
             Quantidade em Estoque: <input type="number" name="qtdEstoque" value="<c:out value='${produto.qtdEstoque}' />" required><br>
 
             <!-- Adicione isso dentro do formulário existente no seu arquivo EditarProduto.jsp -->
@@ -29,19 +45,21 @@
             <c:forEach items="${imagensExistentes}" var="imagemExistente">
                 <div>
                     <img src="${imagemExistente}" alt="Imagem do Produto">
-                    <button type="button" onclick="setMainImage('<c:out value="${produto.produtoID}" />', '<c:out value="${imagemExistente}" />')">Definir como Principal</button>
-                    <button type="button" onclick="deleteImage('<c:out value="${imagemExistente}" />', <c:out value="${produto.produtoID}" />)">Deletar</button>
+                    <button type="button" onclick="setMainImage('<c:out value="${produto.produtoID}" />', '<c:out value="${imagemExistente}" />')" <c:if test="${usuario == null || 'Admin Group' ne usuario.grupo}">disabled</c:if>>Definir como Principal</button>
+                    <button type="button" onclick="deleteImage('<c:out value="${imagemExistente}" />', <c:out value="${produto.produtoID}" />)" <c:if test="${usuario == null || 'Admin Group' ne usuario.grupo}">disabled</c:if>>Deletar</button>
                 </div>
             </c:forEach>
 
             <!-- Campo para fazer upload de novas imagens -->
             <label for="novaImagem">Nova Imagem:</label>
-            <input type="file" name="novaImagem" id="novaImagem" accept="image/*" onchange="previewUserImages(this)" multiple>
+            <input type="file" name="novaImagem" id="novaImagem" accept="image/*" onchange="previewUserImages(this)" multiple <c:if test="${usuario == null || 'Admin Group' ne usuario.grupo}">disabled</c:if>> <!-- Desativar o botão para não administradores -->
 
             <!-- Container para exibir previews das imagens do usuário -->
             <div id="userImagePreviews"></div>
 
+            <!-- Verificar se o usuário é um administrador ('Admin Group') -->
             <input type="submit" value="Salvar Alterações">
+
         </c:if>
     </form>
 </div>
