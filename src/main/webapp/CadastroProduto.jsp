@@ -25,7 +25,6 @@
                 <h1>BEM-VINDO AO BREWMASTERS CAFÉ.BACKOFFICE</h1>
             </li>
             <li><a href="Principal.jsp">Voltar</a></li>
-            <li><a href="imagems.jsp">imargens</a></li>
         </ul>
     </nav>
 
@@ -72,76 +71,76 @@
                         <button type="button" onclick="addImageField()">Adicionar</button>
                         <br>
 
-                                    <input type="submit" value="Cadastrar" class="meu-botao">
-                                </div>
-                            </div>
-                        </div>
-
+                        <input type="submit" value="Cadastrar" class="meu-botao">
                     </div>
                 </div>
             </div>
+
         </div>
-    </form>
+</div>
+</div>
+</div>
+</form>
 
-    <div id="roda-pe">
-        <footer>
-            <p1>&copy; 2023 BREWMASTERS CAFÉ. Todos os direitos reservados.</p1>
-        </footer>
-    </div>
+<div id="roda-pe">
+    <footer>
+        <p1>&copy; 2023 BREWMASTERS CAFÉ. Todos os direitos reservados.</p1>
+    </footer>
+</div>
 
-    <script>
-        // Contador para rastrear o número de campos de imagem adicionados
-        let imageCount = 1;
+<script>
+    // Contador para rastrear o número de campos de imagem adicionados
+    let imageCount = 1;
 
-        function addImageField() {
-            imageCount++;
-            const fileInput = document.createElement("input");
-            fileInput.type = "file";
-            fileInput.name = "imagemProduto" + imageCount;
-            fileInput.id = "imagemProduto" + imageCount;
-            fileInput.accept = "image/*";
-            fileInput.setAttribute("onchange", `previewImage(this)`);
+    function addImageField() {
+        imageCount++;
+        const fileInput = document.createElement("input");
+        fileInput.type = "file";
+        fileInput.name = "imagemProduto" + imageCount;
+        fileInput.id = "imagemProduto" + imageCount;
+        fileInput.accept = "image/*";
+        fileInput.setAttribute("onchange", `previewImage(this)`);
 
-            const label = document.createElement("label");
-            label.htmlFor = "imagemProduto" + imageCount;
-            label.textContent = "Imagem do Produto " + imageCount + ":";
+        const label = document.createElement("label");
+        label.htmlFor = "imagemProduto" + imageCount;
+        label.textContent = "Imagem do Produto " + imageCount + ":";
 
-            const preview = document.createElement("img");
-            preview.classList.add("preview");
-            preview.src = "#";
-            preview.alt = "Preview da Imagem";
-            preview.style.display = "none";
-            preview.style.maxWidth = "100px";
-            preview.style.maxHeight = "100px";
+        const preview = document.createElement("img");
+        preview.classList.add("preview");
+        preview.src = "#";
+        preview.alt = "Preview da Imagem";
+        preview.style.display = "none";
+        preview.style.maxWidth = "100px";
+        preview.style.maxHeight = "100px";
 
-            const imagePreview = document.querySelector(".image-previews");
-            imagePreview.appendChild(label);
-            imagePreview.appendChild(fileInput);
-            imagePreview.appendChild(preview);
+        const imagePreview = document.querySelector(".image-previews");
+        imagePreview.appendChild(label);
+        imagePreview.appendChild(fileInput);
+        imagePreview.appendChild(preview);
 
-            // Adicione um botão de rádio associado à imagem atual
-            const radioButtons = document.getElementById("radioButtons");
-            const radioButton = document.createElement("input");
-            radioButton.type = "radio";
-            radioButton.name = "imagemPrincipalRadio";
-            radioButton.value = imageCount;
-            radioButtons.appendChild(radioButton);
+        // Adicione um botão de rádio associado à imagem atual
+        const radioButtons = document.getElementById("radioButtons");
+        const radioButton = document.createElement("input");
+        radioButton.type = "radio";
+        radioButton.name = "imagemPrincipalRadio";
+        radioButton.value = imageCount;
+        radioButtons.appendChild(radioButton);
+    }
+
+    function previewImage(input) {
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                const preview = input.nextElementSibling;
+                preview.style.display = "block";
+                preview.src = e.target.result;
+            };
+
+            reader.readAsDataURL(input.files[0]);
         }
-
-        function previewImage(input) {
-            if (input.files && input.files[0]) {
-                const reader = new FileReader();
-
-                reader.onload = function (e) {
-                    const preview = input.nextElementSibling;
-                    preview.style.display = "block";
-                    preview.src = e.target.result;
-                };
-
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-    </script>
+    }
+</script>
 </div>
 </body>
 </html>
