@@ -21,9 +21,10 @@
                     <img src="img/Logo de cafe.png" alt="Logo do café">
                     <h1>BEM-VINDO AO BREWMASTERS CAFÉ.BACKOFFICE</h1>
                 </li>
-
-
-                <li><a href="/ListarTop8Produtos">Voltar </a></li>
+                <li><a href="/ListarTop8Produtos">
+                    <button-voltar type="button">Voltar</button-voltar>
+                </a></li>
+                <%--                <li><a href="/ListarTop8Produtos">Voltar </a></li>--%>
             </ul>
 
             <div id="usuarios-grupos">
@@ -45,8 +46,7 @@
                         onclick="window.location.href='CadastroProduto.jsp'">
                     <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 640 512">
                         <path d="M96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3zM504 312V248H440c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V136c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H552v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/>
-                    </svg>
-                    <i class="fas fa-user-plus"></i> Cadastrar Produto
+                    </svg> Cadastrar Produto
                 </button>
 
             </div>
@@ -56,18 +56,14 @@
                 <thead class="table-dark">
 
                 <div class="pagination">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="3em" viewBox="0 0 448 512" id="prevPage">
-                        <!-- ... ícone de seta para a esquerda ... -->
-                    </svg>
 
                     <c:forEach var="i" begin="1" end="${pageCount}">
                         <a href="#" onclick="irParaPagina(${i})">${i}</a>
                     </c:forEach>
 
-                    <svg xmlns="http://www.w3.org/2000/svg" height="3em" viewBox="0 0 448 512" id="nextPage">
-                        <!-- ... ícone de seta para a direita ... -->
-                    </svg>
                 </div>
+
+<%--                ESTA ROANDO PELO JSCRIPT--%>
                 <%--                <div class="pagination">--%>
                 <%--                    <svg xmlns="http://www.w3.org/2000/svg" height="3em" viewBox="0 0 448 512">--%>
                 <%--                        <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->--%>
@@ -84,6 +80,7 @@
                 <%--                        <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/>--%>
                 <%--                    </svg>--%>
                 <%--                </div>--%>
+
                 <tr>
                     <th>Código do Produto</th>
                     <th>Nome do Produto</th>
@@ -153,10 +150,14 @@
             <%--                }--%>
             <%--            </script>--%>
             <script>
-                const prevPage = document.getElementById('prevPage');
-                const nextPage = document.getElementById('nextPage');
-                const pageLinks = document.querySelectorAll('.pagination a');
-                let currentPage = 1;
+                document.addEventListener('DOMContentLoaded', function () {
+                    // Seu código aqui
+                    const prevPage = document.getElementById('prevPage');
+                    const nextPage = document.getElementById('nextPage');
+                    const pageLinks = document.querySelectorAll('.pagination a');
+                    let currentPage = 1;
+                });
+
 
                 function irParaPagina(page) {
                     // Implemente a lógica para ir para a página selecionada aqui
@@ -208,6 +209,7 @@
                 // Substitua o conteúdo do elemento <div> pelo elemento <svg>
                 divElement.innerHTML = '';
                 divElement.appendChild(svgElement);
+
             </script>
         </div>
     </div>

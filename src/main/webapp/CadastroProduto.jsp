@@ -4,7 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>Cadastro de Produto</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <%--    <link rel="stylesheet" href="css/CadastroDeProduto.css">--%>
+    <%--    <link rel="stylesheet" href="css/Bootstrap.min.css">--%>
     <style>
         .image-preview {
             margin-bottom: 10px;
@@ -20,6 +25,7 @@
                 <h1>BEM-VINDO AO BREWMASTERS CAFÉ.BACKOFFICE</h1>
             </li>
             <li><a href="Principal.jsp">Voltar</a></li>
+            <li><a href="imagems.jsp">imargens</a></li>
         </ul>
     </nav>
 
@@ -39,32 +45,39 @@
         <p>Quantidade em Estoque:</p> <input type="number" name="qtdEstoque" required><br>
 
         <!-- Adicione os botões de rádio para selecionar a imagem principal -->
-        <h3>Selecione a Imagem Principal:</h3>
+
         <div id="radioButtons">
+            <h3>Selecione a Imagem Principal:</h3>
             <!-- Botão de rádio para a imagem principal -->
             <input type="radio" name="imagemPrincipalRadio" value="1" checked data-preview-id="preview1"><br>
         </div>
 
         <!-- Campo inicial de imagem do produto -->
         <div class="image-preview">
-            <label for="imagemProduto1">Imagem do Produto 1:</label>
+            <%--            <label for="imagemProduto1">Imagem do Produto 1:</label>--%>
             <input type="file" name="imagemProduto1" id="imagemProduto1" accept="image/*"
                    onchange="previewImage(this)">
             <img class="preview" src="#" alt="Preview da Imagem"
                  style="display: none; max-width: 100px; max-height: 100px;">
-            <br>
+
         </div>
 
         <div class="image-previews"></div>
-
+        <hr>
         <div class=" container">
             <div id="row">
                 <div class="col-12 col-sm-6 col-md-4">
-                    <!-- Botão para adicionar mais campos de imagem -->
-                    <button type="button" onclick="addImageField()">Adicionar Imagem</button>
-                    <br>
-                    <input type="submit" value="Cadastrar" class="meu-botao">
-                    <hr>
+                    <div class="btn-add">
+                        <!-- Botão para adicionar mais campos de imagem -->
+                        <button type="button" onclick="addImageField()">Adicionar</button>
+                        <br>
+
+                                    <input type="submit" value="Cadastrar" class="meu-botao">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>

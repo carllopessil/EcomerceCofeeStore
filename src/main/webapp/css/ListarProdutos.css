@@ -3,11 +3,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Pacifico&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Trirong:ital,wght@1,100&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+/* Importar a biblioteca de ícones Font Awesome (caso não tenha importado) */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    /*border: 3px solid yellow;*/
 }
 
 html {
@@ -97,15 +101,63 @@ h2 {
     font-size: 44px;
     font-family: Kanit;
 }
+/* Estilos para o botão */
+/* Estilos para o botão personalizado */
+button-voltar {
+    display: inline-block;
+    color: #df0000;
+    border: none;
+    padding: 0px 4px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    /* border-radius: 5px; */
+    font-weight: bold;
+    font-size: 17px;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+    width: 5em;
+}
+/* Estilos para o link (âncora) */
+a {
+    text-decoration: none; /* Remove o sublinhado padrão do link */
+    color: inherit; /* Herda a cor do texto do elemento pai (o botão) */
+}
+
+/* Estilos para o link quando o mouse passa sobre ele */
+a:hover {
+    text-decoration: underline; /* Adiciona um sublinhado ao passar o mouse sobre o link */
+}
+
+/* Estilos para o botão quando o mouse passa sobre ele */
+button-voltar:hover {
+    /*background-color: #0056b3; !* Altera a cor de fundo quando o mouse passa sobre o botão *!*/
+    /*background-color: #ffffff;*/
+    color: #08b51f;
+    text-align: center;
+    padding: 0px 25px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 28px;
+    font-family: Kanit;
+    white-space: normal;
+    /*border: 1.2px solid #ffffff;*/
+    background-color: rgba(133, 102, 80, 0.05);
+}
+
 
 .menu a {
+    position: sticky;
+    margin: 5em;
     text-decoration: none;
     color: red;
-    padding: 5px 112px;
-    border-radius: 5px;
+    padding: 10px 23px;
+    border-radius: 30px;
     font-weight: bold;
     font-size: 25px;
     font-family: Kanit;
+    border: 1.2px solid #ffffff;
+    background-color: rgb(37, 29, 21);
 }
 
 .menu {
@@ -158,14 +210,13 @@ h1 {
     justify-content: center;
     flex-wrap: wrap;
 }
-
 .search-input {
     flex-grow: 1;
     border: none;
     outline: none;
     padding: 20px;
     width: 35em;
-    margin: 1em 1em 1em 91em;
+    margin: 1em -11em 1em 88em;
     height: 0px;
     border-radius: 20px;
     font-size: 14px;
@@ -176,47 +227,53 @@ h1 {
 .search-input:hover {
     background-color: rgba(120, 81, 58, 0.6);
     color: #ffffff;
+    border: 1.5px solid white;
+}
+.search-input::placeholder {
+    color: #ea0404; /* Defina a cor desejada para o placeholder aqui */
+    font-size: medium;
+}
+.search-input:hover::placeholder {
+    color: #ffffff; /* Defina a cor desejada para o placeholder aqui */
+    font-size: medium;
 }
 
 /* Estilo para o botão "Buscar" */
 input[type="submit"] {
-    background-color: #073e7900;
-    color: #000000;
-    padding: 10px 1px;
+    /* background-color: #08b51f; */
+    color: #f40907;
+    padding: 5px 17px;
     font-size: 16px;
-    /* border: none; */
+    border: none;
     border-radius: 25px;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
     font-family: inherit;
-    /* border-radius: 23px; */
-    border: 3px solid #00000026;
-    margin: 0px 0px 0px -70px;
+    border-radius: 23px;
+    /* border: 3px solid #00000026; */
+    margin: -5px 11px -15px 62px;
 }
 
 /* Estilo para o botão "Buscar" ao passar o mouse */
 input[type="submit"]:hover {
     background-color: #3f1c07; /* Cor de fundo ao passar o mouse */
     color: #fff; /* Cor do texto ao passar o mouse */
-}
 
-
-search-button {
-    background-color: #615044cc;
-    color: #fff;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 0 8px 5px 0;
-    height: 38px;
-    cursor: pointer;
 }
+/*search-button {*/
+/*    background-color: #615044cc;*/
+/*    color: #fff;*/
+/*    border: none;*/
+/*    padding: 5px 10px;*/
+/*    border-radius: 0 8px 5px 0;*/
+/*    height: 38px;*/
+/*    cursor: pointer;*/
+/*}*/
 
 /*css do icon no button cadastra*/
 svg {
-    fill: #b40853;
-
+    fill: #f20605;
 }
-
 /*button cadastrar */
 button {
     background-color: #00000000;
@@ -344,19 +401,7 @@ button:hover {
     /* Adjust other elements as needed */
 }
 
-/* Estilo para a classe .pagination */
-.pagination {
-    text-align: center; /* Centraliza horizontalmente o conteúdo */
-    margin-top: 20px; /* Define uma margem superior para espaçamento */
-}
-
-/* Estilo para a lista <ul> dentro de .pagination */
-.pagination ul {
-    list-style-type: none; /* Remove os marcadores de lista */
-    padding: 0; /* Remove o preenchimento padrão da lista */
-}
-
-/*================================================================*/
+/*!* Estilo para a classe .pagination *!*/
 .pagination {
     display: flex;
     justify-content: center;
@@ -385,7 +430,15 @@ button:hover {
     background-color: #037502;
     color: #ffffff;
 }
+/* Estilos da paginação */
+#paginação {
+    text-align: center;
+    margin-top: 10px;
+}
 
+#pagina-atual {
+    margin: 0 10px;
+}
 /* Estilos da tabela */
 table {
     width: 100%;
@@ -398,30 +451,7 @@ th, td {
     text-align: center;
 }
 
-/* Estilos da paginação */
-#paginação {
-    text-align: center;
-    margin-top: 10px;
-}
-
-#pagina-atual {
-    margin: 0 10px;
-}
-
-footer {
-    background-color: #3b1e0a;
-    color: white;
-    text-align: center;
-    position: fixed;
-    bottom: -18em;
-    height: 35%;
-    width: 100%;
-}
-
-body {
-    height: 100%;
-}
-
+/* Seleção do buttom habita e desabilitar */
 .switch {
     position: relative;
     display: inline-block;
@@ -473,4 +503,14 @@ input:checked + .slider:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
+}
+
+footer {
+    background-color: #3b1e0a;
+    color: white;
+    text-align: center;
+    position: fixed;
+    bottom: -18em;
+    height: 35%;
+    width: 100%;
 }
