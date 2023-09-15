@@ -24,8 +24,9 @@
                     <h1>BEM-VINDO AO BREWMASTERS CAFÉ.BACKOFFICE</h1>
                 </li>
 
+   <a href="/ListarProdutos_2">Voltar para a lista de produtos</a>
 
-              <li><a href="/ListarProdutos_2">Voltar</a></li>
+              <li><a href="Login.jsp">Sair</a></li>
         </nav>
          </ul>
 
@@ -99,7 +100,7 @@
               <p>Quantidade em Estoque: <%= qtdEstoque %></p>
           </div>
 
-          <a href="ListarProdutos.jsp" class="buy-button">Voltar para a lista de produtos</a>
+<a class="buy-button" disabled>Comprar</a>
 
           <%
           } else {
