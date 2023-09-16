@@ -23,7 +23,7 @@ public class LoginServlet extends HttpServlet {
         if (usuario != null && BCrypt.checkpw(senha, usuario.getSenha())) {
             if(usuario.getStatus()==true) {
                 request.getSession().setAttribute("usuario", usuario);
-                response.sendRedirect("/ListarTop8Produtos");
+                response.sendRedirect("Principal.jsp");
             } else {
                 response.sendRedirect("Login.jsp?error2=true");
             }

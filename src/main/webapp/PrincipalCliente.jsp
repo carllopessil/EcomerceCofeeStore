@@ -8,7 +8,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <head>
     <meta charset="UTF-8">
-    <title>Backoffice - Principal</title>
+    <title>Tela Inicial Cliente</title>
     <link rel="stylesheet" href="css/Principal.css">
 </head>
 <body>
@@ -32,22 +32,43 @@
                     </form>
                     <hr>
 
-                    <% if (((UsuarioBackOffice) session.getAttribute("usuario")).getGrupo().equals("Admin Group")) { %>
-
-
-
                     <form action="/ListarUsuarioBackOffice_2" method="get">
                         <button class="btn-primary" type="submit">Buscar usuários dos sistemas</button>
                     </form>
 
 
                 </div>
-                <% } %>
             </div>
         </div>
         <li><a href="Login.jsp">Sair</a></li>
     </nav>
      </ul>
+<h2 class="titulo-centro">Ultimos produtos adicionados</h2>
+ <hr>
+
+
+<c:forEach var="produto" items="${Produtos}">
+    <div class="product-box">
+
+        <div class="product-image">
+            <img src="${produto.imagePATH}" alt="Imagem do Produto">
+        </div>
+        <div class="product-details">
+            <h2>${produto.nomeProduto}</h2>
+            <p class="product-description">${produto.descricaoDetalhada}</p>
+            <span class="product-rating" id="product-rating-1"></span>
+            <br>
+            <p class="product-price">R$: <span>${produto.precoProduto}</span></p>
+
+            <h2>${produto.avaliacao}</h2>
+
+            <a class="buy-button">
+                COMPRAR
+            </a>
+        </div>
+    </div>
+</c:forEach>
+
 
 
     <footer>

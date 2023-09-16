@@ -24,7 +24,7 @@ public class ListarTop8ProdutosServlet extends HttpServlet {
 
                     request.setAttribute("Produtos", produtos);
 
-                    request.getRequestDispatcher("Principal.jsp").forward(request, response);
+                    request.getRequestDispatcher("PrincipalCliente.jsp").forward(request, response);
         }
 
     }
