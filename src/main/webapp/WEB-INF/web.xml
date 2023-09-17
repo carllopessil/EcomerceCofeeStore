@@ -21,14 +21,16 @@
     <url-pattern>/console/*</url-pattern>
   </servlet-mapping>
 
-  <welcome-file-list>
-    <welcome-file>Login.jsp</welcome-file>
-  </welcome-file-list>
+  <!-- Remova a entrada <welcome-file-list> existente -->
 
-<!--  <servlet>-->
-<!--    <servlet-name>DatabaseServlet</servlet-name>-->
-<!--    <servlet-class>br.com.gymcontrol.servlet.DatabaseServlet</servlet-class>-->
-<!--    <load-on-startup>1</load-on-startup>-->
-<!--  </servlet>-->
+  <servlet>
+    <servlet-name>DefaultServlet</servlet-name>
+    <servlet-class>Servlet.ListarTop8ProdutosServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DefaultServlet</servlet-name>
+    <url-pattern></url-pattern>
+  </servlet-mapping>
 
 </web-app>
