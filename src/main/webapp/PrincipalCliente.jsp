@@ -10,6 +10,32 @@
     <meta charset="UTF-8">
     <title>Tela Inicial Cliente</title>
     <link rel="stylesheet" href="css/Principal.css">
+        <style>
+            .product-description {
+                max-width: 300px; /* Defina o valor máximo de largura desejado */
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+            .product-image {
+                width: 300px; /* Defina o tamanho horizontal desejado */
+                height: 300px; /* Mantenha o mesmo valor que o tamanho horizontal para manter a imagem quadrada */
+                overflow: hidden;
+            }
+
+            .product-image img {
+                width: 100%; /* Ajusta a largura da imagem para preencher a div de imagem */
+                height: auto; /* Altura automática para manter a proporção original da imagem */
+            }
+                .product-description, .product-name {
+                    max-width: 300px; /* Defina o valor máximo de largura desejado */
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                }
+
+        </style>
+
 </head>
 <body>
     <div class="slideshow-container">
@@ -54,7 +80,8 @@
             <img src="${produto.imagePATH}" alt="Imagem do Produto">
         </div>
         <div class="product-details">
-            <h2>${produto.nomeProduto}</h2>
+            <h2 class="product-name">${produto.nomeProduto}</h2>
+
             <p class="product-description">${produto.descricaoDetalhada}</p>
             <span class="product-rating" id="product-rating-1"></span>
             <br>
