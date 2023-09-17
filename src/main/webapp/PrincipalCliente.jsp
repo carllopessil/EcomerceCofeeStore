@@ -88,9 +88,7 @@
             <p class="product-price">R$: <span>${produto.precoProduto}</span></p>
 
             <h2>${produto.avaliacao}</h2>
-
-            <a class="buy-button">
-                COMPRAR
+ <a class="buy-button" href="ComprarCliente?produtoID=<c:out value='${produto.produtoID}' />">                COMPRAR
             </a>
         </div>
     </div>
