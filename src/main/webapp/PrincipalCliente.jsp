@@ -9,7 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Tela Inicial Cliente</title>
-    <link rel="stylesheet" href="css/Principal.css">
+    <link rel="stylesheet" href="css/PrincipalCliente.css">
         <style>
             .product-description {
                 max-width: 300px; /* Defina o valor máximo de largura desejado */
@@ -47,35 +47,32 @@
         <ul class="menu">
             <li class="menu-logo">
                 <img src="img/Logo de cafe.png">
-                <h1>BEM-VINDO AO BREWMASTERS CAFÉ.BACKOFFICE</h1>
+                <h1>BEM-VINDO AO BREWMASTERS CAFÉ </h1>
             </li>
 
         <div class="container">
             <div class="form-container">
                 <div class="btn-container">
-                    <form action="/ListarProdutos_2" method="get">
-                        <button class="btn-primary" type="submit">Lista de Produtos</button>
-                    </form>
-                    <hr>
 
-                    <form action="/ListarUsuarioBackOffice_2" method="get">
-                        <button class="btn-primary" type="submit">Buscar usuários dos sistemas</button>
+                    <form action="" method="get">
+                        <button class="btn-primary" type="submit">👤<p> Faça login ou crie seu login<p/></button>
                     </form>
-
 
                 </div>
             </div>
         </div>
-        <li><a href="Login.jsp">Sair</a></li>
+
+           <form action="" method="get">
+              <button class="btn-primary1" type="submit">🛒 </button>
+             </form>
     </nav>
      </ul>
-<h2 class="titulo-centro">Ultimos produtos adicionados</h2>
+<h2 class="titulo-centro">Nossos produtos </h2>
  <hr>
 
 
 <c:forEach var="produto" items="${Produtos}">
-    <div class="product-box">
-
+    <div class="product-box product-item">
         <div class="product-image">
             <img src="${produto.imagePATH}" alt="Imagem do Produto">
         </div>
@@ -88,7 +85,7 @@
             <p class="product-price">R$: <span>${produto.precoProduto}</span></p>
 
             <h2>${produto.avaliacao}</h2>
- <a class="buy-button" href="ComprarCliente?produtoID=<c:out value='${produto.produtoID}' />">                COMPRAR
+ <a class="buy-button" href="ComprarCliente?produtoID=<c:out value='${produto.produtoID}' />">            Detalhe
             </a>
         </div>
     </div>
