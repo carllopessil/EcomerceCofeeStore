@@ -1,13 +1,14 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
+   <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>Cadastro de Produto</title>
-
-    <link rel="stylesheet" href="css/style.css">
+</head>
+<%--    <link rel="stylesheet" href="css/style.css">--%>
+    <link rel="stylesheet" href="css/CadastroDeProduto.css">
     <%--    <link rel="stylesheet" href="css/CadastroDeProduto.css">--%>
     <%--    <link rel="stylesheet" href="css/Bootstrap.min.css">--%>
     <style>
@@ -15,7 +16,7 @@
             margin-bottom: 10px;
         }
     </style>
-</head>
+
 <body>
 <div id="container">
     <nav>
@@ -34,8 +35,8 @@
             Cadastro de Produto
         </h1>
     </section>
-
-    <form action="CadastroProdutoServlet" method="post" enctype="multipart/form-data">
+    
+    <form action="CadastroProdutoServlet" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
         <p>Nome do Produto:</p> <input type="text" name="nomeProduto" required><br>
         <input type="hidden" name="status" value="1">
         <p>Avaliação: </p>  <input type="number" name="avaliacao" min="1" max="5" step="0.1" required><br>

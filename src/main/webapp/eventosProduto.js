@@ -46,8 +46,3 @@
     function closeModal() {
       modal.classList.remove('active')
     }
-
-
-
-
-

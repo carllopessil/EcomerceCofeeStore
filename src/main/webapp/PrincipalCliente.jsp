@@ -65,9 +65,10 @@
            <form action="" method="get">
               <button class="btn-primary1" type="submit">🛒 </button>
              </form>
+        </ul>
     </nav>
-     </ul>
-<h2 class="titulo-centro">Nossos produtos </h2>
+    
+    <h2 class="titulo-centro">Nossos produtos </h2>
  <hr>
 
 
