@@ -151,9 +151,6 @@
 				%>
 			</p>
 			<p>Preço R$: <%= precoProduto %>
-			</p>
-			<p>Quantidade em Estoque: <%= qtdEstoque %>
-			</p>
 		</div>
 		
 		<a class="buy-button" disabled>Comprar</a>
