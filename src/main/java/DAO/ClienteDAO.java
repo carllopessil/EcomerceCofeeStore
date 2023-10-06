@@ -1,6 +1,6 @@
 package DAO;
 
-public class Cliente{
+public class ClienteDAO {
     private int id;
     private String nomeCompleto;
     private String email;
