@@ -53,6 +53,7 @@
         <div class="container">
             <div class="form-container">
                 <div class="btn-container">
+    <li><a href="CadastrarCliente.jsp">Voltar </a></li>
 
                     <form action="" method="get">
                         <button class="btn-primary" type="submit">👤<p> Faça login ou crie seu login<p/></button>
@@ -86,7 +87,7 @@
             <p class="product-price">R$: <span>${produto.precoProduto}</span></p>
 
             <h2>${produto.avaliacao}</h2>
- <a class="buy-button" href="ComprarCliente?produtoID=<c:out value='${produto.produtoID}' />">            Detalhe
+ <a class="buy-button" href="ComprarCliente?produtoID=<c:out value='${produto.produtoID}' />"> Detalhes
             </a>
         </div>
     </div>
