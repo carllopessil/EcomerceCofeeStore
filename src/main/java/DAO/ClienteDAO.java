@@ -133,5 +133,37 @@ public class ClienteDAO {
         }
     }
 
+    public Cliente getClienteByEmail(String email) {
+        String SQL = "SELECT * FROM Cliente WHERE email = ?";
+
+        try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
+
+            preparedStatement.setString(1, email);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String nomeCompleto = resultSet.getString("nomeCompleto");
+                String cpf = resultSet.getString("cpf");
+                String senha = resultSet.getString("senha");
+                String cepFaturamento = resultSet.getString("cepFaturamento");
+                String logradouroFaturamento = resultSet.getString("logradouroFaturamento");
+                int numeroFaturamento = resultSet.getInt("numeroFaturamento");
+                String complementoFaturamento = resultSet.getString("complementoFaturamento");
+                String bairroFaturamento = resultSet.getString("bairroFaturamento");
+                String cidadeFaturamento = resultSet.getString("cidadeFaturamento");
+                String ufFaturamento = resultSet.getString("ufFaturamento");
+
+                return new Cliente(id, nomeCompleto, email, cpf, senha, cepFaturamento, logradouroFaturamento, numeroFaturamento, complementoFaturamento, bairroFaturamento, cidadeFaturamento, ufFaturamento);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Erro ao buscar cliente por email: " + e.getMessage());
+        }
+
+        return null;
+    }
 
 }
