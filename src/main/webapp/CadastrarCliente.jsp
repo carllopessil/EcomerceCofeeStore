@@ -74,7 +74,7 @@
         <label for="numeroFaturamento">Número Faturamento:</label>
          <input type="número" name="numeroFaturamento" required><br>
 
-         <label for="complementoFaturamento">Número Faturamento:</label>
+         <label for="complementoFaturamento">Complemento Faturamento:</label>
                   <input type="text" name="complementoFaturamento" required><br>
 
         <label for="bairroFaturamento">Bairro Faturamento:</label>

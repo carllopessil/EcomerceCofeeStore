@@ -19,7 +19,7 @@ import static DAO.ClienteDAO.validarCPF;
 public class CadastrarClienteServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Cliente cliente = new Cliente();
-
+        EnderecoDAO enderecoDAO = new EnderecoDAO();
 
         String nomeCompleto = request.getParameter("nomeCompleto");
         String email = request.getParameter("email");
@@ -71,8 +71,15 @@ public class CadastrarClienteServlet extends HttpServlet {
 
         ClienteDAO clienteDAO = new ClienteDAO();
         boolean cadastroSucesso = clienteDAO.CadastrarCliente(cliente);
+        int idCliente = cliente.getId();
+//        Endereco enderecoPadrao = new Endereco(cepFaturamento, logradouroFaturamento, numeroFaturamento, complementoFaturamento, bairroFaturamento, cidadeFaturamento, ufFaturamento, 0, idCliente);
+        if (cadastroSucesso) {
+            enderecoDAO.inserirEnderecoInicial(cepFaturamento, logradouroFaturamento, numeroFaturamento, complementoFaturamento, bairroFaturamento, cidadeFaturamento, ufFaturamento, idCliente);
 
-        EnderecoDAO enderecoDAO = new EnderecoDAO();
+            int idEnderecoPadrao = enderecoDAO.pegaIdEndereçoPadrão(cliente.getId());
+            enderecoDAO.atualizarIdEnderecoPadrao(idCliente, idEnderecoPadrao);
+
+        }
 
         if (cadastroSucesso) {
             List<Endereco> enderecosAdicionais = new ArrayList<>();
