@@ -28,7 +28,7 @@ public class LoginClienteServlet extends HttpServlet {
             response.sendRedirect("perfilCliente.jsp");
         } else {
             // Login falhou, redirecionar de volta para a página de login com uma mensagem de erro
-            request.setAttribute("mensagemErro", "Credenciais inválidas. Tente novamente.");
+            request.setAttribute("mensagemErro", "Credenciais inválidas. não localizamos o usuário e/ou senha. Tente novamente.");
             request.getRequestDispatcher("LoginCliente.jsp").forward(request, response);
         }
     }

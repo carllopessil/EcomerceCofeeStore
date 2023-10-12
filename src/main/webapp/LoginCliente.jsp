@@ -11,5 +11,10 @@
         Senha: <input type="password" name="senha"><br>
         <input type="submit" value="Entrar">
     </form>
+
+    <% String mensagemErro = (String) request.getAttribute("mensagemErro");
+       if (mensagemErro != null) { %>
+        <p><%= mensagemErro %></p>
+    <% } %>
 </body>
 </html>
