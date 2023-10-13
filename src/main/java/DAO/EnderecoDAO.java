@@ -163,11 +163,47 @@ public class EnderecoDAO {
         }
     }
 
+    public boolean adicionarEnderecos(int clienteId, List<Endereco> enderecos) {
+
+        PreparedStatement preparedStatement = null;
+
+        try { Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+                    // Crie uma instrução SQL para inserir um endereço
+                    String sql = "INSERT INTO endereco (cliente_id, cep, logradouro, numero, complemento, bairro, cidade, uf) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            preparedStatement = connection.prepareStatement(sql);
+
+            for (Endereco endereco : enderecos) {
+                preparedStatement.setInt(1, clienteId);
+                preparedStatement.setString(2, endereco.getCep());
+                preparedStatement.setString(3, endereco.getLogradouro());
+                preparedStatement.setInt(4, endereco.getNumero());
+                preparedStatement.setString(5, endereco.getComplemento());
+                preparedStatement.setString(6, endereco.getBairro());
+                preparedStatement.setString(7, endereco.getCidade());
+                preparedStatement.setString(8, endereco.getUf());
+
+                preparedStatement.addBatch(); // Adicione a instrução à batch
+            }
+
+            // Execute a batch de inserção
+            preparedStatement.executeBatch();
+
+            return true; // Sucesso
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false; // Falha
+        } finally {
+            // Feche a conexão e o preparedStatement
+            // Lide com exceções, se necessário
+        }
+    }
+
+
     public void adicionarEndereco(int clienteId, Endereco endereco) {
         try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa")){
 
 
-                    String sql = "INSERT INTO Endereco (cep, logradouro, numero, complemento, bairro, cidade, uf, enderecoAtivo, idCliente) " +
+            String sql = "INSERT INTO Endereco (cep, logradouro, numero, complemento, bairro, cidade, uf, enderecoAtivo, idCliente) " +
                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
             PreparedStatement preparedStatement = connection.prepareStatement(sql);

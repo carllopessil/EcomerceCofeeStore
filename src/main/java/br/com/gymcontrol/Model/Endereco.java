@@ -29,6 +29,16 @@ public class Endereco {
         this.idCliente = idCliente;
     }
 
+    public Endereco(String cep, String logradouro, int numero, String complemento, String bairro, String cidade, String uf) {
+        this.cep = cep;
+        this.logradouro = logradouro;
+        this.numero = numero;
+        this.complemento = complemento;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.uf = uf;
+    }
+
     // Getter e Setter para 'id'
     public int getId() {
         return id;

@@ -3,43 +3,47 @@ package Servlet;
 import DAO.EnderecoDAO;
 import br.com.gymcontrol.Model.Endereco;
 
+import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-
-@WebServlet("/AdicionarEnderecoServlet")
+import javax.servlet.http.HttpServletResponse;@WebServlet("/AdicionarEnderecoServlet")
 public class AdicionarEnderecoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action = request.getParameter("action");
+        // Recupere os parâmetros do request para cada endereço adicionado
+        String[] ceps = request.getParameterValues("cepAdicional");
+        String[] logradouros = request.getParameterValues("logradouroAdicional");
+        String[] numeros = request.getParameterValues("numeroAdicional");
+        String[] complementos = request.getParameterValues("complementoAdicional");
+        String[] bairros = request.getParameterValues("bairroAdicional");
+        String[] cidades = request.getParameterValues("cidadeAdicional");
+        String[] ufs = request.getParameterValues("ufAdicional");
 
+        // Recupere o ID do cliente da sessão ou de onde quer que ele venha
         int clienteId = Integer.parseInt(request.getParameter("clienteId"));
-        String cep = request.getParameter("cep");
-        String logradouro = request.getParameter("logradouro");
-        int numero = Integer.parseInt(request.getParameter("numero"));
-        String complemento = request.getParameter("complemento");
-        String bairro = request.getParameter("bairro");
-        String cidade = request.getParameter("cidade");
-        String uf = request.getParameter("uf");
 
-        Endereco endereco = new Endereco();
-        endereco.setCep(cep);
-        endereco.setLogradouro(logradouro);
-        endereco.setNumero(numero);
-        endereco.setComplemento(complemento);
-        endereco.setBairro(bairro);
-        endereco.setCidade(cidade);
-        endereco.setUf(uf);
 
+        // Instancie a classe DAO
         EnderecoDAO enderecoDAO = new EnderecoDAO();
-        enderecoDAO.adicionarEndereco(clienteId, endereco);
 
-        if ("Salvar e Continuar".equals(action)) {
-            response.sendRedirect("adicionarEnderecoCliente.jsp");
-        } else if ("Salvar e Voltar".equals(action)) {
-            response.sendRedirect("perfilCliente.jsp");
+        // Para cada endereço adicionado, crie um objeto Endereco e insira no banco de dados
+        for (int i = 0; i < ceps.length; i++) {
+            Endereco endereco = new Endereco();
+            endereco.setCep(ceps[i]);
+            endereco.setLogradouro(logradouros[i]);
+            endereco.setNumero(Integer.parseInt(numeros[i]));
+            endereco.setComplemento(complementos[i]);
+            endereco.setBairro(bairros[i]);
+            endereco.setCidade(cidades[i]);
+            endereco.setUf(ufs[i]);
+            endereco.setIdCliente(clienteId);
+
+            // Chame o método da DAO para inserir o endereço no banco de dados
+            enderecoDAO.adicionarEndereco(clienteId, endereco);
         }
+
+        // Redirecione para a página de sucesso ou outra página apropriada
+        response.sendRedirect("sucesso.jsp");
     }
 }
