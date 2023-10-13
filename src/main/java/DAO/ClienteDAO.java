@@ -30,9 +30,16 @@ public class ClienteDAO {
         String SQL = "INSERT INTO Cliente (nomeCompleto, email, cpf, senha, cepFaturamento, logradouroFaturamento, numeroFaturamento, complementoFaturamento, bairroFaturamento, cidadeFaturamento, ufFaturamento) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
+
         try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
              PreparedStatement preparedStatement = connection.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS)) {
 
+
+            String email = CadastrarCliente.getEmail();
+
+            if (isEmailCadastrado(email)) {
+                return false; // Indica que o e-mail já está cadastrado
+            }
             String hashedSenha = BCrypt.hashpw(CadastrarCliente.getSenha(), BCrypt.gensalt());
             preparedStatement.setString(1, CadastrarCliente.getNomeCompleto());
             preparedStatement.setString(2, CadastrarCliente.getEmail());
@@ -66,7 +73,8 @@ public class ClienteDAO {
         } catch (Exception e) {
             System.out.println("Erro ao cadastrar o usuário: " + e.getMessage());
             return false;
-        }
+
+         }
     }
     public static boolean validarCPF(String cpf) {
 // Remova caracteres não numéricos do CPF

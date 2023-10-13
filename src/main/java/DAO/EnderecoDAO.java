@@ -3,6 +3,8 @@ package DAO;
 import br.com.gymcontrol.Model.Endereco;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class EnderecoDAO {
@@ -95,4 +97,71 @@ public class EnderecoDAO {
             return false;
         }
     }
+    public static List<Endereco> obterEnderecosCliente(int IdCliente) {
+        String sql = "SELECT * FROM Endereco WHERE IdCliente = ? AND enderecoAtivo = true";
+
+        try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setInt(1, IdCliente);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            List<Endereco> enderecos = new ArrayList<>();
+
+            while (resultSet.next()) {
+
+                int idEndereco = resultSet.getInt("id");
+                String cep = resultSet.getString("cep");
+                String logradouro = resultSet.getString("logradouro");
+                int numero = resultSet.getInt("numero");
+                String complemento = resultSet.getString("complemento");
+                String bairro = resultSet.getString("bairro");
+                String cidade = resultSet.getString("cidade");
+                String uf = resultSet.getString("uf");
+                boolean enderecoAtivo = resultSet.getBoolean("enderecoAtivo");
+                int idCliente = resultSet.getInt("IdCliente");
+
+
+                Endereco enderecos_envio = new Endereco(idEndereco, cep, logradouro, numero, complemento, bairro, cidade, uf, enderecoAtivo, idCliente);
+
+                enderecos.add(enderecos_envio);
+
+            }
+
+            System.out.println("success in select * Produtos");
+
+            connection.close();
+
+            return enderecos;
+
+        } catch (SQLException e) {
+            System.out.println("Erro ao buscar produtos paginados: " + e.getMessage());
+            e.printStackTrace();
+            return Collections.emptyList();
+        }
+    }
+
+
+    public boolean alterarStatusEndereco(int enderecoId, boolean novoStatus) {
+        String sql = "UPDATE Endereco SET enderecoAtivo = ? WHERE id = ?";
+
+        try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setBoolean(1, novoStatus);
+            preparedStatement.setInt(2, enderecoId);
+
+            int linhasAfetadas = preparedStatement.executeUpdate();
+
+            return linhasAfetadas > 0;
+
+        } catch (SQLException e) {
+            System.out.println("Erro ao alterar status do endereço: " + e.getMessage());
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }
+

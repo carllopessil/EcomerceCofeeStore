@@ -54,6 +54,9 @@
             <div class="form-container">
                 <div class="btn-container">
     <li><a href="CadastrarCliente.jsp">Voltar </a></li>
+         <form action="ListarEnderecosCliente">
+               <input type="submit" value="Ver Meus Endereços">
+           </form>
 
                     <form action="" method="get">
                         <button class="btn-primary" type="submit">👤<p> Faça login ou crie seu login<p/></button>

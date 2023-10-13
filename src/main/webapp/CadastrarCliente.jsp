@@ -27,11 +27,11 @@
     <% } %>
 
     <% String mensagemAlerta = (String) request.getAttribute("mensagemAlerta"); %>
-    <% if (mensagemAlerta != null) { %>
-        <div class="alert alert-danger">
-            <%= mensagemAlerta %>
-        </div>
-    <% } %>
+                <% if (mensagemAlerta != null) { %>
+            <div class="alert alert-danger">
+                <%= mensagemAlerta %>
+            </div>
+                <% } %>
 
     <form action="/CadastrarClienteServlet" method="post">
 
@@ -259,7 +259,9 @@
 
    $(document).ready(function() {
                $("#buscarCEP").click(function() {
+
                    var cep = $("#cepFaturamento").val();
+            cep = cep.replace('-', '');
 
                    // Verifique se o CEP possui 8 dígitos
                    if (cep.length !== 8) {
@@ -287,7 +289,9 @@
 
 function buscarCEPAdicional(botao) {
     var divEndereco = botao.parentElement;
+
     var cepAdicional = divEndereco.querySelector("#cepAdicional").value;
+    cepAdicional = cepAdicional.replace('-', '');
 
      // Verifique se o CEP possui 8 dígitos
      if (cepAdicional.length !== 8) {

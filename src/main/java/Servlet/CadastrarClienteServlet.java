@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import static DAO.ClienteDAO.isEmailCadastrado;
 import static DAO.ClienteDAO.validarCPF;
 @WebServlet("/CadastrarClienteServlet")
 public class CadastrarClienteServlet extends HttpServlet {
@@ -56,6 +57,7 @@ public class CadastrarClienteServlet extends HttpServlet {
             return;
         }
 
+
         cliente.setNomeCompleto(nomeCompleto);
         cliente.setEmail(email);
         cliente.setCpf(cpfSemMascara);
@@ -78,6 +80,13 @@ public class CadastrarClienteServlet extends HttpServlet {
 
             int idEnderecoPadrao = enderecoDAO.pegaIdEndereçoPadrão(cliente.getId());
             enderecoDAO.atualizarIdEnderecoPadrao(idCliente, idEnderecoPadrao);
+
+        }else{
+
+                System.out.println("E-mail já cadastrado. Não será possível cadastrar.");
+                request.setAttribute("mensagemAlerta", "E-mail já cadastrado. Por favor, escolha outro e-mail.");
+                request.getRequestDispatcher("CadastrarCliente.jsp").forward(request, response);
+                return;
 
         }
 
@@ -115,13 +124,14 @@ public class CadastrarClienteServlet extends HttpServlet {
                 boolean sucessoEnderecos = enderecoDAO.inserirEnderecos(enderecosAdicionais);
 
                 if (sucessoEnderecos) {
-                    request.setAttribute("mensagemSucesso", "Usuário cadastrado com sucesso!");
+                    request.getRequestDispatcher("LoginCliente.jsp").forward(request, response);
                 } else {
                     request.setAttribute("mensagemAlerta", "Erro ao cadastrar os endereços.");
                 }
             } else {
-                request.setAttribute("mensagemSucesso", "Usuário cadastrado com sucesso, mas nenhum endereço adicional foi fornecido.");
+                request.getRequestDispatcher("LoginCliente.jsp").forward(request, response);
             }
+
         }
     }
 }
