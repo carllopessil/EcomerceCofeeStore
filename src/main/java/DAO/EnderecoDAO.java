@@ -163,5 +163,31 @@ public class EnderecoDAO {
         }
     }
 
+    public void adicionarEndereco(int clienteId, Endereco endereco) {
+        try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa")){
+
+
+                    String sql = "INSERT INTO Endereco (cep, logradouro, numero, complemento, bairro, cidade, uf, enderecoAtivo, idCliente) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, endereco.getCep());
+            preparedStatement.setString(2, endereco.getLogradouro());
+            preparedStatement.setInt(3, endereco.getNumero());
+            preparedStatement.setString(4, endereco.getComplemento());
+            preparedStatement.setString(5, endereco.getBairro());
+            preparedStatement.setString(6, endereco.getCidade());
+            preparedStatement.setString(7, endereco.getUf());
+            preparedStatement.setBoolean(8, true); // Defina o valor apropriado para "enderecoAtivo"
+            preparedStatement.setInt(9, clienteId);
+
+            preparedStatement.executeUpdate();
+
+            preparedStatement.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
