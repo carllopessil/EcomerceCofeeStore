@@ -33,14 +33,34 @@
             </div>
                 <% } %>
 
-    <form action="/CadastrarClienteServlet" method="post">
+                <%
+                String mensagemAlertaEmail = (String)request.getAttribute("mensagemAlertaEmail");
+                if (mensagemAlertaEmail != null && !mensagemAlertaEmail.isEmpty()) {
+                %>
+                    <div class="alert alert-danger" role="alert">
+                        <%= mensagemAlertaEmail %>
+                    </div>
+                <% } %>
 
+   <form action="/CadastrarClienteServlet" method="post" onsubmit="return validarNome();">
 
-<label for="nomeCompleto">Nome Completo:</label>
- <input type="text" name="nomeCompleto" required><br>
+   <label for="nomeCompleto">Nome Completo:</label>
+       <input type="text" name="nomeCompleto" id="nomeCompleto" required><br>
+       <div id="mensagemAlertaNome" style="color: red;"></div>
+
+       <label for="dataNascimento">Data de Nascimento:</label>
+       <input type="date" name="dataNascimento" required><br>
+
+       <label for="genero">Gênero:</label>
+       <select name="genero" required>
+       <option value="masculino">Masculino</option>
+       <option value="feminino">Feminino</option>
+       <option value="outro">Outro</option>
+       </select><br>
 
 <label for="email">Email:</label>
  <input type="email" name="email" required><br>
+
 
 <label for="cpf">CPF:</label>
  <input type="text" name="cpf" id="cpf" placeholder="000.000.000.-00" necessário
@@ -312,6 +332,19 @@ function buscarCEPAdicional(botao) {
          }
      });
  }
+
+
+function validarNome() {
+    var nomeCompleto = document.getElementById("nomeCompleto").value;
+    var partesNome = nomeCompleto.split(" ");
+
+    if (partesNome.length < 2 || partesNome[0].length < 3 || partesNome[1].length < 3) {
+        document.getElementById("mensagemAlertaNome").innerText = "O nome do cliente deve ter no mínimo duas palavras, cada uma com no mínimo 3 letras.";
+        return false;
+    }
+
+    return true;
+}
 
     </script>
 </body>

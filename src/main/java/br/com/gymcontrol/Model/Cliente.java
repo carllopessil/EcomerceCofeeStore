@@ -1,9 +1,14 @@
 package br.com.gymcontrol.Model;
 
+import java.sql.Date;
+
 public class Cliente {
     private int id;
     private String nomeCompleto;
     private String email;
+    private Date dataNascimento;
+    private String genero;
+
     private String cpf;
     private String senha;
     private String cepFaturamento;
@@ -17,10 +22,12 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(int id, String nomeCompleto, String email, String cpf, String senha, String cepFaturamento, String logradouroFaturamento, int numeroFaturamento, String complementoFaturamento, String bairroFaturamento, String cidadeFaturamento, String ufFaturamento) {
+    public Cliente(int id, String nomeCompleto, String email, Date dataNascimento, String genero, String cpf, String senha, String cepFaturamento, String logradouroFaturamento, int numeroFaturamento, String complementoFaturamento, String bairroFaturamento, String cidadeFaturamento, String ufFaturamento) {
         this.id = id;
         this.nomeCompleto = nomeCompleto;
         this.email = email;
+        this.dataNascimento = dataNascimento;
+        this.genero = genero;
         this.cpf = cpf;
         this.senha = senha;
         this.cepFaturamento = cepFaturamento;
@@ -128,5 +135,19 @@ public class Cliente {
         this.ufFaturamento = ufFaturamento;
     }
 
+    public Date getDataNascimento() {
+        return dataNascimento;
+    }
 
+    public void setDataNascimento(Date dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
 }

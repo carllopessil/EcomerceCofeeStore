@@ -27,8 +27,8 @@ public class ClienteDAO {
     }
 
     public boolean CadastrarCliente(Cliente CadastrarCliente) {
-        String SQL = "INSERT INTO Cliente (nomeCompleto, email, cpf, senha, cepFaturamento, logradouroFaturamento, numeroFaturamento, complementoFaturamento, bairroFaturamento, cidadeFaturamento, ufFaturamento) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String SQL = "INSERT INTO Cliente (nomeCompleto, email, dataNascimento, genero, cpf, senha, cepFaturamento, logradouroFaturamento, numeroFaturamento, complementoFaturamento, bairroFaturamento, cidadeFaturamento, ufFaturamento) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 
         try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
@@ -43,15 +43,20 @@ public class ClienteDAO {
             String hashedSenha = BCrypt.hashpw(CadastrarCliente.getSenha(), BCrypt.gensalt());
             preparedStatement.setString(1, CadastrarCliente.getNomeCompleto());
             preparedStatement.setString(2, CadastrarCliente.getEmail());
-            preparedStatement.setString(3, CadastrarCliente.getCpf());
-            preparedStatement.setString(4, hashedSenha);
-            preparedStatement.setString(5, CadastrarCliente.getCepFaturamento());
-            preparedStatement.setString(6, CadastrarCliente.getLogradouroFaturamento());
-            preparedStatement.setInt(7, CadastrarCliente.getNumeroFaturamento());
-            preparedStatement.setString(8, CadastrarCliente.getComplementoFaturamento());
-            preparedStatement.setString(9, CadastrarCliente.getBairroFaturamento());
-            preparedStatement.setString(10, CadastrarCliente.getCidadeFaturamento());
-            preparedStatement.setString(11, CadastrarCliente.getUfFaturamento());
+
+            preparedStatement.setDate(3, CadastrarCliente.getDataNascimento());
+
+            preparedStatement.setString(4, CadastrarCliente.getGenero());
+
+            preparedStatement.setString(5, CadastrarCliente.getCpf());
+            preparedStatement.setString(6, hashedSenha);
+            preparedStatement.setString(7, CadastrarCliente.getCepFaturamento());
+            preparedStatement.setString(8, CadastrarCliente.getLogradouroFaturamento());
+            preparedStatement.setInt(9, CadastrarCliente.getNumeroFaturamento());
+            preparedStatement.setString(10, CadastrarCliente.getComplementoFaturamento());
+            preparedStatement.setString(11, CadastrarCliente.getBairroFaturamento());
+            preparedStatement.setString(12, CadastrarCliente.getCidadeFaturamento());
+            preparedStatement.setString(13, CadastrarCliente.getUfFaturamento());
 
             int affectedRows = preparedStatement.executeUpdate();
 
@@ -155,6 +160,11 @@ public class ClienteDAO {
                 int id = resultSet.getInt("id");
                 String nomeCompleto = resultSet.getString("nomeCompleto");
                 String cpf = resultSet.getString("cpf");
+                Date dataNascimento = resultSet.getDate("dataNascimento");
+                String genero = resultSet.getString("genero");
+
+
+
                 String senha = resultSet.getString("senha");
                 String cepFaturamento = resultSet.getString("cepFaturamento");
                 String logradouroFaturamento = resultSet.getString("logradouroFaturamento");
@@ -164,7 +174,7 @@ public class ClienteDAO {
                 String cidadeFaturamento = resultSet.getString("cidadeFaturamento");
                 String ufFaturamento = resultSet.getString("ufFaturamento");
 
-                return new Cliente(id, nomeCompleto, email, cpf, senha, cepFaturamento, logradouroFaturamento, numeroFaturamento, complementoFaturamento, bairroFaturamento, cidadeFaturamento, ufFaturamento);
+                return new Cliente(id, nomeCompleto, email, dataNascimento, genero, cpf, senha, cepFaturamento, logradouroFaturamento, numeroFaturamento, complementoFaturamento, bairroFaturamento, cidadeFaturamento, ufFaturamento);
             }
 
         } catch (Exception e) {

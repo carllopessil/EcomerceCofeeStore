@@ -6,7 +6,10 @@ import DAO.ClienteDAO;
 import br.com.gymcontrol.Model.Endereco;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,9 +27,33 @@ public class CadastrarClienteServlet extends HttpServlet {
 
         String nomeCompleto = request.getParameter("nomeCompleto");
         String email = request.getParameter("email");
+
+        if (ClienteDAO.isEmailCadastrado(email)) {
+            request.setAttribute("mensagemAlertaEmail", "E-mail já cadastrado. Por favor, escolha outro e-mail.");
+            request.getRequestDispatcher("CadastrarCliente.jsp").forward(request, response);
+
+            return; // Encerra o processo se o e-mail já estiver cadastrado
+        }
+        String dataNascimentoStr = request.getParameter("dataNascimento");
+
+        java.sql.Date sqlDate = java.sql.Date.valueOf(dataNascimentoStr);
+
+
+        String genero = request.getParameter("genero");
+
+
         String cpfComMascara = request.getParameter("cpf");
         String senha = request.getParameter("senha");
-        String cepFaturamento = request.getParameter("cepFaturamento");
+
+
+        String cepComMascara = request.getParameter("cepFaturamento");
+        String cepSemMascara = cepComMascara.replaceAll("\\D", ""); // Remove todos os caracteres não numéricos
+
+        if (cepSemMascara.length() != 8) {
+            // Trate o erro aqui, por exemplo, enviando uma mensagem de erro para o cliente
+            response.getWriter().write("Erro: O CEP deve conter exatamente 8 dígitos.");
+            return;
+        }
         String logradouroFaturamento = request.getParameter("logradouroFaturamento");
         int numeroFaturamento = Integer.parseInt(request.getParameter("numeroFaturamento"));
         String complementoFaturamento = request.getParameter("complementoFaturamento");
@@ -61,8 +88,10 @@ public class CadastrarClienteServlet extends HttpServlet {
         cliente.setNomeCompleto(nomeCompleto);
         cliente.setEmail(email);
         cliente.setCpf(cpfSemMascara);
+        cliente.setDataNascimento(sqlDate);
+        cliente.setGenero(genero);
         cliente.setSenha(senha);
-        cliente.setCepFaturamento(cepFaturamento);
+        cliente.setCepFaturamento(cepSemMascara);
         cliente.setLogradouroFaturamento(logradouroFaturamento);
         cliente.setNumeroFaturamento(numeroFaturamento);
         cliente.setComplementoFaturamento(complementoFaturamento);
@@ -76,17 +105,11 @@ public class CadastrarClienteServlet extends HttpServlet {
         int idCliente = cliente.getId();
 //        Endereco enderecoPadrao = new Endereco(cepFaturamento, logradouroFaturamento, numeroFaturamento, complementoFaturamento, bairroFaturamento, cidadeFaturamento, ufFaturamento, 0, idCliente);
         if (cadastroSucesso) {
-            enderecoDAO.inserirEnderecoInicial(cepFaturamento, logradouroFaturamento, numeroFaturamento, complementoFaturamento, bairroFaturamento, cidadeFaturamento, ufFaturamento, idCliente);
+            enderecoDAO.inserirEnderecoInicial(cepSemMascara, logradouroFaturamento, numeroFaturamento, complementoFaturamento, bairroFaturamento, cidadeFaturamento, ufFaturamento, idCliente);
 
             int idEnderecoPadrao = enderecoDAO.pegaIdEndereçoPadrão(cliente.getId());
             enderecoDAO.atualizarIdEnderecoPadrao(idCliente, idEnderecoPadrao);
 
-        }else{
-
-                System.out.println("E-mail já cadastrado. Não será possível cadastrar.");
-                request.setAttribute("mensagemAlerta", "E-mail já cadastrado. Por favor, escolha outro e-mail.");
-                request.getRequestDispatcher("CadastrarCliente.jsp").forward(request, response);
-                return;
 
         }
 
@@ -101,12 +124,19 @@ public class CadastrarClienteServlet extends HttpServlet {
             String[] cidadesAdicionais = request.getParameterValues("cidadeAdicional");
             String[] ufsAdicionais = request.getParameterValues("ufAdicional");
 
-
             if (cepsAdicionais != null) {
                 for (int i = 0; i < cepsAdicionais.length; i++) {
                     Endereco endereco = new Endereco();
 
-                    endereco.setCep(cepsAdicionais[i]);
+                    // Remover caracteres especiais do CEP
+                    String cepAdicionalSemMascara = cepsAdicionais[i].replaceAll("\\D", "");
+                    if (cepAdicionalSemMascara.length() != 8) {
+                        request.setAttribute("mensagemAlerta", "Erro: O CEP deve conter exatamente 8 dígitos.");
+                        request.getRequestDispatcher("CadastrarCliente.jsp").forward(request, response);
+                        return;
+                    }
+
+                    endereco.setCep(cepAdicionalSemMascara);
                     endereco.setLogradouro(logradourosAdicionais[i]);
                     endereco.setNumero(Integer.parseInt(numerosAdicionais[i]));
                     endereco.setComplemento(complementosAdicionais[i]);
@@ -127,11 +157,11 @@ public class CadastrarClienteServlet extends HttpServlet {
                     request.getRequestDispatcher("LoginCliente.jsp").forward(request, response);
                 } else {
                     request.setAttribute("mensagemAlerta", "Erro ao cadastrar os endereços.");
+                    request.getRequestDispatcher("CadastrarCliente.jsp").forward(request, response);
                 }
             } else {
                 request.getRequestDispatcher("LoginCliente.jsp").forward(request, response);
             }
-
         }
     }
 }
