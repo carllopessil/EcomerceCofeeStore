@@ -19,6 +19,8 @@
         <p><strong>Bairro de Faturamento:</strong> ${cliente.bairroFaturamento}</p>
         <p><strong>Cidade de Faturamento:</strong> ${cliente.cidadeFaturamento}</p>
         <p><strong>UF de Faturamento:</strong> ${cliente.ufFaturamento}</p>
+                <p><strong>Id endereço padrão:</strong> ${cliente.idEnderecoPadrao}</p>
+
         <form action="LogoutServlet" method="post">
             <input type="submit" value="Logout">
         </form>

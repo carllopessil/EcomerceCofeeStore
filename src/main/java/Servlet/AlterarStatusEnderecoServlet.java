@@ -1,5 +1,6 @@
 package Servlet;
 
+import DAO.ClienteDAO;
 import DAO.EnderecoDAO;
 import br.com.gymcontrol.Model.Cliente;
 
@@ -16,6 +17,10 @@ public class AlterarStatusEnderecoServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+        response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+        response.setDateHeader("Expires", 0); // Proxies.
+
         EnderecoDAO enderecoDAO = new EnderecoDAO();
 
         String enderecoPadraoId = request.getParameter("enderecoPadraoId");
@@ -30,9 +35,18 @@ public class AlterarStatusEnderecoServlet extends HttpServlet {
             boolean sucesso = enderecoDAO.atualizarIdEnderecoPadrao(idLogado, idEnderecoPadrao);
 
             if (sucesso) {
-                response.sendRedirect(request.getContextPath() + "/ListarEnderecosCliente");
+                // Atualiza o cliente na sessão após a alteração
+                cliente.setIdEnderecoPadrao(idEnderecoPadrao);
+                session.setAttribute("cliente", cliente);
+
+                response.sendRedirect(request.getContextPath() + "/");
+                return;
             } else {
-                response.sendRedirect(request.getContextPath() + "/ListarEnderecosCliente");
+                // Atualiza o cliente na sessão após a alteração
+                cliente.setIdEnderecoPadrao(idEnderecoPadrao);
+                session.setAttribute("cliente", cliente);
+                response.sendRedirect(request.getContextPath() + "/");
+                return;
             }
         }
 

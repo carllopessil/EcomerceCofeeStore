@@ -19,6 +19,8 @@ public class Cliente {
     private String cidadeFaturamento;
     private String ufFaturamento;
 
+    private int idEnderecoPadrao;
+
     public Cliente() {
     }
 
@@ -37,6 +39,24 @@ public class Cliente {
         this.bairroFaturamento = bairroFaturamento;
         this.cidadeFaturamento = cidadeFaturamento;
         this.ufFaturamento = ufFaturamento;
+    }
+
+    public Cliente(int id, String nomeCompleto, String email, Date dataNascimento, String genero, String cpf, String senha, String cepFaturamento, String logradouroFaturamento, int numeroFaturamento, String complementoFaturamento, String bairroFaturamento, String cidadeFaturamento, String ufFaturamento, int idEnderecoPadrao) {
+        this.id = id;
+        this.nomeCompleto = nomeCompleto;
+        this.email = email;
+        this.dataNascimento = dataNascimento;
+        this.genero = genero;
+        this.cpf = cpf;
+        this.senha = senha;
+        this.cepFaturamento = cepFaturamento;
+        this.logradouroFaturamento = logradouroFaturamento;
+        this.numeroFaturamento = numeroFaturamento;
+        this.complementoFaturamento = complementoFaturamento;
+        this.bairroFaturamento = bairroFaturamento;
+        this.cidadeFaturamento = cidadeFaturamento;
+        this.ufFaturamento = ufFaturamento;
+        this.idEnderecoPadrao = idEnderecoPadrao;
     }
 
     public int getId() {
@@ -149,5 +169,13 @@ public class Cliente {
 
     public void setGenero(String genero) {
         this.genero = genero;
+    }
+
+    public int getIdEnderecoPadrao() {
+        return idEnderecoPadrao;
+    }
+
+    public void setIdEnderecoPadrao(int idEnderecoPadrao) {
+        this.idEnderecoPadrao = idEnderecoPadrao;
     }
 }

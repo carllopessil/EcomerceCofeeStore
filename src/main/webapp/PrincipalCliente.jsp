@@ -58,7 +58,6 @@
          <form action="ListarEnderecosCliente">
                <input type="submit" value="Ver Meus Endereços">
            </form>
-
                     <form action="LoginCliente.jsp" method="get">
                         <button class="btn-primary" type="submit">👤<p> Faça login ou crie seu login<p/></button>
                     </form>
@@ -66,7 +65,6 @@
                 </div>
             </div>
         </div>
-
            <form action="" method="get">
               <button class="btn-primary1" type="submit">🛒 </button>
              </form>
@@ -96,7 +94,6 @@
         </div>
     </div>
 </c:forEach>
-
 
 <form action="EditarClienteServlet" method="get">
         <input type="submit" value="Editar Informações">

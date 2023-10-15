@@ -174,8 +174,11 @@ public class ClienteDAO {
                 String bairroFaturamento = resultSet.getString("bairroFaturamento");
                 String cidadeFaturamento = resultSet.getString("cidadeFaturamento");
                 String ufFaturamento = resultSet.getString("ufFaturamento");
+                int idEnderecoPadrao = resultSet.getInt("idEnderecoPadrao");
 
-                return new Cliente(id, nomeCompleto, email, dataNascimento, genero, cpf, senha, cepFaturamento, logradouroFaturamento, numeroFaturamento, complementoFaturamento, bairroFaturamento, cidadeFaturamento, ufFaturamento);
+
+
+                return new Cliente(id, nomeCompleto, email, dataNascimento, genero, cpf, senha, cepFaturamento, logradouroFaturamento, numeroFaturamento, complementoFaturamento, bairroFaturamento, cidadeFaturamento, ufFaturamento, idEnderecoPadrao);
             }
 
         } catch (Exception e) {
@@ -236,7 +239,7 @@ public class ClienteDAO {
         }
     }
 
-    public Cliente obterClientePorID(int idCliente) {
+    public static Cliente obterClientePorID(int idCliente) {
         String SQL = "SELECT * FROM Cliente WHERE id = ?";
 
         try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
@@ -248,12 +251,7 @@ public class ClienteDAO {
                 if (resultSet.next()) {
                     Cliente cliente = new Cliente();
                     cliente.setId(resultSet.getInt("id"));
-                    cliente.setNomeCompleto(resultSet.getString("nomeCompleto"));
-                    cliente.setNomeCompleto(resultSet.getString("dataNascimento"));
-                    cliente.setNomeCompleto(resultSet.getString("genero"));
                     cliente.setNomeCompleto(resultSet.getString("idEnderecoPadrao"));
-
-
 
                     return cliente;
                 }

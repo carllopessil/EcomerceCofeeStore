@@ -12,7 +12,14 @@
         <c:forEach var="endereco" items="${enderecos2}">
             <p><strong>ID:</strong> ${endereco.id}</p>
             <p><strong>CEP:</strong> ${endereco.cep}</p>
-            <input type="radio" name="enderecoPadraoId" value="${endereco.id}"> Tornar Padrão
+            <c:choose>
+                    <c:when test="${endereco.id == cliente.idEnderecoPadrao}">
+                        <input type="radio" name="enderecoPadraoId" value="${endereco.id}" checked> Tornar Padrão
+                    </c:when>
+                    <c:otherwise>
+                        <input type="radio" name="enderecoPadraoId" value="${endereco.id}"> Tornar Padrão
+                    </c:otherwise>
+                </c:choose>
 
             <input type="hidden" name="enderecoId" value="${endereco.id}">
 <input type="submit" name="acao" value="excluir ${endereco.id}">Excluir
