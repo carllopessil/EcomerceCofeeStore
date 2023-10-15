@@ -67,7 +67,9 @@
                             <form action="EditarClienteServlet" method="get">
                                     <input type="submit" value="Editar Informações">
                                 </form>
-
+<form action="LogoutServlet" method="post">
+            <input type="submit" value="Logout">
+        </form>
                         </c:when>
                         <c:otherwise>
                             <form action="LoginCliente.jsp" method="get">
