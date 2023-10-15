@@ -54,13 +54,28 @@
         <div class="container">
             <div class="form-container">
                 <div class="btn-container">
-    <li><a href="CadastrarCliente.jsp">Voltar </a></li>
-         <form action="ListarEnderecosCliente">
-               <input type="submit" value="Ver Meus Endereços">
-           </form>
-                    <form action="LoginCliente.jsp" method="get">
-                        <button class="btn-primary" type="submit">👤<p> Faça login ou crie seu login<p/></button>
-                    </form>
+
+
+
+                    <c:choose>
+                        <c:when test="${sessionScope.cliente != null}">
+                        <form action="ListarEnderecosCliente">
+                                       <input type="submit" value="Ver Meus Endereços">
+                                   </form>
+                            <p>Bem-vindo, ${sessionScope.cliente.nomeCompleto}!</p>
+
+                            <form action="EditarClienteServlet" method="get">
+                                    <input type="submit" value="Editar Informações">
+                                </form>
+
+                        </c:when>
+                        <c:otherwise>
+                            <form action="LoginCliente.jsp" method="get">
+                                <button class="btn-primary" type="submit">👤<p> Faça login ou crie seu login<p/></button>
+                            </form>
+                        </c:otherwise>
+                    </c:choose>
+
 
                 </div>
             </div>
@@ -95,9 +110,6 @@
     </div>
 </c:forEach>
 
-<form action="EditarClienteServlet" method="get">
-        <input type="submit" value="Editar Informações">
-    </form>
 
     <footer>
         © 2023 BREWMASTERS CAFÉ. Todos os direitos reservados.

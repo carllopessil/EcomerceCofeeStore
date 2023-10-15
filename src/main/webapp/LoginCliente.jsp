@@ -30,6 +30,9 @@
         <input type="submit" value="Entrar">
     </form>
 
+        <li><a href="CadastrarCliente.jsp">Cadastrar </a></li>
+
+
     <% String mensagemErro = (String) request.getAttribute("mensagemErro");
        if (mensagemErro != null) { %>
         <p1><%= mensagemErro %></p1>
