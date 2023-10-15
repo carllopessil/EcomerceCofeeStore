@@ -4,8 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Login Cliente</title>
+        <link rel="stylesheet" href="css/LoginCliente.css">
 </head>
 <body>
+
+    <div class="fundo">
+
+        <img class="imagem-fundo" src="https://nationalcoffeeblog.files.wordpress.com/2016/09/coffee-animated.gif" alt="GIF from Giphy">
+
+
+    </div>
+
+    <div class="quadrado">
+        <div class="conteudo">
+
+      <li class="menu-logo">
+                <img src="img/Logo de cafe.png">
+                <h1>BEM-VINDO AO BREWMASTERS CAFÉ </h1>
+            </li>
+
+   <h1>Faça seu login <span class="icone-usuario">&#9787;</span> </h1>
     <form action="LoginClienteServlet" method="post">
         Email: <input type="text" name="email"><br>
         Senha: <input type="password" name="senha"><br>
@@ -14,7 +32,11 @@
 
     <% String mensagemErro = (String) request.getAttribute("mensagemErro");
        if (mensagemErro != null) { %>
-        <p><%= mensagemErro %></p>
+        <p1><%= mensagemErro %></p1>
     <% } %>
+    </div>
+    </div>
+
+
 </body>
 </html>
