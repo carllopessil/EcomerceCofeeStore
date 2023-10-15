@@ -23,14 +23,14 @@ public class AdicionarEnderecoServlet extends HttpServlet {
         // Recupere o ID do cliente da sessão ou de onde quer que ele venha
         int clienteId = Integer.parseInt(request.getParameter("clienteId"));
 
-
         // Instancie a classe DAO
         EnderecoDAO enderecoDAO = new EnderecoDAO();
 
         // Para cada endereço adicionado, crie um objeto Endereco e insira no banco de dados
         for (int i = 0; i < ceps.length; i++) {
+            String cepsSemMascara = ceps[i].replaceAll("\\D", "");
             Endereco endereco = new Endereco();
-            endereco.setCep(ceps[i]);
+            endereco.setCep(cepsSemMascara);
             endereco.setLogradouro(logradouros[i]);
             endereco.setNumero(Integer.parseInt(numeros[i]));
             endereco.setComplemento(complementos[i]);
@@ -44,6 +44,6 @@ public class AdicionarEnderecoServlet extends HttpServlet {
         }
 
         // Redirecione para a página de sucesso ou outra página apropriada
-        response.sendRedirect("sucesso.jsp");
+        response.sendRedirect(request.getContextPath() + "/");
     }
 }

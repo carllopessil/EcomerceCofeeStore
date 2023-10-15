@@ -58,7 +58,7 @@
                <input type="submit" value="Ver Meus Endereços">
            </form>
 
-                    <form action="" method="get">
+                    <form action="LoginCliente.jsp" method="get">
                         <button class="btn-primary" type="submit">👤<p> Faça login ou crie seu login<p/></button>
                     </form>
 
@@ -97,6 +97,9 @@
 </c:forEach>
 
 
+<form action="EditarClienteServlet" method="get">
+        <input type="submit" value="Editar Informações">
+    </form>
 
     <footer>
         © 2023 BREWMASTERS CAFÉ. Todos os direitos reservados.

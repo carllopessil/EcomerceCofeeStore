@@ -56,7 +56,7 @@ public class EnderecoDAO {
         }
     }
 
-    public void atualizarIdEnderecoPadrao(int clienteId, int novoIdEnderecoPadrao) {
+    public boolean atualizarIdEnderecoPadrao(int clienteId, int novoIdEnderecoPadrao) {
         String updateQuery = "UPDATE Cliente SET idEnderecoPadrao = ? WHERE id = ?";
 
         try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa")){
@@ -67,6 +67,7 @@ public class EnderecoDAO {
         } catch (SQLException e) {
             e.printStackTrace(); // Lide com exceções apropriadamente
         }
+        return false;
     }
     public boolean inserirEnderecos(List<Endereco> enderecos) {
         String SQL = "INSERT INTO Endereco (cep, logradouro, numero, complemento, bairro, cidade, uf, enderecoAtivo, idCliente) " +
@@ -144,13 +145,12 @@ public class EnderecoDAO {
 
 
     public boolean alterarStatusEndereco(int enderecoId, boolean novoStatus) {
-        String sql = "UPDATE Endereco SET enderecoAtivo = ? WHERE id = ?";
+        String sql = "UPDATE Endereco SET enderecoAtivo = false WHERE id = ?";
 
         try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-
-            preparedStatement.setBoolean(1, novoStatus);
-            preparedStatement.setInt(2, enderecoId);
+            System.out.println("aqui está a id na parte da DAO" + enderecoId);
+            preparedStatement.setInt(1, enderecoId);
 
             int linhasAfetadas = preparedStatement.executeUpdate();
 

@@ -4,6 +4,7 @@ import br.com.gymcontrol.Model.Cliente;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 
 public class ClienteDAO {
     public static boolean isEmailCadastrado(String email) {
@@ -79,8 +80,9 @@ public class ClienteDAO {
             System.out.println("Erro ao cadastrar o usuário: " + e.getMessage());
             return false;
 
-         }
+        }
     }
+
     public static boolean validarCPF(String cpf) {
 // Remova caracteres não numéricos do CPF
         cpf = cpf.replaceAll("[^0-9]", "");
@@ -164,7 +166,6 @@ public class ClienteDAO {
                 String genero = resultSet.getString("genero");
 
 
-
                 String senha = resultSet.getString("senha");
                 String cepFaturamento = resultSet.getString("cepFaturamento");
                 String logradouroFaturamento = resultSet.getString("logradouroFaturamento");
@@ -184,4 +185,84 @@ public class ClienteDAO {
         return null;
     }
 
+    public boolean atualizarCliente(Cliente cliente) {
+        String hashedSenha = BCrypt.hashpw(cliente.getSenha(), BCrypt.gensalt());
+
+        String SQL = "UPDATE Cliente SET nomeCompleto=?, genero=?, senha=?,  dataNascimento=? WHERE id=?";
+
+        try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
+
+            preparedStatement.setString(1, cliente.getNomeCompleto());
+            preparedStatement.setString(2, cliente.getGenero());
+            preparedStatement.setString(3, hashedSenha);
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            preparedStatement.setDate(4, cliente.getDataNascimento());
+
+            preparedStatement.setInt(5, cliente.getId());
+
+            int affectedRows = preparedStatement.executeUpdate();
+
+            return affectedRows > 0;
+        } catch (Exception e) {
+            System.out.println("Erro ao atualizar o cliente: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean atualizarCliente2(Cliente cliente) {
+        String hashedSenha = BCrypt.hashpw(cliente.getSenha(), BCrypt.gensalt());
+
+        String SQL = "UPDATE Cliente SET nomeCompleto=?, genero=?, dataNascimento=? WHERE id=?";
+
+        try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
+
+            preparedStatement.setString(1, cliente.getNomeCompleto());
+            preparedStatement.setString(2, cliente.getGenero());
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            preparedStatement.setDate(3, cliente.getDataNascimento());
+
+            preparedStatement.setInt(4, cliente.getId());
+
+            int affectedRows = preparedStatement.executeUpdate();
+
+            return affectedRows > 0;
+        } catch (Exception e) {
+            System.out.println("Erro ao atualizar o cliente: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public Cliente obterClientePorID(int idCliente) {
+        String SQL = "SELECT * FROM Cliente WHERE id = ?";
+
+        try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
+
+            preparedStatement.setInt(1, idCliente);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    Cliente cliente = new Cliente();
+                    cliente.setId(resultSet.getInt("id"));
+                    cliente.setNomeCompleto(resultSet.getString("nomeCompleto"));
+                    cliente.setNomeCompleto(resultSet.getString("dataNascimento"));
+                    cliente.setNomeCompleto(resultSet.getString("genero"));
+                    cliente.setNomeCompleto(resultSet.getString("idEnderecoPadrao"));
+
+
+
+                    return cliente;
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println("Erro ao obter cliente por ID: " + e.getMessage());
+        }
+
+        return null; // Retorna null caso não encontre o cliente com o ID especificado
+    }
 }
