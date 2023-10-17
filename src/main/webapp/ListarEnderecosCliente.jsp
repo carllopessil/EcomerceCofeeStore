@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Endereços do Cliente</title>
+    link rel
 </head>
 <body>
     <h1>Endereços do Cliente</h1>

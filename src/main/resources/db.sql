@@ -39,3 +39,43 @@ CREATE TABLE ImagensProduto (
     caminhoImagem VARCHAR(255),
     FOREIGN KEY (idProduto) REFERENCES Produtos(produtoID)
 );
+
+
+-- corrigido e funcionando
+-- Drop existing tables if they exist
+DROP TABLE IF EXISTS Endereco;
+DROP TABLE IF EXISTS Cliente;
+
+-- Create Cliente table
+CREATE TABLE Cliente (
+                         id INT AUTO_INCREMENT PRIMARY KEY,
+                         nomeCompleto VARCHAR(255) NOT NULL,
+                         email VARCHAR(255) UNIQUE NOT NULL,
+                         dataNascimento DATE NOT NULL,
+                         genero VARCHAR(15) NOT NULL,
+                         cpf VARCHAR(11) UNIQUE NOT NULL,
+                         senha VARCHAR(255) NOT NULL,
+                         cepFaturamento VARCHAR(8) NOT NULL,
+                         logradouroFaturamento VARCHAR(255) NOT NULL,
+                         numeroFaturamento INT NOT NULL,
+                         complementoFaturamento VARCHAR(255),
+                         bairroFaturamento VARCHAR(255) NOT NULL,
+                         cidadeFaturamento VARCHAR(255) NOT NULL,
+                         ufFaturamento VARCHAR(2) NOT NULL,
+                         idEnderecoPadrao INT
+);
+
+-- Create Endereco table
+CREATE TABLE Endereco (
+                          id INT AUTO_INCREMENT PRIMARY KEY,
+                          cep VARCHAR(8) NOT NULL,
+                          logradouro VARCHAR(255) NOT NULL,
+                          numero INT NOT NULL,
+                          complemento VARCHAR(255),
+                          bairro VARCHAR(255) NOT NULL,
+                          cidade VARCHAR(255) NOT NULL,
+                          uf VARCHAR(2) NOT NULL,
+                          enderecoAtivo BOOLEAN NOT NULL DEFAULT TRUE,
+                          idCliente INT NOT NULL,
+                          FOREIGN KEY (idCliente) REFERENCES Cliente(id)
+);

@@ -36,6 +36,7 @@ public class CadastroProdutoServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         // Obtenha os dados do formulário
         Produtos produto = new Produtos();
         produto.setNomeProduto(request.getParameter("nomeProduto"));

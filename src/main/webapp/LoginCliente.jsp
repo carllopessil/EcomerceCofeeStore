@@ -29,8 +29,14 @@
         Senha: <input type="password" name="senha"><br>
         <input type="submit" value="Entrar">
     </form>
+            
+            <li>
+                <button class="meu-botao">
+                    <a href="CadastrarCliente.jsp" style="color: inherit; text-decoration: none;">Cadastrar</a>
+                </button>
+            </li>
 
-        <li><a href="CadastrarCliente.jsp">Cadastrar </a></li>
+<%--        <li><a href="CadastrarCliente.jsp">Cadastrar </a></li>--%>
 
 
     <% String mensagemErro = (String) request.getAttribute("mensagemErro");
