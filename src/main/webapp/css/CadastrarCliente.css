@@ -32,6 +32,26 @@ body {
     align-items: center;
     padding: 10px 0px;
 }
+/*TRATAMENTO DO ERROR QUANDO NAO VALIDADOS CAMPOS */
+.alert {
+    padding: 15px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+.alert-success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+.alert-danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+
+
+
 /*LOGO DA EMPRESA */
 .menu {
     list-style-type: none;
@@ -261,6 +281,8 @@ row-cliente{
     display: flow;
     flex-wrap: wrap;
 }
+
+
 section {
     width: 55.5em;
     margin: 0px;
@@ -299,6 +321,8 @@ input {
         font-size: 14px; /* Tamanho da fonte reduzido para telas menores */
     }
 }
+
+
 button {
     display: inline-block;
     padding: 10px 27px;
@@ -309,7 +333,7 @@ button {
     border: 1.5px solid #9f0606;
     border-radius: 15px;
     position: sticky;
-    left: 51em;
+    margin-top: 39px;
 }
 /* Style when hovering over the button */
 button:hover {
@@ -320,6 +344,29 @@ button:hover {
 button:active {
     background-color: #0610d7;
 }
+#voltar-button {
+    text-align: center; /* Centraliza o botão */
+}
+.botao-voltar {
+    display: block;
+    padding: 10px 27px;
+    font-size: 16px;
+    background-color: rgb(255, 0, 0);
+    color: #f2f8f2;
+    cursor: pointer;
+    border: 1.5px solid #9f0606;
+    border-radius: 15px;
+    position: sticky;
+    margin: -38px 1px 28px 32em;
+    width: 221px;
+}
+.botao-voltar:hover {
+    background-color: #0615de;
+}
+
+
+
+
 #container-button-cep {
     top: -78px;
     z-index: -1;

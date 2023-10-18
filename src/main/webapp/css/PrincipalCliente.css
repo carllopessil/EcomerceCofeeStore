@@ -4,6 +4,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: Kanit;
+    height: auto;
 
 }
 
@@ -31,7 +32,7 @@ h1 {
 
 .menu a {
     text-decoration: none;
-    color: red;
+    color: red !important;
     padding: 5px 112px;
     border-radius: 5px;
     font-weight: bold;
@@ -121,16 +122,6 @@ h1 {
         opacity: 1;
     }
 }
-
-footer {
-    background-color: #3b1e0a;
-    color: white;
-    text-align: center;
-    position: fixed;
-    bottom: 4px;
-    width: 100%;
-}
-
 btn {
     display: inline-flex;
     align-items: center;
@@ -172,7 +163,7 @@ btn {
     border: 1px solid #3b1e0a;
     padding: 20px;
     margin: 10px;
-    width: 300px;
+    width: 338px;
     text-align: center;
     background-color: #3b1e0a;
     display: inline-block;
@@ -262,7 +253,23 @@ btn {
 .submit-button:hover {
     background-color: #0056b3;
 }
-
+.dropdown-menu {
+    --bs-dropdown-zindex: 1000;
+    --bs-dropdown-min-width: 10rem;
+    --bs-dropdown-padding-x: 0;
+    --bs-dropdown-padding-y: 0.5rem;
+    --bs-dropdown-spacer: 0.125rem;
+    --bs-dropdown-font-size: 1rem;
+    --bs-dropdown-color: var(--bs-body-color);
+    --bs-dropdown-bg: #3d210cd6;
+    border: 3px solid white;
+    color: white;
+}
+a.dropdown-item:hover {
+    color: black;
+    background-color: #000000ad;
+    border: 1.5px solid white;
+}
 option {
     font-size: 26px;
     margin-top: 5px;
@@ -287,4 +294,13 @@ option {
     margin-block-end: 1em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
+}
+footer {
+    background-color: #3b1e0a;
+    color: white;
+    text-align: center;
+    /* position: fixed; */
+    /* bottom: 17px; */
+    width: 100%;
+    margin-top: 56px;
 }

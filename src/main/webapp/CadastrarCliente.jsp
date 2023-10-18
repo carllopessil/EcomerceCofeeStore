@@ -15,9 +15,6 @@
 <link rel="stylesheet" href="css/CadastrarCliente.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <body>
-<%--<div class="video-container">--%>
-<%--		<video src="img/videoIndex/Comercial1.mp4" autoplay loop muted></video>--%>
-<%--</div>--%>
 <div id="container-logo">
 	<div class="row">
 		<div class="col-12 col-lg-6 col-xl-6 col-md-6">
@@ -207,6 +204,11 @@
 					<button type="submit" class="submit-button" onclick="return validarSenhas();">
 						<i class="fas fa-user-plus"></i> Cadastrar
 					</button>
+					<div id="voltar-button">
+						<a href="LoginCliente.jsp" class="botao-voltar">
+							<i class="fa-solid fa-reply-all"></i> Voltar</a>
+					</div>
+				
 				</form>
 			</section>
 			

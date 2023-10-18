@@ -58,8 +58,8 @@
 						<span class="show-password-icon"><i class="fas fa-eye"></i></span>
 					</label>
 				</div>
-				
-				<input type="submit" value="Salvar Alterações"/>
+				<input type="submit" value="Salvar Alterações" class="botao-salvar">
+<%--				<input type="submit" value="Salvar Alterações"/>--%>
 			</form>
 		</div>
 	</div>
@@ -233,5 +233,6 @@
 
 
 </script>
+<footer>© 2023 BREWMASTERS CAFÉ. Todos os direitos reservados.</footer>
 </body>
 </html>

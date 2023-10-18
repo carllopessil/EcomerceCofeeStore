@@ -10,7 +10,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Tela Inicial Cliente</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="css/PrincipalCliente.css">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
         <style>
             .product-description {
                 max-width: 300px; /* Defina o valor máximo de largura desejado */
@@ -50,41 +52,51 @@
                 <img src="img/Logo de cafe.png">
                 <h1>BEM-VINDO AO BREWMASTERS CAFÉ </h1>
             </li>
-
+	        <div class="dropdown">
+		        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+			        Bem-vindo, ${sessionScope.cliente.nomeCompleto}
+		        </button>
+		        <ul class="dropdown-menu">
+			        <li><a class="dropdown-item" href="LoginCliente.jsp">Login Cliente</a></li>
+			        <li><a class="dropdown-item" href="ListarEnderecosCliente">Ver Meus Endereços</a></li>
+			        <li><a class="dropdown-item" href="EditarClienteServlet">Editar Informações</a></li>
+			        <li><a class="dropdown-item" href="#">Carrinho de Compra</a> </li>
+			        
         <div class="container">
             <div class="form-container">
                 <div class="btn-container">
 
-
-
                     <c:choose>
                         <c:when test="${sessionScope.cliente != null}">
-                        <form action="ListarEnderecosCliente">
-                                       <input type="submit" value="Ver Meus Endereços">
-                                   </form>
-                            <p>Bem-vindo, ${sessionScope.cliente.nomeCompleto}!</p>
+<%--                        <form action="ListarEnderecosCliente">--%>
+<%--                                       <input type="submit" value="Ver Meus Endereços">--%>
+<%--                                   </form>--%>
+<%--                            <p>Bem-vindo, ${sessionScope.cliente.nomeCompleto}!</p>--%>
 
-                            <form action="EditarClienteServlet" method="get">
-                                    <input type="submit" value="Editar Informações">
-                                </form>
-<form action="LogoutServlet" method="post">
-            <input type="submit" value="Logout">
-        </form>
+<%--                            <form action="EditarClienteServlet" method="get">--%>
+<%--                                    <input type="submit" value="Editar Informações">--%>
+<%--                                </form>--%>
+<%--<form action="LogoutServlet" method="post">--%>
+<%--            <input type="submit" value="Logout">--%>
+<%--        </form>--%>
                         </c:when>
                         <c:otherwise>
                             <form action="LoginCliente.jsp" method="get">
                                 <button class="btn-primary" type="submit">👤<p> Faça login ou crie seu login<p/></button>
                             </form>
+	                      
                         </c:otherwise>
                     </c:choose>
-
+	                <form action="" method="get">
+		                <button class="btn-primary1" type="submit">🛒 </button>
+	                </form>
 
                 </div>
             </div>
         </div>
-           <form action="" method="get">
-              <button class="btn-primary1" type="submit">🛒 </button>
-             </form>
+        </ul>
+	    </div>
+	       
         </ul>
     </nav>
     

@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Login Cliente</title>
         <link rel="stylesheet" href="css/LoginCliente.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
@@ -32,7 +33,8 @@
             
             <li>
                 <button class="meu-botao">
-                    <a href="CadastrarCliente.jsp" style="color: inherit; text-decoration: none;">Cadastrar</a>
+                    <a href="CadastrarCliente.jsp" style="color: inherit; text-decoration: none;"><i
+                            class="fa-solid fa-user-pen"></i>  Cadastrar</a>
                 </button>
             </li>
 
