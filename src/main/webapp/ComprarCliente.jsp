@@ -10,6 +10,9 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
 </head>
 <style>
     .product-description {
@@ -54,28 +57,57 @@
 						<img src="img/Logo de cafe.png">
 						<h1>BEM-VINDO AO BREWMASTERS CAFÉ.BACKOFFICE</h1>
 					</li>
+					<div class="dropdown">
+                    		        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    			        Bem-vindo, ${sessionScope.cliente.nomeCompleto}
+                    		        </button>
+                    		        <ul class="dropdown-menu">
+                    			        <li><a class="dropdown-item" href="LoginCliente.jsp">Login Cliente</a></li>
+                    			        <li><a class="dropdown-item" href="ListarEnderecosCliente">Ver Meus Endereços</a></li>
+                    			        <li><a class="dropdown-item" href="EditarClienteServlet">Editar Informações</a></li>
+                    			        <li><a class="dropdown-item" href="#">Carrinho de Compra</a> </li>
+
+                            <div class="container">
+                                <div class="form-container">
+                                    <div class="btn-container">
+
+                                        <c:choose>
+                                            <c:when test="${sessionScope.cliente != null}">
+                    <%--                        <form action="ListarEnderecosCliente">--%>
+                    <%--                                       <input type="submit" value="Ver Meus Endereços">--%>
+                    <%--                                   </form>--%>
+                    <%--                            <p>Bem-vindo, ${sessionScope.cliente.nomeCompleto}!</p>--%>
+
+                    <%--                            <form action="EditarClienteServlet" method="get">--%>
+                    <%--                                    <input type="submit" value="Editar Informações">--%>
+                    <%--                                </form>--%>
+                    <form action="LogoutServlet" method="post">
+                          <input type="submit" value="Logout">
+                      </form>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <%--form action="LoginCliente.jsp" method="get">
+                                                    <button class="btn-primary" type="submit">👤<p> Faça login ou crie seu login<p/></button>
+                                           </form>--%>
+
+                                            </c:otherwise>
+                                        </c:choose>
+                    	                <form action="" method="get">
+                    		                <button class="btn-primary1" type="submit">🛒 </button>
+                    	                </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                            </ul>
+                    	    </div>
+
+
 				</ul>
 			</nav>
 		</div>
 	</div>
-	<div class="row-navbar">
-		<div class="col-12 col-sm-12 col-md-12 col-xl-12">
-			<div class="navbar">
-				<a href="LoginCliente.jsp">
-					<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#043486}</style><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg>
-					Login
-				</a>
-				<a href="CadastrarCliente.jsp">
-					<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#ffffff}</style><path d="M96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3zM504 312V248H440c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V136c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H552v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/></svg>
-					Cadastrar
-				</a>
-				<a href="http://localhost:8080/">
-					<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M48.5 224H40c-13.3 0-24-10.7-24-24V72c0-9.7 5.8-18.5 14.8-22.2s19.3-1.7 26.2 5.2L98.6 96.6c87.6-86.5 228.7-86.2 315.8 1c87.5 87.5 87.5 229.3 0 316.8s-229.3 87.5-316.8 0c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0c62.5 62.5 163.8 62.5 226.3 0s62.5-163.8 0-226.3c-62.2-62.2-162.7-62.5-225.3-1L185 183c6.9 6.9 8.9 17.2 5.2 26.2s-12.5 14.8-22.2 14.8H48.5z"/></svg>
-					Voltar
-				</a>
-			</div>
-		</div>
-	</div>
+
 	<div id="container-h1">
 		<div class="row-h1-menu">
 			<div class="col-12 col-sm-12 col-md-12 col-xl-12">
