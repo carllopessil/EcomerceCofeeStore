@@ -66,15 +66,14 @@
 </div>
 <div id="mensagem-erro" style="color: red;"></div>
 
-
 <form id="enderecoForm" action="AdicionarEnderecoServlet" method="post">
-	<input type="hidden" name="clienteId" id="clienteId" value="${cliente.id}"/>
-	<br>
-	<button type="button" onclick="adicionarEndereco()">Adicionar Endereço</button>
-	<br><br>
-	
-	<div id="enderecos"></div>
-	<button type="button" id="salvarEnderecos">Salvar Endereços</button>
+    <input type="hidden" name="clienteId" id="clienteId" value="${cliente.id}"/>
+    <br>
+    <button type="button" onclick="adicionarEndereco()">Adicionar Endereço</button>
+    <br><br>
+
+    <div id="enderecos"></div>
+    <button type="button" id="salvarEnderecos">Salvar Endereços</button>
 </form>
 
 
@@ -189,34 +188,7 @@
         });
     }
 
-    document.getElementById("salvarEnderecos").addEventListener("click", function () {
-        // Coletar todos os dados de endereço adicionados
-        var enderecos = [];
 
-        var divsEndereco = document.querySelectorAll("#enderecos > div");
-        divsEndereco.forEach(function (divEndereco) {
-            var endereco = {
-                cepAdicional: divEndereco.querySelector("#cepAdicional").value,
-                logradouroAdicional: divEndereco.querySelector("#logradouroAdicional").value,
-                numeroAdicional: divEndereco.querySelector("#numeroAdicional").value,
-                complementoAdicional: divEndereco.querySelector("input[name='complementoAdicional']").value,
-                bairroAdicional: divEndereco.querySelector("#bairroAdicional").value,
-                cidadeAdicional: divEndereco.querySelector("#cidadeAdicional").value,
-                ufAdicional: divEndereco.querySelector("#ufAdicional").value,
-            };
-            enderecos.push(endereco);
-        });
-
-        // Enviar os dados para o Servlet via formulário
-        var enderecoForm = document.getElementById("enderecoForm");
-        var hiddenInput = document.createElement("input");
-        hiddenInput.setAttribute("type", "hidden");
-        hiddenInput.setAttribute("name", "enderecos");
-        hiddenInput.setAttribute("value", JSON.stringify(enderecos));
-        enderecoForm.appendChild(hiddenInput);
-
-        enderecoForm.submit();
-    });
 
 
     function validarNome() {
@@ -230,6 +202,60 @@
 
         return true;
     }
+    document.getElementById("salvarEnderecos").addEventListener("click", function () {
+             // Validar os endereços antes de enviar o formulário
+             if (validarEnderecos()) {
+                 // Coletar todos os dados de endereço adicionados
+                 var enderecos = [];
+
+                 var divsEndereco = document.querySelectorAll("#enderecos > div");
+                 divsEndereco.forEach(function (divEndereco) {
+                     var endereco = {
+                         cepAdicional: divEndereco.querySelector("#cepAdicional").value,
+                         logradouroAdicional: divEndereco.querySelector("#logradouroAdicional").value,
+                         numeroAdicional: divEndereco.querySelector("#numeroAdicional").value,
+                         complementoAdicional: divEndereco.querySelector("input[name='complementoAdicional']").value,
+                         bairroAdicional: divEndereco.querySelector("#bairroAdicional").value,
+                         cidadeAdicional: divEndereco.querySelector("#cidadeAdicional").value,
+                         ufAdicional: divEndereco.querySelector("#ufAdicional").value,
+                     };
+                     enderecos.push(endereco);
+                 });
+
+                 // Enviar os dados para o Servlet via formulário
+                 var enderecoForm = document.getElementById("enderecoForm");
+                 var hiddenInput = document.createElement("input");
+                 hiddenInput.setAttribute("type", "hidden");
+                 hiddenInput.setAttribute("name", "enderecos");
+                 hiddenInput.setAttribute("value", JSON.stringify(enderecos));
+                 enderecoForm.appendChild(hiddenInput);
+
+                 enderecoForm.submit();
+             }
+         });
+
+         function validarEnderecos() {
+             var divsEndereco = document.querySelectorAll("#enderecos > div");
+
+             for (var i = 0; i < divsEndereco.length; i++) {
+                 var divEndereco = divsEndereco[i];
+                 var camposEndereco = divEndereco.querySelectorAll("input, select");
+                 var enderecoValido = true;
+
+                 camposEndereco.forEach(function (campo) {
+                     if (campo.value.trim() === "") {
+                         enderecoValido = false;
+                     }
+                 });
+
+                 if (!enderecoValido) {
+                     alert("Preencha todos os campos do endereço antes de salvar.");
+                     return false; // Retorna falso para impedir o envio
+                 }
+             }
+
+             return true; // Retorna verdadeiro se todos os endereços estiverem preenchidos
+         }
 
 
 </script>
