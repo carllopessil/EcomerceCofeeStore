@@ -31,6 +31,7 @@ h1 {
 }
 
 .menu a {
+    cursor: pointer;
     text-decoration: none;
     color: red !important;
     padding: 5px 112px;
@@ -46,23 +47,68 @@ h1 {
     flex-direction: row;
     gap: 20px;
 }
-
+/*.btn-primary {*/
+/*    padding: 10px 20px;*/
+/*    background: #3b1e0ac9;*/
+/*    color: Red;*/
+/*    border-radius: 5px;*/
+/*    font-size: 20px;*/
+/*    border: 1.5px solid white;*/
+/*}*/
 .btn-primary {
-    font-size: 34px;
     padding: 10px 20px;
-    border: none;
     background: #3b1e0ac9;
     color: Red;
     border-radius: 5px;
+    font-size: 20px;
+    border: 1.5px solid white;
+    transition: all 0.3s ease; /* Adiciona uma transição suave de 0.3 segundos */
 }
 
+.btn-primary:hover {
+    transform: scale(1.05); /* Aumenta a escala em 5% */
+    background: #3b1e0a; /* Altera a cor de fundo */
+    color: white; /* Altera a cor do texto */
+}
+
+/*.btn-primary1 {*/
+/*    font-size: 69px;*/
+/*    padding: 11px 53px;*/
+/*    border: none;*/
+/*    background: #3b1e0ac9;*/
+/*    border-radius: 5px;*/
+/*    border: 1.5px solid white;*/
+/*}*/
 .btn-primary1 {
-    font-size: 104px;
-    padding: 10px 20px;
+    font-size: 69px;
+    padding: 11px 53px;
     border: none;
     background: #3b1e0ac9;
     border-radius: 5px;
+    border: 1.5px solid white;
+    transition: all 0.3s ease; /* Adiciona uma transição suave de 0.3 segundos */
 }
+
+.btn-primary1:hover {
+    transform: scale(1.05); /* Aumenta a escala em 5% */
+    background: #3b1e0a; /* Altera a cor de fundo */
+    color: white; /* Altera a cor do texto */
+}
+/* Estilo para o botão de botao-Sair-logout*/
+.botao-Sair-logout {
+    background-color: #ff0939c7;
+    color: #fff;
+    border: none;
+    padding: 10px 215px;
+    cursor: pointer;
+}
+
+/* Efeitos de hover (quando o mouse passa por cima) */
+.botao-Sair-logout:hover {
+    background-color: #9d0303;
+    border: 1px solid white;
+}
+
 
 .container {
     display: flex;
@@ -261,9 +307,11 @@ btn {
     --bs-dropdown-spacer: 0.125rem;
     --bs-dropdown-font-size: 1rem;
     --bs-dropdown-color: var(--bs-body-color);
-    --bs-dropdown-bg: #3d210cd6;
+    --bs-dropdown-bg: #3d210c82;
     border: 3px solid white;
+    border-radius: 15px;
     color: white;
+
 }
 a.dropdown-item:hover {
     color: black;
