@@ -63,11 +63,7 @@
 				Bem-vindo, ${sessionScope.cliente.nomeCompleto}
 			</button>
 			<ul class="dropdown-menu">
-				<%--				<li><a class="dropdown-item" href="LoginCliente.jsp">Login Cliente</a></li>--%>
-				<li><a class="dropdown-item" href="ListarEnderecosCliente">Meus Endereços</a></li>
-				<li><a class="dropdown-item" href="EditarClienteServlet">Editar Perfil</a></li>
-				<li><a class="dropdown-item" href="#">Carrinho de Compra</a></li>
-				
+
 				<div class="container">
 					<div class="form-container">
 						<div class="btn-container">
@@ -80,6 +76,7 @@
 											<p/></button>
 									</form>
 								</c:otherwise>
+								
 							</c:choose>
 							<form action="" method="get">
 								<button class="btn-primary1" type="submit">🛒<label>Comprar</label>
@@ -88,9 +85,15 @@
 						</div>
 					</div>
 				</div>
-				<form action="LogoutServlet" method="post">
-					<input type="submit" value="Logout" class="botao-Sair-logout">
-				</form>
+				<li><a class="dropdown-item" href="ListarEnderecosCliente">Meus Endereços</a></li>
+					<li><a class="dropdown-item" href="EditarClienteServlet">Editar Perfil</a></li>
+				
+					<br><br><hr><hr>
+				
+				
+					<form action="LogoutServlet" method="post">
+						<input type="submit" value="Sair" class="botao-Sair-logout">
+					</form>
 			</ul>
 		</div>
 	</ul>

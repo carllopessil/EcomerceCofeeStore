@@ -326,6 +326,14 @@ p {
     color: white;
     text-align: center;
 }
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    height: auto;
+    /* align-content: center; */
+}
 .dropdown-menu {
     --bs-dropdown-zindex: 1000;
     --bs-dropdown-min-width: 10rem;
@@ -344,15 +352,18 @@ a.dropdown-item:hover {
     background-color: #000000ad;
     border: 1.5px solid white;
 }
-/*CARRINHO*/
+ul.dropdown-menu.show {
+    /*width: 100%;*/
+    height: auto;
+}
 .btn-primary1 {
-    font-size: 37px;
-    padding: 11px 53px;
-    border: none;
+    font-size: 36px;
+    padding: 1px 39px;
+    /* border: none; */
     background: #3b1e0ac9;
     border-radius: 5px;
     border: 1.5px solid white;
-    transition: all 0.3s ease; /* Adiciona uma transição suave de 0.3 segundos */
+    transition: all 0.3s ease;
 }
 
 .btn-primary1:hover {
@@ -360,61 +371,29 @@ a.dropdown-item:hover {
     background: #3b1e0a; /* Altera a cor de fundo */
     color: white; /* Altera a cor do texto */
 }
+
+/* Estilo para o botão de botao-Sair-logout*/
+.botao-Sair-logout {
+
+    background-color: #ff0939c7;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+/* Efeitos de hover (quando o mouse passa por cima) */
+.botao-Sair-logout:hover {
+    background-color: #9d0303;
+    border: 1px solid white;
+}
 .btn-primary1 label {
     font-weight: bold; /* Define o peso da fonte como negrito */
     font-size: 22px; /* Define o tamanho da fonte (ajuste conforme necessário) */
     color: #FF0000; /* Define a cor do texto da label (ajuste conforme necessário) */
 }
 
-/*BUTTON LOGIN*/
-.btn-primary {
-    padding: 10px 20px;
-    background: #3b1e0ac9;
-    color: Red;
-    border-radius: 5px;
-    font-size: 20px;
-    border: 1.5px solid white;
-    transition: all 0.3s ease; /* Adiciona uma transição suave de 0.3 segundos */
-}
 
-.btn-primary:hover {
-    transform: scale(1.05); /* Aumenta a escala em 5% */
-    background: #3b1e0a; /* Altera a cor de fundo */
-    color: white; /* Altera a cor do texto */
-}
-/* Estilo para o botão de botao-Sair-logout*/
-.botao-sair-logout {
-    background-color: #ff0939c7;
-    color: #fff;
-    border: none;
-    padding: 10px 215px;
-    cursor: pointer;
-}
 
-/* Efeitos de hover (quando o mouse passa por cima) */
-.botao-sair-logout:hover {
-    background-color: #9d0303;
-    border: 1px solid white;
-}
-
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 31vh;
-}
-
-/*.buy-button {*/
-/*    display: block;*/
-/*    margin-top: 10px;*/
-/*    padding: 10px 20px;*/
-/*    background-color: red;*/
-/*    color: #fff;*/
-/*    text-align: center;*/
-/*    text-decoration: none;*/
-/*    border-radius: 5px;*/
-/*}*/
 .buy-button {
     display: block;
     margin-top: 10px;

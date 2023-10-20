@@ -47,14 +47,6 @@ h1 {
     flex-direction: row;
     gap: 20px;
 }
-/*.btn-primary {*/
-/*    padding: 10px 20px;*/
-/*    background: #3b1e0ac9;*/
-/*    color: Red;*/
-/*    border-radius: 5px;*/
-/*    font-size: 20px;*/
-/*    border: 1.5px solid white;*/
-/*}*/
 .btn-primary {
     padding: 3px -11px;
     background: #3b1e0ac9;
@@ -64,21 +56,11 @@ h1 {
     border: 1.5px solid white;
     transition: all 0.3s ease;
 }
-
 .btn-primary:hover {
     transform: scale(1.05); /* Aumenta a escala em 5% */
     background: #3b1e0a; /* Altera a cor de fundo */
     color: white; /* Altera a cor do texto */
 }
-
-/*.btn-primary1 {*/
-/*    font-size: 69px;*/
-/*    padding: 11px 53px;*/
-/*    border: none;*/
-/*    background: #3b1e0ac9;*/
-/*    border-radius: 5px;*/
-/*    border: 1.5px solid white;*/
-/*}*/
 .btn-primary1 {
     font-size: 36px;
     padding: 1px 39px;
@@ -88,25 +70,27 @@ h1 {
     border: 1.5px solid white;
     transition: all 0.3s ease;
 }
-
 .btn-primary1:hover {
     transform: scale(1.05); /* Aumenta a escala em 5% */
-    background: #3b1e0a; /* Altera a cor de fundo */
+    background: #482108; /* Altera a cor de fundo */
     color: white; /* Altera a cor do texto */
 }
-
 /* Estilo para o botão de botao-Sair-logout*/
 .botao-Sair-logout {
     background-color: #ff0939c7;
     color: #fff;
     border: none;
-    padding: 10px 215px;
     cursor: pointer;
+    width: 100%;
 }
 .btn-primary1 label {
     font-weight: bold; /* Define o peso da fonte como negrito */
     font-size: 22px; /* Define o tamanho da fonte (ajuste conforme necessário) */
     color: #FF0000; /* Define a cor do texto da label (ajuste conforme necessário) */
+}
+.btn-primary1 label:hover {
+    transform: scale(1.05);
+    color: white;
 }
 /* Efeitos de hover (quando o mouse passa por cima) */
 .botao-Sair-logout:hover {
@@ -118,7 +102,7 @@ h1 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 31vh;
+    height: auto;
 }
 
 .form-container {
@@ -319,6 +303,10 @@ a.dropdown-item:hover {
     color: black;
     background-color: #000000ad;
     border: 1.5px solid white;
+}
+ul.dropdown-menu.show {
+    /*width: 100%;*/
+    height: auto;
 }
 option {
     font-size: 26px;

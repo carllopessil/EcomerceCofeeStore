@@ -67,9 +67,9 @@
 						</button>
 						<ul class="dropdown-menu">
 											<li><a class="dropdown-item" href="LoginCliente.jsp">Login Cliente</a></li>
-							<li><a class="dropdown-item" href="ListarEnderecosCliente">Ver Meus Endereços</a></li>
-							<li><a class="dropdown-item" href="EditarClienteServlet">Editar Informações</a></li>
-							<li><a class="dropdown-item" href="#">Carrinho de Compra</a></li>
+							<li><a class="dropdown-item" href="ListarEnderecosCliente">Meus Endereços</a></li>
+							<li><a class="dropdown-item" href="EditarClienteServlet">Editar Perfil</a></li>
+						
 							
 							<div class="container">
 								<div class="form-container">
@@ -92,9 +92,10 @@
 									</div>
 								</div>
 							</div>
-<%--							<form action="LogoutServlet" method="post">--%>
-<%--								<input type="submit" value="Logout" class="botao-sair-logout">--%>
-<%--							</form>--%>
+							<br><br><br>
+							<form action="LogoutServlet" method="post">
+								<input type="submit" value="Logout" class="botao-Sair-logout">
+							</form>
 						</ul>
 					</div>
 				</ul>
