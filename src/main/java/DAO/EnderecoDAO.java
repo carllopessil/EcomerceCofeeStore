@@ -146,7 +146,7 @@ public class EnderecoDAO {
 
     public boolean alterarStatusEndereco(int enderecoId, boolean novoStatus) {
         String sql = "UPDATE Endereco SET enderecoAtivo = false WHERE id = ?";
-
+        System.out.println("entrou no DAO" + enderecoId);
         try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             System.out.println("aqui está a id na parte da DAO" + enderecoId);

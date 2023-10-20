@@ -22,7 +22,6 @@ public class AlterarStatusEnderecoServlet extends HttpServlet {
         response.setDateHeader("Expires", 0); // Proxies.
 
         EnderecoDAO enderecoDAO = new EnderecoDAO();
-
         String enderecoPadraoId = request.getParameter("enderecoPadraoId");
 
         if (enderecoPadraoId != null) {
@@ -38,32 +37,22 @@ public class AlterarStatusEnderecoServlet extends HttpServlet {
                 // Atualiza o cliente na sessão após a alteração
                 cliente.setIdEnderecoPadrao(idEnderecoPadrao);
                 session.setAttribute("cliente", cliente);
-
-                response.sendRedirect(request.getContextPath() + "/");
-                return;
-            } else {
-                // Atualiza o cliente na sessão após a alteração
-                cliente.setIdEnderecoPadrao(idEnderecoPadrao);
-                session.setAttribute("cliente", cliente);
-                response.sendRedirect(request.getContextPath() + "/");
-                return;
             }
         }
 
-        String[] acoes = request.getParameterValues("acao");
-        if (acoes != null) {
-            for (String acao : acoes) {
-                if (acao.startsWith("excluir ")) {
-                    int enderecoId = Integer.parseInt(acao.substring(8)); // Remove o prefixo "excluir_"
-                    boolean sucesso2 = enderecoDAO.alterarStatusEndereco(enderecoId, false);
+        String[] enderecosExcluir = request.getParameterValues("excluir");
+        if (enderecosExcluir != null) {
+            for (String enderecoIdString : enderecosExcluir) {
+                int enderecoId = Integer.parseInt(enderecoIdString);
+                boolean sucesso2 = enderecoDAO.alterarStatusEndereco(enderecoId, false);
 
-                    if (!sucesso2) {
-                        response.getWriter().println("Erro ao alterar status do endereço.");
-                    }
+                if (!sucesso2) {
+                    response.getWriter().println("Erro ao alterar o status do endereço.");
                 }
             }
         }
 
         response.sendRedirect(request.getContextPath() + "/ListarEnderecosCliente");
+
 }
 }
