@@ -8,125 +8,121 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <head>
-    <meta charset="UTF-8">
-    <title>Tela Inicial Cliente</title>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/PrincipalCliente.css">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-        <style>
-            .product-description {
-                max-width: 300px; /* Defina o valor máximo de largura desejado */
-                overflow: hidden;
-                white-space: nowrap;
-                text-overflow: ellipsis;
-            }
-            .product-image {
-                width: 300px; /* Defina o tamanho horizontal desejado */
-                height: 300px; /* Mantenha o mesmo valor que o tamanho horizontal para manter a imagem quadrada */
-                overflow: hidden;
-            }
+	<meta charset="UTF-8">
+	<title>Tela Inicial Cliente</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+	      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/PrincipalCliente.css">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+	        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+	        crossorigin="anonymous"></script>
+	<style>
+        .product-description {
+            max-width: 300px; /* Defina o valor máximo de largura desejado */
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
 
-            .product-image img {
-                width: 100%; /* Ajusta a largura da imagem para preencher a div de imagem */
-                height: auto; /* Altura automática para manter a proporção original da imagem */
-            }
-                .product-description, .product-name {
-                    max-width: 300px; /* Defina o valor máximo de largura desejado */
-                    overflow: hidden;
-                    white-space: nowrap;
-                    text-overflow: ellipsis;
-                }
+        .product-image {
+            width: 300px; /* Defina o tamanho horizontal desejado */
+            height: 300px; /* Mantenha o mesmo valor que o tamanho horizontal para manter a imagem quadrada */
+            overflow: hidden;
+        }
 
-        </style>
-    <%@ page contentType="text/html; charset=UTF-8" %>
+        .product-image img {
+            width: 100%; /* Ajusta a largura da imagem para preencher a div de imagem */
+            height: auto; /* Altura automática para manter a proporção original da imagem */
+        }
+
+        .product-description, .product-name {
+            max-width: 300px; /* Defina o valor máximo de largura desejado */
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+	
+	</style>
+	<%@ page contentType="text/html; charset=UTF-8" %>
 </head>
 <body>
-    <div class="slideshow-container">
-        <img class="slideshow-image active" src="img/Fundo2.jpg">
-        <img class="slideshow-image" src="img/Fundo3.jpg">
-        <img class="slideshow-image" src="img/Fundo5.jpg">
-    </div>
-    <nav>
-        <ul class="menu">
-            <li class="menu-logo">
-                <img src="img/Logo de cafe.png">
-                <h1>BEM-VINDO AO BREWMASTERS CAFÉ </h1>
-            </li>
-	        <div class="dropdown">
-		        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-			        Bem-vindo, ${sessionScope.cliente.nomeCompleto}
-		        </button>
-		        <ul class="dropdown-menu">
-			        <li><a class="dropdown-item" href="LoginCliente.jsp">Login Cliente</a></li>
-			        <li><a class="dropdown-item" href="ListarEnderecosCliente">Ver Meus Endereços</a></li>
-			        <li><a class="dropdown-item" href="EditarClienteServlet">Editar Informações</a></li>
-			        <li><a class="dropdown-item" href="#">Carrinho de Compra</a> </li>
-			        
-        <div class="container">
-            <div class="form-container">
-                <div class="btn-container">
+<div class="slideshow-container">
+	<img class="slideshow-image active" src="img/Fundo2.jpg">
+	<img class="slideshow-image" src="img/Fundo3.jpg">
+	<img class="slideshow-image" src="img/Fundo5.jpg">
+</div>
+<nav>
+	<ul class="menu">
+		<li class="menu-logo">
+			<img src="img/Logo de cafe.png">
+			<h1>BEM-VINDO AO BREWMASTERS CAFÉ </h1>
+		</li>
+		<div class="dropdown">
+			<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+			        aria-expanded="false">
+				Bem-vindo, ${sessionScope.cliente.nomeCompleto}
+			</button>
+			<ul class="dropdown-menu">
+				<%--				<li><a class="dropdown-item" href="LoginCliente.jsp">Login Cliente</a></li>--%>
+				<li><a class="dropdown-item" href="ListarEnderecosCliente">Meus Endereços</a></li>
+				<li><a class="dropdown-item" href="EditarClienteServlet">Editar Perfil</a></li>
+				<li><a class="dropdown-item" href="#">Carrinho de Compra</a></li>
+				
+				<div class="container">
+					<div class="form-container">
+						<div class="btn-container">
+							<c:choose>
+								<c:when test="${sessionScope.cliente != null}">
+									</c:when>
+								<c:otherwise>
+									<form action="LoginCliente.jsp" method="get">
+										<button class="btn-primary" type="submit">👤<p> Login ou crie Cadastrar
+											<p/></button>
+									</form>
+								</c:otherwise>
+							</c:choose>
+							<form action="" method="get">
+								<button class="btn-primary1" type="submit">🛒<label>Comprar</label>
+								</button>
+							</form>
+						</div>
+					</div>
+				</div>
+				<form action="LogoutServlet" method="post">
+					<input type="submit" value="Logout" class="botao-Sair-logout">
+				</form>
+			</ul>
+		</div>
+	</ul>
+</nav>
 
-                    <c:choose>
-                        <c:when test="${sessionScope.cliente != null}">
-<%--                        <form action="ListarEnderecosCliente">--%>
-<%--                                       <input type="submit" value="Ver Meus Endereços">--%>
-<%--                                   </form>--%>
-<%--                            <p>Bem-vindo, ${sessionScope.cliente.nomeCompleto}!</p>--%>
-
-<%--                            <form action="EditarClienteServlet" method="get">--%>
-<%--                                    <input type="submit" value="Editar Informações">--%>
-<%--                                </form>--%>
-<form action="LogoutServlet" method="post">
-      <input type="submit" value="Logout">
-  </form>
-                        </c:when>
-                        <c:otherwise>
-                            <form action="LoginCliente.jsp" method="get">
-                                <button class="btn-primary" type="submit">👤<p> Faça login ou crie seu login<p/></button>
-                            </form>
-	                      
-                        </c:otherwise>
-                    </c:choose>
-	                <form action="" method="get">
-		                <button class="btn-primary1" type="submit">🛒 </button>
-	                </form>
-
-                </div>
-            </div>
-        </div>
-        </ul>
-	    </div>
-	       
-        </ul>
-    </nav>
-    
-    <h2 class="titulo-centro">Nossos produtos </h2>
- <hr>
+<h2 class="titulo-centro">Nossos produtos </h2>
+<hr>
 
 
 <c:forEach var="produto" items="${Produtos}">
-    <div class="product-box product-item">
-        <div class="product-image">
-            <img src="${produto.imagePATH}" alt="Imagem do Produto">
-        </div>
-        <div class="product-details">
-            <h2 class="product-name">${produto.nomeProduto}</h2>
-
-            <p class="product-description">${produto.descricaoDetalhada}</p>
-            <span class="product-rating" id="product-rating-1"></span>
-            <br>
-            <p class="product-price">R$: <span>${produto.precoProduto}</span></p>
-
-            <h2>${produto.avaliacao}</h2>
- <a class="buy-button" href="ComprarCliente?produtoID=<c:out value='${produto.produtoID}' />"> Detalhes
-            </a>
-        </div>
-    </div>
+	<div class="product-box product-item">
+		<div class="product-image">
+			<img src="${produto.imagePATH}" alt="Imagem do Produto">
+		</div>
+		<div class="product-details">
+			<h2 class="product-name">${produto.nomeProduto}</h2>
+			
+			<p class="product-description">${produto.descricaoDetalhada}</p>
+			<span class="product-rating" id="product-rating-1"></span>
+			<br>
+			<p class="product-price">R$: <span>${produto.precoProduto}</span></p>
+			
+			<h2>${produto.avaliacao}</h2>
+			<a class="buy-button" href="ComprarCliente?produtoID=<c:out value='${produto.produtoID}' />"> Detalhes
+			</a>
+		</div>
+	</div>
 </c:forEach>
 
 
-    <footer>
-        © 2023 BREWMASTERS CAFÉ. Todos os direitos reservados.
-    </footer>
+<footer>
+	© 2023 BREWMASTERS CAFÉ. Todos os direitos reservados.
+</footer>
 </body>
 </html>
