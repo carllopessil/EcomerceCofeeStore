@@ -1,43 +1,32 @@
 package DAO;
-
 import br.com.gymcontrol.Model.Endereco;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 public class EnderecoDAO {
-
     public int pegaIdEndereçoPadrão(int idCliente) {
         int idPadrão = -1;
         String SQL = "SELECT id FROM Endereco WHERE idCliente = ?;";
-
         try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
              PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
             preparedStatement.setInt(1, idCliente);
             ResultSet resultSet = preparedStatement.executeQuery();
-
             if (resultSet.next()) {
                 idPadrão = resultSet.getInt("id");
             } else {
                 System.out.println("Nenhum resultado encontrado para o cliente com ID: " + idCliente);
             }
-
             return idPadrão;
         } catch (Exception e) {
             System.out.println("Erro ao pegar o endereço principal : " + e.getMessage());
         }
-
         return idPadrão;
     }
-
-
     public void inserirEnderecoInicial(String cepFaturamento, String logradouroFaturamento, int numeroFaturamento, String complementoFaturamento, String bairroFaturamento, String cidadeFaturamento, String ufFaturamento, int idCliente) {
         String SQL = "INSERT INTO Endereco (cep, logradouro, numero, complemento, bairro, cidade, uf, enderecoAtivo, idCliente) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         System.out.println("essa é a id do cliente" + idCliente);
-
         try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
              PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
             preparedStatement.setString(1, cepFaturamento);
@@ -55,10 +44,8 @@ public class EnderecoDAO {
             System.out.println("Erro ao cadastrar o endereço inicial principal: " + e.getMessage());
         }
     }
-
     public boolean atualizarIdEnderecoPadrao(int clienteId, int novoIdEnderecoPadrao) {
         String updateQuery = "UPDATE Cliente SET idEnderecoPadrao = ? WHERE id = ?";
-
         try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa")){
             PreparedStatement preparedStatement = connection.prepareStatement(updateQuery);
             preparedStatement.setInt(1, novoIdEnderecoPadrao);
@@ -72,10 +59,8 @@ public class EnderecoDAO {
     public boolean inserirEnderecos(List<Endereco> enderecos) {
         String SQL = "INSERT INTO Endereco (cep, logradouro, numero, complemento, bairro, cidade, uf, enderecoAtivo, idCliente) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
         try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
              PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
-
             for (Endereco endereco : enderecos) {
                 preparedStatement.setString(1, endereco.getCep());
                 preparedStatement.setString(2, endereco.getLogradouro());
@@ -88,11 +73,8 @@ public class EnderecoDAO {
                 preparedStatement.setInt(9, endereco.getIdCliente());
                 preparedStatement.addBatch();
             }
-
             preparedStatement.executeBatch();
-
             return true;
-
         } catch (Exception e) {
             System.out.println("Erro ao cadastrar os endereços: " + e.getMessage());
             return false;
@@ -100,18 +82,12 @@ public class EnderecoDAO {
     }
     public static List<Endereco> obterEnderecosCliente(int IdCliente) {
         String sql = "SELECT * FROM Endereco WHERE IdCliente = ? AND enderecoAtivo = true";
-
         try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-
             preparedStatement.setInt(1, IdCliente);
-
             ResultSet resultSet = preparedStatement.executeQuery();
-
             List<Endereco> enderecos = new ArrayList<>();
-
             while (resultSet.next()) {
-
                 int idEndereco = resultSet.getInt("id");
                 String cep = resultSet.getString("cep");
                 String logradouro = resultSet.getString("logradouro");
@@ -122,27 +98,18 @@ public class EnderecoDAO {
                 String uf = resultSet.getString("uf");
                 boolean enderecoAtivo = resultSet.getBoolean("enderecoAtivo");
                 int idCliente = resultSet.getInt("IdCliente");
-
-
                 Endereco enderecos_envio = new Endereco(idEndereco, cep, logradouro, numero, complemento, bairro, cidade, uf, enderecoAtivo, idCliente);
-
                 enderecos.add(enderecos_envio);
-
             }
-
             System.out.println("success in select * Produtos");
-
             connection.close();
-
             return enderecos;
-
         } catch (SQLException e) {
             System.out.println("Erro ao buscar produtos paginados: " + e.getMessage());
             e.printStackTrace();
             return Collections.emptyList();
         }
     }
-
 
     public boolean alterarStatusEndereco(int enderecoId, boolean novoStatus) {
         String sql = "UPDATE Endereco SET enderecoAtivo = false WHERE id = ?";
@@ -151,27 +118,20 @@ public class EnderecoDAO {
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             System.out.println("aqui está a id na parte da DAO" + enderecoId);
             preparedStatement.setInt(1, enderecoId);
-
             int linhasAfetadas = preparedStatement.executeUpdate();
-
             return linhasAfetadas > 0;
-
         } catch (SQLException e) {
             System.out.println("Erro ao alterar status do endereço: " + e.getMessage());
             e.printStackTrace();
             return false;
         }
     }
-
     public boolean adicionarEnderecos(int clienteId, List<Endereco> enderecos) {
-
         PreparedStatement preparedStatement = null;
-
         try { Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
-                    // Crie uma instrução SQL para inserir um endereço
-                    String sql = "INSERT INTO endereco (cliente_id, cep, logradouro, numero, complemento, bairro, cidade, uf) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            // Crie uma instrução SQL para inserir um endereço
+            String sql = "INSERT INTO endereco (cliente_id, cep, logradouro, numero, complemento, bairro, cidade, uf) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             preparedStatement = connection.prepareStatement(sql);
-
             for (Endereco endereco : enderecos) {
                 preparedStatement.setInt(1, clienteId);
                 preparedStatement.setString(2, endereco.getCep());
@@ -181,13 +141,10 @@ public class EnderecoDAO {
                 preparedStatement.setString(6, endereco.getBairro());
                 preparedStatement.setString(7, endereco.getCidade());
                 preparedStatement.setString(8, endereco.getUf());
-
                 preparedStatement.addBatch(); // Adicione a instrução à batch
             }
-
             // Execute a batch de inserção
             preparedStatement.executeBatch();
-
             return true; // Sucesso
         } catch (SQLException e) {
             e.printStackTrace();
@@ -197,15 +154,10 @@ public class EnderecoDAO {
             // Lide com exceções, se necessário
         }
     }
-
-
     public void adicionarEndereco(int clienteId, Endereco endereco) {
         try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa")){
-
-
             String sql = "INSERT INTO Endereco (cep, logradouro, numero, complemento, bairro, cidade, uf, enderecoAtivo, idCliente) " +
                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, endereco.getCep());
             preparedStatement.setString(2, endereco.getLogradouro());
@@ -216,9 +168,7 @@ public class EnderecoDAO {
             preparedStatement.setString(7, endereco.getUf());
             preparedStatement.setBoolean(8, true); // Defina o valor apropriado para "enderecoAtivo"
             preparedStatement.setInt(9, clienteId);
-
             preparedStatement.executeUpdate();
-
             preparedStatement.close();
             connection.close();
         } catch (SQLException e) {
@@ -226,4 +176,3 @@ public class EnderecoDAO {
         }
     }
 }
-

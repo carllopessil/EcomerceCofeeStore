@@ -1,11 +1,13 @@
 <%@ page import="br.com.gymcontrol.Model.Produtos" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
 	<title>Detalhes produto</title>
-	
+
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -61,48 +63,49 @@
 						<h1>BEM-VINDO AO BREWMASTERS CAFÉ.BACKOFFICE</h1>
 					</li>
 					<div class="dropdown">
-						<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-						        aria-expanded="false">
-							Bem-vindo, ${sessionScope.cliente.nomeCompleto}
-						</button>
-						<ul class="dropdown-menu">
-											<li><a class="dropdown-item" href="LoginCliente.jsp">Login Cliente</a></li>
-							<li><a class="dropdown-item" href="ListarEnderecosCliente">Meus Endereços</a></li>
-							<li><a class="dropdown-item" href="EditarClienteServlet">Editar Perfil</a></li>
-						
-							
-							<div class="container">
-								<div class="form-container">
-									<div class="btn-container">
-										<c:choose>
-											<c:when test="${sessionScope.cliente != null}">
-											</c:when>
-											<c:otherwise>
-<%--												<form action="LoginCliente.jsp" method="get">--%>
-<%--													<button class="btn-primary" type="submit">👤<p> Login ou crie Cadastrar--%>
-<%--														<p/></button>--%>
-<%--												</form>--%>
-											</c:otherwise>
-										</c:choose>
-										<form action="" method="get">
-											<button class="btn-primary1" type="submit">🛒<label>Comprar</label>
-											</button>
-										</form>
-									
-									</div>
-								</div>
-							</div>
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <c:choose>
+                                <c:when test="${empty sessionScope.cliente}">
+                                    Bem-vindo, Visitante
+                                </c:when>
+                                <c:otherwise>
+                                    Bem-vindo, ${sessionScope.cliente.nomeCompleto}
+                                </c:otherwise>
+                            </c:choose>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <c:choose>
+                                <c:when test="${empty sessionScope.cliente}">
+                                    <li><a class="dropdown-item" href="LoginCliente.jsp">Login Cliente</a></li>
+                                    <form action="" method="get">
+                                    											<button class="btn-primary1" type="submit">🛒<label>Comprar</label>
+                                    											</button>
+                                    										</form>
+                                </c:when>
+                                <c:otherwise>
+                                    <li><a class="dropdown-item" href="ListarEnderecosCliente">Meus Endereços</a></li>
+                                    <li><a class="dropdown-item" href="EditarClienteServlet">Editar Perfil</a></li>
+                                    <form action="" method="get">
+                                    											<button class="btn-primary1" type="submit">🛒<label>Comprar</label>
+                                    											</button>
+                                    										</form>
+                                 <form action="LogoutServlet" method="post">
+                                 								<input type="submit" value="Logout" class="botao-Sair-logout">
+                                 							</form>
+                                </c:otherwise>
+                            </c:choose>
+                        </ul>
+                    </div>
+
 							<br><br><br>
-							<form action="LogoutServlet" method="post">
-								<input type="submit" value="Logout" class="botao-Sair-logout">
-							</form>
+
 						</ul>
 					</div>
 				</ul>
 			</nav>
 		</div>
 	</div>
-	
+
 	<div id="container-h1">
 		<div class="row-h1-menu">
 			<div class="col-12 col-sm-12 col-md-12 col-xl-12">
@@ -121,7 +124,7 @@
 				double precoProduto = produto.getPrecoProduto();
 				int qtdEstoque = produto.getQtdEstoque();
 		%>
-		
+
 		<!-- Exibe todas as imagens do produto -->
 		<div id="imageCarousel" class="carousel slide" data-ride="carousel">
 			<div class="carousel-inner">
@@ -137,7 +140,7 @@
 					}
 				%>
 			</div>
-			
+
 			<!-- Controles do Carrossel -->
 			<a class="carousel-control-prev" href="#imageCarousel" role="button" data-slide="prev">
 				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -148,7 +151,7 @@
 				<span class="sr-only">Próximo</span>
 			</a>
 		</div>
-		
+
 		<div class="product-details">
 			<h2><%= nomeProduto %>
 			</h2>
@@ -159,7 +162,7 @@
 					// Converte a avaliação em estrelas
 					int avaliacaoEmEstrelas = (int) Math.floor(avaliacao); // Parte inteira da avaliação
 					double parteDecimal = avaliacao - avaliacaoEmEstrelas; // Parte decimal (0.0 a 0.9)
-					
+
 					for (int i = 1; i <= 5; i++) {
 						if (i <= avaliacaoEmEstrelas) {
 				%>
@@ -179,19 +182,19 @@
 			</p>
 			<p>Preço R$: <%= precoProduto %>
 		</div>
-		
+
 		<a class="buy-button" disabled>Comprar</a>
-		
+
 		<%
 		} else {
 		%>
 		<p>Produto não encontrado.</p>
-		
+
 		<%
 			}
 		%>
 	</div>
-	
+
 	<footer>
 		© 2023 BREWMASTERS CAFÉ. Todos os direitos reservados.
 	</footer>

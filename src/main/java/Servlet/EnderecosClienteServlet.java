@@ -30,9 +30,10 @@ public class EnderecosClienteServlet extends HttpServlet {
 
         int idCliente = cliente.getId();
 
+
         EnderecoDAO enderecoDAO = new EnderecoDAO();
         List<Endereco> enderecos = enderecoDAO.obterEnderecosCliente(idCliente);
-
+        request.setAttribute("cliente" , cliente);
         request.setAttribute("enderecos2", enderecos);
 
         request.getRequestDispatcher("ListarEnderecosCliente.jsp").forward(request, response);
