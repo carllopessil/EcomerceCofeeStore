@@ -391,17 +391,17 @@
                 }
 
 
-                function validarNome() {
-                    var nomeCompleto = document.getElementById("nomeCompleto").value;
-                    var partesNome = nomeCompleto.split(" ");
+               function validarNome() {
+                      var nomeCompleto = document.getElementById("nomeCompleto").value;
+                      var partesNome = nomeCompleto.split(" ");
 
-                    if (partesNome.length < 2 || partesNome[0].length < 3 || partesNome[1].length < 3) {
-                        document.getElementById("mensagemAlertaNome").innerText = "O nome do cliente deve ter no mínimo duas palavras, cada uma com no mínimo 3 letras.";
-                        return false;
-                    }
+                      if (partesNome.length < 2 || partesNome[0].length < 3 || partesNome[1].length < 3) {
+                          document.getElementById("mensagemAlertaNome").innerText = "O nome do cliente deve ter no mínimo duas palavras, cada uma com no mínimo 3 letras.";
+                          return false;
+                      }
 
-                    return true;
-                }
+                      return true;
+                  }
 			
 			</script>
 		

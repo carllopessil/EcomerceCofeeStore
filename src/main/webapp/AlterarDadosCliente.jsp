@@ -26,16 +26,12 @@
 
 <h1>Editar Informações do Cliente</h1>
 
-<div id="container-form">
-	<div class="row-form">
-		<div class="col-12 col-lg-6 col-xl-6 col-md-6">
-			<form action="EditarClienteServlet" method="post">
-				<label for="nomeCompleto">Nome Completo:</label>
-				<input type="text" id="nomeCompleto" name="nomeCompleto" value="${cliente.nomeCompleto}"
-				       required><br><br>
-				<div id="mensagemAlertaNome" style="color: red;"></div>
-				
-				
+<form action="EditarClienteServlet" method="post" onsubmit="return validarNome();">
+    <label for="nomeCompleto">Nome Completo:</label>
+    <input type="text" id="nomeCompleto" name="nomeCompleto" value="${cliente.nomeCompleto}"
+           required onblur="validarNome()"><br><br>
+    <div id="mensagemAlertaNome" style="color: red;"></div>
+
 				<label for="dataNascimento">Data de Nascimento:</label>
 				<input type="date" id="dataNascimento" name="dataNascimento" value="${cliente.dataNascimento}" required
 				       max="2023-10-17"><br><br>
@@ -191,17 +187,21 @@
 
 
 
-    function validarNome() {
-        var nomeCompleto = document.getElementById("nomeCompleto").value;
-        var partesNome = nomeCompleto.split(" ");
+function validarNome() {
+    var nomeCompleto = document.getElementById("nomeCompleto").value;
+    var partesNome = nomeCompleto.split(" ");
 
-        if (partesNome.length < 2 || partesNome[0].length < 3 || partesNome[1].length < 3) {
-            document.getElementById("mensagemAlertaNome").innerText = "O nome do cliente deve ter no mínimo duas palavras, cada uma com no mínimo 3 letras.";
-            return false;
-        }
+    if (partesNome.length < 2 || partesNome.some(part => part.length < 3)) {
+        document.getElementById("mensagemAlertaNome").innerText = "O nome do cliente deve ter no mínimo duas palavras, cada uma com no mínimo 3 letras.";
+        return false; // Evita o envio do formulário se a validação falhar
+    } else {
+        document.getElementById("mensagemAlertaNome").innerText = "";
+    }
 
-        return true;
-    } document.getElementById("salvarEnderecos").addEventListener("click", function () {
+    return true;
+}
+
+document.getElementById("salvarEnderecos").addEventListener("click", function () {
              // Validar os endereços antes de enviar o formulário
              if (validarEnderecos()) {
                  // Coletar todos os dados de endereço adicionados
