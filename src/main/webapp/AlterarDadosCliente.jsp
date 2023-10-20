@@ -201,8 +201,7 @@
         }
 
         return true;
-    }
-    document.getElementById("salvarEnderecos").addEventListener("click", function () {
+    } document.getElementById("salvarEnderecos").addEventListener("click", function () {
              // Validar os endereços antes de enviar o formulário
              if (validarEnderecos()) {
                  // Coletar todos os dados de endereço adicionados
@@ -235,7 +234,14 @@
          });
 
          function validarEnderecos() {
+             // Coletar todos os dados de endereço adicionados
+             var enderecos = [];
+
              var divsEndereco = document.querySelectorAll("#enderecos > div");
+             if (divsEndereco.length === 0) {
+                 alert("Adicione pelo menos um endereço antes de salvar.");
+                 return false; // Retorna falso para impedir o envio
+             }
 
              for (var i = 0; i < divsEndereco.length; i++) {
                  var divEndereco = divsEndereco[i];
@@ -256,7 +262,6 @@
 
              return true; // Retorna verdadeiro se todos os endereços estiverem preenchidos
          }
-
 
 </script>
 <footer>© 2023 BREWMASTERS CAFÉ. Todos os direitos reservados.</footer>
