@@ -200,6 +200,8 @@ btn {
     text-align: center;
     background-color: #3b1e0a;
     display: inline-block;
+    border-radius: 20px;
+    border: 1.5px solid wheat;
 }
 
 
@@ -226,8 +228,6 @@ btn {
     font-weight: bold;
     color: #e74c3c;
 }
-
-
 .buy-button {
     display: block;
     margin-top: 10px;
@@ -236,7 +236,7 @@ btn {
     color: #fff;
     text-align: center;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 17px;
 }
 
 .buy-button:hover {

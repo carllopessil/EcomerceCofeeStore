@@ -45,9 +45,10 @@
                 <br>
                 <label for="uf">UF:</label>
                 <input type="text" id="uf" name="uf" value="${endereco.uf}">
-
-                <p><button type="submit" name="excluir" value="${endereco.id}">Excluir</button></p>
-
+                
+                <p><button class="custom-button" type="submit" name="excluir" value="${endereco.id}">Excluir</button></p>
+                
+                
                 <hr>
             </c:forEach>
             <input type="submit" value="Enviar" class="styled-button">

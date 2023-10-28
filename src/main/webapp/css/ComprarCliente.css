@@ -4,9 +4,8 @@ body {
     margin: 0;
     padding: 0;
     font-family: Kanit;
-
+    height: 135vh;
 }
-
 .menu {
     list-style-type: none;
     display: flex;
@@ -14,23 +13,18 @@ body {
     align-items: center;
     background-color: #3b1e0ac9;
     padding: 10px;
-
 }
-
 .menu li {
     margin: 0;
     padding: 0;
 }
-
 h1 {
     color: red;
     font-weight: bold;
     font-size: 44px;
     font-family: Kanit;
 }
-
 .menu a {
-
     color: red;
     padding: 5px 112px;
     border-radius: 5px;
@@ -39,15 +33,7 @@ h1 {
     font-family: Kanit;
     text-decoration: none !important;
 }
-
-/*.navbar {*/
-/*    display: flex;*/
-/*    justify-content: flex-end; !* Ajusta o alinhamento à direita *!*/
-/*    padding: 10px;*/
-/*    background-color: #f0f0f0; !* Cor de fundo da barra de navegação *!*/
-/*}*/
-/* Estilo para a barra de navegação */
-.navbar {
+.navbar{
     position: fixed;
     top: 0;
     width: 34%;
@@ -60,7 +46,6 @@ h1 {
     justify-content: flex-end;
     top: -158px;
 }
-
 .navbar {
     position: relative;
     display: -ms-flexbox;
@@ -73,7 +58,6 @@ h1 {
     justify-content: space-between;
     padding: 0.5rem 3rem;
 }
-
 /* Estilo para os links na barra de navegação */
 .navbar a {
     color: #e10a0a;
@@ -90,7 +74,6 @@ h1 {
     padding: 4px 38px;
     /*background-color: #3e220c7a;*/
 }
-
 a:hover {
     color: #ffffff !important;
     background-color: rgba(1, 27, 56, 0);
@@ -98,28 +81,11 @@ a:hover {
     font-weight: 700;
     font-family: inherit;
 }
-
 /* Estilo para os ícones */
 .navbar svg {
     height: 1em; /* Altura do ícone */
     margin-right: 5px; /* Espaçamento entre o ícone e o texto */
 }
-
-/*font:hover {*/
-/*    padding: 5px 30px;*/
-/*    background: #5c945c;*/
-/*    color: white;*/
-/*    border: 4px solid #746a62;*/
-/*    border-radius: 20px;*/
-/*    margin-left: 32px;*/
-/*    text-align: center;*/
-/*    text-decoration: none;*/
-/*    font-size: 25px;*/
-/*    font-family: 'Studio Feixen Sans';*/
-/*    font-weight: initial;*/
-/*}*/
-
-
 .btn-primary {
     background-color: #3b1e0a00;
     color: white;
@@ -137,18 +103,15 @@ a:hover {
     align-items: center;
     gap: 15px;
 }
-
 .menu-logo {
     display: flex;
     align-items: center;
 }
-
 .menu-logo img {
     max-width: 200px;
     height: auto;
     margin-right: 10px;
 }
-
 .slideshow-container {
     position: fixed;
     top: 0;
@@ -158,7 +121,6 @@ a:hover {
     z-index: -1;
     overflow: hidden;
 }
-
 .slideshow-image {
     position: absolute;
     width: 100%;
@@ -167,12 +129,10 @@ a:hover {
     opacity: 0;
     animation: fade 10s infinite;
 }
-
 .slideshow-image.active {
     opacity: 1;
     animation: none;
 }
-
 @keyframes fade {
     0%, 100% {
         opacity: 0;
@@ -181,17 +141,6 @@ a:hover {
         opacity: 1;
     }
 }
-
-footer {
-    background-color: #3b1e0a;
-    color: white;
-    text-align: center;
-
-    position: absolute;
-    bottom: -53;
-    width: 100%;
-}
-
 btn {
     display: inline-flex;
     align-items: center;
@@ -204,29 +153,22 @@ btn {
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
-
 .btn:hover {
     background-color: #0056b3;
 }
-
 .btn img {
     width: 24px;
     height: 24px;
     margin-right: 10px;
 }
-
-
 .titulo-centro {
     text-align: center;
     Color: red;
 }
-
 .product-rating {
     font-size: 1.2rem;
     color: #ff5722;
 }
-
-
 .product-box {
     border: 1px solid #3b1e0a;
     padding: 20px;
@@ -236,32 +178,24 @@ btn {
     background-color: #3b1e0a;
     display: inline-block;
 }
-
-
 .product-image img {
     max-width: 100%;
     height: auto;
 }
-
-
 .product-details h2 {
     font-size: 28px;
     margin-top: 10px;
     color: white;
 }
-
-
 .product-price {
     font-size: 26px;
     margin-top: 5px;
     color: #e74c3c;
 }
-
 .product-price span {
     font-weight: bold;
     color: #e74c3c;
 }
-
 .buy-button {
     display: block;
     margin-top: 10px;
@@ -272,54 +206,44 @@ btn {
     text-decoration: none;
     border-radius: 5px;
 }
-
 .buy-button:hover {
     background-color: red;
 }
-
 .product-description {
     font-size: 20px;
     margin-top: 10px;
     color: white;
 }
-
 h1 {
     color: red !important;
     padding: 10px;
     text-align: center;
 }
-
 .produto-container {
-    max-width: 800px;
+    max-width: 650px;
     margin: 20px auto;
     background-color: #3b1e0a;
-    padding: 20px;
+    padding: 15px;
     border: 1px solid #3b1e0a;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    border-radius: 42px;
+    border-radius: 30px;
 }
-
 img {
     max-width: 100%;
     height: auto;
     margin-bottom: 10px;
 }
-
-
 p {
     margin: 10px 0;
 }
-
 .avaliacao {
     margin: 10px 0;
 }
-
 .estrela {
     width: 20px;
     height: 20px;
     margin-right: 5px;
 }
-
 .product-details {
     font-size: 28px;
     margin-top: 10px;
@@ -365,16 +289,13 @@ ul.dropdown-menu.show {
     border: 1.5px solid white;
     transition: all 0.3s ease;
 }
-
 .btn-primary1:hover {
     transform: scale(1.05); /* Aumenta a escala em 5% */
     background: #3b1e0a; /* Altera a cor de fundo */
     color: white; /* Altera a cor do texto */
 }
-
 /* Estilo para o botão de botao-Sair-logout*/
 .botao-Sair-logout {
-
     background-color: #ff0939c7;
     color: #fff;
     border: none;
@@ -391,9 +312,6 @@ ul.dropdown-menu.show {
     font-size: 22px; /* Define o tamanho da fonte (ajuste conforme necessário) */
     color: #FF0000; /* Define a cor do texto da label (ajuste conforme necessário) */
 }
-
-
-
 .buy-button {
     display: block;
     margin-top: 10px;
@@ -408,7 +326,6 @@ ul.dropdown-menu.show {
     font-weight: 500;
     font-family: revert;
 }
-
 a.buy-button:hover {
     background-color: blue;
     color: white;
@@ -419,54 +336,46 @@ a.buy-button:hover {
     border-radius: 20px;
     border: 2px solid black;
 }
-
 #imageCarousel {
     margin-top: 20px;
     max-width: 600px;
     margin: 0 auto;
 }
-
 .carousel-inner {
     text-align: center;
-
 }
-
 .carousel-item img {
-    max-width: 100%;
-     height: 50vh;
+    max-width: 85%;
+    height: 50vh;
+    border: 1.5px solid wheat;
+    border-radius: 15px;
+    padding: 15px;
 }
-
-
 /* Estilos para os controles do carrossel */
 .carousel-control-prev, .carousel-control-next {
     background-color: rgba(0, 0, 0, 0.51);
     width: 48px;
 }
-
 a.carousel-control-next {
-    /* border: 3px solid white; */
-    width: 42px;
+    border: 1.5px solid #ffffff26;
+    width: 40px;
 }
-
 .carousel-control-prev {
     left: 0;
-    width: 42px !important;
+    width: 40px !important;
+    border: 1.5px solid #f5deb345;
 }
-
 .carousel-control-prev-icon, .carousel-control-next-icon {
     background-color: white;
     border-radius: 50%;
-/ color: #000;
+    color: #000;
     font-size: 24px;
 }
-
-
 .carousel-caption {
     background-color: rgba(0, 0, 0, 0.5);
     color: red;
     padding: 10px;
 }
-
 .carousel-control-next, .carousel-control-prev {
     position: absolute;
     top: 0;
@@ -486,7 +395,6 @@ a.carousel-control-next {
     border-radius: 47px;
     width: 38px;
 }
-
 footer {
     background-color: #3b1e0a;
     color: white;
