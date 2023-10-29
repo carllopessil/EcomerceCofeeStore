@@ -378,5 +378,28 @@ public class ProdutosDAO {
         }
     }
 
+    public int obterQuantidadeDisponivel(int produtoID) {
+        String SQL = "SELECT qtdEstoque FROM Produtos WHERE produtoID = ?";
+
+        try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
+
+            preparedStatement.setInt(1, produtoID);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                int quantidadeEstoque = resultSet.getInt("qtdEstoque");
+                return quantidadeEstoque;
+            } else {
+                return -1; // Retorna -1 se o produto não for encontrado
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Erro ao obter quantidade disponível do produto por ID: " + e.getMessage());
+            return -1;
+        }
+    }
+
 }
 

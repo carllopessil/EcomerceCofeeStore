@@ -1,13 +1,15 @@
 <%@ page import="br.com.gymcontrol.Model.Produtos" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="br.com.gymcontrol.Model.Cliente" %>
+<%@ page import="br.com.gymcontrol.Model.Endereco" %>
 
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
 	<title>Detalhes produto</title>
-	
+
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -18,6 +20,8 @@
 	        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 	        crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="css/ComprarCliente.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 <style>
     .product-description {
@@ -63,140 +67,243 @@
 						<h1>BEM-VINDO AO BREWMASTERS CAFÉ.BACKOFFICE</h1>
 					</li>
 					<div class="dropdown">
-						<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-						        aria-expanded="false">
-							<c:choose>
-								<c:when test="${empty sessionScope.cliente}">
-									Bem-vindo, Visitante
-								</c:when>
-								<c:otherwise>
-									Bem-vindo, ${sessionScope.cliente.nomeCompleto}
-								</c:otherwise>
-							</c:choose>
-						</button>
-						<ul class="dropdown-menu">
-							<c:choose>
-								<c:when test="${empty sessionScope.cliente}">
-									<li><a class="dropdown-item" href="LoginCliente.jsp">Login Cliente</a></li>
-									<form action="" method="get">
-										<button class="btn-primary1" type="submit">🛒<label>Comprar</label>
-										</button>
-									</form>
-								</c:when>
-								<c:otherwise>
-									<li><a class="dropdown-item" href="ListarEnderecosCliente">Meus Endereços</a></li>
-									<li><a class="dropdown-item" href="EditarClienteServlet">Editar Perfil</a></li>
-									<form action="" method="get">
-										<button class="btn-primary1" type="submit">🛒<label>Comprar</label>
-										</button>
-									</form>
-									<form action="LogoutServlet" method="post">
-										<input type="submit" value="Logout" class="botao-Sair-logout">
-									</form>
-								</c:otherwise>
-							</c:choose>
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <c:choose>
+                                <c:when test="${empty sessionScope.cliente}">
+                                    Bem-vindo, Visitante
+                                </c:when>
+                                <c:otherwise>
+                                    Bem-vindo, ${sessionScope.cliente.nomeCompleto}
+                                </c:otherwise>
+                            </c:choose>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <c:choose>
+                                <c:when test="${empty sessionScope.cliente}">
+                                    <li><a class="dropdown-item" href="LoginCliente.jsp">Login Cliente</a></li>
+                                    <form action="Carrinho.jsp" method="get">
+                                    											<button class="btn-primary1" type="submit">🛒<label>Comprar</label>
+                                    											</button>
+                                    										</form>
+                                </c:when>
+                                <c:otherwise>
+                                    <li><a class="dropdown-item" href="ListarEnderecosCliente">Meus Endereços</a></li>
+
+                                    <li><a class="dropdown-item" href="EditarClienteServlet">Editar Perfil</a></li>
+                                 <form action="Carrinho.jsp" method="get">
+                                   <button class="btn-primary1" type="submit">🛒<label>Comprar</label>
+                                       		</button>
+                                          	</form><form action="LogoutServlet" method="post">
+                                 			<input type="submit" value="Logout" class="botao-Sair-logout">
+                                 		</form>
+                                </c:otherwise>
+                            </c:choose>
+                        </ul>
+                    </div>
+
+							<br><br><br>
+
 						</ul>
 					</div>
-					<br><br><br>
 				</ul>
 			</nav>
 		</div>
 	</div>
-</div>
 
-
-<div id="container-h1">
-	<div class="row-h1-menu">
-		<div class="col-12 col-sm-12 col-md-12 col-xl-12">
-			<h1>Detalhes do Produto</h1>
-		</div>
-	</div>
-</div>
-<br><br>
-<div class="produto-container">
-	<%
-		Produtos produto = (Produtos) request.getAttribute("produto");
-		if (produto != null) {
-			String nomeProduto = produto.getNomeProduto();
-			String descricaoDetalhada = produto.getDescricaoDetalhada();
-			double avaliacao = produto.getAvaliacao();
-			double precoProduto = produto.getPrecoProduto();
-			int qtdEstoque = produto.getQtdEstoque();
-	%>
-	
-	<!-- Exibe todas as imagens do produto -->
-	<div id="imageCarousel" class="carousel slide" data-ride="carousel">
-		<div class="carousel-inner">
-			<%
-				boolean firstImage = true;
-				for (String imagePath : produto.getImagens()) {
-			%>
-			<div class="carousel-item <%= firstImage ? "active" : "" %>">
-				<img src="<%= imagePath %>" alt="Imagem do Produto">
+	<div id="container-h1">
+		<div class="row-h1-menu">
+			<div class="col-12 col-sm-12 col-md-12 col-xl-12">
+				<h1>Detalhes do Produto</h1>
 			</div>
-			<%
-					firstImage = false;
-				}
-			%>
 		</div>
-		
-		<!-- Controles do Carrossel -->
-		<a class="carousel-control-prev" href="#imageCarousel" role="button" data-slide="prev">
-			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-			<span class="sr-only">Anterior</span>
-		</a>
-		<a class="carousel-control-next" href="#imageCarousel" role="button" data-slide="next">
-			<span class="carousel-control-next-icon" aria-hidden="true"></span>
-			<span class="sr-only">Próximo</span>
-		</a>
 	</div>
-	
-	<div class="product-details">
-		<h2><%= nomeProduto %>
-		</h2>
-		<p><%= descricaoDetalhada %>
-		</p>
-		<p class="avaliacao">Avaliação:
-			<%
-				// Converte a avaliação em estrelas
-				int avaliacaoEmEstrelas = (int) Math.floor(avaliacao); // Parte inteira da avaliação
-				double parteDecimal = avaliacao - avaliacaoEmEstrelas; // Parte decimal (0.0 a 0.9)
-				
-				for (int i = 1; i <= 5; i++) {
-					if (i <= avaliacaoEmEstrelas) {
-			%>
-			<img class="estrela" src="img/estrela_cheia.png" alt="Estrela Cheia">
-			<%
-			} else if (i == avaliacaoEmEstrelas + 1 && parteDecimal >= 0.5) {
-			%>
-			<img class="estrela" src="img/estrela_meia.png" alt="Estrela Meia">
-			<%
-			} else {
-			%>
-			<img class="estrela" src="img/estrela_vazia.png" alt="Estrela Vazia">
-			<%
+	<br><br>
+	<div class="produto-container">
+		<%
+			Produtos produto = (Produtos) request.getAttribute("produto");
+			if (produto != null) {
+				String nomeProduto = produto.getNomeProduto();
+				String descricaoDetalhada = produto.getDescricaoDetalhada();
+				double avaliacao = produto.getAvaliacao();
+				double precoProduto = produto.getPrecoProduto();
+				int qtdEstoque = produto.getQtdEstoque();
+		%>
+
+		<!-- Exibe todas as imagens do produto -->
+		<div id="imageCarousel" class="carousel slide" data-ride="carousel">
+			<div class="carousel-inner">
+				<%
+					boolean firstImage = true;
+					for (String imagePath : produto.getImagens()) {
+				%>
+				<div class="carousel-item <%= firstImage ? "active" : "" %>">
+					<img src="<%= imagePath %>" alt="Imagem do Produto">
+				</div>
+				<%
+						firstImage = false;
 					}
-				}
-			%>
-		</p>
-		<p>Preço R$: <%= precoProduto %>
+				%>
+			</div>
+
+			<!-- Controles do Carrossel -->
+			<a class="carousel-control-prev" href="#imageCarousel" role="button" data-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="sr-only">Anterior</span>
+			</a>
+			<a class="carousel-control-next" href="#imageCarousel" role="button" data-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="sr-only">Próximo</span>
+			</a>
+		</div>
+
+		<div class="product-details">
+			<h2><%= nomeProduto %>
+			</h2>
+			<p><%= descricaoDetalhada %>
+			</p>
+			<p class="avaliacao">Avaliação:
+				<%
+					// Converte a avaliação em estrelas
+					int avaliacaoEmEstrelas = (int) Math.floor(avaliacao); // Parte inteira da avaliação
+					double parteDecimal = avaliacao - avaliacaoEmEstrelas; // Parte decimal (0.0 a 0.9)
+
+					for (int i = 1; i <= 5; i++) {
+						if (i <= avaliacaoEmEstrelas) {
+				%>
+				<img class="estrela" src="img/estrela_cheia.png" alt="Estrela Cheia">
+				<%
+				} else if (i == avaliacaoEmEstrelas + 1 && parteDecimal >= 0.5) {
+				%>
+				<img class="estrela" src="img/estrela_meia.png" alt="Estrela Meia">
+				<%
+				} else {
+				%>
+				<img class="estrela" src="img/estrela_vazia.png" alt="Estrela Vazia">
+				<%
+						}
+					}
+				%>
+			</p>
+			<p>Preço R$: <%= precoProduto %>
+		</div>
+
+
+
+		<c:choose>
+                <c:when test="${sessionScope.cliente == null}">
+                <h2> Calcular frete: </h2>
+                    <label for="cepFaturamento">CEP:</label>
+                    <input type="text" name="cepFaturamento" id="cepFaturamento" placeholder="0.0000-000" required>
+
+                    <div id="container-button-cep">
+                        <div class="row-button">
+                            <button type="button" id="buscarCEP"> OK </button>
+                        </div>
+                    </div>
+
+                    <div id="opcoesEntrega" style="display:none;">
+                        <h2>Tipos de entrega:</h2>
+                        <p>RECEBER NO MEU ENDEREÇO</p>
+                        <p>Turbo - Entrega em 60 minutos</p>
+                         <input type="radio" name="frete" value="10,90"> 10,90<br>
+                         <p>Entrega rápida</p>
+                         <input type="radio" name="frete" value="4,90"> 4,90<br>
+
+                         <p>Normal - 1 dia(s) útil(eis)</p>
+                         <input type="radio" name="frete" value="3,90">R$ 3,90<br>
+
+                         <p> *O prazo de retirada do pedido inicia-se após a confirmação do pagamento. Escolha a forma de entrega na página de pagamento.
+                             </p>
+                    </div>
+                </c:when>
+            </c:choose>
+            <c:choose>
+                <c:when test="${not empty cliente}" >
+                <h1>Tipos de entrega:</h1>
+                     <p>RECEBER NO MEU ENDEREÇO</p>
+                    <p>CEP: ${cliente.cepFaturamento}</p>
+                     <p>Entrega turbo</p>
+                   <input type="radio" name="frete" value="3,90">R$ 3,90<br>
+                   <p>Entrega rápida</p>
+                                            <input type="radio" name="frete" value="4,90"> 4,90<br>
+
+                                            <p>Normal - 1 dia(s) útil(eis)</p>
+                                            <input type="radio" name="frete" value="3,90">R$ 3,90<br>
+
+                                            <p> *O prazo de retirada do pedido inicia-se após a confirmação do pagamento. Escolha a forma de entrega na página de pagamento.
+                                                </p>
+                </c:when>
+                <c:otherwise>
+                    <p>Cliente não está logado ou não possui endereço associado.</p>
+                </c:otherwise>
+            </c:choose>
+
+
+
+		<a class="buy-button" disabled>Comprar</a>
+<form action="/carrinho" method="post">
+    <input type="hidden" name="produtoID" value="${produto.produtoID}">
+    <button type="submit">Adicionar ao Carrinho</button>
+</form>
+
+
+		<%
+		} else {
+		%>
+		<p>Produto não encontrado.</p>
+
+		<%
+			}
+		%>
+
 	</div>
-	
-	<a class="buy-button" disabled>Comprar</a>
-	
-	<%
-	} else {
-	%>
-	<p>Produto não encontrado.</p>
-	
-	<%
-		}
-	%>
+
+
+
+
+
+
+
+	<footer>
+		© 2023 BREWMASTERS CAFÉ. Todos os direitos reservados.
+	</footer>
 </div>
 
-<footer>
-	© 2023 BREWMASTERS CAFÉ. Todos os direitos reservados.
-</footer>
+<script>
+        $(document).ready(function () {
+            $("#buscarCEP").click(function () {
 
+                var cep = $("#cepFaturamento").val();
+                cep = cep.replace('-', '');
+
+                // Verifique se o CEP possui 8 dígitos
+                var cepRegex = /^[0-9]{8}$/;
+                if (!cepRegex.test(cep)) {
+                    alert("CEP inválido. Digite um CEP com 8 dígitos.");
+                    return;
+                }
+
+                // Faça a chamada à API do ViaCEP
+                $.get("https://viacep.com.br/ws/" + cep + "/json/", function (data) {
+                    if (data.erro) {
+                        alert("CEP não encontrado.");
+                    } else {
+                        $("#opcoesEntrega").show(); // Exibe as opções de entrega
+                    }
+                });
+            });
+        });
+
+
+
+       function adicionarAoCarrinho(produtoID) {
+           // Envia a solicitação POST para o servlet
+           $.post("/carrinho", { produtoID: produtoID }, function() {
+               alert("Produto adicionado ao carrinho!");
+           });
+       }
+
+
+    </script>
 </body>
 </html>

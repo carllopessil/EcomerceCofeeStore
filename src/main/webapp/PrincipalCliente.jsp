@@ -112,6 +112,11 @@
             <h2>${produto.avaliacao}</h2>
             <a class="buy-button" href="ComprarCliente?produtoID=<c:out value='${produto.produtoID}' />"> Detalhes
             </a>
+            <form action="/carrinho" method="post">
+                <input type="hidden" name="produtoID" value="${produto.produtoID}">
+                <button type="submit">Adicionar ao Carrinho</button>
+            </form>
+
         </div>
     </div>
 </c:forEach>
