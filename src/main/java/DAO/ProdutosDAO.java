@@ -307,7 +307,7 @@ public class ProdutosDAO {
     }
 
     public static List<Produtos> listarTop8ProdutosAtivos() {
-        String SQL = "SELECT * FROM Produtos WHERE statusProduto = TRUE ORDER BY ProdutoID DESC LIMIT 8";
+        String SQL = "SELECT * FROM Produtos WHERE statusProduto = TRUE ORDER BY ProdutoID DESC LIMIT 10";
         //aqui voce escolhe a quantidade de itens que retornar na pagina principal
         List<Produtos> produtos = new ArrayList<>();
 

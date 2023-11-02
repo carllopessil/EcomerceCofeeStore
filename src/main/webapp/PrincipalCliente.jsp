@@ -79,7 +79,7 @@
                                 </c:otherwise>
                             </c:choose>
 
-                            <form action="" method="get">
+                            <form action="Carrinho.jsp" method="get">
                                 <button class="btn-primary1" type="submit">🛒<label>Comprar</label>
                                 </button>
                             </form>

@@ -6,6 +6,8 @@ public class ItemCarrinho {
     private Produtos produto;
     private int quantidade;
 
+
+
     public ItemCarrinho(Produtos produto, int quantidade) {
         this.produto = produto;
         this.quantidade = quantidade;

@@ -189,58 +189,8 @@
 
 
 
-		<c:choose>
-                <c:when test="${sessionScope.cliente == null}">
-                <h2> Calcular frete: </h2>
-                    <label for="cepFaturamento">CEP:</label>
-                    <input type="text" name="cepFaturamento" id="cepFaturamento" placeholder="0.0000-000" required>
 
-                    <div id="container-button-cep">
-                        <div class="row-button">
-                            <button type="button" id="buscarCEP"> OK </button>
-                        </div>
-                    </div>
-
-                    <div id="opcoesEntrega" style="display:none;">
-                        <h2>Tipos de entrega:</h2>
-                        <p>RECEBER NO MEU ENDEREÇO</p>
-                        <p>Turbo - Entrega em 60 minutos</p>
-                         <input type="radio" name="frete" value="10,90"> 10,90<br>
-                         <p>Entrega rápida</p>
-                         <input type="radio" name="frete" value="4,90"> 4,90<br>
-
-                         <p>Normal - 1 dia(s) útil(eis)</p>
-                         <input type="radio" name="frete" value="3,90">R$ 3,90<br>
-
-                         <p> *O prazo de retirada do pedido inicia-se após a confirmação do pagamento. Escolha a forma de entrega na página de pagamento.
-                             </p>
-                    </div>
-                </c:when>
-            </c:choose>
-            <c:choose>
-                <c:when test="${not empty cliente}" >
-                <h1>Tipos de entrega:</h1>
-                     <p>RECEBER NO MEU ENDEREÇO</p>
-                    <p>CEP: ${cliente.cepFaturamento}</p>
-                     <p>Entrega turbo</p>
-                   <input type="radio" name="frete" value="3,90">R$ 3,90<br>
-                   <p>Entrega rápida</p>
-                                            <input type="radio" name="frete" value="4,90"> 4,90<br>
-
-                                            <p>Normal - 1 dia(s) útil(eis)</p>
-                                            <input type="radio" name="frete" value="3,90">R$ 3,90<br>
-
-                                            <p> *O prazo de retirada do pedido inicia-se após a confirmação do pagamento. Escolha a forma de entrega na página de pagamento.
-                                                </p>
-                </c:when>
-                <c:otherwise>
-                    <p>Cliente não está logado ou não possui endereço associado.</p>
-                </c:otherwise>
-            </c:choose>
-
-
-
-		<a class="buy-button" disabled>Comprar</a>
+		<a action="Carrinho.jsp" class="buy-button" disabled>Comprar</a>
 <form action="/carrinho" method="post">
     <input type="hidden" name="produtoID" value="${produto.produtoID}">
     <button type="submit">Adicionar ao Carrinho</button>

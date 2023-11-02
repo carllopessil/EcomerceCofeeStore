@@ -29,8 +29,11 @@
             </tr>
             <c:set var="total" value="0" /> <!-- Inicializa a variável total -->
             <c:forEach var="item" items="${carrinho}" varStatus="loop">
+        <img src="${item.produto.imagePATH}" alt="Imagem do Produto" width="100">
+
                 <tr data-id="${item.produto.produtoID}">
                     <td>${item.produto.nomeProduto}</td>
+
 <td id="quantidade-${item.produto.produtoID}" data-qtd-estoque="${item.produto.qtdEstoque}">${item.quantidade}</td>
 <td class="subtotal" data-preco="${item.produto.precoProduto}">R$ ${item.subtotal}</td>
 
@@ -82,7 +85,7 @@
 
                 <p> *O prazo de retirada do pedido inicia-se após a confirmação do pagamento. Escolha a forma de entrega na página de pagamento.</p>
 
-            <form action="CHECKOU.jsp" method="get">
+            <form action="LoginCliente.jsp" method="get">
                 <button class="btn-primary" type="submit"><p> COMPRAR</p></button>
             </form>
 
@@ -106,13 +109,13 @@
             <input type="radio" name="frete" value="3.90" id="freteNormal"> 3.90<br>
 
             <p> *O prazo de retirada do pedido inicia-se após a confirmação do pagamento. Escolha a forma de entrega na página de pagamento.</p>
-        </c:when>
-        <c:otherwise>
 
-<form action="LoginCliente.jsp" method="get">
+            <form action="CHEKOUT.jsp" method="get">
                 <button class="btn-primary" type="submit"><p> COMPRAR</p></button>
             </form>
-        </c:otherwise>
+
+        </c:when>
+
     </c:choose>
 
 
@@ -145,28 +148,33 @@
                 $('#totalAtualizado').show();
             });
 
-            $('.btn-excluir').click(function () {
-                var produtoID = $(this).data('id');
+$('.btn-excluir').click(function () {
+    var produtoID = $(this).data('id');
 
-                $.ajax({
-                    url: 'removerDoCarrinho',
-                    method: 'POST',
-                    data: {produtoID: produtoID},
-                    success: function () {
-                        $('tr[data-id="' + produtoID + '"]').remove();
+    $.ajax({
+        url: 'removerDoCarrinho',
+        method: 'POST',
+        data: {produtoID: produtoID},
+        success: function () {
+            $('tr[data-id="' + produtoID + '"]').remove(); // Remove a linha da tabela
 
-                        var total = calcularTotal();
-                        $('#totalSemFrete').text('Total sem frete: R$ ' + total.toFixed(2));
+            $('img[data-id="' + produtoID + '"]').remove(); // Remove a imagem do produto
 
-                        var freteSelecionado = $('input[name="frete"]:checked').val();
-                        var totalComFrete = parseFloat(freteSelecionado) + total;
-                        $('#totalAtualizado span').text(totalComFrete.toFixed(2));
-                    },
-                    error: function () {
-                        alert('Erro ao excluir o item do carrinho');
-                    }
-                });
-            });
+            var total = calcularTotal();
+            $('#totalSemFrete').text('Total sem frete: R$ ' + total.toFixed(2));
+
+            var freteSelecionado = $('input[name="frete"]:checked').val();
+            var totalComFrete = parseFloat(freteSelecionado) + total;
+            $('#totalAtualizado span').text(totalComFrete.toFixed(2));
+                   window.location.reload();
+
+
+        },
+        error: function () {
+            alert('Erro ao excluir o item do carrinho');
+        }
+    });
+});
 
             function calcularTotal() {
                 var total = 0;
