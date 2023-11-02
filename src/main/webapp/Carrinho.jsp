@@ -28,9 +28,11 @@
             <c:forEach var="item" items="${carrinho}" varStatus="loop">
                 <tr data-id="${item.produto.produtoID}">
                     <td>${item.produto.nomeProduto}</td>
-                    <td>${item.quantidade}</td>
-                    <td class="subtotal">R$ ${item.subtotal}</td>
+<td id="quantidade-${item.produto.produtoID}">${item.quantidade}</td>
+<td class="subtotal" data-preco="${item.produto.precoProduto}">R$ ${item.subtotal}</td>
+
                     <td>
+                        <button class="btn-menos" data-id="${item.produto.produtoID}">-</button>
                         <button class="btn-excluir" data-id="${item.produto.produtoID}">Excluir</button>
                     </td>
                 </tr>
@@ -38,6 +40,8 @@
             </c:forEach>
         </table>
         <p id="totalSemFrete">Total sem frete: R$ ${total}</p> <!-- Exibe o total -->
+
+
     </c:if>
 
     <c:choose>
@@ -154,6 +158,56 @@
                 return total;
             }
         });
+
+        function calcularTotal() {
+            var total = 0;
+            $('.subtotal').each(function () {
+                total += parseFloat($(this).text().replace('R$ ', ''));
+            });
+            return total;
+        }
+
+$('.btn-menos').click(function() {
+    var produtoID = $(this).data('id');
+    var quantidadeElement = $('#quantidade-' + produtoID);
+    var novaQuantidade = parseInt(quantidadeElement.text()) - 1;
+
+
+    if (novaQuantidade >= 0) {
+        quantidadeElement.text(novaQuantidade);
+
+        var precoUnitario = parseFloat($('tr[data-id="' + produtoID + '"]').find('.subtotal').data('preco'));
+
+        $.post('atualizarQuantidade', {produtoID: produtoID, novaQuantidade: novaQuantidade}, function(response) {
+            console.log(response);
+
+            var total = calcularTotal();
+                    $('#totalSemFreteElement').text('Total sem frete: R$ ' + total.toFixed(2));
+
+
+            // Atualize a exibição conforme necessário
+            var subtotal = novaQuantidade * precoUnitario;
+            $('tr[data-id="' + produtoID + '"]').find('.subtotal').text('R$ ' + subtotal.toFixed(2));
+        });
+
+        if (novaQuantidade === 0) {
+            var btnExcluir = $(this).closest('tr').find('.btn-excluir');
+            btnExcluir.trigger('click');
+        }
+
+        // Atualize o total sem frete
+        var total = calcularTotal();
+        $('#totalSemFrete').text('Total sem frete: R$ ' + total.toFixed(2));
+
+        // Atualize o total com frete
+        var freteSelecionado = $('input[name="frete"]:checked').val();
+        var totalComFrete = parseFloat(freteSelecionado) + total;
+        $('#totalAtualizado span').text(totalComFrete.toFixed(2));
+                    window.location.reload();
+
+    }
+});
+
  </script>
          </body>
          </html>

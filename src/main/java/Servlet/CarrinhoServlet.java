@@ -23,6 +23,14 @@ public class CarrinhoServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int produtoID = Integer.parseInt(request.getParameter("produtoID"));
+        String parametroQuantidade = request.getParameter("quantidade");
+        int novaQuantidade;
+
+        if (parametroQuantidade != null && !parametroQuantidade.isEmpty()) {
+            novaQuantidade = Integer.parseInt(parametroQuantidade);
+        } else {
+            novaQuantidade = 1; // Defina um valor padrão, como 1, se não houver quantidade fornecida
+        }
 
         Produtos produto = produtosDAO.obterProdutoPorID(produtoID);
 
@@ -38,8 +46,8 @@ public class CarrinhoServlet extends HttpServlet {
                 boolean produtoJaNoCarrinho = false;
                 for (ItemCarrinho item : carrinho) {
                     if (item.getProduto().getProdutoID() == produtoID) {
-                        if (item.getQuantidade() < quantidadeDisponivel) {
-                            item.setQuantidade(item.getQuantidade() + 1);
+                        if (item.getQuantidade() + novaQuantidade <= quantidadeDisponivel) {
+                            item.setQuantidade(item.getQuantidade() + novaQuantidade);
                             produtoJaNoCarrinho = true;
                         } else {
                             request.setAttribute("erroQuantidade", "Quantidade máxima atingida para este produto.");
@@ -51,18 +59,11 @@ public class CarrinhoServlet extends HttpServlet {
                 }
 
                 if (!produtoJaNoCarrinho) {
-                    ItemCarrinho item = new ItemCarrinho(produto, 1);
-                    if (quantidadeDisponivel > 1) {
-                        carrinho.add(item);
-                    } else {
-                        request.setAttribute("erroQuantidade", "Quantidade máxima atingida para este produto.");
-                        response.sendRedirect("Carrinho.jsp");
-
-                        return;
-                    }
+                    ItemCarrinho item = new ItemCarrinho(produto, novaQuantidade);
+                    carrinho.add(item);
                 }
 
-                request.getSession().setAttribute("carrinho", carrinho);
+                request.getSession().setAttribute("carrinho", carrinho); // Atualiza o carrinho na sessão
                 response.sendRedirect("Carrinho.jsp");
                 return;
             }
@@ -70,4 +71,9 @@ public class CarrinhoServlet extends HttpServlet {
 
         response.sendRedirect("ErroProdutoNaoDisponivel.jsp");
     }
+
+
+
+
+
 }
