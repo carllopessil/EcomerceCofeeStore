@@ -22,17 +22,28 @@
                 <th>Nome do Produto</th>
                 <th>Quantidade</th>
                 <th>Subtotal</th>
+                <th>Qtd em estoque</th>
+                <th>DIMINUIR QTD</th>
+                <th>ADICIONAR QTD</th>
                 <th>Excluir</th>
             </tr>
             <c:set var="total" value="0" /> <!-- Inicializa a variável total -->
             <c:forEach var="item" items="${carrinho}" varStatus="loop">
                 <tr data-id="${item.produto.produtoID}">
                     <td>${item.produto.nomeProduto}</td>
-<td id="quantidade-${item.produto.produtoID}">${item.quantidade}</td>
+<td id="quantidade-${item.produto.produtoID}" data-qtd-estoque="${item.produto.qtdEstoque}">${item.quantidade}</td>
 <td class="subtotal" data-preco="${item.produto.precoProduto}">R$ ${item.subtotal}</td>
+
+
+<td id="produto">${item.produto.qtdEstoque}</td>
 
                     <td>
                         <button class="btn-menos" data-id="${item.produto.produtoID}">-</button>
+</td>
+<td>
+                <button class="btn-mais" data-id="${item.produto.produtoID}" data-qtd-estoque="${item.produto.qtdEstoque}">+</button>
+</td>
+<td>
                         <button class="btn-excluir" data-id="${item.produto.produtoID}">Excluir</button>
                     </td>
                 </tr>
@@ -41,6 +52,7 @@
         </table>
         <p id="totalSemFrete">Total sem frete: R$ ${total}</p> <!-- Exibe o total -->
 
+    <p id="totalAtualizado" style="display:none;">Total com frete : R$ <span>0.00</span></p>
 
     </c:if>
 
@@ -69,7 +81,13 @@
                 <input type="radio" name="frete" value="3.90" id="freteNormal"> 3.90<br>
 
                 <p> *O prazo de retirada do pedido inicia-se após a confirmação do pagamento. Escolha a forma de entrega na página de pagamento.</p>
+
+            <form action="CHECKOU.jsp" method="get">
+                <button class="btn-primary" type="submit"><p> COMPRAR</p></button>
+            </form>
+
             </div>
+
         </c:when>
     </c:choose>
 
@@ -90,13 +108,13 @@
             <p> *O prazo de retirada do pedido inicia-se após a confirmação do pagamento. Escolha a forma de entrega na página de pagamento.</p>
         </c:when>
         <c:otherwise>
-            <form action="LoginCliente.jsp" method="get">
+
+<form action="LoginCliente.jsp" method="get">
                 <button class="btn-primary" type="submit"><p> COMPRAR</p></button>
             </form>
         </c:otherwise>
     </c:choose>
 
-    <p id="totalAtualizado" style="display:none;">Total com frete : R$ <span>0.00</span></p>
 
     <script>
         $(document).ready(function () {
@@ -205,6 +223,40 @@ $('.btn-menos').click(function() {
         $('#totalAtualizado span').text(totalComFrete.toFixed(2));
                     window.location.reload();
 
+    }
+});
+
+$('.btn-mais').click(function() {
+    var produtoID = $(this).data('id');
+    var quantidadeElement = $('#quantidade-' + produtoID);
+    var novaQuantidade = parseInt(quantidadeElement.text()) + 1;
+    var qtdEstoque = parseInt(quantidadeElement.data('qtd-estoque'));
+
+    if (novaQuantidade <= qtdEstoque) {
+        quantidadeElement.text(novaQuantidade);
+
+        $.post('atualizarQuantidade', {produtoID: produtoID, novaQuantidade: novaQuantidade}, function(response) {
+            console.log(response);
+        });
+
+        var precoUnitario = parseFloat($('tr[data-id="' + produtoID + '"]').find('.subtotal').data('preco'));
+        var subtotal = novaQuantidade * precoUnitario;
+
+        // Atualize a exibição do subtotal
+        $('tr[data-id="' + produtoID + '"]').find('.subtotal').text('R$ ' + subtotal.toFixed(2));
+
+        var total = calcularTotal();
+        $('#totalSemFreteElement').text('Total sem frete: R$ ' + total.toFixed(2));
+
+        // Atualize o total sem frete
+        $('#totalSemFrete').text('Total sem frete: R$ ' + total.toFixed(2));
+
+        // Atualize o total com frete
+        var freteSelecionado = $('input[name="frete"]:checked').val();
+        var totalComFrete = parseFloat(freteSelecionado) + total;
+        $('#totalAtualizado span').text(totalComFrete.toFixed(2));
+    } else {
+        alert('Quantidade máxima atingida para este produto.');
     }
 });
 
