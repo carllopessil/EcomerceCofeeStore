@@ -44,8 +44,9 @@ public class AlterarStatusEnderecoServlet extends HttpServlet {
                 }
             }
         }
-
-        response.sendRedirect(request.getContextPath() + "/ListarEnderecosCliente");
+        Cliente cliente = (Cliente) request.getSession().getAttribute("cliente");
+        request.setAttribute("cliente" , cliente);
+        response.sendRedirect(request.getContextPath() + "/");
 
     }
 }

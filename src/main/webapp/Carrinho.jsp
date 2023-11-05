@@ -115,7 +115,7 @@
 
             <p> *O prazo de retirada do pedido inicia-se após a confirmação do pagamento. Escolha a forma de entrega na página de pagamento.</p>
 
-<form id="comprarForm" action="CHEKOUT.jsp" method="get">
+<form id="comprarForm" action="/ListarEnderecosCheckout" method="get">
     <button id="btnComprar" class="btn-primary" type="submit"><p> COMPRAR</p></button>
 </form>
 
