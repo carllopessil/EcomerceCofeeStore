@@ -90,8 +90,7 @@
                                     <li><a class="dropdown-item" href="ListarEnderecosCliente">Meus Endereços</a></li>
 
                                     <li><a class="dropdown-item" href="EditarClienteServlet">Editar Perfil</a></li>
-                                 <form action="Carrinho.jsp" method="get">
-                                   <button class="btn-primary1" type="submit">🛒<label>Comprar</label>
+                                   <button action="Carrinho.jsp" class="btn-primary1" type="submit">🛒<label>Comprar</label>
                                        		</button>
                                           	</form><form action="LogoutServlet" method="post">
                                  			<input type="submit" value="Logout" class="botao-Sair-logout">
@@ -188,12 +187,15 @@
 		</div>
 
 
-
-
-		<a action="Carrinho.jsp" class="buy-button" disabled>Comprar</a>
 <form action="/carrinho" method="post">
     <input type="hidden" name="produtoID" value="${produto.produtoID}">
-    <button type="submit">Adicionar ao Carrinho</button>
+    <button type="submit" class="buy-button">Comprar</button>
+</form>
+
+
+<form action="/carrinho" method="post">
+    <input type="hidden" name="produtoID" value="${produto.produtoID}">
+    <button type="submit" class="buy-button">Adicionar ao carrinho</button>
 </form>
 
 
