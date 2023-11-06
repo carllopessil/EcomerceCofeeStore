@@ -39,6 +39,7 @@ public class CarrinhoServlet extends HttpServlet {
 
             if (quantidadeDisponivel > 0) {
                 ArrayList<ItemCarrinho> carrinho = (ArrayList<ItemCarrinho>) request.getSession().getAttribute("carrinho");
+
                 if (carrinho == null) {
                     carrinho = new ArrayList<>();
                 }
@@ -62,8 +63,10 @@ public class CarrinhoServlet extends HttpServlet {
                     ItemCarrinho item = new ItemCarrinho(produto, novaQuantidade);
                     carrinho.add(item);
                 }
-
+                request.setAttribute("itensCarrinho", carrinho);
                 request.getSession().setAttribute("carrinho", carrinho); // Atualiza o carrinho na sessão
+                System.out.println("Carrinho na sessão: " + carrinho);
+
                 response.sendRedirect("Carrinho.jsp");
                 return;
             }

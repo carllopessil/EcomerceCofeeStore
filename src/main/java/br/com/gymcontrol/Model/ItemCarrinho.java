@@ -5,12 +5,13 @@ import br.com.gymcontrol.Model.Produtos;
 public class ItemCarrinho {
     private Produtos produto;
     private int quantidade;
-
+private double totalComFrete;
 
 
     public ItemCarrinho(Produtos produto, int quantidade) {
         this.produto = produto;
         this.quantidade = quantidade;
+        this.totalComFrete = totalComFrete;
     }
 
     public Produtos getProduto() {
@@ -31,5 +32,13 @@ public class ItemCarrinho {
 
     public double getSubtotal() {
         return produto.getPrecoProduto() * quantidade;
+    }
+
+    public double getTotalComFrete() {
+        return totalComFrete;
+    }
+
+    public void setTotalComFrete(double totalComFrete) {
+        this.totalComFrete = totalComFrete;
     }
 }

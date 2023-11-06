@@ -24,6 +24,9 @@ public class ResumoPedidoServlet extends HttpServlet {
         ArrayList<ItemCarrinho> carrinho = (ArrayList<ItemCarrinho>) session.getAttribute("carrinho");
         String enderecoDeEntrega = (String) session.getAttribute("enderecoDeEntrega");
         String formaDePagamento = (String) session.getAttribute("formaDePagamento");
+
+
+
         // ... Coletar outras informações relevantes
 
         // Verificar se o carrinho não está vazio
@@ -41,6 +44,10 @@ public class ResumoPedidoServlet extends HttpServlet {
         request.setAttribute("totalGeral", totalGeral);
         request.setAttribute("enderecoDeEntrega", enderecoDeEntrega);
         request.setAttribute("formaDePagamento", formaDePagamento);
+        request.setAttribute("itensCarrinho", carrinho); // Adicione esta linha
+
+
+
 
         // Encaminhar para a página de resumo do pedido
         request.getRequestDispatcher("ResumoPedido.jsp").forward(request, response);

@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,25 +16,29 @@
         <!-- Tabela com informações do pedido -->
         <tr>
             <th>Produto</th>
-            <th>Valor Unitário</th>
-            <th>Quantidade</th>
-            <th>Valor Total</th>
+                        <th>Quantidade</th>
+
+            <th>Preço unitario</th>
+            <th>Valor subtotal</th>
+
         </tr>
         <!-- Loop para exibir cada item do pedido -->
-        <c:forEach var="item" items="${itensDoPedido}">
+        <c:forEach var="item" items="${itensCarrinho}">
             <tr>
-                <td>${item.nomeProduto}</td>
-                <td>${item.valorUnitario}</td>
+              <img src="${item.produto.imagePATH}" alt="Imagem do Produto" width="100">
+                <td>${item.produto.nomeProduto}</td>
+
                 <td>${item.quantidade}</td>
-                <td>${item.valorTotalItem}</td>
+                <td>R$ ${item.subtotal}</td>
+                <td>Total com frete:</td>
+
+
             </tr>
         </c:forEach>
+
+
         <tr>
-            <td colspan="3">Frete</td>
-            <td>${frete}</td>
-        </tr>
-        <tr>
-            <td colspan="3">Total Geral</td>
+            <td colspan="3">Total sem frete</td>
             <td>${totalGeral}</td>
         </tr>
     </table>
@@ -52,5 +58,7 @@
     <form action="MeiosDePagamentoServlet" method="get">
         <input type="submit" value="Voltar" class="styled-button">
     </form>
+
+
 </body>
 </html>

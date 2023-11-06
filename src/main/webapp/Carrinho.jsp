@@ -131,6 +131,7 @@
             </div>
 
 
+<input type="hidden" name="totalComFrete" value="${totalComFrete}">
 
   <div id="opcoesEntrega" style="display:none;">
                 <h2>Tipos de entrega:</h2>
@@ -318,6 +319,20 @@ $('.btn-mais').click(function() {
             event.preventDefault(); // Evita o envio do formulário
         }
     });
+
+
+
+$('input[name="frete"]').change(function () {
+    var freteSelecionado = $('input[name="frete"]:checked').val();
+    var totalProdutos = parseFloat($('#totalSemFrete').text().replace('Total sem frete: R$ ', ''));
+    var total = parseFloat(freteSelecionado) + totalProdutos;
+    $('#totalAtualizado span').text(total.toFixed(2));
+
+    // Exibe o parágrafo com o total atualizado
+    $('#totalAtualizado').show();
+});
+
+
  </script>
          </body>
          </html>
