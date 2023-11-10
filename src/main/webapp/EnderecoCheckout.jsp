@@ -41,8 +41,9 @@
             <input type="text" id="uf" name="uf" value="${endereco.uf}" readonly>
             <hr>
         </c:forEach>
-        <input type="submit" value="Escolher forma de pagamento" class="styled-button">
-</form>
+          <input type="hidden" name="enderecoSelecionadoId" id="enderecoSelecionadoId" value="">
+           <input type="submit" value="Escolher forma de pagamento" class="styled-button">
+       </form>
          <form id="enderecoForm" action="AdicionarEnderecoCheckouServlet" method="post">
                     <input type="hidden" name="clienteId" id="clienteId" value="${cliente.id}" />
                     <br>
@@ -52,6 +53,12 @@
                 </form>
     </div>
     <script>
+        document.getElementById("escolherFormaPagamentoForm").addEventListener("submit", function () {
+            var enderecoSelecionado = document.querySelector('input[name="enderecoSelecionadoId"]:checked');
+            if (enderecoSelecionado) {
+                document.getElementById("enderecoSelecionadoId").value = enderecoSelecionado.value;
+            }
+        });
         document.addEventListener('DOMContentLoaded', function () {
             // Recuperar o valor do ID do cliente do campo oculto
             var clienteIdInput = document.getElementById("clienteId");

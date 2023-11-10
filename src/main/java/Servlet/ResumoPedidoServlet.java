@@ -24,6 +24,11 @@ public class ResumoPedidoServlet extends HttpServlet {
         ArrayList<ItemCarrinho> carrinho = (ArrayList<ItemCarrinho>) session.getAttribute("carrinho");
         String enderecoDeEntrega = (String) session.getAttribute("enderecoDeEntrega");
         String formaDePagamento = (String) session.getAttribute("formaDePagamento");
+        String formaPagamento = request.getParameter("formaPagamento");
+
+        // Salvando a forma de pagamento na sessão
+        session = request.getSession();
+        session.setAttribute("formaDePagamento", formaPagamento);
 
 
 

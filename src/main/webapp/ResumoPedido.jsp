@@ -43,16 +43,20 @@
         </tr>
     </table>
 
+
     <!-- Informações de entrega -->
     <h2>Endereço de Entrega</h2>
+    <!-- Recuperar o valor da sessão e exibir no campo de endereço -->
+    <c:set var="enderecoDeEntrega" value="${sessionScope.enderecoSelecionadoId}" />
     <p>${enderecoDeEntrega}</p>
+
 
     <!-- Forma de pagamento -->
     <h2>Forma de Pagamento</h2>
     <p>${formaDePagamento}</p>
 
     <!-- Botões para Concluir Compra e Voltar -->
-    <form action="ConcluirCompraServlet" method="post">
+    <form action="/PedidoServlet" method="post">
         <input type="submit" value="Concluir Compra" class="styled-button">
     </form>
     <form action="MeiosDePagamentoServlet" method="get">

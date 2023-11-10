@@ -9,7 +9,22 @@
 <body>
     <h1>Escolha seu Meio de Pagamento</h1>
 
-    <form id="meiosDePagamentoForm" action="/ResumoPedidoServlet" method="get">
+    <%-- Obter o ID do endereço selecionado --%>
+    <% Object enderecoSelecionadoIdObj = request.getAttribute("enderecoSelecionadoId"); %>
+
+    <%-- Verificar se o atributo não é nulo e é uma instância de String --%>
+    <% if (enderecoSelecionadoIdObj != null && enderecoSelecionadoIdObj instanceof String) { %>
+        <%-- Converter o atributo para String --%>
+        <% String enderecoSelecionadoId = (String) enderecoSelecionadoIdObj; %>
+
+        <p>Endereço Selecionado:</p>
+        <p>ID: <%= enderecoSelecionadoId %></p>
+        <%-- Adicione aqui as demais informações do endereço --%>
+    <% } else { %>
+        <p>Nenhum endereço selecionado.</p>
+    <% } %>
+
+    <form id="meiosDePagamentoForm" action="/ResumoPedidoServlet" method="get"> <!-- Alterado para método POST -->
         <label for="formaPagamento">Forma de Pagamento:</label>
         <select name="formaPagamento" id="formaPagamento">
             <option value="boleto">Boleto</option>
@@ -33,38 +48,19 @@
             <input type="number" name="quantidadeParcelas" id="quantidadeParcelas">
         </div>
 
-        <input type="submit" value="Avançar para Validar Pedido Final" class="styled-button">
-    </form>
+              <input type="submit" value="Avançar para Validar Pedido Final" class="styled-button">
+          </form>
 
-    <script>
-        document.getElementById("formaPagamento").addEventListener("change", function() {
-            var selectedValue = this.value;
-            var cartaoFields = document.getElementById("cartaoFields");
-            if (selectedValue === "cartao") {
-                cartaoFields.style.display = "block";
-            } else {
-                cartaoFields.style.display = "none";
-            }
-        });
-
-        document.getElementById("meiosDePagamentoForm").addEventListener("submit", function(event) {
-            var formaPagamento = document.getElementById("formaPagamento").value;
-            var numeroCartao = document.getElementById("numeroCartao").value;
-            var codigoVerificador = document.getElementById("codigoVerificador").value;
-            var nomeCompleto = document.getElementById("nomeCompleto").value;
-            var dataVencimento = document.getElementById("dataVencimento").value;
-            var quantidadeParcelas = document.getElementById("quantidadeParcelas").value;
-
-            if (formaPagamento === "cartao" && (numeroCartao === "" || codigoVerificador === "" || nomeCompleto === "" || dataVencimento === "" || quantidadeParcelas === "")) {
-                alert("Preencha todos os campos do cartão de crédito.");
-                event.preventDefault();
-            } else if (formaPagamento === "boleto") {
-                // Não é necessário preencher nada para o boleto
-            } else {
-                alert("Selecione uma forma de pagamento.");
-                event.preventDefault();
-            }
-        });
-    </script>
-</body>
-</html>
+          <script>
+              document.getElementById("formaPagamento").addEventListener("change", function() {
+                  var selectedValue = this.value;
+                  var cartaoFields = document.getElementById("cartaoFields");
+                  if (selectedValue === "cartao") {
+                      cartaoFields.style.display = "block";
+                  } else {
+                      cartaoFields.style.display = "none";
+                  }
+              });
+          </script>
+      </body>
+      </html>

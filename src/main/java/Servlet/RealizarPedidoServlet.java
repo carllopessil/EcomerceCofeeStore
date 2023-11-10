@@ -1,5 +1,6 @@
 package Servlet;
 
+
 import DAO.PedidoDAO;
 import Model.Pedido;
 
@@ -19,7 +20,7 @@ public class RealizarPedidoServlet extends HttpServlet {
 
         // Usar o PedidoDAO para inserir o pedido no banco de dados
         PedidoDAO pedidoDAO = new PedidoDAO();
-        pedidoDAO.inserirPedido(pedido);
+        pedidoDAO.salvarPedido(pedido);
 
         // Mostrar uma mensagem na tela com o número do pedido e informações
         // Redirecionar para a página de confirmação do pedido
