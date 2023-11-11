@@ -1,6 +1,7 @@
 package Model;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.List;
 
 public class Pedido {
@@ -10,6 +11,8 @@ public class Pedido {
     private BigDecimal valorTotal;
     private int enderecoEntregaId;
     private String formaPagamento;
+
+    private Timestamp dataPedido;
     private List<ItemPedido> itensPedido;
 
     // Construtores, getters e setters
@@ -21,6 +24,13 @@ public class Pedido {
         this.valorTotal = valorTotal;
         this.enderecoEntregaId = enderecoEntregaId;
         this.formaPagamento = formaPagamento;
+    }
+
+    public Pedido(int id, String status, BigDecimal valorTotal, Timestamp dataPedido) {
+        this.id = id;
+        this.status = status;
+        this.valorTotal = valorTotal;
+        this.dataPedido = dataPedido;
     }
 
     public Pedido() {
@@ -82,5 +92,11 @@ public class Pedido {
         return itensPedido;
     }
 
-// Outros métodos, se necessário
+    public Timestamp getDataPedido() {
+        return dataPedido;
+    }
+
+    public void setDataPedido(Timestamp dataPedido) {
+        this.dataPedido = dataPedido;
+    }
 }
