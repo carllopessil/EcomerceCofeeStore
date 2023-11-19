@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
@@ -29,8 +30,11 @@ public class ListarEnderecoCheckout extends HttpServlet {
         }
 
         int idCliente = cliente.getId();
-
-
+        HttpSession session = request.getSession();
+        Double totalComFrete = (Double) session.getAttribute("totalAtualizado");
+        System.out.println(totalComFrete);
+        // Salvar o valor total com frete na sessão
+        session.setAttribute("totalComFrete", totalComFrete);
         EnderecoDAO enderecoDAO = new EnderecoDAO();
         List<Endereco> enderecos = enderecoDAO.obterEnderecosCliente(idCliente);
         request.setAttribute("cliente" , cliente);

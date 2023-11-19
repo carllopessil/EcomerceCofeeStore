@@ -3,7 +3,7 @@ package DAO;
 import Model.ItemPedido;
 import Model.Pedido;
 import Model.PedidoDetalhes;
-import br.com.gymcontrol.Model.Produtos;
+import br.com.gymcontrol.Model.ItemCarrinho;
 
 import java.math.BigDecimal;
 import java.sql.*;
@@ -12,8 +12,22 @@ import java.util.List;
 
 public class PedidoDAO {
     private Connection connection; // Você precisa configurar a conexão com o banco de dados
-
-    public void salvarPedido(Pedido pedido) {
+    // Construtor que inicializa a conexão
+    public PedidoDAO() {
+        // Lógica para obter uma conexão com o banco de dados
+        // Substitua os valores entre aspas com as informações do seu banco de dados
+        try {
+            Class.forName("org.h2.Driver");
+            String url = "jdbc:h2:~/test";
+            String user = "sa";
+            String password = "sa";
+            this.connection = DriverManager.getConnection(url, user, password);
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+            // Trate a exceção conforme necessário
+        }
+    }
+    public int salvarPedido(Pedido pedido) {
         try {
             // Inserir informações na tabela "pedido"
             String queryPedido = "INSERT INTO pedido (cliente_id, status, valor_total, endereco_entrega_id, forma_pagamento) VALUES (?, ?, ?, ?, ?)";
@@ -27,25 +41,34 @@ public class PedidoDAO {
                 preparedStatementPedido.executeUpdate();
 
                 // Recupera o ID gerado para o pedido
-                // (Isso pode variar dependendo do banco de dados, aqui é um exemplo genérico)
-                // ResultSet generatedKeys = preparedStatementPedido.getGeneratedKeys();
-                // if (generatedKeys.next()) {
-                //     int pedidoId = generatedKeys.getInt(1);
-                //     pedido.setId(pedidoId);
-                // }
+                ResultSet generatedKeys = preparedStatementPedido.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    int pedidoId = generatedKeys.getInt(1);
+                    pedido.setId(pedidoId);
+                }
 
-                // Inserir informações na tabela "item_pedido"
-                String queryItemPedido = "INSERT INTO item_pedido (pedido_id, produto_id, quantidade, preco_unitario, subtotal) VALUES (?, ?, ?, ?, ?)";
-                try (PreparedStatement preparedStatementItemPedido = connection.prepareStatement(queryItemPedido)) {
-                    for (ItemPedido item : pedido.getItensPedido()) {
-                        preparedStatementItemPedido.setInt(1, 0);
-                        preparedStatementItemPedido.setInt(2, item.getProdutoId());
-                        preparedStatementItemPedido.setInt(3, item.getQuantidade());
-                        preparedStatementItemPedido.setBigDecimal(4, item.getPrecoUnitario());
-                        preparedStatementItemPedido.setBigDecimal(5, item.getSubtotal());
+                return pedido.getId();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Lide com a exceção apropriadamente (log, redirecionamento de erro, etc.)
+        }
+        return -1;
+    }
 
-                        preparedStatementItemPedido.executeUpdate();
-                    }
+    public void atualizarItensPedido(Pedido pedido) {
+        try {
+            // Inserir informações na tabela "item_pedido"
+            String queryItemPedido = "INSERT INTO item_pedido (pedido_id, produto_id, quantidade, preco_unitario, subtotal) VALUES (?, ?, ?, ?, ?)";
+            try (PreparedStatement preparedStatementItemPedido = connection.prepareStatement(queryItemPedido)) {
+                for (ItemCarrinho item : pedido.getItensPedido()) {
+                    preparedStatementItemPedido.setInt(1, pedido.getId());
+                    preparedStatementItemPedido.setInt(2, item.getProduto().getProdutoID());
+                    preparedStatementItemPedido.setInt(3, item.getQuantidade());
+                    preparedStatementItemPedido.setDouble(4, item.getProduto().getPrecoProduto());
+                    preparedStatementItemPedido.setDouble(5, item.getSubtotal());
+
+                    preparedStatementItemPedido.executeUpdate();
                 }
             }
         } catch (SQLException e) {
@@ -53,7 +76,6 @@ public class PedidoDAO {
             // Lide com a exceção apropriadamente (log, redirecionamento de erro, etc.)
         }
     }
-
 
     public static List<Pedido> listarPedidos() {
         String SQL = "SELECT * FROM Pedido ORDER BY data_pedido DESC";
@@ -83,7 +105,6 @@ public class PedidoDAO {
         return pedidos;
     }
 
-
     public static void atualizarStatus(int idPedido, String novoStatus) {
         String SQL = "UPDATE pedido SET status = ? WHERE id = ?";
 
@@ -94,7 +115,6 @@ public class PedidoDAO {
             preparedStatement.setInt(2, idPedido);
 
             preparedStatement.executeUpdate();
-
 
         } catch (SQLException e) {
             System.out.println("Erro ao atualizar status do produto: " + e.getMessage());

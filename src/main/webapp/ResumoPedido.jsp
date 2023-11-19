@@ -12,57 +12,49 @@
     <h1>Resumo do Pedido</h1>
 
     <!-- Exibir informações do pedido, por exemplo, produtos, valores, quantidades, frete, endereço, forma de pagamento, total geral -->
-    <table>
-        <!-- Tabela com informações do pedido -->
-        <tr>
-            <th>Produto</th>
-                        <th>Quantidade</th>
-
-            <th>Preço unitario</th>
-            <th>Valor subtotal</th>
-
-        </tr>
-        <!-- Loop para exibir cada item do pedido -->
-        <c:forEach var="item" items="${itensCarrinho}">
+    <form action="PedidoServlet" method="post">
+        <table>
+            <!-- Tabela com informações do pedido -->
             <tr>
-              <img src="${item.produto.imagePATH}" alt="Imagem do Produto" width="100">
-                <td>${item.produto.nomeProduto}</td>
-
-                <td>${item.quantidade}</td>
-                <td>R$ ${item.subtotal}</td>
-                <td>Total com frete:</td>
-
-
+                <th>Produto</th>
+                <th>Quantidade</th>
+                <th>Preço unitário</th>
+                <th>Valor subtotal</th>
             </tr>
-        </c:forEach>
+          <!-- Loop para exibir cada item do pedido -->
+          <c:forEach var="item" items="${itensCarrinho}">
+              <tr>
+                  <td>${item.produto.nomeProduto}</td>
+                  <td>${item.quantidade}</td>
+                  <td>R$ ${item.produto.precoProduto}</td>
+                  <td>R$ ${item.subtotal}</td>
+              </tr>
+          </c:forEach>
 
 
-        <tr>
-            <td colspan="3">Total sem frete</td>
-            <td>${totalGeral}</td>
-        </tr>
-    </table>
 
+            <tr>
+                <td colspan="3">Total sem frete</td>
+                <td>${totalGeral}</td>
+            </tr>
+        </table>
 
-    <!-- Informações de entrega -->
-    <h2>Endereço de Entrega</h2>
-    <!-- Recuperar o valor da sessão e exibir no campo de endereço -->
-    <c:set var="enderecoDeEntrega" value="${sessionScope.enderecoSelecionadoId}" />
-    <p>${enderecoDeEntrega}</p>
+        <!-- Informações de entrega -->
+        <h2>Endereço de Entrega</h2>
+        <p>${enderecoDeEntrega}</p>
 
+        <!-- Forma de pagamento -->
+        <h2>Forma de Pagamento</h2>
+        <p>${formaDePagamento}</p>
 
-    <!-- Forma de pagamento -->
-    <h2>Forma de Pagamento</h2>
-    <p>${formaDePagamento}</p>
+        <!-- Adiciona um campo hidden para o status do pedido -->
+        <input type="hidden" name="status" value="EM_PROCESSAMENTO">
 
-    <!-- Botões para Concluir Compra e Voltar -->
-    <form action="/PedidoServlet" method="post">
+        <!-- Botões para Concluir Compra e Voltar -->
         <input type="submit" value="Concluir Compra" class="styled-button">
     </form>
     <form action="MeiosDePagamentoServlet" method="get">
         <input type="submit" value="Voltar" class="styled-button">
     </form>
-
-
 </body>
 </html>

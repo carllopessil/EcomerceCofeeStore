@@ -19,12 +19,16 @@ public class MeiosDePagamentoServlet extends HttpServlet {
         // Recuperar o ID do endereço selecionado
         String enderecoSelecionadoId = request.getParameter("enderecoSelecionadoId");
 
-        // Armazenar o ID do endereço selecionado na sessão
+        // Suponha que o valor total com frete esteja armazenado em "totalComFrete" na sessão
         HttpSession session = request.getSession();
+
+
+        // Armazenar o ID do endereço selecionado na sessão
         session.setAttribute("enderecoSelecionadoId", enderecoSelecionadoId);
 
-        // Passar o ID do endereço selecionado para a próxima página
+        // Passar o ID do endereço selecionado e o valor total com frete para a próxima página
         request.setAttribute("enderecoSelecionadoId", enderecoSelecionadoId);
+
 
         // Redirecionar para a página "MeiosDePagamento.jsp"
         request.getRequestDispatcher("MeiosDePagamento.jsp").forward(request, response);
