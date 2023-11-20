@@ -3,6 +3,7 @@ package Model;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class PedidoDetalhes {
 
@@ -26,7 +27,21 @@ public class PedidoDetalhes {
     private BigDecimal precoUnitario;
     private BigDecimal subtotal;
 
+    private String nomeProduto;
+
+    private BigDecimal precoProduto;
+
+    private List<ItemPedidoDetalhes> itensPedido;
+
     private BigDecimal setValorTotalPedido;
+
+    public BigDecimal getPrecoProduto() {
+        return precoProduto;
+    }
+
+    public void setPrecoProduto(BigDecimal precoProduto) {
+        this.precoProduto = precoProduto;
+    }
 
     public int getPedidoId() {
         return pedidoId;
@@ -185,7 +200,30 @@ public class PedidoDetalhes {
         this.subtotal = subtotal;
     }
 
+    public String getNomeProduto() {
+        return nomeProduto;
+    }
+
+    public void setNomeProduto(String nomeProduto) {
+        this.nomeProduto = nomeProduto;
+    }
+
+
+
+
+    public void setSetValorTotalPedido(BigDecimal setValorTotalPedido) {
+        this.setValorTotalPedido = setValorTotalPedido;
+    }
+
     public void setValorTotalPedido(BigDecimal valorTotal) {
         this.valorTotal = valorTotal;
+    }
+
+    public List<ItemPedidoDetalhes> getItensPedido() {
+        return itensPedido;
+    }
+
+    public void setItensPedido(List<ItemPedidoDetalhes> itensPedido) {
+        this.itensPedido = itensPedido;
     }
 }

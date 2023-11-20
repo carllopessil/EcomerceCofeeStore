@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 @WebServlet("/detalhesPedido")
 public class DetalhesPedidoServlet extends HttpServlet {
@@ -25,4 +24,3 @@ public class DetalhesPedidoServlet extends HttpServlet {
         request.getRequestDispatcher("DetalhesPedido.jsp").forward(request, response);
     }
 }
-
