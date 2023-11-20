@@ -2,6 +2,7 @@ package DAO;
 
 import br.com.gymcontrol.Model.Produtos;
 
+import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -33,6 +34,27 @@ public class ProdutosDAO {
         }
     }
 
+    public BigDecimal obterPrecoUnitario(int produtoID) {
+        String SQL = "SELECT precoProduto FROM Produtos WHERE produtoID = ?";
+
+        try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
+
+            preparedStatement.setInt(1, produtoID);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                return resultSet.getBigDecimal("precoProduto");
+            } else {
+                return null; // Retorna null se o produto não for encontrado
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Erro ao obter preço unitário do produto por ID: " + e.getMessage());
+            return null;
+        }
+    }
 
     public Produtos obterProdutoPorID(int produtoID) {
         String SQL = "SELECT * FROM Produtos WHERE produtoID = ?";

@@ -1,8 +1,10 @@
 package Model;
 
+import br.com.gymcontrol.Model.ItemCarrinho;
+
 import java.math.BigDecimal;
 import java.sql.Timestamp;
-import java.util.List;
+import java.util.ArrayList;
 
 public class Pedido {
     private int id;
@@ -13,7 +15,7 @@ public class Pedido {
     private String formaPagamento;
 
     private Timestamp dataPedido;
-    private List<ItemPedido> itensPedido;
+    private ArrayList<ItemCarrinho> itensPedido;
 
     // Construtores, getters e setters
 
@@ -34,10 +36,19 @@ public class Pedido {
     }
 
     public Pedido() {
-
     }
 
-    public void setItensPedido(List<ItemPedido> itensPedido) {
+    // Ajuste no método setItensPedido para adicionar itens
+    public void setItensPedido(ArrayList<ItemCarrinho> itensPedido) {
+        this.itensPedido = itensPedido;
+    }
+
+    // Adiciona um item ao pedido
+    public void adicionarItemPedido(ItemCarrinho itemCarrinho) {
+        if (itensPedido == null) {
+            itensPedido = new ArrayList<ItemCarrinho>();
+        }
+        itensPedido.add(itemCarrinho);
     }
 
     public int getId() {
@@ -88,7 +99,7 @@ public class Pedido {
         this.formaPagamento = formaPagamento;
     }
 
-    public List<ItemPedido> getItensPedido() {
+    public ArrayList<ItemCarrinho> getItensPedido() {
         return itensPedido;
     }
 

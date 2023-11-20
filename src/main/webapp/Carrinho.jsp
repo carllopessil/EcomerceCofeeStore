@@ -331,6 +331,21 @@ $('input[name="frete"]').change(function () {
     // Exibe o parágrafo com o total atualizado
     $('#totalAtualizado').show();
 });
+$('#btnComprar').click(function (event) {
+    // Obtenha o valor total com frete do elemento HTML
+    var totalComFrete = parseFloat($('#totalAtualizado span').text());
+
+    // Atualize a sessão com o valor total com frete
+    $.post('atualizarTotalComFrete', {totalComFrete: totalComFrete}, function(response) {
+        console.log(response);
+
+        // Após atualizar a sessão, redirecione para a servlet
+        window.location.href = 'ListarEnderecosCheckout';
+    });
+
+    // Evita o envio do formulário
+    event.preventDefault();
+});
 
 
  </script>
