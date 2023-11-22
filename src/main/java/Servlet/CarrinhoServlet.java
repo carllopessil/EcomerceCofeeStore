@@ -24,6 +24,7 @@ public class CarrinhoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int produtoID = Integer.parseInt(request.getParameter("produtoID"));
         String parametroQuantidade = request.getParameter("quantidade");
+
         int novaQuantidade;
 
         if (parametroQuantidade != null && !parametroQuantidade.isEmpty()) {
@@ -31,6 +32,8 @@ public class CarrinhoServlet extends HttpServlet {
         } else {
             novaQuantidade = 1; // Defina um valor padrão, como 1, se não houver quantidade fornecida
         }
+
+        double totalComFrete = calcularTotalComFrete(request); // Adicione esta linha
 
         Produtos produto = produtosDAO.obterProdutoPorID(produtoID);
 
@@ -60,7 +63,7 @@ public class CarrinhoServlet extends HttpServlet {
                 }
 
                 if (!produtoJaNoCarrinho) {
-                    ItemCarrinho item = new ItemCarrinho(produto, novaQuantidade);
+                    ItemCarrinho item = new ItemCarrinho(produto, novaQuantidade, totalComFrete);
                     carrinho.add(item);
                 }
                 request.setAttribute("itensCarrinho", carrinho);
@@ -75,8 +78,25 @@ public class CarrinhoServlet extends HttpServlet {
         response.sendRedirect("ErroProdutoNaoDisponivel.jsp");
     }
 
+    private double calcularTotalComFrete(HttpServletRequest request) {
+        double totalSemFrete = 0;
 
+        // Obtenha o total sem frete do carrinho
+        ArrayList<ItemCarrinho> carrinho = (ArrayList<ItemCarrinho>) request.getSession().getAttribute("carrinho");
+        if (carrinho != null) {
+            for (ItemCarrinho item : carrinho) {
+                totalSemFrete += item.getSubtotal();
+            }
+        }
 
+        // Obtenha o valor do frete selecionado
+        String freteSelecionado = request.getParameter("frete");
+        double valorFrete = (freteSelecionado != null) ? Double.parseDouble(freteSelecionado) : 0;
 
+        // Calcule o total com frete
+        double totalComFrete = totalSemFrete + valorFrete;
+        System.out.println("Total com frete: " + totalComFrete);
 
+        return totalComFrete;
+    }
 }

@@ -1,6 +1,7 @@
 package DAO;
 
 import Model.ItemPedido;
+import Model.ItemPedidoDetalhes;
 import Model.Pedido;
 import Model.PedidoDetalhes;
 import br.com.gymcontrol.Model.ItemCarrinho;
@@ -123,17 +124,39 @@ public class PedidoDAO {
 
     public PedidoDetalhes obterDetalhesPedido(int pedidoId) {
         PedidoDetalhes detalhes = new PedidoDetalhes();
+        List<ItemPedidoDetalhes> itensPedido = new ArrayList<>();
 
-        String SQL = "SELECT pedido.id AS pedido_id, pedido.cliente_id, pedido.status, pedido.valor_total, " +
-                "pedido.data_pedido, pedido.endereco_entrega_id, pedido.forma_pagamento, " +
-                "endereco_entrega.id AS endereco_id, endereco_entrega.cep, endereco_entrega.logradouro, " +
-                "endereco_entrega.numero, endereco_entrega.complemento, endereco_entrega.cidade, " +
-                "endereco_entrega.estado, item_pedido.id AS item_id, item_pedido.produto_id, " +
-                "item_pedido.quantidade, item_pedido.preco_unitario, item_pedido.subtotal " +
-                "FROM pedido " +
-                "JOIN endereco_entrega ON pedido.endereco_entrega_id = endereco_entrega.id " +
-                "JOIN item_pedido ON pedido.id = item_pedido.pedido_id " +
-                "WHERE pedido.id = ?";
+        String SQL = "SELECT " +
+                "pedido.id AS pedido_id, " +
+                "pedido.cliente_id, " +
+                "pedido.status, " +
+                "pedido.valor_total, " +
+                "pedido.data_pedido, " +
+                "pedido.endereco_entrega_id, " +
+                "pedido.forma_pagamento, " +
+                "endereco_entrega.id AS endereco_id, " +
+                "endereco_entrega.cep, " +
+                "endereco_entrega.logradouro, " +
+                "endereco_entrega.numero, " +
+                "endereco_entrega.complemento, " +
+                "endereco_entrega.cidade, " +
+                "endereco_entrega.estado, " +
+                "item_pedido.id AS item_id, " +
+                "item_pedido.produto_id, " +
+                "item_pedido.quantidade, " +
+                "item_pedido.preco_unitario, " +
+                "item_pedido.subtotal, " +
+                "produtos.nomeproduto AS nome_produto " +
+                "FROM " +
+                "pedido " +
+                "JOIN " +
+                "endereco_entrega ON pedido.endereco_entrega_id = endereco_entrega.id " +
+                "JOIN " +
+                "item_pedido ON pedido.id = item_pedido.pedido_id " +
+                "JOIN " +
+                "produtos ON item_pedido.produto_id = produtos.produtoid " +
+                "WHERE " +
+                "pedido.id=?";
 
         try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
              PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
@@ -157,12 +180,18 @@ public class PedidoDAO {
                 detalhes.setComplemento(resultSet.getString("complemento"));
                 detalhes.setCidade(resultSet.getString("cidade"));
                 detalhes.setEstado(resultSet.getString("estado"));
-                detalhes.setItemId(resultSet.getInt("item_id"));
-                detalhes.setProdutoId(resultSet.getInt("produto_id"));
-                detalhes.setQuantidade(resultSet.getInt("quantidade"));
-                detalhes.setPrecoUnitario(resultSet.getBigDecimal("preco_unitario"));
-                detalhes.setSubtotal(resultSet.getBigDecimal("subtotal"));
+
+                ItemPedidoDetalhes item = new ItemPedidoDetalhes();
+                item.setProdutoId(resultSet.getInt("produto_id"));
+                item.setQuantidade(resultSet.getInt("quantidade"));
+                item.setPrecoUnitario(resultSet.getBigDecimal("preco_unitario"));
+                item.setSubtotal(resultSet.getBigDecimal("subtotal"));
+                item.setNomeProduto(resultSet.getString("nomeproduto"));
+
+                itensPedido.add(item);
             }
+
+            detalhes.setItensPedido(itensPedido);
 
         } catch (SQLException e) {
             e.printStackTrace();

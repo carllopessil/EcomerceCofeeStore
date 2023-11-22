@@ -8,7 +8,7 @@ public class ItemCarrinho {
 private double totalComFrete;
 
 
-    public ItemCarrinho(Produtos produto, int quantidade) {
+    public ItemCarrinho(Produtos produto, int quantidade, double totalComFrete) {
         this.produto = produto;
         this.quantidade = quantidade;
         this.totalComFrete = totalComFrete;
