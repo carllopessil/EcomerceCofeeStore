@@ -61,7 +61,7 @@ public class PedidoServlet extends HttpServlet {
             pedidoDAO.atualizarItensPedido(pedido);
 
             // Redireciona para a página de confirmação ou outra página desejada
-            response.sendRedirect("confirmacao.jsp");
+            response.sendRedirect("/pedidos");
         } catch (Exception e) {
             e.printStackTrace();
             // Trate a exceção conforme necessário e redirecione para uma página de erro

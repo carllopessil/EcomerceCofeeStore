@@ -200,4 +200,30 @@ public class PedidoDAO {
 
         return detalhes;
     }
+    public List<Pedido> getPedidosByClienteId(int clienteId) {
+        List<Pedido> pedidos = new ArrayList<>();
+        try {
+            String query = "SELECT * FROM pedido WHERE cliente_id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, clienteId);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                Pedido pedido = new Pedido();
+                pedido.setId(resultSet.getInt("id"));
+                pedido.setClienteId(resultSet.getInt("cliente_id"));
+                pedido.setStatus(resultSet.getString("status"));
+                pedido.setValorTotal(resultSet.getBigDecimal("valor_total"));
+                pedido.setDataPedido(resultSet.getTimestamp("data_pedido"));
+                pedido.setEnderecoEntregaId(resultSet.getInt("endereco_entrega_id"));
+                pedido.setFormaPagamento(resultSet.getString("forma_pagamento"));
+                System.out.println(pedido.getId());
+                pedidos.add(pedido);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return pedidos;
+    }
 }
