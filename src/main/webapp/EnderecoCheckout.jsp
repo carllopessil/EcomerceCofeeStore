@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Adicionar e Escolher Endereço</title>
-    <link rel="stylesheet" type="text/css" href="css/ListarEnderecoCliente.css">
+    <link rel="stylesheet" type="text/css" href="css/EnderecoCheckout.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
@@ -47,9 +47,9 @@
          <form id="enderecoForm" action="AdicionarEnderecoCheckouServlet" method="post">
                     <input type="hidden" name="clienteId" id="clienteId" value="${cliente.id}" />
                     <br>
-                    <button type="button" onclick="adicionarEndereco()">Adicionar Endereço</button><br><br>
+                    <button type="button" onclick="adicionarEndereco()" class="styled-button1">Adicionar Endereço </button><br><br>
                     <div id="enderecos"></div>
-<button type="button" id="salvarEnderecos">Salvar novos endereços</button>
+<button type="button" id="salvarEnderecos" class="styled-button2">Salvar novos endereços </button>
                 </form>
     </div>
     <script>
@@ -76,7 +76,7 @@
                 <h2>Endereço Adicional</h2>
                 <label for="cepAdicional">CEP:</label>
                 <input type="text" name="cepAdicional" id="cepAdicional" required>
-                <button type="button" class="buscarCEPAdicional">Buscar CEP</button>
+                <button type="button" class="buscarCEPAdicional" class="styled-button1">Buscar CEP</button>
 
                 <div id="resultadoCEPad">
                     <label for="logradouroAdicional">Logradouro:</label>
@@ -103,7 +103,7 @@
 
                 <br>
 
-                <button type="button" onclick="apagarEndereco(this)">Apagar Endereço</button><br><br>
+                <button type="button" onclick="apagarEndereco(this)"class="styled-button1">Apagar Endereço</button><br><br>
             `;
             divEnderecos.appendChild(novoEndereco);
         }

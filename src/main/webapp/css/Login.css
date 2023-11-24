@@ -32,9 +32,7 @@ p1 {
     font-family: Kanit;
     font-size: 21px;
 }
-/* =========================================
-Stark Industries Logo
-========================================= */
+
 #logo {
     animation: logo-entry 4s ease-in;
     width: 500px;
