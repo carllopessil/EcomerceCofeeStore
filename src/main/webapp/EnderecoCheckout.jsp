@@ -76,7 +76,7 @@
                 <h2>Endereço Adicional</h2>
                 <label for="cepAdicional">CEP:</label>
                 <input type="text" name="cepAdicional" id="cepAdicional" required>
-                <button type="button" class="buscarCEPAdicional" class="styled-button1">Buscar CEP</button>
+                <button type="button" class="buscarCEPAdicional" class="styled-button2">Buscar CEP</button>
 
                 <div id="resultadoCEPad">
                     <label for="logradouroAdicional">Logradouro:</label>

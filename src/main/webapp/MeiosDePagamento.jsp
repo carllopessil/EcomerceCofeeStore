@@ -60,7 +60,7 @@
     <div class="cartao-visual" id="cartaoVisual">
         <div id="numeroCartaoVisual" class="cartao-numero">•••• •••• •••• ••••</div>
         <div id="nomeCartaoVisual" class="cartao-nome">NOME COMPLETO</div>
-        <div id="validadeCartaoVisual" class="cartao-validade">MM/AA</div>
+        <div id="validadeCartaoVisual" class="cartao-validade">Mm/AA</div>
        <div id="chipCartaoVisual">
                <i class="fas fa-microchip" style="color: gold;"></i>
            </div>
@@ -87,7 +87,7 @@
 
             document.getElementById("numeroCartaoVisual").innerText = numeroCartao !== "" ? numeroCartao : "•••• •••• •••• ••••";
             document.getElementById("nomeCartaoVisual").innerText = nomeCompleto !== "" ? nomeCompleto.toUpperCase() : "NOME COMPLETO";
-            document.getElementById("validadeCartaoVisual").innerText = dataVencimento !== "" ? dataVencimento : "MM/AA";
+            document.getElementById("validadeCartaoVisual").innerText = dataVencimento !== "" ? dataVencimento : "Mm/AA";
         }
 
         document.getElementById("numeroCartao").addEventListener("keyup", atualizarCartaoVisual);
