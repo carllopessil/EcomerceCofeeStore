@@ -30,6 +30,9 @@
                     <form action="/ListarProdutos_2" method="get">
                         <button class="btn-primary" type="submit">Lista de Produtos</button>
                     </form>
+                    <form action="/listarPedidos" method="get">
+                                            <button class="btn-primary" type="submit">Lista de Pedidos</button>
+                                        </form>
                     <hr>
                     
                     <% if (((UsuarioBackOffice) session.getAttribute("usuario")).getGrupo().equals("Admin Group")) { %>

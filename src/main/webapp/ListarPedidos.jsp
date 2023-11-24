@@ -9,7 +9,9 @@
     <title>Listagem de Pedidos</title>
 </head>
 <body>
-
+<form action="Principal.jsp" method="get">
+                        <button class="btn-primary" type="submit">Voltar</button>
+                    </form>
 <h1>Listagem de Pedidos</h1>
 
 <table border="1">
@@ -39,11 +41,6 @@
            <td>${pedido.status}</td>
            <td>${pedido.valorTotal}</td>
            <td>
-  <form action="detalhesPedido" method="get">
-                    <input type="hidden" name="pedidoId" value="${pedido.id}">
-                    <button type="submit">Detalhes</button>
-                </form>            </td>
-       </tr>
    </c:forEach>
 
 </table>
