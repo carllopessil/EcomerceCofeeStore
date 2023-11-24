@@ -1,0 +1,366 @@
+*{
+    /*border: 3px solid red;*/
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+html{
+    background: url('/img/carrinhoCafe2.webp') no-repeat center;
+    background-size: 100%;
+    background-attachment: fixed; /* Set the background image to be fixed */
+}
+
+body {
+    position: relative;
+    text-align: center;
+    margin: 20px;
+    background: url('/img/carrinhocafe2.webp') no-repeat center;
+    background-size: cover;
+    background-attachment: fixed; /* set the background image to be fixed */
+}
+
+body, h1, h2, p, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+.col-12 {
+    border: 1.5px solid #ddd;
+    border-radius: 25px;
+    display: grid;
+    align-items: center;
+    justify-items: start;
+    padding: 10px;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgb(65 4 4 / 51%);
+    z-index: -1;
+}
+
+body::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /*background: url('/img/carrinhocafe.jpg') no-repeat center/cover;*/
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+}
+#container {
+
+    width: 78%;
+    height: auto;;
+    margin: 20 auto;
+    padding: 25px;
+    /*border: 3px solid red;*/
+}
+#opcoesentrega {
+    display: flex;
+    flex-direction: column;
+    align-items: normal;
+    justify-content: center;
+    /*height: 36vh;*/
+}
+#opcoesentrega h1, #opcoesentrega h3 {
+    text-align: center;
+    color: #ffff;
+    font-size: 28px;
+    font-weight: 900;
+}
+h1 {
+    display: grid;
+    color: #f8d7da;
+    justify-content: center;
+    border: 1px solid #efe6e6;
+    background: #0000007a;
+    margin-top: 10px;
+    border-radius: 10px;
+    /*width: 31%;*/
+}
+/* apply general styling to the container */
+#entregarapida {
+    margin: 20px;
+}
+/* style the radio buttons and labels */
+#entregarapida input[type="radio"] {
+    margin-right: 5px;
+}
+#entregarapida label {
+    display: inline-block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+/* add some spacing between the radio buttons and labels */
+#entregarapida p {
+    margin-bottom: 10px;
+}
+input[type="radio"] {
+    margin-right: 15px; /* adjust the spacing between the radio button and the text */
+}
+h2 {
+    color: white;
+
+}
+/* style for the labels */
+label {
+    cursor: pointer; /* change cursor to pointer to indicate clickable */
+    font-size: 15px;
+    color: white;
+}
+/* optional: style for the container paragraph (adjust as needed) */
+p {
+    margin-bottom: 10px;
+    color: #ffffff;
+    font-weight: 900;
+    font-size: x-large;
+}
+table {
+    display: flex;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    justify-content: end;
+}
+tbody {
+    display: inline-table;
+    width: 90em;
+    margin: 10px;
+}
+table, th, td {
+    border: 1px solid rgba(218, 204, 204, 0.44)
+}
+th, td {
+    padding: 12px;
+    text-align: center;
+    color: white;
+    font-size: 16px;
+    font-family: math;
+    background-color: #0000005e;
+}
+th {
+    background-color: #5d0b0a
+}
+img {
+    /* width: 24%; */
+    height: auto;
+    display: block;
+    margin: 10px 0;
+}
+.alert {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+}
+/*button comprar*/
+#button-comprar {
+    text-align: center; /* center the button within the div */
+}
+#button-comprar {
+    margin: 20px; /* adjust margin as needed */
+    padding: 10px; /* add padding for better visual appearance */
+    /* background-color: #3498db; /* set a background color for the button */
+    color: #fff; /* set text color to white */
+    border: none; /* remove default button border */
+    border-radius: 5px; /* add rounded corners to the button */
+    cursor: pointer; /* set cursor to pointer for better user experience */
+}
+#button-comprar p {
+    font-size: 18px;
+}
+#button-comprar a {
+    text-decoration: none; /* remove underline from the link */
+    color: inherit; /* inherit text color from the button */
+}
+#button-comprar img {
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+/* adjust styles for responsiveness */
+@media screen and (max-width: 768px) {
+    #button-comprar img {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}
+button {
+    cursor: pointer;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+button:hover {
+    background-color: #0056b3;
+}
+#opcoesentrega {
+    margin-top: 20px;
+}
+#opcoesentrega h2 {
+    color: #ffffff;
+}
+#opcoesentrega p {
+    margin: 5px 0;
+}
+#opcoesentrega input[type="radio"] {
+    margin-right: 5px;
+}
+#opcoesentrega form {
+    margin-top: 20px;
+}
+#totalsemfrete, #totalatualizado {
+    display: grid;
+    font-weight: bold;
+    margin-top: 20px;
+    text-align: unset;
+    font-size: 26px;
+    background-color: #00008bb3;
+    border-radius: 25px;
+    border: 2.1px solid #ccccdf;
+    justify-content: space-around;
+    align-items: stretch;
+    justify-items: stretch;
+    align-content: center;
+}
+#totalatualizado span {
+    color: #26e451; /* cor laranja (pode ajustar conforme necessário) */
+}
+/* apply styles to the div with class "col-md-6" */
+.col-md-6 {
+    width: 50%; /* set the width to 50% of the parent container */
+    float: left; /* float the element to the left (assuming a grid system) */
+}
+/* apply styles to the div with id "img-produto" */
+#img-produto {
+    background-color: #ccc; /* set a background color */
+    height: 200px; /* set a fixed height */
+    width: 100%; /* take up the full width of the parent container */
+    /* you can add more styles as needed */
+}
+input:not([type="image" i]) {
+    box-sizing: border-box;
+    font-weight: bolder;
+    font-family: cursive;
+    text-align: center;
+    border: 2px solid white;
+    background-color: #000000bd;
+    color: white;
+}
+/* style for the placeholder text */
+#cepfaturamento::placeholder {
+    color: #ffffff; /* set your desired color here */
+}
+/* additional styling for the input if needed */
+#cepfaturamento {
+    padding: 2.5px;
+    font-size: 14px;
+    /* add more styles as needed */
+}
+folha de estilos de agente de usuário
+input[type="radio" i] {
+    background-color: initial;
+    cursor: default;
+    appearance: auto;
+    box-sizing: border-box;
+    margin: 3px 3px 0px 5px;
+    padding: initial;
+    border: initial;
+}
+folha de estilos de agente de usuário
+input {
+    text-rendering: auto;
+    color: fieldtext;
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    appearance: auto;
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+    background-color: field;
+    margin: 0em;
+    padding: 1px 0px;
+    border-width: 2px;
+    border-style: inset;
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    border-image: initial;
+    padding-block: 1px;
+    padding-inline: 2px;
+}
+/*icone do cartao*/
+/* estilizando o link */
+a.view.link-icon-detail {
+    display: inline-flex;
+    text-decoration: none;
+    margin: 10px;
+    color: #333;
+}
+/* estilizando as imagens */
+a.view.link-icon-detail img {
+    width: 44px; /* largura padrão */
+    height: 44px; /* altura padrão */
+    margin-right: 5px; /* espaço entre as imagens, ajuste conforme necessário */
+    border: 1px solid rgba(221, 221, 221, 0.12); /* borda opcional */
+    border-radius: 4px; /* borda arredondada opcional */
+}
+/* estilo específico para a segunda imagem com id "image" */
+a.view.link-icon-detail img#image {
+    width: 41px; /* largura específica para a segunda imagem */
+    height: 41px; /* altura específica para a segunda imagem */
+}
+#container-button-cep {
+    text-align: center;
+    margin: 20px;
+    display: grid;
+    justify-items: end;
+}
+button#buscarCEP {
+    border: 1px solid red;
+    width: 11em;
+    border-radius: 13px;
+}
+h1 {
+    color: #fff;
+}
+h2 {
+    color: #ffffff;
+    font-weight: 900;
+}
+label {
+    display: contents;
+    margin-top: 10px;
+}
+input {
+    padding: 5px;
+}
+.row-button {
+    margin-top: 20px;
+}
+/*label {*/
+/*    display: block;*/
+/*    margin-bottom: 5px;*/
+/*    font-weight: bold;*/
+/*}*/
+

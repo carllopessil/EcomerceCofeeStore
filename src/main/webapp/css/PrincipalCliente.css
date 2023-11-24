@@ -62,11 +62,12 @@ h1 {
     color: white; /* Altera a cor do texto */
 }
 .btn-primary1 {
-    font-size: 36px;
-    padding: 1px 39px;
+    font-size: 29px;
+    width: 8em;
+    padding: 0px 8px;
     /* border: none; */
-    background: #3b1e0ac9;
-    border-radius: 5px;
+    background: #3b1e0a00;
+    /* border-radius: 5px; */
     border: 1.5px solid white;
     transition: all 0.3s ease;
 }
@@ -242,6 +243,28 @@ btn {
 .buy-button:hover {
     background-color: red;
 }
+button, select {
+    text-transform: none;
+}
+
+button, input, optgroup, select, textarea {
+    margin: 0;
+    display: block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #ff000021;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: 23px;
+    color: white;
+    font-family: 'Inter';
+    font-size: inherit;
+    line-height: inherit;
+    width: 298px;
+}
+
 
 .product-description {
     font-size: 20px;

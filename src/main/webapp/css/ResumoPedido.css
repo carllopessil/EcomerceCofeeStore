@@ -1,0 +1,142 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    margin: 15px;
+    padding: 10px;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    background-color: rgba(172, 199, 161, 0.44);
+}
+video {
+    position: fixed;
+    top: 0;
+    left: 41em;
+    width: 100%;
+    height: 100%;
+    /* object-fit: cover; */
+    z-index: -1;
+}
+#container{
+    /*border: 3px solid red;*/
+}
+h1{
+    color: #3c2e1d;
+    width: 100%;
+    padding: 20px;
+    margin-top: 15px;
+    border: 5px solid #2f1b0e;
+    text-align: center;
+    font-weight: 900;
+    font-size: 3em;
+    font-family: 'Inter', sans-serif;
+}
+/* Estilo para a tabela */
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+/* Estilo para as células de cabeçalho */
+th {
+    background-color: #f2f2f2;
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+/* Estilo para as células de dados */
+td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+/* Estilo para linhas ímpares da tabela */
+tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+/* Estilo para a célula que contém o subtotal */
+td[colspan="3"] {
+    text-align: right;
+    font-weight: bold;
+}
+
+/* Estilo para o total geral */
+td:last-child {
+    font-weight: bold;
+}
+/* Estilo para o cartão de endereço de entrega */
+#endereco-entrega {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px;
+    max-width: 300px;
+    text-align: left;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para o ícone de caminhão */
+#icone-caminhao {
+    width: 30px; /* Ajuste conforme necessário */
+    height: 30px; /* Ajuste conforme necessário */
+    margin-right: 10px;
+}
+
+/* Estilo para o cabeçalho (Endereço de Entrega e Forma de Pagamento) */
+h2 {
+    font-size: 1.2em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Estilo para os parágrafos com informações */
+p {
+    margin: 0;
+}
+
+/*button comprar*/
+
+/* Estilizações gerais para o botão */
+
+.styled-button:hover {
+    background-color: #4bae50;
+    color: #fff;
+}
+/* Ícone de carrinho para o botão "Concluir Compra" */
+.styled-button {
+    background-color: #2d00fe;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 15px;
+    padding: 10px;
+    /*margin-left: 56em;*/
+}
+
+.styled-button img {
+    margin-right: 1px; /* Adiciona margem à direita da imagem para separá-la do texto */
+    max-width: 100%; /* Garante que a imagem não ultrapasse a largura do botão */
+    height: auto; /* Mantém a proporção da imagem */
+    vertical-align: middle; /* Alinha verticalmente a imagem no meio do botão */
+}
+img {
+        margin-left: 50em;
+        margin: 0em 0em -1em 33em;
+}
+img[AttributeStyle] {
+    width: 40px;
+    aspect-ratio: auto 40 / 40;
+    height: 40px;
+}

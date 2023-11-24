@@ -4,7 +4,8 @@ body {
     margin: 0;
     padding: 0;
     font-family: Kanit;
-    height: 135vh;
+    height: 100%;
+    /* border: 3px solid red; */
 }
 .menu {
     list-style-type: none;
@@ -221,7 +222,7 @@ h1 {
 }
 .produto-container {
     max-width: 650px;
-    margin: 20px auto;
+    margin: 60px auto;
     background-color: #3b1e0a;
     padding: 15px;
     border: 1px solid #3b1e0a;
@@ -288,6 +289,7 @@ ul.dropdown-menu.show {
     border-radius: 5px;
     border: 1.5px solid white;
     transition: all 0.3s ease;
+    margin-left: 40px;
 }
 .btn-primary1:hover {
     transform: scale(1.05); /* Aumenta a escala em 5% */
@@ -302,6 +304,13 @@ ul.dropdown-menu.show {
     cursor: pointer;
     width: 100%;
 }
+.btn-check:checked+.btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active {
+    color: #dbd4d4;
+    background-color: var(--bs-btn-active-bg);
+    border-color: var(--bs-btn-active-border-color);
+    width: auto;
+}
+
 /* Efeitos de hover (quando o mouse passa por cima) */
 .botao-Sair-logout:hover {
     background-color: #9d0303;
@@ -325,6 +334,7 @@ ul.dropdown-menu.show {
     border: 2px solid #3b1e0a;
     font-weight: 500;
     font-family: revert;
+    width: 20em;
 }
 a.buy-button:hover {
     background-color: blue;
@@ -336,6 +346,29 @@ a.buy-button:hover {
     border-radius: 20px;
     border: 2px solid black;
 }
+button, select {
+    text-transform: none;
+}
+
+button, input, optgroup, select, textarea {
+    margin: 0;
+    display: block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #ff000021;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: 23px;
+    color: white;
+    font-family: 'Inter';
+    font-size: inherit;
+    line-height: inherit;
+    width: 298px;
+}
+
+
 #imageCarousel {
     margin-top: 20px;
     max-width: 600px;

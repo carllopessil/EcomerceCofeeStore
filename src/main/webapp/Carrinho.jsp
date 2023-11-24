@@ -8,6 +8,10 @@
     <meta charset="UTF-8">
     <title>Carrinho de Compras</title>
 </head>
+<link rel="stylesheet" type="text/css" href="css/Carrinho.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      integrity="sha512-LCy8A+F8z+q0mz4D3XpUZq7E4A71KNfnr9V5z1GO6dB/Ty7PM08RKVf9eq4egF8tsL7EtqKvwnIcjVmGBw0r5A=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"/>
 <body>
 
 <c:if test="${not empty erroQuantidade}">
@@ -30,10 +34,10 @@
                 </tr>
                 <c:set var="total" value="0" /> <!-- Inicializa a variável total -->
                 <c:forEach var="item" items="${carrinho}" varStatus="loop">
-                    <img src="${item.produto.imagePATH}" alt="Imagem do Produto" width="100">
+<%--                    <img src="${item.produto.imagePATH}" alt="Imagem do Produto" width="100">--%>
 
                     <tr data-id="${item.produto.produtoID}">
-                        <td>${item.produto.nomeProduto}</td>
+                        <td>  <img src="${item.produto.imagePATH}" alt="Imagem do Produto" width="100">${item.produto.nomeProduto}</td>
 
                         <td id="quantidade-${item.produto.produtoID}" data-qtd-estoque="${item.produto.qtdEstoque}">${item.quantidade}</td>
                         <td class="subtotal" data-preco="${item.produto.precoProduto}">R$ ${item.subtotal}</td>
@@ -183,68 +187,43 @@
                 });
             });
 $('input[name="frete"]').change(function () {
-        var freteSelecionado = $('input[name="frete"]:checked').val();
-        var totalProdutos = calcularTotal();
-        var total = parseFloat(freteSelecionado) + totalProdutos;
-        $('#totalAtualizado span').text(total.toFixed(2));
+    var freteSelecionado = $('input[name="frete"]:checked').val();
+    var totalProdutos = parseFloat($('#totalAtualizado').data('total'));
+    var total = parseFloat(freteSelecionado) + totalProdutos;
+    $('#totalAtualizado span').text(total.toFixed(2));
 
-        $('#totalAtualizado').show();
-    });
+    $('#totalAtualizado').show();
+});
 
-    $('.btn-excluir').click(function () {
-        var produtoID = $(this).data('id');
 
-        $.ajax({
-            url: 'removerDoCarrinho',
-            method: 'POST',
-            data: {produtoID: produtoID},
-            success: function () {
-                $('tr[data-id="' + produtoID + '"]').remove(); // Remove a linha da tabela
-                $('img[data-id="' + produtoID + '"]').remove(); // Remove a imagem do produto
+$('.btn-excluir').click(function () {
+    var produtoID = $(this).data('id');
 
-                var total = calcularTotal();
-                $('#totalSemFrete').text('Total sem frete: R$ ' + total.toFixed(2));
+    $.ajax({
+        url: 'removerDoCarrinho',
+        method: 'POST',
+        data: {produtoID: produtoID},
+        success: function () {
+            $('tr[data-id="' + produtoID + '"]').remove(); // Remove a linha da tabela
 
-                var freteSelecionado = $('input[name="frete"]:checked').val();
-                var totalComFrete = parseFloat(freteSelecionado) + total;
-                $('#totalAtualizado span').text(totalComFrete.toFixed(2));
-            },
-            error: function () {
-                alert('Erro ao excluir o item do carrinho');
-            }
-        });
-    });
+            $('img[data-id="' + produtoID + '"]').remove(); // Remove a imagem do produto
 
-    $('.btn-menos').click(function() {
-        var produtoID = $(this).data('id');
-        var quantidadeElement = $('#quantidade-' + produtoID);
-        var novaQuantidade = parseInt(quantidadeElement.text()) - 1;
+            var total = calcularTotal();
+            $('#totalSemFrete').text('Total sem frete: R$ ' + total.toFixed(2));
 
-        if (novaQuantidade >= 0) {
-            quantidadeElement.text(novaQuantidade);
+            var freteSelecionado = $('input[name="frete"]:checked').val();
+            var totalComFrete = parseFloat(freteSelecionado) + total;
+            $('#totalAtualizado span').text(totalComFrete.toFixed(2));
+                   window.location.reload();
 
-            var precoUnitario = parseFloat($('tr[data-id="' + produtoID + '"]').find('.subtotal').data('preco'));
 
-            $.post('atualizarQuantidade', {produtoID: produtoID, novaQuantidade: novaQuantidade}, function(response) {
-                console.log(response);
-
-                var total = calcularTotal();
-                $('#totalSemFrete').text('Total sem frete: R$ ' + total.toFixed(2));
-
-                var subtotal = novaQuantidade * precoUnitario;
-                $('tr[data-id="' + produtoID + '"]').find('.subtotal').text('R$ ' + subtotal.toFixed(2));
-
-                var freteSelecionado = $('input[name="frete"]:checked').val();
-                var totalComFrete = parseFloat(freteSelecionado) + total;
-                $('#totalAtualizado span').text(totalComFrete.toFixed(2));
-            });
-
-            if (novaQuantidade === 0) {
-                var btnExcluir = $(this).closest('tr').find('.btn-excluir');
-                btnExcluir.trigger('click');
-            }
+        },
+        error: function () {
+            alert('Erro ao excluir o item do carrinho');
         }
     });
+});
+
             function calcularTotal() {
                 var total = 0;
                 $('.subtotal').each(function () {
@@ -262,7 +241,46 @@ $('input[name="frete"]').change(function () {
             return total;
         }
 
+$('.btn-menos').click(function() {
+    var produtoID = $(this).data('id');
+    var quantidadeElement = $('#quantidade-' + produtoID);
+    var novaQuantidade = parseInt(quantidadeElement.text()) - 1;
 
+
+    if (novaQuantidade >= 0) {
+        quantidadeElement.text(novaQuantidade);
+
+        var precoUnitario = parseFloat($('tr[data-id="' + produtoID + '"]').find('.subtotal').data('preco'));
+
+        $.post('atualizarQuantidade', {produtoID: produtoID, novaQuantidade: novaQuantidade}, function(response) {
+            console.log(response);
+
+            var total = calcularTotal();
+                    $('#totalSemFreteElement').text('Total sem frete: R$ ' + total.toFixed(2));
+
+
+            // Atualize a exibição conforme necessário
+            var subtotal = novaQuantidade * precoUnitario;
+            $('tr[data-id="' + produtoID + '"]').find('.subtotal').text('R$ ' + subtotal.toFixed(2));
+        });
+
+        if (novaQuantidade === 0) {
+            var btnExcluir = $(this).closest('tr').find('.btn-excluir');
+            btnExcluir.trigger('click');
+        }
+
+        // Atualize o total sem frete
+        var total = calcularTotal();
+        $('#totalSemFrete').text('Total sem frete: R$ ' + total.toFixed(2));
+
+        // Atualize o total com frete
+        var freteSelecionado = $('input[name="frete"]:checked').val();
+        var totalComFrete = parseFloat(freteSelecionado) + total;
+        $('#totalAtualizado span').text(totalComFrete.toFixed(2));
+                    window.location.reload();
+
+    }
+});
 
 $('.btn-mais').click(function() {
     var produtoID = $(this).data('id');
@@ -332,14 +350,8 @@ $('#btnComprar').click(function (event) {
     // Evita o envio do formulário
     event.preventDefault();
 });
-function calcularTotal() {
-    var total = 0;
-    $('.subtotal').each(function () {
-        total += parseFloat($(this).text().replace('R$ ', ''));
-    });
-    return total;
-}
+
 
  </script>
          </body>
-</html>
+         </html>
