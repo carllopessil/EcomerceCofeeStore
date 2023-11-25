@@ -10,11 +10,6 @@
 <body>
 
 
-    <h1>Detalhes do Pedido</h1>
-
-
-
-
 
     <% PedidoDetalhes detalhes = (PedidoDetalhes) request.getAttribute("detalhes"); %>
 
@@ -40,14 +35,19 @@
                 </tr>
             </c:forEach>
         </table>
+    <h1>Detalhes do Pedido</h1>
+    <p>Pedido ID: ${detalhes.pedidoId}</p>
+        <p>Data do Pedido: ${detalhes.dataPedido}</p>
+        <p>Forma de Pagamento: ${detalhes.formaPagamento}</p>
+    <p>Valor Total: ${detalhes.valorTotal}</p>
 
-            <h2>Detalhes do Pedido</h2>
-            <p>Pedido ID: ${detalhes.pedidoId}</p>
-            <p>Cliente ID: ${detalhes.clienteId}</p>
-            <p>Forma pagamento: ${detalhes.formaPagamento}</p>
-            <p>Valor Total: ${detalhes.valorTotal}</p>
-            <p>Data do Pedido: ${detalhes.dataPedido}</p>
-            <!-- Adicione os demais campos conforme necessário -->
+        <h1>Endereço do Pedido</h1>
+
+    <p>CEP: ${detalhes.cep}</p>
+    <p>Logradouro: ${detalhes.logradouro}</p>
+    <p>Número: ${detalhes.numero}</p>
+    <p>Complemento: ${detalhes.complemento}</p>
+    <p>Cidade: ${detalhes.cidade}</p>
     </c:if>
 
 </body>

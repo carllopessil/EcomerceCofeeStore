@@ -134,13 +134,13 @@ public class PedidoDAO {
                 "pedido.data_pedido, " +
                 "pedido.endereco_entrega_id, " +
                 "pedido.forma_pagamento, " +
-                "endereco_entrega.id AS endereco_id, " +
-                "endereco_entrega.cep, " +
-                "endereco_entrega.logradouro, " +
-                "endereco_entrega.numero, " +
-                "endereco_entrega.complemento, " +
-                "endereco_entrega.cidade, " +
-                "endereco_entrega.estado, " +
+                "endereco.id AS endereco_id, " +
+                "endereco.cep, " +
+                "endereco.logradouro, " +
+                "endereco.numero, " +
+                "endereco.complemento, " +
+                "endereco.cidade, " +
+
                 "item_pedido.id AS item_id, " +
                 "item_pedido.produto_id, " +
                 "item_pedido.quantidade, " +
@@ -150,7 +150,7 @@ public class PedidoDAO {
                 "FROM " +
                 "pedido " +
                 "JOIN " +
-                "endereco_entrega ON pedido.endereco_entrega_id = endereco_entrega.id " +
+                "endereco ON pedido.endereco_entrega_id = endereco.id " +
                 "JOIN " +
                 "item_pedido ON pedido.id = item_pedido.pedido_id " +
                 "JOIN " +
@@ -179,14 +179,13 @@ public class PedidoDAO {
                 detalhes.setNumero(resultSet.getInt("numero"));
                 detalhes.setComplemento(resultSet.getString("complemento"));
                 detalhes.setCidade(resultSet.getString("cidade"));
-                detalhes.setEstado(resultSet.getString("estado"));
 
                 ItemPedidoDetalhes item = new ItemPedidoDetalhes();
                 item.setProdutoId(resultSet.getInt("produto_id"));
                 item.setQuantidade(resultSet.getInt("quantidade"));
                 item.setPrecoUnitario(resultSet.getBigDecimal("preco_unitario"));
                 item.setSubtotal(resultSet.getBigDecimal("subtotal"));
-                item.setNomeProduto(resultSet.getString("nomeproduto"));
+                item.setNomeProduto(resultSet.getString("nome_produto")); // Corrigido o nome do campo
 
                 itensPedido.add(item);
             }

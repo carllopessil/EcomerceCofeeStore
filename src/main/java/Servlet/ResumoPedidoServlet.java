@@ -53,9 +53,9 @@ public class ResumoPedidoServlet extends HttpServlet {
 
 
 
-
         // Encaminhar para a página de resumo do pedido
         request.getRequestDispatcher("ResumoPedido.jsp").forward(request, response);
+
     }
 
     // Método para calcular o total geral do pedido

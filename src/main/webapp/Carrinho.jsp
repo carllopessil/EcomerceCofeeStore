@@ -90,12 +90,12 @@
 
                 <p> *O prazo de retirada do pedido inicia-se após a confirmação do pagamento. Escolha a forma de entrega na página de pagamento.</p>
 
-            <form action="LoginCliente.jsp" method="get">
-                <button class="btn-primary" type="submit"><p> COMPRAR</p></button>
-            </form>
+
 
             </div>
-
+ <form action="LoginCliente.jsp" method="get">
+                <button class="btn-primary" type="submit"><p> COMPRAR</p></button>
+            </form>
         </c:when>
     </c:choose>
 
