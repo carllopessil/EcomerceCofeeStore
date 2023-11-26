@@ -46,6 +46,11 @@
                 <td colspan="3">Total sem frete</td>
                 <td>${totalGeral}</td>
             </tr>
+            <tr>
+                <td colspan="3">Total com frete</td>
+                <td>${totalComFrete}</td>
+            </tr>
+
         </table>
         <div id="enderco-entrega">
             <!-- Informações de entrega -->
