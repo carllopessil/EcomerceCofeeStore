@@ -16,20 +16,6 @@
     <div class="conteudo">
         <h1>Escolha seu Meio de Pagamento</h1>
 
-        <%-- Obter o ID do endereço selecionado --%>
-        <% Object enderecoSelecionadoIdObj = request.getAttribute("enderecoSelecionadoId"); %>
-
-        <%-- Verificar se o atributo não é nulo e é uma instância de String --%>
-        <% if (enderecoSelecionadoIdObj != null && enderecoSelecionadoIdObj instanceof String) { %>
-            <%-- Converter o atributo para String --%>
-            <% String enderecoSelecionadoId = (String) enderecoSelecionadoIdObj; %>
-
-            <p>Endereço Selecionado:</p>
-            <p>ID: <%= enderecoSelecionadoId %></p>
-            <%-- Adicione aqui as demais informações do endereço --%>
-        <% } else { %>
-            <p>Nenhum endereço selecionado.</p>
-        <% } %>
 
         <form id="meiosDePagamentoForm" action="/ResumoPedidoServlet" method="get"> <!-- Alterado para método POST -->
             <label for="formaPagamento">Forma de Pagamento:</label>
@@ -54,6 +40,19 @@
                 <label for="quantidadeParcelas">Quantidade de Parcelas:</label>
                 <input type="number" name="quantidadeParcelas" id="quantidadeParcelas">
             </div>
+<%-- Verificar se o atributo não é nulo e é uma instância de String --%>
+<%
+    String enderecoSelecionadoId = (String) request.getAttribute("enderecoSelecionadoId");
+
+    if (enderecoSelecionadoId != null) {
+%>
+    <p>Endereço Selecionado:</p>
+    <p>ID: <%= enderecoSelecionadoId %></p>
+    <%-- Adicione aqui as demais informações do endereço --%>
+<% } else { %>
+    <p>Nenhum endereço selecionado.</p>
+<% } %>
+<input type="hidden" name="enderecoSelecionadoId" value="<%= enderecoSelecionadoId %>">
 
             <input type="submit" value="Avançar para Validar Pedido Final" class="styled-button">
         </form>

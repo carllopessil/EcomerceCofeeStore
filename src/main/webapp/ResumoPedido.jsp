@@ -50,6 +50,17 @@
         <div id="enderco-entrega">
             <!-- Informações de entrega -->
             <h2>Endereço de Entrega</h2>
+            <%--    <!-- Informações de entrega -->--%>
+            <p>ID: ${enderecoSelecionado.id}</p>
+            <p>CEP: ${enderecoSelecionado.cep}</p>
+            <p>Logradouro: ${enderecoSelecionado.logradouro}</p>
+            <p>Número: ${enderecoSelecionado.numero}</p>
+            <p>Complemento: ${enderecoSelecionado.complemento}</p>
+            <p>Bairro: ${enderecoSelecionado.bairro}</p>
+            <p>Cidade: ${enderecoSelecionado.cidade}</p>
+            <p>UF: ${enderecoSelecionado.uf}</p>
+
+
             <p>${enderecoDeEntrega}</p><img style="width: 60px; height: 40px; display: block; -webkit-user-select: none; margin: auto; background-color: hsl(0, 0%, 90%);" src="https://www.boutiquea.cl/wp-content/uploads/2021/06/65047-delivery-truck-animation.gif">
             <!-- Forma de pagamento -->
             <h2>Forma de Pagamento</h2>
@@ -184,9 +195,7 @@
 <%--        </tr>--%>
 <%--    </table>--%>
 
-<%--    <!-- Informações de entrega -->--%>
-<%--    <h2>Endereço de Entrega</h2>--%>
-<%--    <p>${enderecoDeEntrega}</p>--%>
+
 
 <%--    <!-- Forma de pagamento -->--%>
 <%--    <h2>Forma de Pagamento</h2>--%>

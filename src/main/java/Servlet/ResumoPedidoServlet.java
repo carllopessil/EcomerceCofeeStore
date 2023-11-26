@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import DAO.EnderecoDAO;
 import DAO.ProdutosDAO;
+import br.com.gymcontrol.Model.Endereco;
 import br.com.gymcontrol.Model.ItemCarrinho;
 import br.com.gymcontrol.Model.Produtos;
 
@@ -36,7 +38,12 @@ public class ResumoPedidoServlet extends HttpServlet {
 
         // Imprimir o valor para verificar se está correto
         System.out.println("Valor total com frete: " + totalComFrete);
+        String enderecoSelecionadoId = request.getParameter("enderecoSelecionadoId");
+        System.out.println("id do endereço selecionado:" + enderecoSelecionadoId);
+        Endereco enderecoSelecionado = EnderecoDAO.obterEnderecoPeloId(enderecoSelecionadoId);
 
+// Adicionar o endereço à solicitação para que possa ser acessado no JSP
+        request.setAttribute("enderecoSelecionado", enderecoSelecionado);
         // ... Coletar outras informações relevantes
 
         // Verificar se o carrinho não está vazio

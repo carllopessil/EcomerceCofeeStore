@@ -126,6 +126,40 @@ public class EnderecoDAO {
             return false;
         }
     }
+    public static Endereco obterEnderecoPeloId(String enderecoId) {
+        // Lógica para consultar o banco de dados e retornar o endereço com base no ID
+        // Use a classe PreparedStatement para evitar SQL injection
+
+        // Exemplo:
+        String sql = "SELECT * FROM Endereco WHERE id = ?";
+        try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, enderecoId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                // Mapear os dados do ResultSet para um objeto Endereco
+                Endereco endereco = new Endereco();
+                endereco.setId(resultSet.getInt("id"));
+                endereco.setCep(resultSet.getString("cep"));
+                endereco.setLogradouro(resultSet.getString("logradouro"));
+                endereco.setNumero(resultSet.getInt("numero"));
+                endereco.setComplemento(resultSet.getString("complemento"));
+                endereco.setBairro(resultSet.getString("bairro"));
+                endereco.setCidade(resultSet.getString("cidade"));
+                endereco.setUf(resultSet.getString("uf"));
+                endereco.setEnderecoAtivo(resultSet.getBoolean("enderecoAtivo"));
+                endereco.setIdCliente(resultSet.getInt("idCliente"));
+
+                return endereco;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null; // Se não encontrar o endereço
+    }
+
     public boolean adicionarEnderecos(int clienteId, List<Endereco> enderecos) {
         PreparedStatement preparedStatement = null;
         try { Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
