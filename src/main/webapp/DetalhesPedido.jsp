@@ -6,11 +6,25 @@
 <html>
 <head>
     <title>Detalhes do Pedido</title>
+     <link rel="stylesheet" type="text/css" href="css/DetalhesPedidos.css">
 </head>
-<body>
+<body >
+  <ul class="menu">
+        <li class="menu-logo">
+            <img src="img/Logo de cafe.png">
+            <h1>BREWMASTERS CAFÉ</h1>
 
 
+        </li>
+          <button onclick="window.history.back()">Voltar</button>
+ </ul>
 
+<div class="fundo">
+        <img class="imagem-fundo" src="https://gifs.eco.br/wp-content/uploads/2022/08/gifs-de-cafe-30.gif" alt="GIF from Giphy">
+
+    </div>
+
+<div class="overlay">
     <% PedidoDetalhes detalhes = (PedidoDetalhes) request.getAttribute("detalhes"); %>
 
     <!-- Verifique se a lista de itensPedido não é nula antes de iterar -->
@@ -49,6 +63,7 @@
     <p>Complemento: ${detalhes.complemento}</p>
     <p>Cidade: ${detalhes.cidade}</p>
     </c:if>
+</div>
 
 </body>
 </html>
