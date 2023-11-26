@@ -58,7 +58,8 @@
                 </c:forEach>
             </table>
             <p id="totalSemFrete">Total sem frete: R$ ${total}</p> <!-- Exibe o total -->
-            <p id="totalAtualizado" style="display:none;" data-total="${total}">Total com frete : R$ <span>0.00</span></p>
+            <p id="totalAtualizado" style="display:none;" data-total="${total}">Total com frete : R$ <span>${total}</span></p>
+
         </c:when>
         <c:otherwise>
             <p>Carrinho vazio, adicione algum item.</p>

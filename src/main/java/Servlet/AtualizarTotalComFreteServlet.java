@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-
 @WebServlet("/atualizarTotalComFrete")
 public class AtualizarTotalComFreteServlet extends HttpServlet {
 
@@ -29,14 +28,11 @@ public class AtualizarTotalComFreteServlet extends HttpServlet {
                 // Responda à solicitação com sucesso
                 response.getWriter().write("Sessão atualizada com sucesso");
                 System.out.println("deu bom");
+
             } else {
                 // Caso o parâmetro seja nulo ou vazio, retorne uma mensagem de erro
                 response.getWriter().write("Erro: Parâmetro 'totalComFrete' inválido.");
             }
-
-            // Agora, não é necessário criar uma nova HttpSession, pois você já a recuperou anteriormente
-            Double teste = (Double) request.getSession().getAttribute("totalComFrete");
-            System.out.println("Teste: " + teste);
 
         } catch (NumberFormatException e) {
             // Trate a exceção se a conversão para Double falhar

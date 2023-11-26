@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 @WebServlet("/PedidoServlet")
 public class PedidoServlet extends HttpServlet {
+    private static final String TOTAL_COM_FRETE_ATTR = "totalComFrete";
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
@@ -29,13 +30,11 @@ public class PedidoServlet extends HttpServlet {
             Cliente cliente = (Cliente) session.getAttribute("cliente");
             int clienteId = cliente.getId();
             String status = request.getParameter("status");
-
-            Double teste = (Double) session.getAttribute("totalComFrete");
-            System.out.println("Teste: " + teste);
+            Double teste = (Double) session.getAttribute(TOTAL_COM_FRETE_ATTR);
 
 // Cria um BigDecimal a partir do valor Double, tratando o caso em que teste é null
             BigDecimal valorTotal = teste != null ? new BigDecimal(teste.toString()) : BigDecimal.ZERO;
-            System.out.println(valorTotal);
+            System.out.println(teste);
 
             String enderecoDeEntrega = (String) session.getAttribute("enderecoSelecionadoId");
             System.out.println("Sem converter "+ enderecoDeEntrega);

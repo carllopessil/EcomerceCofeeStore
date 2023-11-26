@@ -28,7 +28,8 @@ public class ListarEnderecoCheckout extends HttpServlet {
             response.sendRedirect("LoginCliente.jsp");
             return; // Importante retornar para evitar a execução do código abaixo
         }
-
+        Double teste = (Double) request.getSession().getAttribute("totalComFrete");
+        System.out.println("Teste: no listar ende " + teste);
         int idCliente = cliente.getId();
         HttpSession session = request.getSession();
         Double totalComFrete = (Double) session.getAttribute("totalAtualizado");
@@ -39,6 +40,7 @@ public class ListarEnderecoCheckout extends HttpServlet {
         List<Endereco> enderecos = enderecoDAO.obterEnderecosCliente(idCliente);
         request.setAttribute("cliente" , cliente);
         request.setAttribute("enderecos2", enderecos);
+        session.setAttribute("totalComFrete", teste);
 
         request.getRequestDispatcher("EnderecoCheckout.jsp").forward(request, response);
     }

@@ -13,7 +13,9 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet("/MeiosDePagamentoServlet")
 public class MeiosDePagamentoServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private static final String TOTAL_COM_FRETE_ATTR = "totalComFrete";
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         // Lógica para lidar com a escolha da forma de pagamento, se necessário
 
         // Recuperar o ID do endereço selecionado
@@ -22,14 +24,17 @@ public class MeiosDePagamentoServlet extends HttpServlet {
         // Suponha que o valor total com frete esteja armazenado em "totalComFrete" na sessão
         HttpSession session = request.getSession();
 
-
         // Armazenar o ID do endereço selecionado na sessão
         session.setAttribute("enderecoSelecionadoId", enderecoSelecionadoId);
 
+        // Recuperar o valor total com frete da sessão usando a constante
+        Double totalComFrete = (Double) session.getAttribute(TOTAL_COM_FRETE_ATTR);
+
+        // Imprimir o valor para verificar se está correto
+        System.out.println("Valor total com frete: " + totalComFrete);
+
         // Passar o ID do endereço selecionado e o valor total com frete para a próxima página
         request.setAttribute("enderecoSelecionadoId", enderecoSelecionadoId);
-
-
         // Redirecionar para a página "MeiosDePagamento.jsp"
         request.getRequestDispatcher("MeiosDePagamento.jsp").forward(request, response);
     }

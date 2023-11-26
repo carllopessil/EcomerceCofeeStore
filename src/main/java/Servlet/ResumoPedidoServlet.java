@@ -15,6 +15,7 @@ import br.com.gymcontrol.Model.Produtos;
 
 @WebServlet("/ResumoPedidoServlet")
 public class ResumoPedidoServlet extends HttpServlet {
+    private static final String TOTAL_COM_FRETE_ATTR = "totalComFrete";
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Coletar os detalhes do pedido, produtos, quantidades, valores, endereço de entrega, forma de pagamento, etc.
         // Normalmente, esses dados podem ser obtidos da sessão ou do banco de dados, dependendo de como você gerencia os pedidos.
@@ -30,7 +31,11 @@ public class ResumoPedidoServlet extends HttpServlet {
         session = request.getSession();
         session.setAttribute("formaDePagamento", formaPagamento);
 
+        // Recuperar o valor total com frete da sessão usando a constante
+        Double totalComFrete = (Double) session.getAttribute(TOTAL_COM_FRETE_ATTR);
 
+        // Imprimir o valor para verificar se está correto
+        System.out.println("Valor total com frete: " + totalComFrete);
 
         // ... Coletar outras informações relevantes
 
