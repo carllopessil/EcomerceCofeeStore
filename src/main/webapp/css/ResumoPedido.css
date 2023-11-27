@@ -2,26 +2,68 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    /*border: 4px solid red;*/
 }
+
 body {
     margin: 15px;
     padding: 10px;
     display: grid;
     justify-content: center;
     align-content: center;
-    background-color: rgba(172, 199, 161, 0.44);
+    background-image: url("/img/resumoPedidoImg.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: scroll;
+
+}
+.slideshow-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.slideshow-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    animation: fade 10s infinite;
+}
+
+.slideshow-image.active {
+    opacity: 1;
+    animation: none;
+}
+
+@keyframes fade {
+    0%, 100% { opacity: 0; }
+    25%, 75% { opacity: 1; }
 }
 video {
     position: fixed;
     top: 0;
-    left: 41em;
-    width: 100%;
+    left: 84em;
+    width: 29%;
     height: 100%;
-    /* object-fit: cover; */
+    object-fit: cover;
     z-index: -1;
+    opacity: 26%;
 }
-#container{
-    /*border: 3px solid red;*/
+#container-main {
+
+    display: flex;
+    justify-items: center;
+    height: auto;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: flex-start;
 }
 h1{
     color: #3c2e1d;
@@ -41,6 +83,16 @@ table {
     border-collapse: collapse;
     margin-bottom: 20px;
 }
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
 
 /* Estilo para as células de cabeçalho */
 th {
@@ -53,8 +105,13 @@ th {
 /* Estilo para as células de dados */
 td {
     padding: 8px;
-    text-align: left;
-    border: 1px solid #ddd;
+    text-align: center;
+    color: darkblue;
+    font-family: cursive;
+    border: 1px solid #0c0b0b;
+    background-color: rgb(156 156 156 / 88%);
+    font-weight: bolder;
+    font-size: 15px;
 }
 
 /* Estilo para linhas ímpares da tabela */
@@ -92,25 +149,39 @@ td:last-child {
 
 /* Estilo para o cabeçalho (Endereço de Entrega e Forma de Pagamento) */
 h2 {
-    font-size: 1.2em;
-    color: #333;
+    font-size: 38px;
+    color: #ebe4e4;
     margin-bottom: 10px;
+    text-decoration: underline;
 }
-
+#enderco-entrega {
+    width: 65vw;
+    border: 1.3px solid white;
+    padding: 20px;
+    background-color: #00000042;
+}
 /* Estilo para os parágrafos com informações */
 p {
-    margin: 0;
+    margin: 7px;
+    color: #FFFFFF;
+    border: 1px solid #e7e0e0;
+    font-size: 17px;
+    background-color: #09090982;
+    padding: 6px;
+    /* text-decoration: underline; */
+    border-radius: 42px;
 }
-
 /*button comprar*/
 
 /* Estilizações gerais para o botão */
 
 .styled-button:hover {
-    background-color: #4bae50;
+    background-color: #012f03;
     color: #fff;
+    border-radius: 20px;
+    border: 2px solid red;
 }
-/* Ícone de carrinho para o botão "Concluir Compra" */
+
 .styled-button {
     background-color: #2d00fe;
     border: none;
@@ -121,9 +192,44 @@ p {
     font-size: 16px;
     cursor: pointer;
     margin-top: 15px;
-    padding: 10px;
-    /*margin-left: 56em;*/
+    margin-right: 10px;
+    border: 2px solid #fff;
+    border-radius: 20px;
 }
+/* Estilos para telas pequenas */
+@media screen and (max-width: 800px) {
+    body {
+        max-width: 170%;
+        background-size: auto; /* ou ajuste conforme necessário */
+    }
+    td {
+        color:white;
+        font-weight: bolder;
+    }
+    form h1{
+        width: 100%;
+        margin-left: 25px;
+    }
+    #container-mai{
+        max-width:100%;
+    }
+    #enderco-entrega{
+        width: 100%;
+
+    }
+    .status-display{
+        color:green;!important;
+    }
+}
+.status-display {
+    color: white;
+    font-weight: 800;
+    font-size: 22px;
+    /*margin-left: 32em;*/
+}
+
+/* Adicione estilos adicionais conforme necessário */
+
 
 .styled-button img {
     margin-right: 1px; /* Adiciona margem à direita da imagem para separá-la do texto */
@@ -131,12 +237,153 @@ p {
     height: auto; /* Mantém a proporção da imagem */
     vertical-align: middle; /* Alinha verticalmente a imagem no meio do botão */
 }
-img {
-        margin-left: 50em;
-        margin: 0em 0em -1em 33em;
+/*img {*/
+/*        margin-left: 50em;*/
+/*        margin: 0em 0em -1em 33em;*/
+/*}*/
+/*img[AttributeStyle] {*/
+/*    width: 40px;*/
+/*    aspect-ratio: auto 40 / 40;*/
+/*    height: 40px;*/
+/*}*/
+/*inicio class containe logo marca*/
+.menu {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #301e16;
+    padding: 10px;
 }
-img[AttributeStyle] {
-    width: 40px;
-    aspect-ratio: auto 40 / 40;
-    height: 40px;
+
+.menu li {
+    margin: 0;
+    padding: 0;
 }
+ul.menu {
+    width: 100vw;
+}
+
+h1-logo {
+    display: grid;
+    color: #f8d7da;
+    justify-content: center;
+    margin-top: 10px;
+    border-radius: 10px;
+    font-size: 3em;
+}
+
+h1 {
+    display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    color: #0c0401;
+    border: 1px solid white;
+}
+h1-tp {
+    display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    color: white;
+
+}
+h3 {
+    display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    color: white;
+    border: 1px solid white;
+    width: 402px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: red;
+    padding: 5px 112px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 25px;
+    font-family: Kanit;
+}
+
+button-voltar {
+    padding: 7px 42px;
+    font-size: 16px;
+    background-color: #301e16;
+    color: white;
+    border: 1.5px solid white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: auto 30px;
+}
+
+button-voltar:hover {
+    background-color: #2d00fe;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 31vh;
+}
+
+.menu-logo {
+    display: flex;
+    align-items: center;
+}
+
+.menu-logo img {
+    max-width: 140px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.slideshow-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.slideshow-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    animation: fade 10s infinite;
+}
+
+.slideshow-image.active {
+    opacity: 1;
+    animation: none;
+}
+
+@keyframes fade {
+    0%, 100% {
+        opacity: 0;
+    }
+    25%, 75% {
+        opacity: 1;
+    }
+}
+
+/*Fim da class containe logo marca*/
