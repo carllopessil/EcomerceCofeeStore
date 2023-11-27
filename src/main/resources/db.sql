@@ -79,6 +79,47 @@ CREATE TABLE Endereco (
                           idCliente INT NOT NULL,
                           FOREIGN KEY (idCliente) REFERENCES Cliente(id)
 );
+
+
+
+CREATE TABLE pedido (
+                        id INT AUTO_INCREMENT PRIMARY KEY,
+                        cliente_id INT,
+                        status VARCHAR(255),
+                        valor_total DECIMAL(10, 2),
+                        data_pedido TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                        endereco_entrega_id INT,
+                        forma_pagamento VARCHAR(255)
+);
+
+-- Drop table if exists
+DROP TABLE IF EXISTS item_pedido;
+
+-- Create table item_pedido
+CREATE TABLE item_pedido (
+                             id INT AUTO_INCREMENT PRIMARY KEY,
+                             pedido_id INT,
+                             produto_id INT,
+                             quantidade INT,
+                             preco_unitario DECIMAL(10, 2),
+                             subtotal DECIMAL(10, 2)
+);
+
+-- Drop table if exists
+DROP TABLE IF EXISTS endereco_entrega;
+
+-- Create table endereco_entrega
+CREATE TABLE endereco_entrega (
+                                  id INT AUTO_INCREMENT PRIMARY KEY,
+                                  cliente_id INT,
+                                  cep VARCHAR(10),
+                                  logradouro VARCHAR(255),
+                                  numero INT,
+                                  complemento VARCHAR(255),
+                                  cidade VARCHAR(255),
+                                  estado VARCHAR(255)
+);
+
 -- Drop table if exists
 DROP TABLE IF EXISTS pedido;
 
