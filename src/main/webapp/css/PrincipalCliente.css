@@ -264,8 +264,6 @@ button, input, optgroup, select, textarea {
     line-height: inherit;
     width: 298px;
 }
-
-
 .product-description {
     font-size: 20px;
     margin-top: 10px;
@@ -355,6 +353,22 @@ option {
     margin-block-end: 1em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
+}
+/*Nome do usuario */
+.dropdown, .dropdown-center, .dropend, .dropstart, .dropup, .dropup-center {
+    position: relative;
+    left: -170px;
+}
+
+form {
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    color: white;
+    border-radius: 20px;
+    width: 294px;
+    margin-top: 10px;
 }
 footer {
     background-color: #3b1e0a;
