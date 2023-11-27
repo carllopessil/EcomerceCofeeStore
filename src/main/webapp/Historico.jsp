@@ -32,14 +32,19 @@
                 <td>${pedido.dataPedido}</td>
                 <td>${pedido.valorTotal}</td>
                 <td>${pedido.status}</td>
-                <td>
-                <form action="detalhesPedido" method="get">
+                <td><a href="detalhesPedido?id=${pedido.id}">Detalhes</a></td>
+
+
+             <td>   <form action="detalhesPedido" method="get">
                     <input type="hidden" name="pedidoId" value="${pedido.id}">
                     <button type="submit">Detalhes</button>
-                </form>
-                </td>
-</tr>
+                </form>            </td>
+
+            </tr>
         </c:forEach>
+
+
+    </table>
 
 
 </div>
