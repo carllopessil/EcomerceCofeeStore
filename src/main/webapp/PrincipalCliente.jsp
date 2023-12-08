@@ -59,10 +59,16 @@
                     aria-expanded="false">
                 Bem-vindo, ${sessionScope.cliente.nomeCompleto}
             </button>
+
             <ul class="dropdown-menu">
 
                 <div class="container">
+
                     <div class="form-container">
+                        <form action="Carrinho.jsp" method="get">
+                        <button class="btn-primary1" type="submit">🛒<label>Comprar</label>
+                        </button>
+                    </form>
                         <div class="btn-container">
                             <c:choose>
                                 <c:when test="${sessionScope.cliente != null}">
@@ -77,10 +83,10 @@
                                 </c:otherwise>
                             </c:choose>
 
-                            <form action="Carrinho.jsp" method="get">
-                                <button class="btn-primary1" type="submit">🛒<label>Comprar</label>
-                                </button>
-                            </form>
+<%--                            <form action="Carrinho.jsp" method="get">--%>
+<%--                                <button class="btn-primary1" type="submit">🛒<label>Comprar</label>--%>
+<%--                                </button>--%>
+<%--                            </form>--%>
                         </div>
                     </div>
                 </div>

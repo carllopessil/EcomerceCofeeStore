@@ -51,6 +51,14 @@ h1{
     font-family: Kanit;
     font-size: 21px;
 }
+.button {
+    background: #19f319;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 5px 18px;
+    border: 2px solid white;
+    border-radius: 15px;
+}
 .container {
     display: flex;
     flex-direction: column;

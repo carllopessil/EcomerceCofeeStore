@@ -34,10 +34,10 @@ h1 {
     cursor: pointer;
     text-decoration: none;
     color: red !important;
-    padding: 5px 112px;
+    padding: 5px 18px;
     border-radius: 5px;
     font-weight: bold;
-    font-size: 25px;
+    font-size: 24px;
     font-family: Kanit;
 }
 
@@ -55,6 +55,7 @@ h1 {
     font-size: 20px;
     border: 1.5px solid white;
     transition: all 0.3s ease;
+    margin-left: -4em;
 }
 .btn-primary:hover {
     transform: scale(1.05); /* Aumenta a escala em 5% */
@@ -70,6 +71,7 @@ h1 {
     /* border-radius: 5px; */
     border: 1.5px solid white;
     transition: all 0.3s ease;
+    margin: 0px 0 0 -55px;
 }
 .btn-primary1:hover {
     transform: scale(1.05); /* Aumenta a escala em 5% */
@@ -83,6 +85,8 @@ h1 {
     border: none;
     cursor: pointer;
     width: 100%;
+    margin-left: 137px;/* ajustado */
+    margin-top: -78px; /* ajustado*/
 }
 .btn-primary1 label {
     font-weight: bold; /* Define o peso da fonte como negrito */
@@ -326,8 +330,8 @@ a.dropdown-item:hover {
     border: 1.5px solid white;
 }
 ul.dropdown-menu.show {
-    /*width: 100%;*/
-    height: auto;
+    width: 25em;
+    height: 300px;
 }
 option {
     font-size: 26px;
@@ -359,16 +363,20 @@ option {
     position: relative;
     left: -170px;
 }
-
 form {
+    /* display: flex; */
     margin: 0;
     font-family: inherit;
     font-size: inherit;
-    line-height: inherit;
+    /* line-height: inherit; */
     color: white;
     border-radius: 20px;
-    width: 294px;
+    width: 143px;
     margin-top: 10px;
+    /* justify-content: flex-start; */
+    /* align-items: center; */
+    /* flex-wrap: nowrap; */
+    /* flex-direction: column-reverse; */
 }
 footer {
     background-color: #3b1e0a;

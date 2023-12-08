@@ -11,7 +11,13 @@ html {
     background-size: 100%;
     background-attachment: fixed; /* Set the background image to be fixed */
 }
-
+.dropdown-toggle {
+    white-space: nowrap;
+    margin: 0 184px 0 13px;
+    border: 5px solid #ffffff;
+    width: 22em;
+    border-radius: 0 69px;
+}
 body {
     position: relative;
     text-align: center;
@@ -64,8 +70,9 @@ body::after {
 }
 .row-sedex {
     background-color: #00000082;
-    padding: 26px;
+    padding: 6px;
     height: 47%;
+    border: 3px solid white;
 }
 
 container-sedex-frete {
@@ -82,8 +89,9 @@ container-sedex-frete {
 .col-4.class\=frete {
     display: grid;
     justify-items: stretch;
-    margin-left: 40em;
-    margin-top: -30em;
+    margin-left: 30em;
+    width: 20em;
+    margin-top: -14em;
 }
 
 .col-4.class\=frete1 {
@@ -92,12 +100,12 @@ container-sedex-frete {
     margin-left: 40em;
 }
 h2 {
-    border: 3px solid white;
+    border-bottom: 7px solid white;
     color: white;
-    background-color: rgba(12, 4, 1, 0.71);
+    background-color: rgb(12 4 1 / 20%);
     display: block;
-    font-size: 27px;
-    margin-block-start: 0.83em;
+    font-size: 34px;
+    margin-block-start: -0.01em;
     margin-block-end: 0.83em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
@@ -136,7 +144,7 @@ h1 {
     margin-inline-end: 0px;
     font-weight: bold;
     color: white;
-    border: 1px solid white;
+    border-bottom: 18px solid #ffffff94;
 }
 h1-tp {
     display: block;
@@ -154,12 +162,12 @@ h3 {
     font-size: 2em;
     margin-block-start: 0.67em;
     margin-block-end: 0.67em;
-    margin-inline-start: 0px;
+    margin-inline-start: 14px;
     margin-inline-end: 0px;
     font-weight: bold;
     color: white;
-    border: 1px solid white;
-    width: 402px;
+    border-bottom: 8px solid white;
+    width: 12em;
 }
 
 .menu a {
@@ -252,6 +260,7 @@ table {
     margin-right: auto;
     text-align: center;
     justify-content: end;
+    background-color: #4c342bbf;
 }
 
 tbody {
@@ -296,10 +305,10 @@ img {
 p {
     display: flex;
     margin-bottom: 10px;
-    color: #dccdcd;
-    font-weight: 900;
+    color: #e8f0fe;
+    font-weight: 500;
     font-size: 17px;
-    background-color: #06187d;
+    background-color: #4a30266b;
     border: 2px solid white;
     border-radius: 15px;
     width: 24em;
@@ -313,21 +322,25 @@ p label {
 }
 
 p#totalSemFrete {
-    background-color: rgba(0, 0, 255, 0.68);
+    background-color: rgb(61 9 9);
     width: 23em;
     padding: 10px;
     font-size: large;
     margin-top: 20px;
+    color: white;
+    font-size: 18px;
+    font-family: cursive;
 }
 p#totalAtualizado {
-    background-color: #5d0b0a;
-    color: #fff;
+    background-color: #02894b;
+    color: #101010;
     width: 32em;
     padding: 10px;
-    font-size: large;
+    font-size: 20px;
     left: 70.5em;
     position: sticky;
     margin-top: -55px;
+    font-family: system-ui;
 }
 
 label.d-block {
@@ -340,18 +353,18 @@ label.d-block {
     font-size: 16px;
     text-align: center;
 }
-
 button {
-    /* display: contents; */
+    display: inline;
     cursor: pointer;
-    padding: 1px 33px;
-    background-color: #10097f;
+    /* padding: 0px 33px; */
+    background-color: #0c6fff;
     color: #fff;
-    /*border: 2px solid red;*/
-    border-radius: 11px;
+    border-bottom: 3px solid #f8f9fa;
+    border-radius: 11px 45px;
     font-size: 16px;
-    padding: 10px 77px;
-    font-weight: 900;
+    width: 112px;
+    font-weight: 500;
+    font-family: monospace;
 }
 button.btn-excluir:hover {
     background-color: red;
@@ -375,13 +388,15 @@ button.btn-menos:hover {
 #btnComprar {
     background-color: #007bff;
     color: #fff;
-    padding: 9px 94px;
+    padding: 5px 12px;
     font-size: 20px;
+    width: 184px;
     border: none;
     cursor: pointer;
-    border: 2px solid red;
+    border: 2px solid #ddc8c88c;
     border-radius: 23px;
-    margin-left: -87px;
+    margin-left: -130px;
+    text-align: center;
 }
 
 /* Hover effect for the button */
@@ -406,9 +421,9 @@ button.btn-menos:hover {
 #opcoesentrega {
     display: flex;
     align-items: flex-end;
-    width: 36em;
+    width: 27em;
     justify-content: center;
-    margin-top: -16em;
+    margin-top: -31em;
     margin-left: 78em;
     flex-direction: column;
 }
@@ -425,12 +440,15 @@ input:not([type="image" i]) {
     box-sizing: border-box;
     border: 1.2px solid #6a321c;
     padding: 10px;
+    color: white;
+    font-size: 14px;
     /* margin: 12px; */
     border-radius: 20px;
     background-color: #0000008c;
     /* margin-left: 18em; */
     /* margin-top: -39px; */
     margin: 10px;
+    text-align: center;
 }
 
 span-cep {
@@ -443,7 +461,7 @@ span-cep {
     font-weight: 700;
     font-family: monospace;
     position: sticky;
-    margin-left: -271px;
+    margin-left: 0px;
 }
 
 input[type="radio" i] {
@@ -464,14 +482,14 @@ label {
 button#buscarCEP {
     width: 222px;
     height: 34px;
-    border: 1px solid red;
+    border: 1px solid #f8d7da;
     border-radius: 25px;
     font-weight: 900;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: nowrap;
-    margin-left: 124px;
+    margin-left: 50px;
 }
 
 /*icone do cartao*/

@@ -11,10 +11,11 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
-<link rel="stylesheet" type="text/css" href="css/Carrinho.css">
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
       integrity="sha512-LCy8A+F8z+q0mz4D3XpUZq7E4A71KNfnr9V5z1GO6dB/Ty7PM08RKVf9eq4egF8tsL7EtqKvwnIcjVmGBw0r5A=="
       crossorigin="anonymous" referrerpolicy="no-referrer"/>
+<link rel="stylesheet" type="text/css" href="css/Carrinho.css">
 <style>
     table {
         border-collapse: collapse;
@@ -28,8 +29,10 @@
     }
     td {
         text-align: center;
-        font-family: cursive;
-        font-weight: 100;
+        font-family: system-ui;
+        font-weight: 500;
+        font-size: 1.5em;
+        color: white;
     }
     th {
         background-color:#3d0909;
@@ -464,3 +467,4 @@
 </div>
 </body>
 </html>
+
